@@ -17,6 +17,7 @@ export const messages = {
   streetIsRequired: "آدرس خیابان الزامی است",
   emailIsRequired: "آدرس ایمیل الزامی است",
   invalidEmail: "آدرس ایمیل نامعتبر است",
+  invalidPhoneNumber: "شماره موبایل به درستی وارد نشده است",
   roleIsRequired: "نقش الزامی است",
   permissionIsRequired: "مجوز الزامی است",
   teamIsRequired: "عضو جدید باید به یک تیم اختصاص یابد",

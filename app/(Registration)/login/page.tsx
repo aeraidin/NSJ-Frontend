@@ -1,3 +1,4 @@
+import LoginForm from "@/components/Layout/Forms/auth/LoginForm";
 import React from "react";
 
 function page() {
@@ -8,6 +9,9 @@ function page() {
         <div className="flex flex-col gap-4">
           <p className="text-3xl">ورود | ثبت نام</p>
           <p className="text-gray-400">شماره موبایل خود را وارد کنید</p>
+        </div>
+        <div>
+          <LoginForm />
         </div>
       </div>
     </div>

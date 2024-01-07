@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Localfont from "next/font/local";
 import "./globals.css";
-import TenstackProvider from "@/util/Providers/TenstackProvider";
+import TenstackProvider from "@/util/config/Providers/TenstackProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NextNProgressWrapper from "@/components/NextNProgressWrapper";
