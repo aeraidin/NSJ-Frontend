@@ -1,8 +1,30 @@
+
+.custom-scrollbar {
+    max-height: 302px; 
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #011F3F; /* Change the colors as needed */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px; /* Adjust the width as needed */
+    scrollbar-color: #011F3F; /* Change the colors as needed */
+
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #011F3F; /* Change the color as needed */
+    scrollbar-color: #011F3F; /* Change the colors as needed */
+
+  }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+

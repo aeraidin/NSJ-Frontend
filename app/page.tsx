@@ -4,6 +4,8 @@ import Link from "next/link";
 
 export default function Home() {
   return (
+
+  
     <FullLayout>
       <div className="w-full min-h-screen flex items-center justify-center">
         <div className="w-full max-w-[150px]">
@@ -13,5 +15,6 @@ export default function Home() {
         </div>
       </div>
     </FullLayout>
+
   );
 }
