@@ -43,14 +43,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="fa" dir="rtl">
       <body className={yekan.className}>
         <NextNProgressWrapper>
-          <TenstackProvider>
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </TenstackProvider>
+          <TenstackProvider>{children}</TenstackProvider>
         </NextNProgressWrapper>
       </body>
     </html>
