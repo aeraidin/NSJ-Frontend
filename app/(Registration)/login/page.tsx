@@ -1,11 +1,14 @@
 "use client";
 import LoginForm from "@/components/Layout/Forms/auth/LoginForm";
+import OtpCodeForm from "@/components/Layout/Forms/auth/OtpCodeForm";
 import Otpcode from "@/components/Layout/Otpcode/Otpcode";
 import React, { useState } from "react";
 
 function Page() {
-  const [CodeHaveSend, setCodeHaveSend] = useState(true);
-  const [phoneNumber, setphoneNumber] = useState<null | number>(null);
+  const [CodeHaveSend, setCodeHaveSend] = useState(false);
+  const [phoneNumber, setphoneNumber] = useState<null | string>(null);
+  console.log(phoneNumber);
+
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="w-full max-w-[380px]  flex flex-col gap-6 ">
@@ -17,7 +20,13 @@ function Page() {
           </p>
           <p className="text-gray-400">شماره موبایل خود را وارد کنید</p>
         </div>
-        <div>{CodeHaveSend ? <Otpcode length={5} /> : <LoginForm />}</div>
+        <div>
+          {CodeHaveSend ? (
+            <OtpCodeForm />
+          ) : (
+            <LoginForm PhoneNumber={(e) => setphoneNumber(e)} />
+          )}
+        </div>
       </div>
     </div>
   );

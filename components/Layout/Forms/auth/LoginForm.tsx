@@ -9,9 +9,11 @@ import {
 import { SubmitHandler } from "react-hook-form";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
 
-function LoginForm() {
+function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
   const [reset, setReset] = useState({});
-  const onSubmit: SubmitHandler<PhoneValidationType> = (data) => {};
+  const onSubmit: SubmitHandler<PhoneValidationType> = (data) => {
+    PhoneNumber(data.phoneNumber);
+  };
   return (
     <Form<PhoneValidationType>
       validationSchema={PhoneValidation}

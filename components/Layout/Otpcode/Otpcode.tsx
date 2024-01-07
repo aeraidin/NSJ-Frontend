@@ -1,19 +1,28 @@
 "use client";
-import React, { useState, useRef } from "react";
+import CountdownTimer from "@/components/CountDown/CountDownTimer";
+import React, { useState, useRef, useEffect } from "react";
 
 interface OTPInputProps {
   length: number;
+  timer: number;
+  onTimeDone: () => void;
+  onOTPChange: (code: string) => void;
 }
 
-const Otpcode: React.FC<OTPInputProps> = ({ length }) => {
+const Otpcode: React.FC<OTPInputProps> = ({
+  length,
+  onTimeDone,
+  timer,
+  onOTPChange,
+}) => {
   const [otp, setOTP] = useState<string[]>(new Array(length).fill(""));
+  const targetIndexRef = useRef<number | null>(null);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const handleInputChange = (index: number, value: string) => {
     const newOTP = [...otp];
     newOTP[index] = value;
 
     setOTP(newOTP);
-
     if (value && index > 0) {
       // Move to the previous input field if a digit is entered and not the first input
       inputRefs.current[index - 1]?.focus();
@@ -31,6 +40,23 @@ const Otpcode: React.FC<OTPInputProps> = ({ length }) => {
       inputRefs.current[index + 1]?.focus();
     }
   };
+  useEffect(() => {
+    // Focus on the target index if it's set
+    if (
+      targetIndexRef.current !== null &&
+      inputRefs.current[targetIndexRef.current]
+    ) {
+      inputRefs.current[targetIndexRef.current]?.focus();
+      targetIndexRef.current = null; // Reset the target index
+    }
+
+    // Check if all OTP digits are filled and trigger the callback
+    const isOtpFilled = otp.every((digit) => digit !== "");
+    if (isOtpFilled) {
+      const reversedOTP = [...otp].reverse().join(""); // Create a copy, reverse, and join
+      onOTPChange(reversedOTP);
+    }
+  }, [otp, onOTPChange]);
 
   const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
     const pastedData = event.clipboardData.getData("text");
@@ -59,7 +85,7 @@ const Otpcode: React.FC<OTPInputProps> = ({ length }) => {
   };
 
   return (
-    <div className=" flex-col flex w-full  items-center justify-center max-w-[312px] md:max-w-[380px] gap-y-3">
+    <div className=" flex-col flex w-full  items-center justify-center max-w-[312px] md:max-w-[380px] gap-8">
       <div className="flex justify-center  items-center gap-4 md:gap-5 max-w-[312px] md:max-w-[380px]">
         {otp.map((digit, index) => (
           <input
@@ -77,7 +103,7 @@ const Otpcode: React.FC<OTPInputProps> = ({ length }) => {
         ))}
       </div>
 
-      <p className=" font-medium text-sm">TIMER</p>
+      <CountdownTimer seconds={timer} onTimeout={onTimeDone} />
     </div>
   );
 };
