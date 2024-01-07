@@ -1,15 +1,19 @@
 import PrimaryBtn from "@/components/Layout/Buttons/PrimaryBtn";
-import Otpcode from "@/components/Layout/Otpcode/Otpcode";
+import FullLayout from "@/components/Layout/FullLayout";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="w-full min-h-screen flex items-center justify-center uppercase text-4xl bg-white font-black text-black ">     
-      <div className=" flex-col space-y-4 flex w-full max-w-[390px]"> 
-      <Otpcode length={5} />
-      <PrimaryBtn>
-      <p>ادامه دهید</p>
-     </PrimaryBtn>
+
+    <FullLayout>
+      <div className="w-full min-h-screen flex items-center justify-center">
+        <div className="w-full max-w-[150px]">
+          <Link href={"/registration"}>
+            <PrimaryBtn>ورود</PrimaryBtn>
+          </Link>
+        </div>
       </div>
-    </div>
+    </FullLayout>
+
   );
 }
