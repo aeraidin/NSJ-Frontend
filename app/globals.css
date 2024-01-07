@@ -1,9 +1,11 @@
 
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 
 .custom-scrollbar {
     max-height: 302px; 
@@ -23,7 +25,6 @@ input::-webkit-inner-spin-button {
     scrollbar-color: #011F3F; /* Change the colors as needed */
 
   }
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
