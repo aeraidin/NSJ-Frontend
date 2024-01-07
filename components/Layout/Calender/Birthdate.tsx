@@ -35,7 +35,7 @@ isValid(true)
     
       
   return (
-    <div className=" flex gap-2 w-full max-w-[550px]">
+    <div className=" flex gap-2 w-full max-w-[312px] md:max-w-[380px]">
       <PersianMonthDropdown onSelectDay={handleDaySelect} options={days} placeholder="روز"/>
     <PersianMonthDropdown onSelectDay={handleMonthSelect} options={MonthNames} placeholder="ماه"/>
     <PersianMonthDropdown onSelectDay={handleYearSelect} options={year} placeholder="سال"/>
