@@ -2,6 +2,8 @@
 import CountdownTimer from "@/components/CountDown/CountDownTimer";
 import React, { useState, useRef, useEffect } from "react";
 
+
+
 interface OTPInputProps {
   length: number;
   timer: number;
@@ -9,12 +11,14 @@ interface OTPInputProps {
   onOTPChange: (code: string) => void;
 }
 
+
 const Otpcode: React.FC<OTPInputProps> = ({
   length,
   onTimeDone,
   timer,
   onOTPChange,
 }) => {
+
   const [otp, setOTP] = useState<string[]>(new Array(length).fill(""));
   const targetIndexRef = useRef<number | null>(null);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -84,7 +88,10 @@ const Otpcode: React.FC<OTPInputProps> = ({
     }
   };
 
+
+
   return (
+
     <div className=" flex-col flex w-full  items-center justify-center max-w-[312px] md:max-w-[380px] gap-8">
       <div className="flex justify-center  items-center gap-4 md:gap-5 max-w-[312px] md:max-w-[380px]">
         {otp.map((digit, index) => (
@@ -104,6 +111,7 @@ const Otpcode: React.FC<OTPInputProps> = ({
       </div>
 
       <CountdownTimer seconds={timer} onTimeout={onTimeDone} />
+
     </div>
   );
 };
