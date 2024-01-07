@@ -1,11 +1,13 @@
 import PrimaryBtn from "@/components/Layout/Buttons/PrimaryBtn";
-import Otpcode from "@/components/Layout/Otpcode/Otpcode";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="w-full min-h-screen flex items-center justify-center">
       <div className="w-full max-w-[150px]">
-        <PrimaryBtn>ورود</PrimaryBtn>
+        <Link href={"/registration"}>
+          <PrimaryBtn>ورود</PrimaryBtn>
+        </Link>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import "./globals.css";
 import TenstackProvider from "@/util/Providers/TenstackProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import NextNProgressWrapper from "@/components/NextNProgressWrapper";
 
 const yekan = Localfont({
   src: [
@@ -43,11 +44,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <TenstackProvider>
-        <Header />
-        <body className={yekan.className}>{children}</body>
-        <Footer />
-      </TenstackProvider>
+      <body className={yekan.className}>
+        <NextNProgressWrapper>
+          <TenstackProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </TenstackProvider>
+        </NextNProgressWrapper>
+      </body>
     </html>
   );
 }
