@@ -7,12 +7,27 @@ import {
   PhoneValidationType,
 } from "@/util/config/validations/Registration/Phonevalidation";
 import { SubmitHandler } from "react-hook-form";
+
+import { SendCodeOtp } from "@/util/api/Auth/SendCodeOtp";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
 
 function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
   const [reset, setReset] = useState({});
-  const onSubmit: SubmitHandler<PhoneValidationType> = (data) => {
-    PhoneNumber(data.phoneNumber);
+
+  const onSubmit: SubmitHandler<PhoneValidationType> = async (data) => {
+    try {
+      // Call the SendCodeOtp function with the phone number from the form data
+      const response = await SendCodeOtp(data.phoneNumber);
+
+      // You can handle the response here if needed
+      console.log("Response from SendCodeOtp:", response);
+
+      // Call the PhoneNumber function with the phone number
+      PhoneNumber(data.phoneNumber);
+    } catch (error) {
+      console.error("Error sending OTP:", error);
+      // Handle the error as needed
+    }
   };
   return (
     <Form<PhoneValidationType>
