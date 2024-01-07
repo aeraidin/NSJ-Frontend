@@ -8,12 +8,11 @@ import {
 } from "@/util/config/validations/Registration/Phonevalidation";
 import { SubmitHandler } from "react-hook-form";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
-import { useMutation } from "@tanstack/react-query";
 import useSendCodeOtp from "@/util/api/Auth/SendCodeOtp";
 
 function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
   const [reset, setReset] = useState({});
-  const SendOtpCode = useMutation;
+
   const sendotp = useSendCodeOtp();
 
   const onSubmit: SubmitHandler<PhoneValidationType> = async (data) => {
