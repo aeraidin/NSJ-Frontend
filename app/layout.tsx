@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import Localfont from "next/font/local";
 import "./globals.css";
 import TenstackProvider from "@/util/Providers/TenstackProvider";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const yekan = Localfont({
   src: [
@@ -42,7 +44,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <TenstackProvider>
+        <Header />
         <body className={yekan.className}>{children}</body>
+        <Footer />
       </TenstackProvider>
     </html>
   );
