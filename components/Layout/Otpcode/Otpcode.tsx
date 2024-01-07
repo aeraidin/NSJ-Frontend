@@ -1,11 +1,15 @@
 "use client"
 import React, { useState, useRef } from "react";
 
+
+
 interface OTPInputProps {
   length: number;
 }
 
 const Otpcode: React.FC<OTPInputProps> = ({ length }) => {
+
+ 
   const [otp, setOTP] = useState<string[]>(new Array(length).fill(""));
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -54,12 +58,14 @@ const Otpcode: React.FC<OTPInputProps> = ({ length }) => {
     }
   };
 
+
+
   return (
     <div className=" flex-col flex w-full  items-center justify-center max-w-[312px] md:max-w-[380px] gap-y-3">
             <div className="flex justify-center  items-center gap-4 md:gap-5 max-w-[312px] md:max-w-[380px]">
       {otp.map((digit, index) => (
         <input
-          className="w-full outline-none text-2xl max-w-[48px] h-14 text-center font-semibold rounded-lg md:max-w-[60px] border border-gray-100"
+          className="w-full outline-none text-xl max-w-[48px] h-14 text-center font-semibold rounded-lg md:max-w-[60px] border border-gray-100"
           key={index}
           type="text"
           maxLength={1}
@@ -73,7 +79,9 @@ const Otpcode: React.FC<OTPInputProps> = ({ length }) => {
       ))}
     </div>
 
-    <p className=" font-medium text-sm">TIMER</p>
+  
+
+    
     </div>
   );
 };
