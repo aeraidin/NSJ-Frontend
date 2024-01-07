@@ -1,9 +1,36 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Localfont from "next/font/local";
 import "./globals.css";
-import TenstackProvider from "@/util/Providers/TenstackProvider";
+import TenstackProvider from "@/util/config/Providers/TenstackProvider";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import NextNProgressWrapper from "@/components/NextNProgressWrapper";
 
-const inter = Inter({ subsets: ["latin"] });
+const yekan = Localfont({
+  src: [
+    {
+      path: "../public/Fonts/Yekan Bakh FaNum/TTF/YekanBakhFaNum-Bold.ttf",
+      weight: "700",
+      style: "bold",
+    },
+    {
+      path: "../public/Fonts/Yekan Bakh FaNum/TTF/YekanBakhFaNum-SemiBold.ttf",
+      weight: "600",
+      style: "SemiBold",
+    },
+    {
+      path: "../public/Fonts/Yekan Bakh FaNum/TTF/YekanBakhFaNum-Regular.ttf",
+      weight: "500",
+      style: "Regular",
+    },
+    {
+      path: "../public/Fonts/Yekan Bakh FaNum/TTF/YekanBakhFaNum-Light.ttf",
+      weight: "300",
+      style: "Light",
+    },
+  ],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,10 +43,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <TenstackProvider>
-        <body className={inter.className}>{children}</body>
-      </TenstackProvider>
+    <html lang="fa" dir="rtl">
+      <body className={yekan.className}>
+        <NextNProgressWrapper>
+          <TenstackProvider>{children}</TenstackProvider>
+        </NextNProgressWrapper>
+      </body>
     </html>
   );
 }

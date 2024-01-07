@@ -1,3 +1,4 @@
+'use client'
 import type { Schema } from "zod";
 import { useEffect } from "react";
 import {
