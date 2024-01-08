@@ -22,6 +22,14 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "util/data/Calender/Years.js",
+    "util/data/Calender/Month.js",
+    "util/data/Calender/Days.js"
+  ],
   "exclude": ["node_modules"]
 }
