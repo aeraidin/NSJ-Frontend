@@ -8,16 +8,21 @@ import {
 } from "@/util/config/validations/Registration/Phonevalidation";
 import { SubmitHandler } from "react-hook-form";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
-import useSendCodeOtp from "@/util/api/Auth/SendCodeOtp";
+import { useMutation } from "@tanstack/react-query";
+import { useSendCodeOtp } from "@/util/api/Auth/SendCodeOtp";
 
 function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
   const [reset, setReset] = useState({});
 
-  const sendotp = useSendCodeOtp();
+  const sendotp = useMutation({
+    mutationFn: useSendCodeOtp,
+    onSettled(data, error, variables, context) {
+      PhoneNumber(variables);
+    },
+  });
 
   const onSubmit: SubmitHandler<PhoneValidationType> = async (data) => {
     sendotp.mutate(data.phoneNumber);
-    sendotp.isSuccess && PhoneNumber(data.phoneNumber);
   };
   return (
     <Form<PhoneValidationType>
@@ -37,7 +42,12 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
             type="number"
             error={errors.phoneNumber?.message}
           />
-          <PrimaryBtn disabled={sendotp.isPending}>ادامه دهید</PrimaryBtn>
+          <PrimaryBtn
+            isloading={sendotp.isPending}
+            disabled={sendotp.isPending}
+          >
+            ادامه دهید
+          </PrimaryBtn>
         </div>
       )}
     </Form>

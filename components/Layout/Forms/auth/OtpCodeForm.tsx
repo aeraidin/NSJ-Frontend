@@ -5,11 +5,15 @@ import PrimaryBtn from "../../Buttons/PrimaryBtn";
 
 function OtpCodeForm() {
   const [CanResend, setCanResend] = useState(true);
+  const [code, setcode] = useState<string | null>(null);
+  console.log("====================================");
+  console.log(code);
+  console.log("====================================");
   return (
     <>
       <div className="flex flex-col gap-8">
         <Otpcode
-          onOTPChange={(e) => console.log(e)}
+          onOTPChange={(e) => setcode(e)}
           length={5}
           timer={10}
           onTimeDone={() => setCanResend(false)}
