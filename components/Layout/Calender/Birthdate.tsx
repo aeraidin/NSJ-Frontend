@@ -1,6 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
-import Month from "@/util/data/Calender/Month";
+
 import days from "@/util/data/Calender/days";
 import year from "@/util/data/Calender/year";
 
@@ -43,11 +43,11 @@ function Birthdate({ onDateSelect, isValid }: BirthDateProps) {
         options={days}
         placeholder="روز"
       />
-      <PersianMonthDropdown
+      {/* <PersianMonthDropdown
         onSelectDay={handleMonthSelect}
         options={Month}
         placeholder="ماه"
-      />
+      /> */}
       <PersianMonthDropdown
         onSelectDay={handleYearSelect}
         options={year}
