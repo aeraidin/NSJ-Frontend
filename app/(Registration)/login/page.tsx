@@ -5,9 +5,7 @@ import Otpcode from "@/components/Layout/Otpcode/Otpcode";
 import React, { useState } from "react";
 
 function Page() {
-  const [CodeHaveSend, setCodeHaveSend] = useState(false);
   const [phoneNumber, setphoneNumber] = useState<null | string>(null);
-  console.log(phoneNumber);
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -16,12 +14,16 @@ function Page() {
         <div className="flex flex-col gap-4">
           <p className="text-3xl">
             {" "}
-            {CodeHaveSend ? "کد تایید را وارد کنید" : "ورود | ثبت نام"}
+            {phoneNumber ? "کد تایید را وارد کنید" : "ورود | ثبت نام"}
           </p>
-          <p className="text-gray-400">شماره موبایل خود را وارد کنید</p>
+          <p className="text-gray-400">
+            {phoneNumber
+              ? `کد  به شماره ${phoneNumber} ارسال شد`
+              : "شماره موبایل خود را وارد کنید"}
+          </p>
         </div>
         <div>
-          {CodeHaveSend ? (
+          {phoneNumber ? (
             <OtpCodeForm />
           ) : (
             <LoginForm PhoneNumber={(e) => setphoneNumber(e)} />
