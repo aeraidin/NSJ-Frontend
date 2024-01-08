@@ -2,22 +2,35 @@
 import CountdownTimer from "@/components/CountDown/CountDownTimer";
 import React, { useState, useRef, useEffect } from "react";
 
+
+
 interface OTPInputProps {
   length: number;
   timer: number;
   onTimeDone: () => void;
-  onOTPChange: (code: string) => void;
+  onOTPChange: (code: string ) => void;
+  onSubmit:(code: string) => void;
 }
+
 
 const Otpcode: React.FC<OTPInputProps> = ({
   length,
   onTimeDone,
   timer,
   onOTPChange,
+  onSubmit
 }) => {
+
   const [otp, setOTP] = useState<string[]>(new Array(length).fill(""));
   const targetIndexRef = useRef<number | null>(null);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const onSubmitOTP = (value:any) => {
+    console.log(value);
+    
+    onSubmit(value)
+}
+
+
   const handleInputChange = (index: number, value: string) => {
     const newOTP = [...otp];
     newOTP[index] = value;
@@ -41,7 +54,7 @@ const Otpcode: React.FC<OTPInputProps> = ({
     }
   };
   useEffect(() => {
-    // Focus on the target index if it's s
+    // Focus on the target index if it's set
     if (
       targetIndexRef.current !== null &&
       inputRefs.current[targetIndexRef.current]
@@ -52,11 +65,14 @@ const Otpcode: React.FC<OTPInputProps> = ({
 
     // Check if all OTP digits are filled and trigger the callback
     const isOtpFilled = otp.every((digit) => digit !== "");
+    const reversedOTP = [...otp].reverse().join(""); // Create a copy, reverse, and join
     if (isOtpFilled) {
-      const reversedOTP = [...otp].reverse().join(""); // Create a copy, reverse, and join
-      onOTPChange(reversedOTP);
+      onSubmitOTP(reversedOTP)
     }
-  }, [otp, onOTPChange]);
+    onOTPChange(reversedOTP);
+    
+    
+  }, [otp, onOTPChange,onSubmitOTP]);
 
   const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
     const pastedData = event.clipboardData.getData("text");
@@ -84,12 +100,15 @@ const Otpcode: React.FC<OTPInputProps> = ({
     }
   };
 
+
+
   return (
+
     <div className=" flex-col flex w-full  items-center justify-center max-w-[312px] md:max-w-[380px] gap-8">
       <div className="flex justify-center  items-center gap-4 md:gap-5 max-w-[312px] md:max-w-[380px]">
         {otp.map((digit, index) => (
           <input
-            className="w-full outline-none text-2xl max-w-[48px] h-14 text-center font-semibold rounded-lg md:max-w-[60px] border border-gray-100"
+            className="w-full focus:border-primary-600 duration-200  outline-none text-2xl max-w-[48px] h-14 text-center font-semibold rounded-lg md:max-w-[60px] border border-gray-100"
             key={index}
             type="text"
             maxLength={1}
@@ -104,6 +123,7 @@ const Otpcode: React.FC<OTPInputProps> = ({
       </div>
 
       <CountdownTimer seconds={timer} onTimeout={onTimeDone} />
+
     </div>
   );
 };
