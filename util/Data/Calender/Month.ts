@@ -1,4 +1,4 @@
-const month = [
+const Month = [
   { label: "فروردین", value: "01" },
   { label: "اردیبهشت", value: "02" },
   { label: "خرداد", value: "03" },
@@ -13,4 +13,4 @@ const month = [
   { label: "اسفند", value: "12" },
 ];
 
-export default month;
+export default Month;
