@@ -6,24 +6,26 @@ interface OTPInputProps {
   length: number;
   timer: number;
   onTimeDone: () => void;
+  reset?: boolean;
   onOTPChange: (code: string) => void;
-  onSubmit: (code: string) => void;
 }
 
 const Otpcode: React.FC<OTPInputProps> = ({
   length,
   onTimeDone,
   timer,
+  reset,
   onOTPChange,
-  onSubmit,
 }) => {
   const [otp, setOTP] = useState<string[]>(new Array(length).fill(""));
   const targetIndexRef = useRef<number | null>(null);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-
-  const onSubmitOTP = (value: any) => {
-    onSubmit(value);
-  };
+  useEffect(() => {
+    if (reset) {
+      setOTP(new Array(length).fill(""));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reset]);
 
   const handleInputChange = (index: number, value: string) => {
     const newOTP = [...otp];
@@ -60,11 +62,11 @@ const Otpcode: React.FC<OTPInputProps> = ({
     // Check if all OTP digits are filled and trigger the callback
     const isOtpFilled = otp.every((digit) => digit !== "");
     const reversedOTP = [...otp].reverse().join(""); // Create a copy, reverse, and join
-    if (isOtpFilled) {
-      onSubmitOTP(reversedOTP);
-    }
+    // if (isOtpFilled) {
+    //   onSubmitOTP(reversedOTP);
+    // }
     onOTPChange(reversedOTP);
-  }, [otp, onOTPChange, onSubmitOTP]);
+  }, [otp, onOTPChange]);
 
   const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
     const pastedData = event.clipboardData.getData("text");
