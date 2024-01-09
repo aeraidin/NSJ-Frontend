@@ -59,9 +59,9 @@ const ControlledInput = <T extends FieldValues>({
       }`}
     >
       <label
-        className={`pb-2 ${error && !disabled ? "text-[#F55F56]" : ""} ${
-          disabled ? "opacity-50" : "opacity-100"
-        }`}
+        className={`pb-2 text-sm md:text-base ${
+          error && !disabled ? "text-[#F55F56] " : ""
+        } ${disabled ? "opacity-50" : "opacity-100"}`}
         htmlFor={id}
       >
         {label}
@@ -74,7 +74,7 @@ const ControlledInput = <T extends FieldValues>({
         <input
           disabled={disabled && disabled}
           placeholder={PlaceHolder}
-          className={`p-2 w-full h-full  outline-none flex-1 rounded-lg border text-gray-600 placeholder:text-gray-200  bg-transparent appearance-none disabled:opacity-50 disabled:cursor-not-allowed duration-200   ${
+          className={`p-2 w-full h-full text-sm md:text-base  outline-none flex-1 rounded-lg border text-gray-600 placeholder:text-gray-200  bg-transparent appearance-none disabled:opacity-50 disabled:cursor-not-allowed duration-200   ${
             error && !disabled
               ? "border-error-500 focus:border-error-500"
               : "border-gray-100 focus:border-gray-600 hover:border-gray-300 "

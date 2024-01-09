@@ -3,13 +3,12 @@ import LoginForm from "@/components/Layout/Forms/auth/LoginForm";
 import OtpCodeForm from "@/components/Layout/Forms/auth/OtpCodeForm";
 import React, { useState } from "react";
 
-function Page() {
+function LoginModal() {
   const [phoneNumber, setphoneNumber] = useState<null | string>(null);
 
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="w-full max-w-[380px]  flex flex-col gap-6 ">
-        <h1 className="text-2xl font-medium ">سلام! به اسپورتیکت خوش آمدید.</h1>
         <div className="flex flex-col gap-4">
           <p className="text-3xl">
             {" "}
@@ -33,4 +32,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default LoginModal;

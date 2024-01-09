@@ -1,4 +1,5 @@
-import { ButtonHTMLAttributes } from "react"
+import { ButtonHTMLAttributes } from "react";
 interface BtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    children: React.ReactNode;
-  }
+  children: React.ReactNode;
+  isloading?: boolean;
+}

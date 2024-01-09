@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -19,6 +20,15 @@
       }
     ],
     "paths": {
+      "@/util/data/Date/CmYears": [
+        "components/Layout/Forms/auth/data/Date/CmYears"
+      ],
+      "@/util/data/Date/CmDays": [
+        "components/Layout/Forms/auth/data/Date/CmDays"
+      ],
+      "@/util/data/Date/CmMonth": [
+        "components/Layout/Forms/auth/data/Date/CmMonth"
+      ],
       "@/*": ["./*"]
     }
   },
