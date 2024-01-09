@@ -1,4 +1,3 @@
-"use client"
 import PrimaryBtn from "@/components/Layout/Buttons/PrimaryBtn";
 import FullLayout from "@/components/Layout/FullLayout";
 import Link from "next/link";

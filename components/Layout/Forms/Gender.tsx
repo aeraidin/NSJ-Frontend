@@ -1,14 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import RadioButton from "../Buttons/RadioButton";
-import PrimaryBtn from "../Buttons/PrimaryBtn";
-import Register from "@/components/Modals/RegisterModal/Register";
-import Birthdate from "../Calender/Birthdate";
 
 interface GenderProps {
   selectedValue: (value: number) => void;
-  onInternalSubmit: () => void;
-  isError: boolean; // Pass isError as a prop
+
+  isError?: boolean; // Pass isError as a prop
 }
 
 function Gender({ selectedValue, isError }: GenderProps) {
@@ -19,10 +16,8 @@ function Gender({ selectedValue, isError }: GenderProps) {
     setSelectedGender(value);
   };
 
-
   useEffect(() => {
-      console.log(selectedGender);
-      
+    console.log(selectedGender);
   }, [selectedGender]);
 
   return (
@@ -38,7 +33,7 @@ function Gender({ selectedValue, isError }: GenderProps) {
           checked={selectedGender === 1}
         />
         <RadioButton
-        label="مرد"
+          label="مرد"
           disabled={false}
           error={isError}
           onChange={() => selectionHandler(0)}

@@ -1,12 +1,15 @@
 import axiosInstance from "@/util/AxiosInstans";
+import Cookies from "js-cookie";
 
 export const useSendCodeOtp = async (phone: string) => {
-  try {
-    const response = await axiosInstance.post(`/Authentication/send-otp`, {
-      phone: phone,
-    });
+  const response = await axiosInstance.post(`/Authentication/send-otp`, {
+    phone: phone,
+  });
+  if (response.data.isSuccess) {
+    console.log(response.data.value.isRegistered);
+    Cookies.set("isregisterd", response.data.value.isRegistered);
     return response.data;
-  } catch (error) {
-    throw error;
+  } else {
+    throw new Error();
   }
 };

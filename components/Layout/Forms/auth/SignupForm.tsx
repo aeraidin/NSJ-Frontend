@@ -11,20 +11,28 @@ import ControlledInput from "../../Input/ControlledInput";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
 import ControlledSelect from "../../Input/ControlledSelect";
 import Days from "@/util/data/Calender/Days";
+import Gender from "../Gender";
+import Month from "@/util/data/Calender/Month";
+import Years from "@/util/data/Calender/Years";
+import { Signup } from "@/util/api/Auth/Signup";
 function SignupForm() {
   const [reset, setReset] = useState({});
-  const [BirthdateCurect, setBirthdateCurect] = useState<boolean>(false);
-  const [Birthday, setBirthday] = useState("");
-  const [showBirthdayError, setshowBirthdayError] = useState(false);
-  // const sendotp = useMutation({
-  //   mutationFn: useSendCodeOtp,
-  //   onSettled(data, error, variables, context) {
-  //     PhoneNumber(variables);
-  //   },
-  // });
+  const [Genders, setGender] = useState(1);
+
+  const SignupHandler = useMutation({
+    mutationFn: Signup,
+    onSettled(data, error, variables, contextd) {
+      console.log(data);
+    },
+  });
 
   const onSubmit: SubmitHandler<SignupSchemaType> = async (data) => {
-    //   sendotp.mutate(data.phoneNumber);
+    SignupHandler.mutate({
+      BirthDate: `${data.year}/${data.month}/${data.day}`,
+      Family: data.lastName,
+      Gender: Genders,
+      Name: data.firstName,
+    });
   };
   return (
     <Form<SignupSchemaType>
@@ -34,14 +42,14 @@ function SignupForm() {
       className="w-full"
     >
       {({ register, formState: { errors }, setValue }) => (
-        <div className="flex flex-col gap-4 lg:gap-2 ">
+        <div className="flex flex-col gap-0 lg:gap-1 ">
           <ControlledInput
             register={register}
             id="firstName"
             label="نام"
             required
             PlaceHolder="نام خود را وارد نمایید"
-            type="number"
+            type="text"
             error={errors.firstName?.message}
           />
           <ControlledInput
@@ -50,7 +58,7 @@ function SignupForm() {
             label="نام خانوادگی"
             required
             PlaceHolder="نام خانوادگی خود را وارد نمایید"
-            type="number"
+            type="text"
             error={errors.lastName?.message}
           />
           {/* Birthday */}
@@ -70,7 +78,7 @@ function SignupForm() {
               required
               setValue={setValue}
               placeholder="ماه"
-              options={Days}
+              options={Month}
               error={errors.month?.message}
             />
             <ControlledSelect
@@ -79,17 +87,21 @@ function SignupForm() {
               required
               setValue={setValue}
               placeholder="سال"
-              options={Days}
+              options={Years.reverse()}
               error={errors.year?.message}
             />
           </div>
-
-          <PrimaryBtn
-          //   isloading={sendotp.isPending}
-          //   disabled={sendotp.isPending}
-          >
-            ثبت نام
-          </PrimaryBtn>
+          <div className="mt-5">
+            <Gender selectedValue={(e) => setGender(Number(e))} />
+          </div>
+          <div className="mt-7">
+            <PrimaryBtn
+              isloading={SignupHandler.isPending}
+              disabled={SignupHandler.isPending}
+            >
+              ثبت نام
+            </PrimaryBtn>
+          </div>
         </div>
       )}
     </Form>

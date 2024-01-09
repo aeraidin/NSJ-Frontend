@@ -5,7 +5,7 @@ interface YearOption {
 
 const Years: YearOption[] = [];
 
-for (let i = 1300; i <= 1499; i++) {
+for (let i = 1300; i <= 1402; i++) {
   Years.push({ label: i.toString(), value: i.toString() });
 }
 
