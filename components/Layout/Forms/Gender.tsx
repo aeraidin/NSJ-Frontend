@@ -11,37 +11,34 @@ interface GenderProps {
   isError: boolean; // Pass isError as a prop
 }
 
-function Gender({ selectedValue, onInternalSubmit, isError }: GenderProps) {
+function Gender({ selectedValue, isError }: GenderProps) {
   const [selectedGender, setSelectedGender] = useState<number | null>(1);
 
   const selectionHandler = (value: number) => {
     selectedValue(value);
     setSelectedGender(value);
-
-    if (isError) {
-      onInternalSubmit();
-    }
   };
 
-  const [isOpen, SetIsOpen] = useState(false);
 
   useEffect(() => {
-    console.log(isOpen);
-  }, [isOpen]);
+      console.log(selectedGender);
+      
+  }, [selectedGender]);
+
   return (
     <div className="w-full gap-2 max-w-[312px] md:max-w-[312px] flex flex-col justify-start">
       <label className="text-base">جنسیت</label>
 
       <div className="flex justify-between w-full max-w-[186px]">
-        <label className="text-base">زن</label>
         <RadioButton
           disabled={false}
           error={isError}
+          label="زن"
           onChange={() => selectionHandler(1)}
           checked={selectedGender === 1}
         />
-        <label className="text-base">مرد</label>
         <RadioButton
+        label="مرد"
           disabled={false}
           error={isError}
           onChange={() => selectionHandler(0)}
