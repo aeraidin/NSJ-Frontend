@@ -20,9 +20,15 @@
       }
     ],
     "paths": {
-      "@/util/data/Date/CmYears": ["util/data/Date/CmYears"],
-      "@/util/data/Date/CmDays": ["util/data/Date/CmDays"],
-      "@/util/data/Date/CmMonth": ["util/data/Date/CmMonth"],
+      "@/util/data/Date/CmYears": [
+        "components/Layout/Forms/auth/data/Date/CmYears"
+      ],
+      "@/util/data/Date/CmDays": [
+        "components/Layout/Forms/auth/data/Date/CmDays"
+      ],
+      "@/util/data/Date/CmMonth": [
+        "components/Layout/Forms/auth/data/Date/CmMonth"
+      ],
       "@/*": ["./*"]
     }
   },

@@ -12,9 +12,9 @@ import PrimaryBtn from "../../Buttons/PrimaryBtn";
 import ControlledSelect from "../../Input/ControlledSelect";
 import Gender from "../Gender";
 import { Signup } from "@/util/api/Auth/Signup";
-import CmYears from "@/util/data/Date/CmYears";
-import CmDays from "@/util/data/Date/CmDays";
-import CmMonth from "@/util/data/Date/CmMonth";
+import CmYears from "@/components/Layout/Forms/auth/data/Date/CmYears";
+import CmDays from "@/components/Layout/Forms/auth/data/Date/CmDays";
+import CmMonth from "@/components/Layout/Forms/auth/data/Date/CmMonth";
 function SignupForm() {
   const [reset, setReset] = useState({});
   const [Genders, setGender] = useState(1);

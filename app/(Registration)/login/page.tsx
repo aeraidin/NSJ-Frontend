@@ -1,7 +1,6 @@
 "use client";
 import LoginForm from "@/components/Layout/Forms/auth/LoginForm";
 import OtpCodeForm from "@/components/Layout/Forms/auth/OtpCodeForm";
-import Otpcode from "@/components/Layout/Otpcode/Otpcode";
 import React, { useState } from "react";
 
 function Page() {
