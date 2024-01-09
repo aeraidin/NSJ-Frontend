@@ -1,24 +1,33 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Otpcode from "../../Otpcode/Otpcode";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
 
 function OtpCodeForm() {
   const [CanResend, setCanResend] = useState(true);
   const [code, setcode] = useState<string | null>(null);
-  console.log("====================================");
-  console.log(code);
-  console.log("====================================");
+
+  useEffect(() => {
+    console.log(code);
+    
+  },[code])
+  const submitHandler = (value:any) => {
+    setcode(value)
+    console.log("Submit Code" + value);
+  }
+
+  
   return (
     <>
       <div className="flex flex-col gap-8">
         <Otpcode
+          onSubmit={(e) => submitHandler(e)}
           onOTPChange={(e) => setcode(e)}
           length={5}
           timer={10}
           onTimeDone={() => setCanResend(false)}
         />
-        <PrimaryBtn>تایید</PrimaryBtn>
+        <PrimaryBtn >تایید</PrimaryBtn>
       </div>
       <p className="text-center mt-6 text-gray-300">
         کد را دریافت نکرده اید؟
