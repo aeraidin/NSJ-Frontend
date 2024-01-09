@@ -16,8 +16,9 @@ const PersianMonthDropdown = dynamic(
 interface BirthDateProps {
   onDateSelect: any;
   isValid: (status: boolean) => void;
+  showError?: boolean;
 }
-function Birthdate({ onDateSelect, isValid }: BirthDateProps) {
+function Birthdate({ onDateSelect, isValid, showError }: BirthDateProps) {
   const [date, setDate] = useState({ year: "", month: "", day: "" });
   useEffect(() => {
     if (date.day.length > 0 && date.month.length > 0 && date.year.length > 0) {
@@ -42,16 +43,19 @@ function Birthdate({ onDateSelect, isValid }: BirthDateProps) {
         onSelectDay={handleDaySelect}
         options={Days}
         placeholder="روز"
+        isError={showError}
       />
       <PersianMonthDropdown
         onSelectDay={handleMonthSelect}
         options={Month}
         placeholder="ماه"
+        isError={showError}
       />
       <PersianMonthDropdown
         onSelectDay={handleYearSelect}
         options={Years}
         placeholder="سال"
+        isError={showError}
       />
     </div>
   );

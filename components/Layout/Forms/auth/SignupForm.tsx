@@ -14,7 +14,8 @@ import Gender from "../Gender";
 
 function SignupForm() {
   const [reset, setReset] = useState({});
-
+  const [BirthdateCurect, setBirthdateCurect] = useState<boolean | null>(null);
+  const [Birthday, setBirthday] = useState("");
   // const sendotp = useMutation({
   //   mutationFn: useSendCodeOtp,
   //   onSettled(data, error, variables, context) {
@@ -53,8 +54,11 @@ function SignupForm() {
             error={errors.lastName?.message}
           />
           <Birthdate
-            isValid={(e) => console.log(e)}
-            onDateSelect={(e: any) => console.log(e)}
+            isValid={(e) =>
+              e === true ? setBirthdateCurect(true) : setBirthdateCurect(null)
+            }
+            onDateSelect={(e: any) => setBirthday(e)}
+            showError={BirthdateCurect ? true : false}
           />
 
           <PrimaryBtn
