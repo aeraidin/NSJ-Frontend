@@ -1,8 +1,8 @@
 "use client";
-import Month from "../../../util/data/Calender/Month";
-import Years from "../../../util/data/Calender/Years";
-import Days from "../../../util/data/Calender/Days";
-
+// @ts-nocheck
+import Month from "@/util/data/Calender/Month";
+import Years from "@/util/data/Calender/Years";
+import Days from "@/util/data/Calender/Days";
 import dynamic from "next/dynamic";
 
 import React, { useEffect, useState } from "react";
