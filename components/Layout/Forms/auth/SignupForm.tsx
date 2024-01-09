@@ -9,13 +9,13 @@ import { SubmitHandler } from "react-hook-form";
 import { Form } from "../Form";
 import ControlledInput from "../../Input/ControlledInput";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
-import Birthdate from "../../Calender/Birthdate";
-import Gender from "../Gender";
-
+import ControlledSelect from "../../Input/ControlledSelect";
+import Days from "@/util/data/Calender/Days";
 function SignupForm() {
   const [reset, setReset] = useState({});
-  const [BirthdateCurect, setBirthdateCurect] = useState<boolean | null>(null);
+  const [BirthdateCurect, setBirthdateCurect] = useState<boolean>(false);
   const [Birthday, setBirthday] = useState("");
+  const [showBirthdayError, setshowBirthdayError] = useState(false);
   // const sendotp = useMutation({
   //   mutationFn: useSendCodeOtp,
   //   onSettled(data, error, variables, context) {
@@ -33,7 +33,7 @@ function SignupForm() {
       resetValues={reset}
       className="w-full"
     >
-      {({ register, formState: { errors } }) => (
+      {({ register, formState: { errors }, setValue }) => (
         <div className="flex flex-col gap-4 lg:gap-2 ">
           <ControlledInput
             register={register}
@@ -53,13 +53,36 @@ function SignupForm() {
             type="number"
             error={errors.lastName?.message}
           />
-          <Birthdate
-            isValid={(e) =>
-              e === true ? setBirthdateCurect(true) : setBirthdateCurect(null)
-            }
-            onDateSelect={(e: any) => setBirthday(e)}
-            showError={BirthdateCurect ? true : false}
-          />
+          {/* Birthday */}
+          <div className="flex items-center gap-3 ">
+            <ControlledSelect
+              register={register}
+              id="day"
+              required
+              setValue={setValue}
+              placeholder="روز"
+              options={Days}
+              error={errors.day?.message}
+            />
+            <ControlledSelect
+              register={register}
+              id="month"
+              required
+              setValue={setValue}
+              placeholder="ماه"
+              options={Days}
+              error={errors.month?.message}
+            />
+            <ControlledSelect
+              register={register}
+              id="year"
+              required
+              setValue={setValue}
+              placeholder="سال"
+              options={Days}
+              error={errors.year?.message}
+            />
+          </div>
 
           <PrimaryBtn
           //   isloading={sendotp.isPending}
