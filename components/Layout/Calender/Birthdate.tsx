@@ -1,11 +1,11 @@
 "use client";
+// @ts-nocheck
+import Month from "@/util/data/Calender/Month";
+import Years from "@/util/data/Calender/Years";
+import Days from "@/util/data/Calender/Days";
 import dynamic from "next/dynamic";
-import month from "@/util/data/Calender/Month";
-import days from "@/util/data/Calender/days";
-import year from "@/util/data/Calender/year";
 
 import React, { useEffect, useState } from "react";
-import { isValid } from "zod";
 
 const PersianMonthDropdown = dynamic(
   () => import("../../Layout/Dropdowns/Dropdown"),
@@ -40,17 +40,17 @@ function Birthdate({ onDateSelect, isValid }: BirthDateProps) {
     <div className=" flex gap-2 w-full max-w-[312px] md:max-w-[380px]">
       <PersianMonthDropdown
         onSelectDay={handleDaySelect}
-        options={days}
+        options={Days}
         placeholder="روز"
       />
       <PersianMonthDropdown
         onSelectDay={handleMonthSelect}
-        options={month}
+        options={Month}
         placeholder="ماه"
       />
       <PersianMonthDropdown
         onSelectDay={handleYearSelect}
-        options={year}
+        options={Years}
         placeholder="سال"
       />
     </div>

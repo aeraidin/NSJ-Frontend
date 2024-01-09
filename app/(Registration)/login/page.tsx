@@ -24,7 +24,7 @@ function Page() {
         </div>
         <div>
           {phoneNumber ? (
-            <OtpCodeForm />
+            <OtpCodeForm phone={phoneNumber} />
           ) : (
             <LoginForm PhoneNumber={(e) => setphoneNumber(e)} />
           )}
