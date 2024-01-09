@@ -43,6 +43,7 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
             error={errors.phoneNumber?.message}
           />
           <PrimaryBtn
+            type="submit"
             isloading={sendotp.isPending}
             disabled={sendotp.isPending}
           >

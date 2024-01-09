@@ -96,6 +96,7 @@ function SignupForm() {
           </div>
           <div className="mt-7">
             <PrimaryBtn
+              type="submit"
               isloading={SignupHandler.isPending}
               disabled={SignupHandler.isPending}
             >

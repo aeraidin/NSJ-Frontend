@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { messages } from "@/components/Layout/Forms/auth/data/messages";
+import { messages } from "@/util/data/messages";
 
 export const validateEmail = z
   .string()
