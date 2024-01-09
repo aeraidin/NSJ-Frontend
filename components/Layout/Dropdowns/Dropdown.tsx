@@ -39,19 +39,20 @@ const PersianMonthDropdown: React.FC<PersianMonthDropdownProps> = ({
   return (
     <div className="relative inline-block w-full max-w-[120px]">
       <div
-        className="border  select-none text-base  text-center w-full flex justify-between  outline-none rounded-lg font-semibold px-3 py-2 cursor-pointer"
+        className={` ${isOpen ? ' border-gray-600':'border-gray-100'}   border ${selectedMonth ? ' text-gray-600' : 'text-gray-300'} border-gray-100   select-none text-gray-300 hover:border-gray-600 duration-200 text-base  text-center w-full flex justify-between  outline-none rounded-lg font-semibold px-3 py-2 cursor-pointer`}
         onClick={handleToggleDropdown}
       >
+        {selectedMonth || placeholder || "Select a month"}
+
         <ChevronDownIcon
           className={` h-5 w-5 ${isOpen ? "rotate-180" : null} duration-200 `}
         />
-        {selectedMonth || placeholder || "Select a month"}
       </div>
 
       {isOpen && (
         <div
           ref={dropdownRef}
-          className="absolute select-none overflow-y-scroll custom-scrollbar px-4 md:px-2 py-1 h-[180px] md:h-[302px] w-full max-w-[120px]   bg-white  mt-2  border border-gray-300 rounded-md shadow-lg z-10"
+          className="absolute select-none overflow-y-scroll custom-scrollbar px-4 md:px-2 py-1 h-[180px] md:h-[265px] w-full max-w-[120px]   bg-white  mt-2  border border-gray-300 rounded-md shadow-lg z-10"
         >
           {options.map(
             (option: { label: string; value: string }, index: number) => (

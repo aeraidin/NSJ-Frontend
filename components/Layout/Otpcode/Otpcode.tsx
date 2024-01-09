@@ -114,6 +114,7 @@ const Otpcode: React.FC<OTPInputProps> = ({
       </div>
 
       <CountdownTimer seconds={timer} onTimeout={onTimeDone} />
+
     </div>
   );
 };
