@@ -32,7 +32,7 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
       className="w-full"
     >
       {({ register, formState: { errors } }) => (
-        <div className="flex flex-col gap-8 ">
+        <div className="flex flex-col gap-2 lg:gap-4 ">
           <ControlledInput
             register={register}
             id="phoneNumber"
