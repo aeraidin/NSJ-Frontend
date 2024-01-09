@@ -7,6 +7,7 @@ interface OTPInputProps {
   timer: number;
   onTimeDone: () => void;
   reset?: boolean;
+  error?: boolean;
   onOTPChange: (code: string) => void;
 }
 
@@ -15,6 +16,7 @@ const Otpcode: React.FC<OTPInputProps> = ({
   onTimeDone,
   timer,
   reset,
+  error,
   onOTPChange,
 }) => {
   const [otp, setOTP] = useState<string[]>(new Array(length).fill(""));
@@ -99,7 +101,9 @@ const Otpcode: React.FC<OTPInputProps> = ({
       <div className="flex justify-center  items-center gap-4 md:gap-5 max-w-[312px] md:max-w-[380px]">
         {otp.map((digit, index) => (
           <input
-            className="w-full focus:border-primary-600 duration-200  outline-none text-2xl max-w-[48px] h-14 text-center font-semibold rounded-lg md:max-w-[60px] border border-gray-100"
+            className={`w-full focus:border-primary-600 duration-200  outline-none text-2xl max-w-[48px] h-14 text-center font-semibold rounded-lg md:max-w-[60px] border  ${
+              error ? "border-error-500" : "border-gray-100"
+            }`}
             key={index}
             type="text"
             maxLength={1}
@@ -114,7 +118,6 @@ const Otpcode: React.FC<OTPInputProps> = ({
       </div>
 
       <CountdownTimer seconds={timer} onTimeout={onTimeDone} />
-
     </div>
   );
 };

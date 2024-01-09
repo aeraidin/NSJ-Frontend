@@ -1,4 +1,4 @@
-const Days = [
+const CmDays = [
   { label: "1", value: "01" },
   { label: "2", value: "02" },
   { label: "3", value: "03" },
@@ -32,4 +32,4 @@ const Days = [
   { label: "31", value: "31" },
 ];
 
-export default Days;
+export default CmDays;

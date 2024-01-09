@@ -6,16 +6,20 @@ import { useMutation } from "@tanstack/react-query";
 import { ResendCode } from "@/util/api/Auth/ResendCode";
 import { OtpLogin } from "@/util/api/Auth/OtpLogin";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 function OtpCodeForm({ phone }: { phone: string }) {
   const [CanResend, setCanResend] = useState(true);
   const [code, setcode] = useState<string>("");
   const [Reset, setReset] = useState(false);
   const [Timer, setTimer] = useState(10);
+  const isRegisterd = Cookies.get("isregisterd");
+
   const resetTimeHandler = () => {
     setTimer(10);
     setCanResend(false);
   };
+
   const router = useRouter();
   const RsendCode = useMutation({
     mutationFn: ResendCode,
@@ -27,9 +31,17 @@ function OtpCodeForm({ phone }: { phone: string }) {
   });
   const LoginOtp = useMutation({
     mutationFn: OtpLogin,
-    onSettled(data, error, variables, context) {
-      console.log(error?.message);
-      router.push("/login/register");
+    onSuccess(data) {
+      console.log(data);
+
+      if (isRegisterd === "true") {
+        router.replace("/");
+      } else {
+        router.replace("/login/register");
+      }
+    },
+    onError(error, variables, context) {
+      console.log(error.message);
     },
   });
 
@@ -37,6 +49,7 @@ function OtpCodeForm({ phone }: { phone: string }) {
     <>
       <div className="flex flex-col gap-8">
         <Otpcode
+          error={LoginOtp.isError}
           onOTPChange={(e) => setcode(e)}
           length={5}
           reset={Reset}
@@ -44,6 +57,7 @@ function OtpCodeForm({ phone }: { phone: string }) {
           onTimeDone={resetTimeHandler}
         />
         <PrimaryBtn
+          type="submit"
           onClick={() => {
             LoginOtp.mutate({ code: code, phone: phone });
           }}
@@ -65,7 +79,9 @@ function OtpCodeForm({ phone }: { phone: string }) {
           ارسال مجدد کد
         </button>
       </p>
-      <p>{RsendCode.isError && RsendCode.error?.message}</p>
+      <p className="text-error-500">
+        {LoginOtp.isError && LoginOtp.error.message}
+      </p>
     </>
   );
 }
