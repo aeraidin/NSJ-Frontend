@@ -10,11 +10,11 @@ import { Form } from "../Form";
 import ControlledInput from "../../Input/ControlledInput";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
 import ControlledSelect from "../../Input/ControlledSelect";
-import Days from "@/util/data/Calender/Days";
 import Gender from "../Gender";
-import Month from "@/util/data/Calender/Month";
-import Years from "@/util/data/Calender/Years";
 import { Signup } from "@/util/api/Auth/Signup";
+import CmYears from "@/util/data/Date/CmYears";
+import CmDays from "@/util/data/Date/CmDays";
+import CmMonth from "@/util/data/Date/CmMonth";
 function SignupForm() {
   const [reset, setReset] = useState({});
   const [Genders, setGender] = useState(1);
@@ -69,7 +69,7 @@ function SignupForm() {
               required
               setValue={setValue}
               placeholder="روز"
-              options={Days}
+              options={CmDays}
               error={errors.day?.message}
             />
             <ControlledSelect
@@ -78,7 +78,7 @@ function SignupForm() {
               required
               setValue={setValue}
               placeholder="ماه"
-              options={Month}
+              options={CmMonth}
               error={errors.month?.message}
             />
             <ControlledSelect
@@ -87,7 +87,7 @@ function SignupForm() {
               required
               setValue={setValue}
               placeholder="سال"
-              options={Years.reverse()}
+              options={CmYears.reverse()}
               error={errors.year?.message}
             />
           </div>
