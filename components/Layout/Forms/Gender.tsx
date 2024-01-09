@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import RadioButton from "../Buttons/RadioButton";
 import PrimaryBtn from "../Buttons/PrimaryBtn";
-import Register from "@/components/Modals/RegisterModal/Register";
 import Birthdate from "../Calender/Birthdate";
 
 interface GenderProps {
