@@ -20,7 +20,6 @@ export const Signup = async ({
   });
   if (response.data.isSuccess) {
     Cookies.set("isregisterd", response.data.isSuccess);
-    console.log(response.data);
 
     return response.data;
   } else {
