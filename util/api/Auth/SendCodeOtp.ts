@@ -1,25 +1,14 @@
 import axiosInstance from "@/util/AxiosInstans";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React from "react";
+import Cookies from "js-cookie";
 
-function useSendCodeOtp() {
-  // const queryClient = useQueryClient();
-
-  const mutation = useMutation({
-    mutationFn: async (phone: string) => {
-      try {
-        const response = await axiosInstance.post(`/Authentication/send-otp`, {
-          phone: phone,
-        });
-        return response.data;
-      } catch (error) {
-        // handleApiError(error);
-        console.log(error);
-      }
-    },
-    onSettled: () => {},
+export const useSendCodeOtp = async (phone: string) => {
+  const response = await axiosInstance.post(`/Authentication/send-otp`, {
+    phone: phone,
   });
-  return mutation;
-}
-
-export default useSendCodeOtp;
+  if (response.data.isSuccess) {
+    Cookies.set("isregisterd", response.data.value.isRegistered);
+    return response.data;
+  } else {
+    throw new Error();
+  }
+};

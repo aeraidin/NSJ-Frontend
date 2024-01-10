@@ -1,4 +1,3 @@
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -6,25 +5,24 @@ input::-webkit-inner-spin-button {
 }
 
 .custom-scrollbar {
-    max-height: 302px; 
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #011F3F; /* Change the colors as needed */
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 8px; /* Adjust the width as needed */
-    scrollbar-color: #011F3F; /* Change the colors as needed */
+  max-height: 302px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  border-radius: 16px;
+  scrollbar-color: #011f3f; /* Change the colors as needed */
+}
 
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #011F3F; /* Change the color as needed */
-    scrollbar-color: #011F3F; /* Change the colors as needed */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px; /* Adjust the width as needed */
+  border-radius: 16px;
+  scrollbar-color: #011f3f; /* Change the colors as needed */
+}
 
-  }
-
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  background-color: #011f3f; /* Change the color as needed */
+  scrollbar-color: #011f3f; /* Change the colors as needed */
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
