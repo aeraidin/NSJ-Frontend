@@ -22,7 +22,7 @@ function Modal({ CloseModal, children, BackFunction, HaveBack }: ModalProps) {
         ref={containerRef}
         initial={{ opacity: 0, translateY: 40 }}
         animate={{ opacity: 1, translateY: 0 }}
-        className={`h-[90%] md:min-h-[50%] w-full   md:max-w-[532px] px-6 md:px-[76px]    relative rounded-t-[30px] md:rounded-[30px] bg-white`}
+        className={`min-h-[90%]  md:min-h-[50%] w-full   md:max-w-[532px] px-6 md:px-[76px] md:py-28  flex items-center justify-center    relative rounded-t-[30px] md:rounded-[30px] bg-white`}
       >
         <div
           className={`absolute left-0  top-0 w-full flex items-center ${
@@ -45,7 +45,7 @@ function Modal({ CloseModal, children, BackFunction, HaveBack }: ModalProps) {
           </button>
         </div>
 
-        <div className=" w-full h-full">{children}</div>
+        <div className=" w-full h-fit">{children}</div>
       </motion.div>
     </div>
   );
