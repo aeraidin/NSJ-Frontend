@@ -21,9 +21,7 @@ function SignupForm() {
 
   const SignupHandler = useMutation({
     mutationFn: Signup,
-    onSettled(data, error, variables, contextd) {
-      console.log(data);
-    },
+    onSettled(data, error, variables, contextd) {},
   });
 
   const onSubmit: SubmitHandler<SignupSchemaType> = async (data) => {

@@ -9,13 +9,13 @@ function Page() {
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="w-full max-w-[380px]  flex flex-col gap-6 ">
-        <h1 className="text-2xl font-medium ">سلام! به اسپورتیکت خوش آمدید.</h1>
+        <h1 className="text-xl md:text-3xl">سلام! به اسپورتیکت خوش آمدید.</h1>
         <div className="flex flex-col gap-4">
-          <p className="text-3xl">
+          <p className="text-2xl md:text-3xl">
             {" "}
             {phoneNumber ? "کد تایید را وارد کنید" : "ورود | ثبت نام"}
           </p>
-          <p className="text-gray-400">
+          <p className="text-sm md:text-base text-gray-400">
             {phoneNumber
               ? `کد  به شماره ${phoneNumber} ارسال شد`
               : "شماره موبایل خود را وارد کنید"}

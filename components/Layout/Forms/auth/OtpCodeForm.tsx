@@ -32,12 +32,10 @@ function OtpCodeForm({ phone }: { phone: string }) {
   const LoginOtp = useMutation({
     mutationFn: OtpLogin,
     onSuccess(data) {
-      console.log(data);
-
       if (isRegisterd === "true") {
-        router.replace("/");
-      } else {
         router.replace("/login/register");
+      } else {
+        router.replace("/");
       }
     },
     onError(error, variables, context) {
@@ -69,7 +67,7 @@ function OtpCodeForm({ phone }: { phone: string }) {
           تایید
         </PrimaryBtn>
       </div>
-      <p className="text-center mt-6 text-gray-300">
+      <p className="text-sm md:text-base text-center mt-6 text-gray-300">
         کد را دریافت نکرده اید؟
         <button
           disabled={CanResend}

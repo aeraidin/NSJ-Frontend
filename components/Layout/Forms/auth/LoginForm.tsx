@@ -16,8 +16,10 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
 
   const sendotp = useMutation({
     mutationFn: useSendCodeOtp,
-    onSettled(data, error, variables, context) {
+
+    onSuccess(data, variables, context) {
       PhoneNumber(variables);
+      console.log(data);
     },
   });
 

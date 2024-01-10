@@ -14,10 +14,6 @@ function Gender({ selectedValue, isError }: GenderProps) {
     setSelectedGender(value);
   };
 
-  useEffect(() => {
-    console.log(selectedGender);
-  }, [selectedGender]);
-
   return (
     <div className="w-full gap-2 max-w-[312px] md:max-w-[312px] flex flex-col justify-start">
       <label className="text-base">جنسیت</label>

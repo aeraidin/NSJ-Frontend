@@ -26,7 +26,6 @@ const DropDown: React.FC<DropDownType> = ({
 
   const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
-    console.log(isOpen);
   };
 
   const handleClickOutside = () => {

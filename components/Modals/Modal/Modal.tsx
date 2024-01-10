@@ -2,13 +2,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 import useClickOutside from "@/util/hook/useClickOutside";
-
+import { useRouter } from "next/navigation";
+import { ArrowRight } from "iconsax-react";
 interface ModalProps {
   CloseModal: () => void;
   children: React.ReactNode;
+  HaveBack?: boolean;
+  BackFunction?: () => void;
 }
 
-function Modal({ CloseModal, children }: ModalProps) {
+function Modal({ CloseModal, children, BackFunction, HaveBack }: ModalProps) {
   const containerRef = useClickOutside(CloseModal);
 
   return (
@@ -19,14 +22,28 @@ function Modal({ CloseModal, children }: ModalProps) {
         ref={containerRef}
         initial={{ opacity: 0, translateY: 40 }}
         animate={{ opacity: 1, translateY: 0 }}
-        className={`h-[70%] md:min-h-[50%] w-full   md:max-w-[532px] px-6 md:px-[76px]    relative rounded-t-[30px] md:rounded-[30px] bg-white`}
+        className={`h-[90%] md:min-h-[50%] w-full   md:max-w-[532px] px-6 md:px-[76px]    relative rounded-t-[30px] md:rounded-[30px] bg-white`}
       >
-        <button
-          className=" w-fit absolute left-0  top-0 cursor-pointer flex justify-end p-8 h-fit text-gray-500 hover:text-gray-600 duration-200"
-          onClick={CloseModal}
+        <div
+          className={`absolute left-0  top-0 w-full flex items-center ${
+            HaveBack ? "justify-between" : "justify-end"
+          }`}
         >
-          بستن
-        </button>
+          {HaveBack && (
+            <button
+              className=" w-fit  cursor-pointer flex justify-end p-8 h-fit text-gray-500 hover:text-gray-600 duration-200"
+              onClick={BackFunction}
+            >
+              <ArrowRight size="32" color="#616161" />
+            </button>
+          )}
+          <button
+            className=" w-fit  cursor-pointer flex justify-end p-8 h-fit text-gray-500 hover:text-gray-600 duration-200"
+            onClick={CloseModal}
+          >
+            بستن
+          </button>
+        </div>
 
         <div className=" w-full h-full">{children}</div>
       </motion.div>

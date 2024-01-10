@@ -21,11 +21,7 @@ export default function Home() {
           </PrimaryBtn>
         </div>
       </div>
-      {openModal ? (
-        <Modal CloseModal={() => setOpenModal(false)}>
-          <LoginModal />
-        </Modal>
-      ) : null}
+      {openModal ? <LoginModal CloseModal={() => setOpenModal(false)} /> : null}
     </FullLayout>
   );
 }
