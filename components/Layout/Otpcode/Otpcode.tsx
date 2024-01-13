@@ -4,8 +4,6 @@ import React, { useState, useRef, useEffect } from "react";
 
 interface OTPInputProps {
   length: number;
-  timer: number;
-  onTimeDone: () => void;
   reset?: boolean;
   error?: boolean;
   onOTPChange: (code: string) => void;
@@ -13,8 +11,6 @@ interface OTPInputProps {
 
 const Otpcode: React.FC<OTPInputProps> = ({
   length,
-  onTimeDone,
-  timer,
   reset,
   error,
   onOTPChange,
@@ -116,8 +112,6 @@ const Otpcode: React.FC<OTPInputProps> = ({
           />
         ))}
       </div>
-
-      <CountdownTimer seconds={timer} onTimeout={onTimeDone} />
     </div>
   );
 };

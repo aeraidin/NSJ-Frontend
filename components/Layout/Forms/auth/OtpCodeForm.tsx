@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import Otpcode from "../../Otpcode/Otpcode";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
@@ -7,32 +6,32 @@ import { ResendCode } from "@/util/api/Auth/ResendCode";
 import { OtpLogin } from "@/util/api/Auth/OtpLogin";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-
+import CountdownTimer from "@/components/CountDown/CountDownTimer";
 function OtpCodeForm({ phone }: { phone: string }) {
   const [CanResend, setCanResend] = useState(true);
-  const [code, setcode] = useState<string>("");
-  const [Reset, setReset] = useState(false);
-  const [Timer, setTimer] = useState(10);
-  const isRegisterd = Cookies.get("isregisterd");
-
-  const resetTimeHandler = () => {
-    setTimer(10);
-    setCanResend(false);
-  };
-
+  const [code, setCode] = useState<string>("");
+  const isRegistered = Cookies.get("isregistered");
   const router = useRouter();
+  const [reset, setReset] = useState(false);
+
+  useEffect(() => {
+    if (reset) {
+      setReset(false);
+    }
+  }, [reset]);
   const RsendCode = useMutation({
     mutationFn: ResendCode,
     onSettled(data, error, variables, context) {
       setCanResend(true);
+      setCode("");
       setReset(true);
-      setcode("");
     },
   });
+
   const LoginOtp = useMutation({
     mutationFn: OtpLogin,
     onSuccess(data) {
-      if (isRegisterd === "true") {
+      if (isRegistered === "true") {
         router.replace("/login/register");
       } else {
         router.replace("/");
@@ -47,12 +46,15 @@ function OtpCodeForm({ phone }: { phone: string }) {
     <>
       <div className="flex flex-col gap-8">
         <Otpcode
+          reset={reset}
           error={LoginOtp.isError}
-          onOTPChange={(e) => setcode(e)}
+          onOTPChange={(e) => setCode(e)}
           length={5}
-          reset={Reset}
-          timer={Timer}
-          onTimeDone={resetTimeHandler}
+        />
+        <CountdownTimer
+          reset={reset}
+          initialTime={60}
+          onComplete={() => setCanResend(false)}
         />
         <PrimaryBtn
           type="submit"
