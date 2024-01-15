@@ -4,8 +4,6 @@ import React, { useState, useRef, useEffect } from "react";
 
 interface OTPInputProps {
   length: number;
-  timer: number;
-  onTimeDone: () => void;
   reset?: boolean;
   error?: boolean;
   onOTPChange: (code: string) => void;
@@ -13,8 +11,6 @@ interface OTPInputProps {
 
 const Otpcode: React.FC<OTPInputProps> = ({
   length,
-  onTimeDone,
-  timer,
   reset,
   error,
   onOTPChange,
@@ -105,9 +101,11 @@ const Otpcode: React.FC<OTPInputProps> = ({
               error ? "border-error-500" : "border-gray-100"
             }`}
             key={index}
-            type="text"
+            type="number"
             maxLength={1}
             value={digit}
+            inputMode="decimal"
+            autoComplete="one-time-code"
             onChange={(e) => handleInputChange(index, e.target.value)}
             onKeyDown={(e) => handleInputKeyDown(index, e)}
             ref={(ref) => (inputRefs.current[index] = ref)}
@@ -116,8 +114,6 @@ const Otpcode: React.FC<OTPInputProps> = ({
           />
         ))}
       </div>
-
-      <CountdownTimer seconds={timer} onTimeout={onTimeDone} />
     </div>
   );
 };
