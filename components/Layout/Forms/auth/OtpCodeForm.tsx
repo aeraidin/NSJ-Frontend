@@ -7,10 +7,16 @@ import { OtpLogin } from "@/util/api/Auth/OtpLogin";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import CountdownTimer from "@/components/CountDown/CountDownTimer";
-function OtpCodeForm({ phone }: { phone: string }) {
+function OtpCodeForm({
+  phone,
+  CloseModal,
+}: {
+  phone: string;
+  CloseModal?: () => void;
+}) {
   const [CanResend, setCanResend] = useState(true);
   const [code, setCode] = useState<string>("");
-  const isRegistered = Cookies.get("isregistered");
+  const isNew = Cookies.get("isNew");
   const router = useRouter();
   const [reset, setReset] = useState(false);
 
@@ -31,10 +37,11 @@ function OtpCodeForm({ phone }: { phone: string }) {
   const LoginOtp = useMutation({
     mutationFn: OtpLogin,
     onSuccess(data) {
-      if (isRegistered === "true") {
+      if (isNew === "true") {
         router.replace("/login/register");
       } else {
         router.replace("/");
+        CloseModal && CloseModal();
       }
     },
     onError(error, variables, context) {

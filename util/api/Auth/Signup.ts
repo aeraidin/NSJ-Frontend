@@ -19,7 +19,7 @@ export const Signup = async ({
     Gender: Gender,
   });
   if (response.data.isSuccess) {
-    Cookies.set("isregisterd", response.data.isSuccess);
+    Cookies.set("isNew", response.data.isSuccess);
 
     return response.data;
   } else {

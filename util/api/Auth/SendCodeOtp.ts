@@ -6,7 +6,7 @@ export const useSendCodeOtp = async (phone: string) => {
     phone: phone,
   });
   if (response.data.isSuccess) {
-    Cookies.set("isregisterd", response.data.value.isRegistered);
+    Cookies.set("isNew", response.data.value.isNew);
     return response.data;
   } else {
     throw new Error();
