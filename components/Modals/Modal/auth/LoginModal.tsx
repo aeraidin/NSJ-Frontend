@@ -27,7 +27,7 @@ function LoginModal({ CloseModal }: { CloseModal: () => void }) {
           </div>
           <div>
             {phoneNumber ? (
-              <OtpCodeForm phone={phoneNumber} />
+              <OtpCodeForm CloseModal={CloseModal} phone={phoneNumber} />
             ) : (
               <LoginForm PhoneNumber={(e) => setphoneNumber(e)} />
             )}

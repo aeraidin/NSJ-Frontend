@@ -19,7 +19,6 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
 
     onSuccess(data, variables, context) {
       PhoneNumber(variables);
-      console.log(data);
     },
   });
 
