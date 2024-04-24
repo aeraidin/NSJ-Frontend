@@ -6,7 +6,7 @@ import { ResendCode } from "@/util/api/Auth/ResendCode";
 import { OtpLogin } from "@/util/api/Auth/OtpLogin";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import CountdownTimer from "@/components/CountDown/CountDownTimer";
+import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
 function OtpCodeForm({
   phone,
   CloseModal,

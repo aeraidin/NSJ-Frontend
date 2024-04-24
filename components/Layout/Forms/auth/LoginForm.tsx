@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { Form } from "../Form";
-import ControlledInput from "../../Input/ControlledInput";
 import {
   PhoneValidation,
   PhoneValidationType,
@@ -10,6 +9,7 @@ import { SubmitHandler } from "react-hook-form";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
 import { useMutation } from "@tanstack/react-query";
 import { useSendCodeOtp } from "@/util/api/Auth/SendCodeOtp";
+import ControlledInput from "../../Input/ControlledInput";
 
 function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
   const [reset, setReset] = useState({});

@@ -3,9 +3,9 @@ import { Inter } from "next/font/google";
 import Localfont from "next/font/local";
 import "./globals.css";
 import TenstackProvider from "@/util/config/Providers/TenstackProvider";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import NextNProgressWrapper from "@/components/NextNProgressWrapper";
+import Header from "@/components/Layout/Header";
+import Footer from "@/components/Layout/Footer";
+import NextNProgressWrapper from "@/components/Layout/NextNProgressWrapper";
 
 const yekan = Localfont({
   src: [
