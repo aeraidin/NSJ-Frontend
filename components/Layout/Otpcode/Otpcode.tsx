@@ -1,5 +1,5 @@
 "use client";
-import CountdownTimer from "@/components/CountDown/CountDownTimer";
+
 import React, { useState, useRef, useEffect } from "react";
 
 interface OTPInputProps {
