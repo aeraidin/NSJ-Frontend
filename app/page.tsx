@@ -1,8 +1,8 @@
 "use client";
 import PrimaryBtn from "@/components/Layout/Buttons/PrimaryBtn";
 import FullLayout from "@/components/Layout/FullLayout";
-import Modal from "@/components/Modals/Modal/Modal";
-import LoginModal from "@/components/Modals/Modal/auth/LoginModal";
+import Modal from "@/components/Layout/Modals/Modal/Modal";
+import LoginModal from "@/components/Layout/Modals/Modal/auth/LoginModal";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -21,7 +21,7 @@ export default function Home() {
           </PrimaryBtn>
         </div>
       </div>
-      {openModal ? <LoginModal CloseModal={() => setOpenModal(false)} /> : null}
+      <LoginModal State={openModal} CloseModal={() => setOpenModal(false)} />
     </FullLayout>
   );
 }
