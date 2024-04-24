@@ -34,16 +34,16 @@ const FormDropDown: React.FC<DropDownType> = ({
       <div
         className={` ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
           } ${error && !disabled
-            ? " border-red-500 dark:border-red-400"
-            : "border-gray-100 dark:border-white/10 focus:border-gray-600 dark:hover:border-white/25 dark:focus:border-white/45 hover:border-gray-300"
+            ? " border-red-500 "
+            : "border-gray-100  focus:border-gray-600 hover:border-gray-300"
           }  ${isOpen ? " border-gray-100 " : "border-gray-100"
-          }   border dark:border-gray-400 text-sm bg-white dark:bg-dark-100  text-nowrap md:text-base text-gray-300 select-none dark:text-gray-200  duration-200  text-center w-full flex items-center justify-between  outline-none rounded-lg font-semibold px-3 py-3 `}
+          }   border  text-sm bg-white text-nowrap md:text-base text-gray-300 select-none   duration-200  text-center w-full flex items-center justify-between  outline-none rounded-lg font-semibold px-3 py-3 `}
         onClick={() => setIsOpen(!disabled && !isOpen)}
       >
         <p
           className={`${Haveplaceholder
-            ? "text-gray-600 dark:text-gray-50"
-            : " text-gray-200 dark:text-gray-300"
+            ? "text-gray-600"
+            : " text-gray-200"
             }  text-sm`}
         >
           {initialSelectedValue}
@@ -59,12 +59,12 @@ const FormDropDown: React.FC<DropDownType> = ({
           initial={{ opacity: 0, translateY: 30 }}
           animate={{ opacity: 1, translateY: 0 }}
           transition={{ duration: 0.2 }}
-          className="absolute select-none max-h-[200px] overflow-y-scroll custom-scrollbar  px-2  py-2 h-fit md:h-fit w-full bg-white dark:bg-dark-100  mt-2 rounded-lg shadow-lg z-10"
+          className="absolute select-none max-h-[200px] overflow-y-scroll custom-scrollbar  px-2  py-2 h-fit md:h-fit w-full bg-white   mt-2 rounded-lg shadow-lg z-10"
         >
           {options.map((item, index) => (
             <div
               key={index}
-              className="py-2 pr-4 text-gray-400 dark:text-gray-200 text-sm md:text-base text-right cursor-pointer dark:hover:text-gray-25 dark:hover:bg-white/20 hover:bg-gray-50 hover:text-primary-600 rounded-lg duration-150"
+              className="py-2 pr-4 text-gray-400 text-sm md:text-base text-right cursor-pointer  hover:bg-gray-50 hover:text-primary-600 rounded-lg duration-150"
               onClick={(e) => {
                 setIsOpen(false);
                 onSelect(item);

@@ -44,14 +44,12 @@ const Amount = <T extends FieldValues>({
 
   return (
     <div
-      className={`flex w-full flex-col my-2 group ${
-        disabled ? "cursor-not-allowed" : ""
-      }`}
+      className={`flex w-full flex-col my-2 group ${disabled ? "cursor-not-allowed" : ""
+        }`}
     >
       <label
-        className={`pb-2 text-sm md:text-base text-gray-600 dark:text-gray-100 ${
-          error && !disabled ? "text-[#F55F56] " : ""
-        } ${disabled ? "opacity-50" : "opacity-100"}`}
+        className={`pb-2 text-sm md:text-base text-gray-600 ${error && !disabled ? "text-[#F55F56] " : ""
+          } ${disabled ? "opacity-50" : "opacity-100"}`}
         htmlFor={id}
       >
         {label}
@@ -65,14 +63,14 @@ const Amount = <T extends FieldValues>({
           value={value}
           autoComplete="off"
           onChange={onChange}
-          className={`p-2 w-full h-full text-sm md:text-base bg-white  dark:bg-dark-100  outline-none flex-1 rounded-lg border text-gray-600 dark:text-gray-100 placeholder:text-gray-200 placeholder:dark:text-gray-300  bg-transparent appearance-none disabled:opacity-50 disabled:cursor-not-allowed duration-200 border-gray-100 focus:border-gray-600 hover:border-gray-300 dark:border-white/10 dark:hover:border-white/25 dark:focus:border-white/45`}
+          className={`p-2 w-full h-full text-sm md:text-base bg-white  outline-none flex-1 rounded-lg border text-gray-600  placeholder:text-gray-200  bg-transparent appearance-none disabled:opacity-50 disabled:cursor-not-allowed duration-200 border-gray-100 focus:border-gray-600 hover:border-gray-300`}
           id={"amount"}
           thousandSeparator={","}
           displayType="input"
         />
       </div>
       {!error && !disabled && value && valueIsSafe ? (
-        <p className="text-xs dark:text-gray-100 mt-1 h-[15px]">
+        <p className="text-xs mt-1 h-[15px]">
           {numberToWords(value).toString()} تومان
         </p>
       ) : null}
