@@ -45,7 +45,7 @@ function Modal({
           <motion.div
             ref={containerRef}
             variants={variants}
-            className={`min-h-[90%]  md:min-h-[50%] lg:min-h-0 w-full  md:max-w-[532px] py-6 px-6 md:px-[76px] md:py-24  flex items-center justify-center relative rounded-2xl md:rounded-2xl bg-white dark:bg-dark-300`}
+            className={`min-h-[90%]  md:min-h-[50%] lg:min-h-0 w-full  md:max-w-[532px] py-6 px-6 md:px-[76px] md:py-24  flex items-center justify-center relative rounded-2xl md:rounded-2xl bg-white `}
           >
             <div
               className={`absolute left-0  top-0 w-full flex items-center ${HaveBack ? "justify-between" : "justify-end"
@@ -60,7 +60,7 @@ function Modal({
                 </button>
               )}
               <button
-                className=" w-fit  cursor-pointer flex justify-end m-8 h-fit text-gray-500 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-600 duration-200"
+                className=" w-fit  cursor-pointer flex justify-end m-8 h-fit text-gray-500 hover:text-gray-600 duration-200"
                 onClick={CloseModal}
               >
                 {CloseIcon ? <Add size="32" className="rotate-45" /> : "بستن"}

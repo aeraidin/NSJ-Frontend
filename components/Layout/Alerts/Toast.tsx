@@ -47,7 +47,7 @@ function Toast(props: toastProps) {
             className={`fixed top-8 flex w-full max-w-[370px] h-full max-h-[84px] z-30`}
           >
             <div
-              className={` w-full flex bg-white  dark:bg-dark-100  shadow-md h-full  z-50 rounded-[10px]`}
+              className={` w-full flex bg-white  shadow-md h-full  z-50 rounded-[10px]`}
             >
               <button
                 onClick={props.Close}
@@ -82,7 +82,7 @@ function Toast(props: toastProps) {
                             ? "!Notification"
                             : null}
                   </p>
-                  <p className={`text-sm font-light dark:text-gray-100 `}>
+                  <p className={`text-sm font-light `}>
                     {(typeof props.messege) === "string" ? props.messege : "خطای اینترنت"}
                   </p>
                 </div>
