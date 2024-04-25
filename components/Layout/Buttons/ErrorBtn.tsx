@@ -1,17 +1,17 @@
 import { BtnProps } from "@/util/types/type";
 import React from "react";
 
-function PrimaryBtn({ isloading, children, ...props }: BtnProps) {
+function ErrorBtn({ isloading, children, ...props }: BtnProps) {
   return (
     <button
-      className={`  disabled:bg-primary-600/20 flex items-center justify-center gap-2  select-none focus:bg-primary-500 w-full h-[48px]  px-6 duration-200 rounded-lg font-semibold hover:bg-primary-400 bg-primary-600 text-white text-sm lg:text-base ${isloading ? "disabled:cursor-wait" : "disabled:cursor-not-allowed"
+      className={`flex items-center justify-center gap-2  select-none focus:bg-error-300 text-error-600  w-full h-[48px]  px-6 duration-200 rounded-lg font-semibold hover:bg-error-600 hover:text-white  border border-error-600   disabled:opacity-20  text-sm lg:text-base ${isloading ? "disabled:cursor-wait" : "disabled:cursor-not-allowed"
         }`}
       {...props}
     >
       {isloading ? (
         <svg className="h-6 w-6 animate-spin" viewBox="3 3 18 18">
           <path
-            className="fill-primary-400/20"
+            className="fill-primary-400/20 "
             d="M12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5ZM3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z"
           ></path>
           <path
@@ -25,5 +25,5 @@ function PrimaryBtn({ isloading, children, ...props }: BtnProps) {
     </button>
   );
 }
-;
-export default PrimaryBtn;
+
+export default ErrorBtn;

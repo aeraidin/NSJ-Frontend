@@ -1,16 +1,18 @@
+/** @format */
+
 const CmMonth = [
-  { label: "فروردین", value: "01" },
-  { label: "اردیبهشت", value: "02" },
-  { label: "خرداد", value: "03" },
-  { label: "تیر", value: "04" },
-  { label: "مرداد", value: "05" },
-  { label: "شهریور", value: "06" },
-  { label: "مهر", value: "07" },
-  { label: "آبان", value: "08" },
-  { label: "آذر", value: "09" },
-  { label: "دی", value: "10" },
-  { label: "بهمن", value: "11" },
-  { label: "اسفند", value: "12" },
+  { name: "فروردین", value: "01" },
+  { name: "اردیبهشت", value: "02" },
+  { name: "خرداد", value: "03" },
+  { name: "تیر", value: "04" },
+  { name: "مرداد", value: "05" },
+  { name: "شهریور", value: "06" },
+  { name: "مهر", value: "07" },
+  { name: "آبان", value: "08" },
+  { name: "آذر", value: "09" },
+  { name: "دی", value: "10" },
+  { name: "بهمن", value: "11" },
+  { name: "اسفند", value: "12" },
 ];
 
 export default CmMonth;

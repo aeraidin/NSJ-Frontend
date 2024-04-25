@@ -5,25 +5,23 @@ import {
 } from "@/util/config/validations/Registration/SignupSchema";
 import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { SubmitHandler } from "react-hook-form";
+import { Controller, SubmitHandler } from "react-hook-form";
 import { Form } from "../Form";
-import ControlledInput from "../../Input/ControlledInput";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
-import ControlledSelect from "../../Input/ControlledSelect";
 import Gender from "../Gender";
 import { Signup } from "@/util/api/Auth/Signup";
 import CmYears from "@/components/Layout/Forms/auth/data/Date/CmYears";
 import CmDays from "@/components/Layout/Forms/auth/data/Date/CmDays";
 import CmMonth from "@/components/Layout/Forms/auth/data/Date/CmMonth";
+import ControlledInput from "../../Input/ControlledInput";
+import ControlledSelect from "../../Input/ControlledSelect";
 function SignupForm() {
   const [reset, setReset] = useState({});
   const [Genders, setGender] = useState(1);
 
   const SignupHandler = useMutation({
     mutationFn: Signup,
-    onSettled(data, error, variables, contextd) {
-      console.log(data);
-    },
+    onSettled(data, error, variables, contextd) { },
   });
 
   const onSubmit: SubmitHandler<SignupSchemaType> = async (data) => {
@@ -41,7 +39,7 @@ function SignupForm() {
       resetValues={reset}
       className="w-full"
     >
-      {({ register, formState: { errors }, setValue }) => (
+      {({ register, formState: { errors }, setValue, control }) => (
         <div className="flex flex-col gap-0 lg:gap-1 ">
           <ControlledInput
             register={register}
@@ -63,32 +61,50 @@ function SignupForm() {
           />
           {/* Birthday */}
           <div className="flex items-center gap-3 ">
-            <ControlledSelect
-              register={register}
-              id="day"
-              required
-              setValue={setValue}
-              placeholder="روز"
-              options={CmDays}
-              error={errors.day?.message}
+            <Controller
+              control={control}
+              name="day"
+              render={({ field: { onChange, value } }) => (
+                <ControlledSelect
+                  options={CmDays}
+                  error={errors.day?.message}
+                  PlaceHolder="روز"
+                  value={value}
+                  onChange={onChange}
+                  setValue={setValue}
+                  id={"day"}
+                />
+              )}
             />
-            <ControlledSelect
-              register={register}
-              id="month"
-              required
-              setValue={setValue}
-              placeholder="ماه"
-              options={CmMonth}
-              error={errors.month?.message}
+            <Controller
+              control={control}
+              name="month"
+              render={({ field: { onChange, value } }) => (
+                <ControlledSelect
+                  options={CmMonth}
+                  error={errors.month?.message}
+                  PlaceHolder="ماه"
+                  value={value}
+                  onChange={onChange}
+                  setValue={setValue}
+                  id={"month"}
+                />
+              )}
             />
-            <ControlledSelect
-              register={register}
-              id="year"
-              required
-              setValue={setValue}
-              placeholder="سال"
-              options={CmYears.reverse()}
-              error={errors.year?.message}
+            <Controller
+              control={control}
+              name="year"
+              render={({ field: { onChange, value } }) => (
+                <ControlledSelect
+                  options={CmYears}
+                  error={errors.year?.message}
+                  PlaceHolder="سال"
+                  value={value}
+                  onChange={onChange}
+                  setValue={setValue}
+                  id={"year"}
+                />
+              )}
             />
           </div>
           <div className="mt-5">

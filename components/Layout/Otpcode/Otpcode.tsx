@@ -1,11 +1,9 @@
 "use client";
-import CountdownTimer from "@/components/CountDown/CountDownTimer";
+
 import React, { useState, useRef, useEffect } from "react";
 
 interface OTPInputProps {
   length: number;
-  timer: number;
-  onTimeDone: () => void;
   reset?: boolean;
   error?: boolean;
   onOTPChange: (code: string) => void;
@@ -13,8 +11,6 @@ interface OTPInputProps {
 
 const Otpcode: React.FC<OTPInputProps> = ({
   length,
-  onTimeDone,
-  timer,
   reset,
   error,
   onOTPChange,
@@ -97,17 +93,19 @@ const Otpcode: React.FC<OTPInputProps> = ({
   };
 
   return (
-    <div className=" flex-col flex w-full  items-center justify-center max-w-[312px] md:max-w-[380px] gap-8">
-      <div className="flex justify-center  items-center gap-4 md:gap-5 max-w-[312px] md:max-w-[380px]">
+    <div className=" flex-col flex w-full  items-center justify-center   gap-8">
+      <div className="flex justify-center  items-center gap-4 md:gap-5">
         {otp.map((digit, index) => (
           <input
-            className={`w-full focus:border-primary-600 duration-200  outline-none text-2xl max-w-[48px] h-14 text-center font-semibold rounded-lg md:max-w-[60px] border  ${
+            className={`focus:border-primary-600 duration-200  outline-none text-2xl  w-14 h-14 lg:h-16 lg:w-16 text-center font-semibold rounded-lg md:max-w-[60px] border  ${
               error ? "border-error-500" : "border-gray-100"
             }`}
             key={index}
-            type="text"
+            type="number"
             maxLength={1}
             value={digit}
+            inputMode="decimal"
+            autoComplete="one-time-code"
             onChange={(e) => handleInputChange(index, e.target.value)}
             onKeyDown={(e) => handleInputKeyDown(index, e)}
             ref={(ref) => (inputRefs.current[index] = ref)}
@@ -116,8 +114,6 @@ const Otpcode: React.FC<OTPInputProps> = ({
           />
         ))}
       </div>
-
-      <CountdownTimer seconds={timer} onTimeout={onTimeDone} />
     </div>
   );
 };

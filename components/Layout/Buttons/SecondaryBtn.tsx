@@ -1,10 +1,11 @@
 import { BtnProps } from "@/util/types/type";
 import React from "react";
 
-function PrimaryBtn({ isloading, children, ...props }: BtnProps) {
+function SecondaryBtn({ isloading, children, ...props }: BtnProps) {
   return (
     <button
-      className={`  disabled:bg-primary-600/20 flex items-center justify-center gap-2  select-none focus:bg-primary-500 w-full h-[48px]  px-6 duration-200 rounded-lg font-semibold hover:bg-primary-400 bg-primary-600 text-white text-sm lg:text-base ${isloading ? "disabled:cursor-wait" : "disabled:cursor-not-allowed"
+
+      className={` flex items-center justify-center gap-2  select-none focus:bg-primary-600/40 text-primary-600  w-full h-[48px] px-6  duration-200 rounded-lg font-semibold hover:bg-primary-600/20   border border-primary-600 disabled:opacity-20  text-sm lg:text-base ${isloading ? "disabled:cursor-wait" : "disabled:cursor-not-allowed"
         }`}
       {...props}
     >
@@ -25,5 +26,5 @@ function PrimaryBtn({ isloading, children, ...props }: BtnProps) {
     </button>
   );
 }
-;
-export default PrimaryBtn;
+6;
+export default SecondaryBtn;
