@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import Otpcode from "../../Otpcode/Otpcode";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
@@ -6,7 +8,8 @@ import { ResendCode } from "@/util/api/Auth/ResendCode";
 import { OtpLogin } from "@/util/api/Auth/OtpLogin";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import CountdownTimer from "@/components/CountDown/CountDownTimer";
+import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
+import Otp from "../../Otpcode/Otp";
 function OtpCodeForm({
   phone,
   CloseModal,
@@ -52,12 +55,15 @@ function OtpCodeForm({
   return (
     <>
       <div className="flex flex-col gap-8">
-        <Otpcode
+        {/* <Otpcode
           reset={reset}
           error={LoginOtp.isError}
           onOTPChange={(e) => setCode(e)}
           length={5}
-        />
+        /> */}
+
+        <Otp error={LoginOtp.isError} otpCode={(e) => setCode(e)} length={5} />
+
         <CountdownTimer
           reset={reset}
           initialTime={60}

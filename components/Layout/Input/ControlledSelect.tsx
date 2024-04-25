@@ -1,88 +1,85 @@
-import React, { useEffect } from "react";
-import {
-  FieldValues,
-  Path,
-  UseFormRegister,
-  UseFormSetValue,
-  UseFormWatch,
-} from "react-hook-form";
-import DropDown from "../Dropdowns/Dropdown";
-// import DropDown from "../layout/DropDown/DropDown";
+/** @format */
+
+import React from "react";
+import { FieldValues, Path } from "react-hook-form";
+import FormDropDown from "../Dropdowns/FormDropDown";
+import MultiDropdown from "../Dropdowns/MultiDropdown";
 type SelectProps<T extends FieldValues> = {
+  options: { name: string; value: string | number }[];
+
   label?: string;
   id: Path<T>;
-  error?: string | undefined | any;
-  options: { label: string; value: string }[];
-  register: UseFormRegister<T>;
-  setValue: any;
+  setValue?: any;
   required?: boolean;
-  placeholder: string;
-  initialValue?: string | null;
-  Onselected?: (value: any) => void;
-  onChange?: () => void;
-  watch?: UseFormWatch<T>;
+  error: string | undefined;
+  PlaceHolder: string;
   disabled?: boolean;
+  onChange?: (e: any) => void;
+  value?: any;
+  isMulti?: boolean;
+  multiValues?: (values: string[]) => void;
 };
 const ControlledSelect = <T extends FieldValues>({
   label,
   id,
   error,
   options,
-  register,
-  setValue,
-  Onselected,
-  placeholder,
-  required = false,
-  initialValue,
+  PlaceHolder,
+  required,
   onChange,
-  watch,
+  isMulti,
+  multiValues,
+  value,
   disabled,
 }: SelectProps<T>) => {
-  useEffect(() => {
-    // If `watch` is provided and value changes, update the input value
-    if (watch && setValue) {
-      const value = watch(id);
-      setValue(id, value);
-    }
-  }, [id, setValue, watch]);
   return (
-    <div
-      className={`flex flex-1 flex-col my-2 group ${
-        disabled ? "opacity-50 cursor-not-allowed" : ""
-      }`}
-    >
-      <label
-        className={`Caption-MD  px-2  ${error ? "text-[#F55F56]" : ""}`}
-        htmlFor={id}
-      >
-        {label}
-      </label>
-      <div className="w-full relative">
-        <DropDown
-          disabled={disabled}
-          placeholder={placeholder}
-          error={error}
-          initialSelectedValue={initialValue}
-          options={options}
-          onSelect={(value) => {
-            if (setValue) {
-              setValue(id, value);
-            }
+    <div className="w-full ">
+      {label && (
+        <label
+          className={`pb-2 text-sm md:text-base text-gray-600 ${error && !disabled ? "text-[#F55F56] " : ""
+            } ${disabled ? "opacity-50" : "opacity-100"}`}
+          htmlFor={id}
+        >
+          {label} {required ? <span className="text-error-600">*</span> : null}
+        </label>
+      )}
 
-            if (onChange) {
-              onChange();
+      <div className="w-full relative pt-2">
+        {isMulti ? (
+          <MultiDropdown
+            disabled={disabled}
+            error={error}
+            Haveplaceholder={value && value.name !== ""}
+            initialSelectedValue={
+              value && value.name !== "" ? value.name : PlaceHolder
             }
-            if (Onselected) {
-              Onselected(value);
+            options={options}
+            selectedItems={(e: any) => {
+              multiValues && multiValues(e);
+            }}
+            onSelect={(e) => {
+              onChange && onChange(e);
+            }}
+          />
+        ) : (
+          <FormDropDown
+            disabled={disabled}
+            error={error}
+            Haveplaceholder={value && value.name !== ""}
+            initialSelectedValue={
+              value && value.name !== "" ? value.name : PlaceHolder
             }
-          }}
-        />
-        <input
-          type="hidden" // Use a hidden input to store the selected value
-          {...register(id, { required })}
-        />
+            options={options}
+            onSelect={(e) => {
+              onChange && onChange(e);
+            }}
+          />
+        )}
       </div>
-      {/* <p className="Caption-SM text-[#F55F56] mt-1 h-[15px]">{error}</p> */}
+
+      <p className="text-xs text-error-500 mt-1 h-[14px]">
+        {error && !disabled ? label + " الزامی است " : null}
+      </p>
     </div>
   );
 };

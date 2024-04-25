@@ -4,11 +4,12 @@ import OtpCodeForm from "@/components/Layout/Forms/auth/OtpCodeForm";
 import React, { useState } from "react";
 import Modal from "../Modal";
 
-function LoginModal({ CloseModal }: { CloseModal: () => void }) {
+function LoginModal({ CloseModal, State }: { State: boolean, CloseModal: () => void }) {
   const [phoneNumber, setphoneNumber] = useState<null | string>(null);
 
   return (
     <Modal
+      State={State}
       CloseModal={CloseModal}
       HaveBack={phoneNumber ? true : false}
       BackFunction={() => setphoneNumber(null)}
