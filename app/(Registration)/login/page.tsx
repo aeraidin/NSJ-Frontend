@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 import LoginForm from "@/components/Layout/Forms/auth/LoginForm";
 import OtpCodeForm from "@/components/Layout/Forms/auth/OtpCodeForm";
@@ -37,6 +39,7 @@ function Page() {
         </div>
         <div>
           {phoneNumber ? (
+            // <OtpCodeForm phone={phoneNumber} />
             <OtpCodeForm phone={phoneNumber} />
           ) : (
             <LoginForm PhoneNumber={(e) => setphoneNumber(e)} />

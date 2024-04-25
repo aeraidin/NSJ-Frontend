@@ -1,3 +1,5 @@
+/** @format */
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -23,6 +25,27 @@ input::-webkit-inner-spin-button {
   background-color: #011f3f; /* Change the color as needed */
   scrollbar-color: #011f3f; /* Change the colors as needed */
 }
+
+.input-otp {
+  border: 1px solid;
+  border-color: #d7d7d7;
+  width: 64px;
+  height: 64px;
+  outline: none;
+}
+
+.error-otp {
+  border: 1px solid;
+  border-color: #fd6261;
+  width: 64px;
+  height: 64px;
+  outline: none;
+}
+
+.input-otp:focus {
+  border-color: #525252;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
