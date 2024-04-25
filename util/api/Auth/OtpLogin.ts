@@ -1,3 +1,5 @@
+/** @format */
+
 import axiosInstance from "@/util/AxiosInstans";
 import { error } from "console";
 import Cookies from "js-cookie";
@@ -9,7 +11,7 @@ export const OtpLogin = async ({
   phone: string;
   code: string;
 }) => {
-  const response = await axiosInstance.post(`/Authentication/otp-login`, {
+  const response = await axiosInstance.post(`/client/auth/otp-login`, {
     phone: phone,
     code: code,
   });
