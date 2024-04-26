@@ -1,9 +1,10 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+
 import useClickOutside from "@/util/hook/useClickOutside";
 import { motion } from "framer-motion";
+import { ArrowDown2 } from "iconsax-react";
 
 interface DropDownType {
   options: { name: string; value: string | number }[];
@@ -61,16 +62,16 @@ const MultiDropdown: React.FC<DropDownType> = ({
       >
         <p
           className={`${Haveplaceholder
-              ? "text-gray-600"
-              : " text-gray-200"
+            ? "text-gray-600"
+            : " text-gray-200"
             }  text-sm  overflow-hidden max-w-[110px]`}
         >
           {selectedOptions.length === 0
             ? initialSelectedValue
             : selectedOptions.map((option) => option.name).join(", ")}
         </p>
-        <ChevronDownIcon
-          className={`w-3 h-3 lg:h-5 lg:w-5 ${isOpen ? "rotate-180" : null
+        <ArrowDown2
+          className={` ${isOpen ? "rotate-180" : null
             } duration-200 `}
         />
       </div>
@@ -88,8 +89,8 @@ const MultiDropdown: React.FC<DropDownType> = ({
               className={`py-2 pr-4 mt-1 text-sm md:text-base text-right cursor-pointer duration-150 ${selectedOptions.some(
                 (selected) => selected.value === item.value
               )
-                  ? "text-primary-600 bg-primary-100 rounded-lg "
-                  : "text-gray-400"
+                ? "text-primary-600 bg-primary-100 rounded-lg "
+                : "text-gray-400"
                 }`}
               onClick={(e) => {
                 toggleOption(item);

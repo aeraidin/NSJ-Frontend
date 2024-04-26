@@ -1,3 +1,5 @@
+/** @format */
+
 import axiosInstance from "@/util/AxiosInstans";
 import Cookies from "js-cookie";
 
@@ -20,9 +22,10 @@ export const Signup = async ({
   });
   if (response.data.isSuccess) {
     Cookies.set("isNew", response.data.isSuccess);
-
     return response.data;
+  } else if (response.data.isError) {
+    throw response.data.error.description;
   } else {
-    throw new Error(response.data.error.description);
+    throw new Error();
   }
 };
