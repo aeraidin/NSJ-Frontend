@@ -2,9 +2,10 @@
 
 "use client";
 import React, { useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+
 import useClickOutside from "@/util/hook/useClickOutside";
 import { motion } from "framer-motion";
+import { ArrowDown2 } from "iconsax-react";
 
 interface DropDownType {
   options: { name: string; value: string | number }[];
@@ -48,8 +49,9 @@ const FormDropDown: React.FC<DropDownType> = ({
         >
           {initialSelectedValue}
         </p>
-        <ChevronDownIcon
-          className={`w-3 h-3 lg:h-5 lg:w-5 ${isOpen ? "rotate-180" : null
+        <ArrowDown2
+          size={24}
+          className={` ${isOpen ? "rotate-180" : null
             } duration-200 `}
         />
       </div>

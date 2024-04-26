@@ -10,6 +10,8 @@ export const useSendCodeOtp = async (phone: string) => {
   if (response.data.isSuccess) {
     Cookies.set("isNew", response.data.value.isNew);
     return response.data;
+  } else if (response.data.isError) {
+    throw response.data.error.description;
   } else {
     throw new Error();
   }

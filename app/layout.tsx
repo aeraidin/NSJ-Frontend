@@ -52,9 +52,7 @@ export default function RootLayout({
       <body className={yekan.className}>
         <NextNProgressWrapper>
           <TenstackProvider>
-            <Header />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
+            {children}
           </TenstackProvider>
         </NextNProgressWrapper>
       </body>
