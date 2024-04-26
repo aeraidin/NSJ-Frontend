@@ -1,6 +1,3 @@
-/** @format */
-// "use client";
-import { error } from "console";
 import React, { useEffect, useState } from "react";
 import OtpInput from "react-otp-input";
 
@@ -52,9 +49,8 @@ function Otp({ length, otpCode, error }: otpProps) {
           {...props}
           inputMode="decimal"
           type="number"
-          className={` ${
-            error ? "error-otp" : "input-otp"
-          } rounded-lg text-xl text-gray-600 `}
+          className={` ${error ? "error-otp" : "input-otp"
+            } rounded-lg text-xl text-gray-600 `}
         />
       )}
     />
