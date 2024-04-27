@@ -48,8 +48,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fa" dir="rtl">
-      <body className={yekan.className}>
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
+      <body className={yekan.className} >
         <NextNProgressWrapper>
           <TenstackProvider>
             {children}

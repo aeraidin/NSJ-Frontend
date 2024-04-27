@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
 import Otp from "../../Otpcode/Otp";
+import Toast from "../../Alerts/Toast";
 function OtpCodeForm({
   phone,
   CloseModal,
@@ -22,6 +23,7 @@ function OtpCodeForm({
   const isNew = Cookies.get("isNew");
   const router = useRouter();
   const [reset, setReset] = useState(false);
+  const [result, setResult] = useState(false);
 
   useEffect(() => {
     if (reset) {
@@ -54,6 +56,17 @@ function OtpCodeForm({
 
   return (
     <>
+      <Toast
+        messege={
+          LoginOtp.error
+            ? (LoginOtp.error as unknown as string)
+            : "عملیات با موفقیت انجام شد"
+        }
+        Close={() => setResult(false)}
+        isError={LoginOtp.isError}
+        isSuccess={LoginOtp.isSuccess}
+        Result={result}
+      />
       <div className="flex flex-col gap-8">
         {/* <Otpcode
           reset={reset}

@@ -36,8 +36,9 @@ const ControlledSelect = <T extends FieldValues>({
     <div className="w-full ">
       {label && (
         <label
-          className={`pb-2 text-sm md:text-base text-gray-600 ${error && !disabled ? "text-[#F55F56] " : ""
-            } ${disabled ? "opacity-50" : "opacity-100"}`}
+          className={`pb-2 text-sm md:text-base text-gray-600 ${
+            error && !disabled ? "text-[#F55F56] " : ""
+          } ${disabled ? "opacity-50" : "opacity-100"}`}
           htmlFor={id}
         >
           {label} {required ? <span className="text-error-600">*</span> : null}

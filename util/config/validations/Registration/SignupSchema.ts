@@ -1,6 +1,7 @@
+/** @format */
 import { z } from "zod";
 import { validatePhoneNumber } from "../common-validation";
-import { messages } from "@/util/data/messages";
+import { messages } from "@/util/Data/messages";
 
 export const SignupSchema = z.object({
   firstName: z.string().min(1, { message: messages.firstNameRequired }),
