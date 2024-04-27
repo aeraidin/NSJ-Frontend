@@ -49,3 +49,12 @@ input::-webkit-inner-spin-button {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .Container {
+    @apply w-full max-w-[1344px] mx-auto;
+  }
+  .FullContainer {
+    @apply w-full mx-auto;
+  }
+}

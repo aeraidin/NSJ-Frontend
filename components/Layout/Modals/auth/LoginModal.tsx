@@ -20,7 +20,7 @@ function LoginModal({ CloseModal, State }: { State: boolean, CloseModal: () => v
             <h1 className="text-2xl md:text-3xl">
               {phoneNumber ? "کد تایید را وارد کنید" : "ورود | ثبت نام"}
             </h1>
-            <p className="text-sm md:text-base text-gray-400">
+            <p className="text-sm  text-gray-400">
               {phoneNumber
                 ? `کد  به شماره ${phoneNumber} ارسال شد`
                 : "شماره موبایل خود را وارد کنید"}

@@ -18,7 +18,9 @@ export const OtpLogin = async ({
   if (response.data.isSuccess) {
     Cookies.set("userToken", response.data.value.token);
     return response.data;
+  } else if (response.data.isError) {
+    throw response.data.error.description;
   } else {
-    throw new Error(response.data.error.description);
+    throw new Error();
   }
 };

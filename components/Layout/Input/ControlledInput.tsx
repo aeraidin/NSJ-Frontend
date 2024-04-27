@@ -82,7 +82,8 @@ const ControlledInput = <T extends FieldValues>({
           } ${disabled ? "opacity-50" : "opacity-100"}`}
         htmlFor={id}
       >
-        {label} {required ? <span className="text-error-600">*</span> : null}
+        {label}
+        {/* {required ? <span className="text-error-600">*</span> : null} */}
       </label>
       <div
         className={`w-full h-[40px] md:h-[48px]   relative   flex items-center  overflow-hidden justify-center `}
@@ -131,9 +132,11 @@ const ControlledInput = <T extends FieldValues>({
           </div>
         ) : null}
       </div>
-      <p className="text-xs text-error-500 mt-1 h-[14px]">
-        {error && !disabled ? error : null}
-      </p>
+      {error &&
+        <p className="text-xs text-error-500 mt-1 h-[14px]">
+          {error && !disabled ? error : null}
+        </p>
+      }
     </div>
   );
 };
