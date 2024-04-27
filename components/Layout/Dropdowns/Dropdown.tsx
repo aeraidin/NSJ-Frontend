@@ -15,11 +15,13 @@ interface DropDownType {
   initialSelectedValue?: string | null;
   disabled?: boolean;
   SpetialDropDown?: boolean;
+  isHeader?: boolean;
 }
 
 const DropDown: React.FC<DropDownType> = ({
   onSelect,
   options,
+  isHeader,
   placeholder,
   error,
   initialSelectedValue,
@@ -50,11 +52,13 @@ const DropDown: React.FC<DropDownType> = ({
       <div
         className={` ${error ? " border-red-500 " : "border-gray-100"}  ${
           isOpen ? " border-gray-100 " : "border-gray-100"
-        }   border ${
+        }   ${isHeader ? "border-none" : "border"} ${
           SelectedOpt ? "  text-gray-400" : "text-gray-300"
         } border-gray-50  text-sm   text-nowrap md:text-base ${
           SelectedOpt ? "text-gray-300" : "text-gray-300"
-        }   select-none  border  text-sm bg-white border-gray-100 focus:border-gray-600 hover:border-gray-300  text-nowrap md:text-base  text-gray-300 duration-200  text-center w-full flex items-center justify-between  outline-none gap-4 rounded-lg font-semibold px-3 py-3 cursor-pointer`}
+        }   select-none    text-sm bg-white border-gray-100 focus:border-gray-600 hover:border-gray-300  text-nowrap md:text-base  text-gray-300 duration-200  text-center w-full flex items-center justify-between  outline-none gap-4 rounded-lg font-semibold px-3 ${
+          isHeader ? "py-2" : "py-3"
+        } cursor-pointer`}
         onClick={handleToggleDropdown}
       >
         {SelectedOpt || placeholder || "Select a month"}

@@ -14,19 +14,15 @@ interface DropDownType {
   onSelect: (value: any) => void;
   initialSelectedValue?: string | null;
   disabled?: boolean;
-  BorderNone?: boolean;
-  bgNone?: boolean;
 }
 
 const FormDropDown: React.FC<DropDownType> = ({
   onSelect,
   options,
-  bgNone,
   error,
   initialSelectedValue,
   Haveplaceholder,
   disabled,
-  BorderNone,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleClickOutside = () => {
@@ -43,11 +39,9 @@ const FormDropDown: React.FC<DropDownType> = ({
           error && !disabled
             ? " border-red-500 "
             : "border-gray-100  focus:border-gray-600 hover:border-gray-300"
-        }  ${isOpen ? " border-gray-100 " : "border-gray-100"}   ${
-          BorderNone ? "border-none" : "border"
-        }  text-sm ${
-          bgNone ? "bg-transparent" : "bg-white"
-        } text-nowrap md:text-base text-gray-300 select-none   duration-200  text-center w-full flex items-center justify-between  outline-none rounded-lg font-semibold px-3 py-3 `}
+        }  ${
+          isOpen ? " border-gray-100 " : "border-gray-100"
+        }   border  text-sm bg-white text-nowrap md:text-base text-gray-300 select-none   duration-200  text-center w-full flex items-center justify-between  outline-none rounded-lg font-semibold px-3 py-3 `}
         onClick={() => setIsOpen(!disabled && !isOpen)}
       >
         <p

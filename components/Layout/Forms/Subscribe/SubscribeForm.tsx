@@ -6,7 +6,7 @@ import {
   SignupSchemaType,
 } from "@/util/config/validations/Registration/SignupSchema";
 import { useMutation } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, SubmitHandler } from "react-hook-form";
 import { Form } from "../Form";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
@@ -22,69 +22,56 @@ import {
 } from "@/util/config/validations/Footer/SubscribeSchema";
 function SubscribeForm() {
   const [reset, setReset] = useState({});
-  const [Genders, setGender] = useState(1);
-  const SignupHandler = useMutation({
-    mutationFn: Signup,
-    onSettled(data, error, variables, contextd) {},
-  });
 
   const options = [{ name: "تهران", value: 1 }];
+  const [inputValue, setInputValue] = useState("");
+  const [disabled, setDisabled] = useState(true);
+
   const onSubmit: SubmitHandler<SubscribeSchemaType> = async (data) => {
     console.log(data);
   };
+
+  useEffect(() => {
+    if (inputValue !== "") {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [inputValue]);
   return (
-    <Form<SubscribeSchemaType>
-      validationSchema={SubscribeSchema}
-      onSubmit={onSubmit}
-      resetValues={reset}
-      className="w-full"
-    >
-      {({ register, formState: { errors }, setValue, control }) => (
-        <div className="flex    justify-start w-full rounded-xl items-center gap-0 lg:gap-1 ">
-          <div className=" max-w-[160px]  w-full">
-            <Controller
-              control={control}
-              name="province"
-              render={({ field: { onChange, value } }) => (
-                <ControlledSelect
-                  options={options}
-                  isHeader
-                  required
-                  BorderNone
-                  bgNone
-                  error={errors.province?.message}
-                  PlaceHolder="استان"
-                  value={value}
-                  onChange={(selectedOption) => {
-                    onChange(selectedOption);
-                  }}
-                  id={"province"}
-                />
-              )}
-            />
-          </div>
+    <div className="flex    justify-start w-full  p-1  rounded-2xl items-center gap-0 lg:gap-1 ">
+      <div className=" max-w-[160px] px-6   w-full">
+        <select className=" text-gray-400 w-full bg-transparent outline-none ">
+          <option>استان</option>
+          <option>تهران</option>
+        </select>
+      </div>
 
-          <div className=" h-6 w-1 border-l border-gray-100"></div>
-          <div className=" w-full max-w-[340px]">
-            <ControlledInput
-              id="text"
-              bgNone={true}
-              isHeader={true}
-              required
-              PlaceHolder="ایمیل خود را وارد کنید"
-              type="text"
-              register={register}
-              setValue={setValue}
-              error={errors.text?.message}
-            />
-          </div>
-
-          <div className=" w-full max-w-[140px]">
-            <PrimaryBtn type="submit">مشترک شوید</PrimaryBtn>
-          </div>
+      <div className=" h-6 w-1 border-l border-gray-100"></div>
+      <div className=" w-full max-w-[340px]">
+        <div className="  w-full pr-2">
+          <input
+            onChange={(e: any) => {
+              setInputValue(e.target.value);
+            }}
+            pattern="[^ @]*@[^ @]*"
+            type="email"
+            className=" bg-transparent text-gray-600 w-full outline-none h-10 placeholder:text-gray-300"
+            placeholder="ایمیل خود را وارد کنید"
+          />
         </div>
-      )}
-    </Form>
+      </div>
+
+      <div className=" w-full max-w-[140px]">
+        <button
+          disabled={disabled}
+          type="submit"
+          className="shadow-primary-600/60 hover:shadow-none disabled:shadow-none shadow-xl disabled:bg-primary-600/20  disabled:cursor-not-allowed bg-primary-600 text-white w-full  hover:bg-primary-400 focus:bg-primary-400 duration-200 flex justify-center items-center  h-12 rounded-2xl"
+        >
+          مشترک شوید
+        </button>
+      </div>
+    </div>
   );
 }
 
