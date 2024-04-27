@@ -27,8 +27,6 @@ type InputProps<T extends FieldValues> = {
   disabled?: boolean;
   onChange?: () => void;
   shebaField?: boolean;
-  isHeader?: Boolean;
-  bgNone?: Boolean;
 };
 
 const ControlledInput = <T extends FieldValues>({
@@ -37,11 +35,9 @@ const ControlledInput = <T extends FieldValues>({
   error,
   type,
   register,
-  isHeader,
   watch,
   setValue,
   required,
-  bgNone,
   PlaceHolder,
   disabled,
   shebaField,
@@ -78,14 +74,12 @@ const ControlledInput = <T extends FieldValues>({
 
   return (
     <div
-      className={`flex flex-col ${isHeader ? "my-0" : "my-2"}   w-full group ${
+      className={`flex flex-col my-2 w-full group ${
         disabled ? "cursor-not-allowed" : ""
       }`}
     >
       <label
-        className={` ${
-          label ? "pb-2" : null
-        } text-sm md:text-base text-gray-600  ${
+        className={`pb-2 text-sm md:text-base text-gray-600  ${
           error && !disabled ? "text-[#F55F56] " : ""
         } ${disabled ? "opacity-50" : "opacity-100"}`}
         htmlFor={id}
@@ -99,16 +93,12 @@ const ControlledInput = <T extends FieldValues>({
         <input
           disabled={disabled && disabled}
           placeholder={PlaceHolder}
-          className={`p-2 w-full h-full text-sm md:text-base ${
-            bgNone ? "bg-transparent" : "bg-white"
-          }   outline-none flex-1 rounded-lg ${
-            !isHeader ? "border" : null
-          } text-gray-600  placeholder:text-gray-200 bg-transparent appearance-none disabled:opacity-50 disabled:cursor-not-allowed duration-200 ${
+          className={`p-2 w-full h-full text-sm md:text-base bg-white    outline-none flex-1 rounded-lg border text-gray-600  placeholder:text-gray-200 bg-transparent appearance-none disabled:opacity-50 disabled:cursor-not-allowed duration-200 ${
             type === "password" ? "pl-12" : ""
           }  ${
             error && !disabled
               ? "border-error-500 focus:border-error-500"
-              : "border-gray-50 focus:border-gray-600 hover:border-gray-300"
+              : "border-gray-100 focus:border-gray-600 hover:border-gray-300"
           } ${shebaField ? "relative" : null} `}
           id={id}
           inputMode={type === "number" ? "decimal" : "text"}
@@ -144,7 +134,7 @@ const ControlledInput = <T extends FieldValues>({
           </div>
         ) : null}
       </div>
-      {error && !isHeader && (
+      {error && (
         <p className="text-xs text-error-500 mt-1 h-[14px]">
           {error && !disabled ? error : null}
         </p>
