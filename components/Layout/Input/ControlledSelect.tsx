@@ -18,6 +18,9 @@ type SelectProps<T extends FieldValues> = {
   value?: any;
   isMulti?: boolean;
   multiValues?: (values: string[]) => void;
+  BorderNone?: boolean;
+  bgNone?: boolean;
+  isHeader?: Boolean;
 };
 const ControlledSelect = <T extends FieldValues>({
   label,
@@ -26,25 +29,30 @@ const ControlledSelect = <T extends FieldValues>({
   options,
   PlaceHolder,
   required,
+  BorderNone,
   onChange,
+  bgNone,
   isMulti,
   multiValues,
+  isHeader,
   value,
+
   disabled,
 }: SelectProps<T>) => {
   return (
     <div className="w-full ">
       {label && (
         <label
-          className={`pb-2 text-sm md:text-base text-gray-600 ${error && !disabled ? "text-[#F55F56] " : ""
-            } ${disabled ? "opacity-50" : "opacity-100"}`}
+          className={`pb-2 text-sm md:text-base text-gray-600 ${
+            error && !disabled ? "text-[#F55F56] " : ""
+          } ${disabled ? "opacity-50" : "opacity-100"}`}
           htmlFor={id}
         >
           {label} {required ? <span className="text-error-600">*</span> : null}
         </label>
       )}
 
-      <div className="w-full relative pt-2">
+      <div className={`w-full relative ${isHeader ? "pt-0" : "pt-2"}`}>
         {isMulti ? (
           <MultiDropdown
             disabled={disabled}
@@ -63,12 +71,14 @@ const ControlledSelect = <T extends FieldValues>({
           />
         ) : (
           <FormDropDown
+            BorderNone={BorderNone}
             disabled={disabled}
             error={error}
             Haveplaceholder={value && value.name !== ""}
             initialSelectedValue={
               value && value.name !== "" ? value.name : PlaceHolder
             }
+            bgNone={bgNone}
             options={options}
             onSelect={(e) => {
               onChange && onChange(e);
@@ -77,8 +87,12 @@ const ControlledSelect = <T extends FieldValues>({
         )}
       </div>
 
-      <p className="text-xs text-error-500 mt-1 h-[14px]">
-        {error && !disabled ? label + " الزامی است " : null}
+      <p
+        className={`text-xs text-error-500 mt-1 ${
+          isHeader ? "h-0" : "h-[14px]"
+        }`}
+      >
+        {error && !disabled && !isHeader ? label + " الزامی است " : null}
       </p>
     </div>
   );

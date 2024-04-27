@@ -1,5 +1,7 @@
+/** @format */
+
 import { z } from "zod";
-import { messages } from "@/util/data/messages";
+import { messages } from "@/util/Data/messages";
 
 export const validateEmail = z
   .string()
