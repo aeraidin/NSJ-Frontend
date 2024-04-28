@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Cart from "./Cart";
 import Profile from "./Profile";
 import SearchBox from "./SearchBox";
+import Favorite from "./Favorite";
 
 function Header() {
   return (
@@ -19,6 +20,7 @@ function Header() {
 
         <div className="flex items-center gap-x-8">
           <Profile />
+          <Favorite />
           <Cart />
         </div>
       </div>
