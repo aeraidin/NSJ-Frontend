@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Cart from "./Cart";
 import Profile from "./Profile";
 import SearchBox from "./SearchBox";
-import Favorite from "./Favorite";
+import BookMark from "./BookMark";
+
 
 function Header() {
   return (
@@ -12,15 +13,14 @@ function Header() {
       <div className="Container flex items-center  justify-between  py-7 border-b border-gray-50">
         <div className=" flex justify-center items-center w-full max-w-[900px] gap-x-14">
           <h1 className=" text-primary-600 text-4xl">SportTicket</h1>
-
           <div className=" max-w-[589px] max-h-[112px]  h-full w-full">
             <SearchBox />
           </div>
         </div>
-
         <div className="flex items-center gap-x-8">
           <Profile />
-          <Favorite />
+          <BookMark />
+
           <Cart />
         </div>
       </div>

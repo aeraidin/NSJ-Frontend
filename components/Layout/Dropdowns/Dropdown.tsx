@@ -2,7 +2,8 @@
 
 "use client";
 import React, { useEffect, useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ArrowDown2 } from "iconsax-react";
+
 import useClickOutside from "@/util/hook/useClickOutside";
 import { AnimatePresence, motion } from "framer-motion";
 import { TbCheck } from "react-icons/tb";
@@ -50,23 +51,18 @@ const DropDown: React.FC<DropDownType> = ({
   return (
     <div ref={containerRef} className="relative inline-block  w-full ">
       <div
-        className={` ${error ? " border-red-500 " : "border-gray-100"}  ${
-          isOpen ? " border-gray-100 " : "border-gray-100"
-        }   ${isHeader ? "border-none" : "border"} ${
-          SelectedOpt ? "  text-gray-400" : "text-gray-300"
-        } border-gray-50  text-sm   text-nowrap md:text-base ${
-          SelectedOpt ? "text-gray-300" : "text-gray-300"
-        }   select-none    text-sm bg-white border-gray-100 focus:border-gray-600 hover:border-gray-300  text-nowrap md:text-base  text-gray-300 duration-200  text-center w-full flex items-center justify-between  outline-none gap-4 rounded-lg font-semibold px-3 ${
-          isHeader ? "py-2" : "py-3"
-        } cursor-pointer`}
+        className={` ${error ? " border-red-500 " : "border-gray-100"}  ${isOpen ? " border-gray-100 " : "border-gray-100"
+          }   ${isHeader ? "border-none" : "border"} ${SelectedOpt ? "  text-gray-400" : "text-gray-300"
+          } border-gray-50  text-sm   text-nowrap md:text-base ${SelectedOpt ? "text-gray-300" : "text-gray-300"
+          }   select-none    text-sm bg-white border-gray-100 focus:border-gray-600 hover:border-gray-300  text-nowrap md:text-base  text-gray-300 duration-200  text-center w-full flex items-center justify-between  outline-none gap-4 rounded-lg font-semibold px-3 ${isHeader ? "py-2" : "py-3"
+          } cursor-pointer`}
         onClick={handleToggleDropdown}
       >
         {SelectedOpt || placeholder || "Select a month"}
 
-        <ChevronDownIcon
-          className={`w-3 h-3 lg:h-5 lg:w-5 ${
-            isOpen ? "rotate-180" : null
-          } duration-200 `}
+        <ArrowDown2
+          className={`${isOpen ? "rotate-180" : null
+            } duration-200 `}
         />
       </div>
       <AnimatePresence>
@@ -81,9 +77,8 @@ const DropDown: React.FC<DropDownType> = ({
             {options.map((item: any, index) => (
               <div
                 key={index}
-                className={`py-3  flex justify-between items-center px-2 ${
-                  selectedIndex === index ? "bg-gray-50" : "bg-none"
-                }  md:py-2  md:pr-6  pr-4 text-gray-400 text-sm md:text-base text-right cursor-pointer hover:bg-gray-50 hover:text-primary-600 rounded-lg duration-150`}
+                className={`py-3  flex justify-between items-center px-2 ${selectedIndex === index ? "bg-gray-50" : "bg-none"
+                  }  md:py-2  md:pr-6  pr-4 text-gray-400 text-sm md:text-base text-right cursor-pointer hover:bg-gray-50 hover:text-primary-600 rounded-lg duration-150`}
                 onClick={(e) => {
                   setSelectedOpt(item.label);
                   setIsOpen(false);
