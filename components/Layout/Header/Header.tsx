@@ -6,6 +6,7 @@ import Profile from "./Profile";
 import SearchBox from "./SearchBox";
 import BookMark from "./BookMark";
 
+
 function Header() {
   return (
     <div className="w-full sticky top-0 left-0 bg-white z-50  px-6">
@@ -19,6 +20,7 @@ function Header() {
         <div className="flex items-center gap-x-8">
           <Profile />
           <BookMark />
+
           <Cart />
         </div>
       </div>
