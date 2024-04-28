@@ -66,15 +66,14 @@ function Footer() {
                 >
                   شرکت:87653-021
                 </a>
-
               </li>
             </ul>
           </div>
 
           <div className=" w-full gap-y-4 flex flex-col">
-            <h1 className=" text-gray-500">
+            <h4 className=" text-gray-500">
               جهت اطلاع از آخرین تخفیف های شهرتان آدرس ایمیل خود را وارد نمایید!
-            </h1>
+            </h4>
             <div className=" w-full  bg-[#F9F8F8] rounded-xl  max-w-[585px]">
               <SubscribeForm />
             </div>
