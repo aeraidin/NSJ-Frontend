@@ -1,6 +1,6 @@
 "use client";
 import ProductCards from '@/components/Layout/Cards/ProductCards';
-import GetRecLis from '@/util/hook/GetRecLis';
+import GetRecLis from '@/util/hook/ssr/GetRecLis';
 import React from 'react'
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";

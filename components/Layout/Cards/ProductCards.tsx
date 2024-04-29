@@ -5,7 +5,7 @@ import React from 'react'
 import { FaStar } from "react-icons/fa6";
 function ProductCards({ data }: { data: ProductCard }) {
     return (
-        <div className='w-full select-none max-w-[321px] h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOWHover duration-200 group'>
+        <div className='w-full select-none bg-white max-w-[321px] h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOWHover duration-200 group'>
             <Link
                 href={"/"}
             >
