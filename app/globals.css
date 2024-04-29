@@ -55,7 +55,10 @@ input::-webkit-inner-spin-button {
     @apply w-full max-w-[1344px] mx-auto;
   }
   .FullContainer {
-    @apply w-full mx-auto;
+    @apply w-full mx-auto max-w-[1924px];
+  }
+  .ArrowButtonSlider {
+    @apply p-2 rounded-xl border border-primary-400 text-primary-400 hover:text-white hover:bg-primary-600 hover:border-primary-600 disabled:opacity-25 disabled:cursor-not-allowed duration-150;
   }
 }
 @layer base {

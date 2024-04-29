@@ -1,27 +1,26 @@
 "use client";
 import ProductCards from '@/components/Layout/Cards/ProductCards';
-import GetRecLis from '@/util/hook/ssr/GetRecLis';
 import React from 'react'
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { ArrowLeft2, ArrowRight2 } from 'iconsax-react';
-function RecomendedList({ data }: { data: ProductCard[] | undefined }) {
-    // const data = await GetRecLis()
+function HighestRateComplexs({ data }: { data: ProductCard[] | undefined }) {
+
     const swiper = useSwiper();
     return (
         <div className='Container w-full flex flex-col gap-6'>
             <div
                 className='flex items-center justify-between '>
-                <h1>پیشنهاد های ویژه</h1>
+                <h1>برترین مجموعه ها</h1>
                 <div className='flex items-center gap-2'>
                     <button
                         onClick={() => swiper && swiper.slidePrev()}
-                        className='RecPrevSlide  ArrowButtonSlider'>
+                        className='HighestRateComplexsPrevSlide  ArrowButtonSlider'>
                         <ArrowRight2 size="20" />
                     </button>
                     <button
                         onClick={() => swiper && swiper.slideNext()}
-                        className='RecNextSlide  ArrowButtonSlider'>
+                        className='HighestRateComplexsNextSlide  ArrowButtonSlider'>
                         <ArrowLeft2 size="20" />
                     </button>
                 </div>
@@ -34,8 +33,8 @@ function RecomendedList({ data }: { data: ProductCard[] | undefined }) {
                         clickable: true,
                     }}
                     navigation={{
-                        nextEl: ".RecNextSlide",
-                        prevEl: ".RecPrevSlide",
+                        nextEl: ".HighestRateComplexsNextSlide",
+                        prevEl: ".HighestRateComplexsPrevSlide",
                     }}
                     breakpoints={{
                         480: {
@@ -76,4 +75,4 @@ function RecomendedList({ data }: { data: ProductCard[] | undefined }) {
     )
 }
 
-export default RecomendedList
+export default HighestRateComplexs

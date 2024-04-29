@@ -34,8 +34,8 @@ function SearchBox() {
   }, [debouncedValue, inputValue]);
 
   return (
-    <div className=" w-full relative flex justify-between gap-x-4 items-center py-1 rounded-2xl text-gray-300 border border-gray-50 px-2">
-      <div className="  h-10   w-full max-w-[158px] flex justify-center items-center">
+    <div className=" w-full relative flex justify-between gap-x-4 items-center py-1 rounded-2xl text-gray-300 border border-gray-50 px-1">
+      <div className="h-10  pr-2  w-full max-w-[158px] flex justify-center items-center">
         <Location size={24} className=" text-gray-400" />
         <DropDown
           isHeader
