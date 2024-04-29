@@ -3,177 +3,36 @@
 import ProductCards from '@/components/Layout/Cards/ProductCards';
 import GetRecLis from '@/util/hook/GetRecLis';
 import React from 'react'
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-function RecomendedList() {
+import { ArrowLeft2, ArrowRight2 } from 'iconsax-react';
+function RecomendedList({ data }: { data: ProductCard[] | undefined }) {
     // const data = await GetRecLis()
-    // // console.log('====================================');
-    // console.log(data.value.list);
-    // // console.log('====================================');
-    const data = [{
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    }, {
-        id: 34,
-        filePath: 'PersonalDoc/svcuwexe.2x3-638472425771206637..png',
-        serviceName: 'قق',
-        rate: 0,
-        location: '',
-        categoryName: 'test Category',
-        price: 0,
-        priceAfterDiscount: 0
-    },]
+    const swiper = useSwiper();
+
+
     return (
         <div className='Container w-full flex flex-col gap-8'>
             <div
-                className=' '>
+                className='flex items-center justify-between '>
                 <h1>پیشنهاد های ویژه</h1>
+                <div className='flex items-center gap-2'>
+                    <button
+                        onClick={() => swiper && swiper.slidePrev()}
+                        className='PrevSlide  ArrowButtonSlider'>
+                        <ArrowRight2 size="20" />
+                    </button>
+                    <button
+                        onClick={() => swiper && swiper.slideNext()}
+                        className='NextSlide  ArrowButtonSlider'>
+                        <ArrowLeft2 size="20" />
+                    </button>
+                </div>
             </div>
-            <div className='FullContainer'>
+            <div className='w-full'>
                 <Swiper
                     slidesPerView={1.2}
-                    spaceBetween={16}
+                    spaceBetween={20}
                     pagination={{
                         clickable: true,
                     }}
@@ -189,21 +48,25 @@ function RecomendedList() {
                         768: {
                             width: 768,
                             slidesPerView: 2.5,
-                            spaceBetween: 32,
+
                         },
                         976: {
                             width: 976,
+                            slidesPerView: 3.2,
+                        },
+                        1024: {
+                            width: 1024,
                             slidesPerView: 3.5,
                         },
-                        1440: {
-                            width: 1440,
-                            slidesPerView: 5,
+                        1280: {
+                            width: 1280,
+                            slidesPerView: 4,
                         },
+
                     }}
                     modules={[Navigation]}
-                    className="w-full relative"
+                    className="cursor-grab w-full"
                 >
-
                     {/* data.value?.list */}
                     {data && data.map((item: ProductCard, index: number) => {
                         return <SwiperSlide key={index}>

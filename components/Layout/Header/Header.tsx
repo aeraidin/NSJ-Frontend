@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React from "react";
 import Cart from "./Cart";
 import Profile from "./Profile";
 import SearchBox from "./SearchBox";
@@ -20,7 +20,6 @@ function Header() {
         <div className="flex items-center gap-x-8">
           <Profile />
           <BookMark />
-
           <Cart />
         </div>
       </div>
