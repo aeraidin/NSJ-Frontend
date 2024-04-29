@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import Localfont from "next/font/local";
 import "./globals.css";
 import TenstackProvider from "@/util/config/Providers/TenstackProvider";
-import Header from "@/components/Layout/Header/Header";
-import Footer from "@/components/Layout/Footer";
 import NextNProgressWrapper from "@/components/Layout/NextNProgressWrapper";
-
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 const yekan = Localfont({
   src: [
     {
