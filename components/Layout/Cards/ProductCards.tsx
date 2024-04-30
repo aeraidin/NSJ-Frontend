@@ -40,9 +40,9 @@ function ProductCards({ data }: { data: ProductCard }) {
               <Location size="20" className="text-gray-300" variant="Bold" />
               <h4>{data.location}</h4>
             </div>
-            <Link href={"/"} className="group/item">
+            <Link href={`category/${data.service.id}`} className="group/item">
               <h4 className="group-hover/item:text-third-500 duration-150">
-                {data.categoryName}
+                {data.service.name}
               </h4>
             </Link>
           </div>
