@@ -9,4 +9,6 @@ interface ProductCard {
   categoryName: string;
   price: number;
   priceAfterDiscount: number;
+  discountPresentage: number;
+  hasDiscount: boolean;
 }
