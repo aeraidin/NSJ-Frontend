@@ -7,9 +7,17 @@ import ReviewService from '@/components/page/SingleService/ReviewService'
 import SansService from '@/components/page/SingleService/SansService'
 import React from 'react'
 
-function page() {
+function page({
+    params,
+}: {
+    params: { id: string };
+}) {
+    console.log('====================================');
+    console.log(params.id);
+    console.log('====================================');
     return (
         <div className=' flex flex-col w-full'>
+
             <MainServiceInfo />
             <SansService />
             <AboutService />
