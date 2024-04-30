@@ -9,7 +9,7 @@ function HighestDiscountComplexs({ data }: { data: ProductCard[] | undefined }) 
 
     return (
         <div className='Container w-full flex flex-col gap-6 relative'>
-            <div className='w-full h-[70%] bg-secondary-600 absolute left-0 bottom-0 -z-10' />
+            <div className='w-full h-[70%] bg-secondary-600 rounded-lg absolute left-0 bottom-0 -z-10' />
 
 
             <div

@@ -16,6 +16,7 @@ function ProductCards({ data }: { data: ProductCard }) {
             className="object-cover group-hover:scale-110 duration-150"
             alt={data.filePath}
             src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${data.filePath}`}
+            sizes="90vw"
           />
         </div>
       </Link>
@@ -43,15 +44,15 @@ function ProductCards({ data }: { data: ProductCard }) {
               </h4>
             </Link>
           </div>
-          <div className="flex items-center gap-2">
-            <h4 className="text-gray-200 line-through">200.000</h4>
+          <div className={`flex items-center gap-2 ${data.hasDiscount ? "opacity-0" : "opacity-100"}`}>
+            <h4 className="text-gray-200 line-through">{data.price}</h4>
             <div className="px-2 py-1 border border-error-500 rounded-xl">
-              <h4 className="text-error-500 leading-4">تا ۱۰٪ تخفیف</h4>
+              <h4 className="text-error-500 leading-4">تا {data.discountPresentage}٪ تخفیف</h4>
             </div>
           </div>
         </div>
         <div className="flex items-center justify-between">
-          <p>180.000 تومان</p>
+          <p>{data.hasDiscount ? data.priceAfterDiscount : data.price} تومان</p>
           <Link
             href={`/service/${data.id}`}
             className="text-third-600 flex items-center gap-1 -translate-x-10 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-150 "
