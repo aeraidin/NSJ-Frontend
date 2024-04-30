@@ -5,7 +5,10 @@ import SubscribeForm from "./Forms/Subscribe/SubscribeForm";
 import { Call, Instagram, Sms } from "iconsax-react";
 import { TbBrandTelegram } from "react-icons/tb";
 import Link from "next/link";
-
+import Image from "next/image";
+import icon1 from "../../public/FooterIcons/1.png";
+import icon2 from "../../public/FooterIcons/2.png";
+import icon3 from "../../public/FooterIcons/3.png";
 function Footer() {
   return (
     <footer className=" w-full Container ">
@@ -66,15 +69,14 @@ function Footer() {
                 >
                   شرکت:87653-021
                 </a>
-
               </li>
             </ul>
           </div>
 
           <div className=" w-full gap-y-4 flex flex-col">
-            <h1 className=" text-gray-500">
+            <h4 className=" text-gray-500">
               جهت اطلاع از آخرین تخفیف های شهرتان آدرس ایمیل خود را وارد نمایید!
-            </h1>
+            </h4>
             <div className=" w-full  bg-[#F9F8F8] rounded-xl  max-w-[585px]">
               <SubscribeForm />
             </div>
@@ -97,9 +99,15 @@ function Footer() {
             </div>
           </div>
           <div className="flex gap-x-4">
-            <div className="w-[108px] h-[133px] bg-gray-200 rounded-lg"></div>
-            <div className="w-[108px] h-[133px] bg-gray-200 rounded-lg"></div>
-            <div className="w-[108px] h-[133px] bg-gray-200 rounded-lg"></div>
+            <div className="w-[108px] relative h-[133px] rounded-lg">
+              <Image fill src={icon1} alt="icon1" />
+            </div>
+            <div className="w-[108px] relative h-[133px] rounded-lg">
+              <Image fill src={icon2} alt="icon2" />
+            </div>{" "}
+            <div className="w-[108px] relative h-[133px]  rounded-lg">
+              <Image fill src={icon3} alt="icon3" />
+            </div>
           </div>
         </div>
       </div>
