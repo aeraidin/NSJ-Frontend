@@ -30,7 +30,7 @@ function ProductCards({ data }: { data: ProductCard }) {
               <h3>{data.serviceName}</h3>
             </Link>
             <div className="flex items-center gap-2 justify-center">
-              <h4 className="leading-[12px]">{data.rate}</h4>
+              <h5 className="leading-[12px]">{data.rate}</h5>
               <FaStar className="text-secondary-600" size={20} />
             </div>
           </div>
@@ -38,22 +38,22 @@ function ProductCards({ data }: { data: ProductCard }) {
             {/* Location */}
             <div className="flex items-center border-l border-gray-300 pl-2 gap-1">
               <Location size="20" className="text-gray-300" variant="Bold" />
-              <h4>{data.location}</h4>
+              <h5>{data.location}</h5>
             </div>
             <Link href={`category/${data.service.id}`} className="group/item">
-              <h4 className="group-hover/item:text-third-500 duration-150">
+              <h5 className="group-hover/item:text-third-500 duration-150">
                 {data.service.name}
-              </h4>
+              </h5>
             </Link>
           </div>
           <div className={`flex items-center gap-2 ${data.hasDiscount ? "opacity-100" : "opacity-0"}`}>
-            <h4 className="text-gray-200 line-through">  <NumericFormat
+            <h5 className="text-gray-200 line-through">  <NumericFormat
               value={data.price}
               displayType={"text"}
               thousandSeparator={","}
-            /> </h4>
+            /> </h5>
             <div className="px-2 py-1 border border-error-500 rounded-xl">
-              <h4 className="text-error-500 leading-4">تا {data.discountPresentage}٪ تخفیف</h4>
+              <h5 className="text-error-500 leading-4">تا {data.discountPresentage}٪ تخفیف</h5>
             </div>
           </div>
         </div>

@@ -72,10 +72,10 @@ input::-webkit-inner-spin-button {
     @apply text-lg text-gray-600;
   }
   h4 {
-    @apply text-sm text-gray-300;
+    @apply text-gray-300;
   }
   h5 {
-    @apply text-sm;
+    @apply text-sm text-gray-300;
   }
   p {
     @apply text-base text-gray-600;
