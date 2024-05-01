@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaStar } from "react-icons/fa6";
+import { NumericFormat } from "react-number-format";
 
 function ProductCards({ data }: { data: ProductCard }) {
   return (
@@ -16,6 +17,7 @@ function ProductCards({ data }: { data: ProductCard }) {
             className="object-cover group-hover:scale-110 duration-150"
             alt={data.filePath}
             src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${data.filePath}`}
+            sizes="90vw"
           />
         </div>
       </Link>
@@ -23,7 +25,8 @@ function ProductCards({ data }: { data: ProductCard }) {
         {/* Info Part */}
         <div className="flex flex-col gap-3 pb-3">
           <div className="w-full flex items-center justify-between">
-            <Link href={"/"}>
+            <Link
+              href={`/service/${data.id}`}>
               <h3>{data.serviceName}</h3>
             </Link>
             <div className="flex items-center gap-2 justify-center">
@@ -35,23 +38,31 @@ function ProductCards({ data }: { data: ProductCard }) {
             {/* Location */}
             <div className="flex items-center border-l border-gray-300 pl-2 gap-1">
               <Location size="20" className="text-gray-300" variant="Bold" />
-              <h4>پاسداران</h4>
+              <h4>{data.location}</h4>
             </div>
-            <Link href={"/"} className="group/item">
+            <Link href={`category/${data.service.id}`} className="group/item">
               <h4 className="group-hover/item:text-third-500 duration-150">
-                ورزش و تفریحات آبی
+                {data.service.name}
               </h4>
             </Link>
           </div>
-          <div className="flex items-center gap-2">
-            <h4 className="text-gray-200 line-through">200.000</h4>
+          <div className={`flex items-center gap-2 ${data.hasDiscount ? "opacity-100" : "opacity-0"}`}>
+            <h4 className="text-gray-200 line-through">  <NumericFormat
+              value={data.price}
+              displayType={"text"}
+              thousandSeparator={","}
+            /> </h4>
             <div className="px-2 py-1 border border-error-500 rounded-xl">
-              <h4 className="text-error-500 leading-4">تا ۱۰٪ تخفیف</h4>
+              <h4 className="text-error-500 leading-4">تا {data.discountPresentage}٪ تخفیف</h4>
             </div>
           </div>
         </div>
         <div className="flex items-center justify-between">
-          <p>180.000 تومان</p>
+          <p>  <NumericFormat
+            value={data.hasDiscount ? data.priceAfterDiscount : data.price}
+            displayType={"text"}
+            thousandSeparator={","}
+          /> تومان</p>
           <Link
             href={`/service/${data.id}`}
             className="text-third-600 flex items-center gap-1 -translate-x-10 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-150 "

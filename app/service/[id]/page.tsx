@@ -1,23 +1,32 @@
-/** @format */
-import Description from "@/components/page/SingleService/Description";
-import CustomFetch from "@/util/hook/ssr/CustomFetch";
-import GetSingleService from "@/util/hook/ssr/GetSingleService";
-import React from "react";
-import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
-import MainLayout from "@/components/Layout/MainLayout";
+import AboutService from '@/components/page/SingleService/AboutService'
+import ConditionsService from '@/components/page/SingleService/ConditionsService'
+import ContactService from '@/components/page/SingleService/ContactService'
+import MainServiceInfo from '@/components/page/SingleService/MainServiceInfo'
+import RelatedService from '@/components/page/SingleService/RelatedService'
+import ReviewService from '@/components/page/SingleService/ReviewService'
+import SansService from '@/components/page/SingleService/SansService'
+import React from 'react'
 
-async function Page({ params }: { params: { id: string } }) {
-  const data = await GetSingleService({ id: params.id });
+function page({
+    params,
+}: {
+    params: { id: string };
+}) {
+    console.log('====================================');
+    console.log(params.id);
+    console.log('====================================');
+    return (
+        <div className=' flex flex-col w-full'>
 
-  console.log(data);
-
-  return (
-    <>
-      <div className="w-full Container">
-        <Description data={data} />
-      </div>
-    </>
-  );
+            <MainServiceInfo />
+            <SansService />
+            <AboutService />
+            <ContactService />
+            <ConditionsService />
+            <ReviewService />
+            <RelatedService />
+        </div>
+    )
 }
 
-export default Page;
+export default page
