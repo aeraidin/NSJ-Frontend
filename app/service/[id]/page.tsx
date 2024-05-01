@@ -1,3 +1,4 @@
+import MainLayout from '@/components/Layout/MainLayout'
 import AboutService from '@/components/page/SingleService/AboutService'
 import ConditionsService from '@/components/page/SingleService/ConditionsService'
 import ContactService from '@/components/page/SingleService/ContactService'
@@ -12,20 +13,16 @@ function page({
 }: {
     params: { id: string };
 }) {
-    console.log('====================================');
-    console.log(params.id);
-    console.log('====================================');
     return (
-        <div className=' flex flex-col w-full'>
-
-            <MainServiceInfo />
+        <MainLayout>
+            <MainServiceInfo id={params.id} />
             <SansService />
             <AboutService />
             <ContactService />
             <ConditionsService />
             <ReviewService />
             <RelatedService />
-        </div>
+        </MainLayout>
     )
 }
 
