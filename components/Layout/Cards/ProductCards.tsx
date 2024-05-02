@@ -67,7 +67,7 @@ function ProductCards({ data }: { data: ProductCard }) {
             href={`/service/${data.id}`}
             className="text-third-600 flex items-center gap-1 -translate-x-10 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-150 "
           >
-            <h5 className="">مشاهده و خرید</h5>
+            <h5 className="text-third-600">مشاهده و خرید</h5>
             <ArrowLeft2 size={20} />
           </Link>
         </div>
