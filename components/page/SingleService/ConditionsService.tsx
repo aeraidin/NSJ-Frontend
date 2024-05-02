@@ -11,7 +11,7 @@ function ConditionsService({ param }: ConditionsServiceProps) {
   console.log(Conditions.data?.value);
 
   return (
-    <div className=" py-10">
+    <div className=" py-10 Container">
       <h2 className=" mb-6">قوانین و مقررات</h2>
       <ul className=" gap-y-4 flex flex-col list-disc marker:text-third-400 px-4 ">
         <li className=" text-base text-gray-500">
