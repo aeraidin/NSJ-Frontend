@@ -9,7 +9,7 @@ export default function useGetSingleService({ id }: { id: string }) {
     queryFn: async () => {
       try {
         const response = await axiosInstance.get(
-          `client/sport-commplex-service/${id}/`
+          `client/sport-commplex-service/${id}`
         );
         return response.data;
       } catch (error) {
