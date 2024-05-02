@@ -24,6 +24,7 @@ function page({
             <RelatedService />
         </MainLayout>
     )
+
 }
 
-export default page
+export default Page;
