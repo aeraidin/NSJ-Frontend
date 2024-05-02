@@ -1,9 +1,15 @@
-import React from 'react'
+/** @format */
+
+import React from "react";
+import Comment from "./Comments/Comment";
 
 function ReviewService() {
-    return (
-        <div>ReviewService</div>
-    )
+  return (
+    <div className="py-10">
+      <h2 className=" mb-8 ">امتیاز و نظرات کاربران(2 نظر)</h2>
+      <Comment />
+    </div>
+  );
 }
 
-export default ReviewService
+export default ReviewService;

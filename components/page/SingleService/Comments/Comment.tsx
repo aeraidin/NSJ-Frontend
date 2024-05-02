@@ -1,0 +1,100 @@
+/** @format */
+
+import { Like, Like1, Star1 } from "iconsax-react";
+import React from "react";
+
+function Comment() {
+  return (
+    <div className=" w-full h-[219px] flex flex-col rounded-[20px] border border-gray-100 ">
+      <div className=" w-full flex">
+        <div className="w-full max-w-[65px] py-6 flex justify-center h-full">
+          <div className=" w-10 h-10 bg-slate-600 rounded-full"></div>
+        </div>
+        <div className="  w-full flex flex-col  h-full">
+          <div className="  pt-6 flex gap-x-3 h-full w-full">
+            <p className=" text-gray-500">نگار عزیزی</p>
+            <p className=" text-gray-300">1402/9/6</p>
+          </div>
+          <div className=" h-full w-full flex justify-between">
+            <div>
+              <p>
+                از کل مجموعه راضی بودم ولی از برخورد پرسنل مجموعه نه!لطفا رسیدگی
+                کنید
+              </p>
+            </div>
+            <div className=" w-full  flex justify-end max-w-[340px] gap-x-8  mx-6 ">
+              <div className=" flex gap-x-3">
+                <div className=" flex gap-3">
+                  <p className=" text-gray-400">5</p>
+                  <Like1 className=" text-gray-300 rotate-180" />
+                </div>
+                <div className=" flex gap-x-3">
+                  <p className=" text-gray-400">5</p>
+                  <Like1 className=" text-gray-300" />
+                </div>
+              </div>
+
+              <div className=" flex gap-x-3">
+                <p>4.5/5</p>
+                <div className=" flex">
+                  <Star1
+                    className=" text-secondary-400"
+                    size={16}
+                    variant="Bold"
+                  />
+                  <Star1
+                    className=" text-secondary-400"
+                    size={16}
+                    variant="Bold"
+                  />{" "}
+                  <Star1
+                    className=" text-secondary-400"
+                    size={16}
+                    variant="Bold"
+                  />{" "}
+                  <Star1
+                    className=" text-secondary-400"
+                    size={16}
+                    variant="Bold"
+                  />
+                  <Star1
+                    className=" text-secondary-400"
+                    size={16}
+                    variant="Bold"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className=" px-6 w-full mt-8">
+        <div className="  w-full   h-[65px] ">
+          <div className="w-full bg-[#FBFBFB] rounded-[20px]  flex justify-start px-6 py-2 h-full">
+            <div className="w-full max-w-[65px]">
+              <div className=" w-10 h-10 bg-red-600 rounded-full"></div>
+            </div>
+            <div>
+              <div className="  w-full flex flex-col  h-full">
+                <div className="   flex gap-x-3 h-full w-full">
+                  <p className=" text-gray-500">پاسخ مدیر مجموعه</p>
+                  <p className=" text-gray-300">1402/9/6</p>
+                </div>
+                <div className=" h-full w-full flex justify-between">
+                  <div>
+                    <p>
+                      ممنون از نظرات ارزشمندتون ،حتما پیگیری و رسیدگی خواهد شد.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Comment;
