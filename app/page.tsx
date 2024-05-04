@@ -10,9 +10,6 @@ export default async function Home() {
   const RecListData = await GetRecLis()
   const HighestRateComplexsData = await GetHighestRateComplexs()
   const HighestDiscountComplexsData = await GetHighestDiscountComplexs()
-  console.log('====================================');
-  console.log(RecListData?.value.list);
-  console.log('====================================');
   return (
     <>
       <MainLayout >
