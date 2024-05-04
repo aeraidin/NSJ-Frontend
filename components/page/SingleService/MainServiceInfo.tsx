@@ -110,7 +110,6 @@ function MainServiceInfo({ id }: { id: string }) {
                                         <h2 className='text-white'>تخفیف تا</h2>
                                         <span className=' text-white text-4xl font-bold'>%{Data?.discountPresentage}</span>
                                     </div>}
-
                             </div>
                             {/* دکمه خرید */}
                             <SuccessBtn>خرید</SuccessBtn>
