@@ -14,7 +14,7 @@ function ContactService({ param }: ContactServiceProps) {
   );
 
   return (
-    <div className=" w-full flex h-[379px] py-10">
+    <div className=" w-full flex h-[379px] Container py-10">
       <div className=" w-full">
         <h2 className=" mb-14">موقعیت مکانی و آدرس</h2>
         <div className=" flex-col flex gap-y-6">
