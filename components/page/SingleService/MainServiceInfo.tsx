@@ -12,7 +12,7 @@ import { FaStar } from 'react-icons/fa6';
 import { NumericFormat } from 'react-number-format';
 import { Autoplay, FreeMode, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { Link as ReactScroll } from 'react-scroll'
 function MainServiceInfo({ id }: { id: string }) {
     const data = useGetSingleService({ id: id })
     const Data = data?.data?.value as SingleProductPage | undefined
@@ -112,7 +112,17 @@ function MainServiceInfo({ id }: { id: string }) {
                                     </div>}
                             </div>
                             {/* دکمه خرید */}
-                            <SuccessBtn>خرید</SuccessBtn>
+                            <ReactScroll
+                                to={"sans"}
+                                spy={true}
+                                smooth={true}
+                                offset={-100}
+                                duration={500}
+                                delay={0}
+                                className="cursor-pointer"
+                            >
+                                <SuccessBtn>خرید</SuccessBtn>
+                            </ReactScroll>
                         </div>
                     </div>
                         : null}
