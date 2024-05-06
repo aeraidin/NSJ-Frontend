@@ -5,4 +5,5 @@ interface BtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   isloading?: boolean;
   isActive?: boolean;
+  SpetialBtn?: boolean;
 }

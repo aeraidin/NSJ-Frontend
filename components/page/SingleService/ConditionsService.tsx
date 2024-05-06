@@ -3,27 +3,29 @@
 import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
 import React from "react";
 interface ConditionsServiceProps {
-  param: string;
+  id: string;
 }
 
-function ConditionsService({ param }: ConditionsServiceProps) {
-  const Conditions = useGetSingleService({ id: param });
-  console.log(Conditions.data?.value);
+function ConditionsService({ id }: ConditionsServiceProps) {
+  const data = useGetSingleService({ id: id });
+  console.log(data.data?.value.conditions);
 
   return (
-    <div className=" py-10 Container">
-      <h2 className=" mb-6">قوانین و مقررات</h2>
-      <ul className=" gap-y-4 flex flex-col list-disc marker:text-third-400 px-4 ">
-        <li className=" text-base text-gray-500">
-          20 دقیقه پایانی سانس به دوش گرفتن و تعویض لباس اختصاص دارد
-        </li>
-        <li className=" text-base text-gray-500">
-          20 دقیقه پایانی سانس به دوش گرفتن و تعویض لباس اختصاص دارد
-        </li>{" "}
-        <li className=" text-base text-gray-500">
-          20 دقیقه پایانی سانس به دوش گرفتن و تعویض لباس اختصاص دارد
-        </li>
-      </ul>
+    <div className="Container">
+      <h2 className="mb-6 text-gray-500 font-semibold">قوانین و مقررات</h2>
+      {data.data?.value.conditions.length !== 0 ? (
+        <ul className=" gap-y-4 flex flex-col list-disc marker:text-third-400 px-4 ">
+          {data.data?.value.conditions.map((item: any, index: number) => {
+            return (
+              <li key={index} className=" text-base text-gray-500">
+                {item}
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p className=" text-gray-400 text-center">قوانین و مقررات وجود ندارد</p>
+      )}
     </div>
   );
 }

@@ -14,12 +14,14 @@ function page({ params }: { params: { id: string } }) {
   return (
     <MainLayout>
       <MainServiceInfo id={params.id} />
-      <SansService />
-      <AboutService param={params.id} />
-      <ContactService param={params.id} />
-      <ConditionsService param={params.id} />
-      <ReviewService />
-      <RelatedService id={params.id} />
+      <div className="flex flex-col gap-10 mt-10">
+        <SansService id={params.id} />
+        <AboutService id={params.id} />
+        {/* <ContactService id={params.id} /> */}
+        <ConditionsService id={params.id} />
+        <ReviewService id={params.id} />
+        <RelatedService id={params.id} />
+      </div>
     </MainLayout>
   );
 }
