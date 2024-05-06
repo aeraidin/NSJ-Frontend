@@ -10,7 +10,7 @@ interface commentProps {
 function Comment({ data }: commentProps) {
   console.log(data);
   return (
-    <div className=" w-full h-[219px] flex flex-col rounded-[20px] border border-gray-100 ">
+    <div className=" w-full h-[219px] flex flex-col rounded-[20px] border border-gray-50 ">
       <div className=" w-full flex">
         <div className="w-full max-w-[65px] py-6 flex justify-center h-full">
           <div className=" w-10 h-10 bg-slate-600 rounded-full"></div>

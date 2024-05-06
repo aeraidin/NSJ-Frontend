@@ -52,7 +52,7 @@ function ReviewService({ id }: ReviewServiceProps) {
             مشاهده بیشتر
           </p>
           <ArrowDown2
-            className="text-gray-500 group-hover:text-gray-300"
+            className="text-gray-500 cursor-pointer group-hover:text-gray-300"
             size={24}
           />
         </div>
