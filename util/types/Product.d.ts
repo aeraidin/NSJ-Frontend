@@ -40,4 +40,12 @@ interface SingleProductPage {
   price: number;
   discount: number;
   priceAfterDiscount: number;
+  discountPresentage: number;
+  hasDiscount: boolean;
+  workHours: {
+    fromDayOfWeak: number;
+    toDayOfWeak: number;
+    start: string;
+    end: string;
+  };
 }

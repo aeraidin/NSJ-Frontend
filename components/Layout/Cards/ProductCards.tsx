@@ -41,7 +41,7 @@ function ProductCards({ data }: { data: ProductCard }) {
               <h5>{data.location}</h5>
             </div>
             <Link href={`category/${data.service.id}`} className="group/item">
-              <h5 className="group-hover/item:text-third-500 duration-150">
+              <h5 className="group-hover/item:text-third-500 group-hover/item:underline duration-150">
                 {data.service.name}
               </h5>
             </Link>
@@ -67,7 +67,7 @@ function ProductCards({ data }: { data: ProductCard }) {
             href={`/service/${data.id}`}
             className="text-third-600 flex items-center gap-1 -translate-x-10 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-150 "
           >
-            <h5 className="">مشاهده و خرید</h5>
+            <h5 className="text-third-600">مشاهده و خرید</h5>
             <ArrowLeft2 size={20} />
           </Link>
         </div>
