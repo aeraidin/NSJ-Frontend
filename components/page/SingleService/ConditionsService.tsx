@@ -11,8 +11,8 @@ function ConditionsService({ id }: ConditionsServiceProps) {
   console.log(data.data?.value.conditions);
 
   return (
-    <div className=" py-10 Container">
-      <h2 className=" mb-6 text-gray-500 font-semibold">قوانین و مقررات</h2>
+    <div className="Container">
+      <h2 className="mb-6 text-gray-500 font-semibold">قوانین و مقررات</h2>
       {data.data?.value.conditions.length !== 0 ? (
         <ul className=" gap-y-4 flex flex-col list-disc marker:text-third-400 px-4 ">
           {data.data?.value.conditions.map((item: any, index: number) => {

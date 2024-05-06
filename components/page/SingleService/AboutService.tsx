@@ -24,7 +24,7 @@ function AboutService({ id }: AboutServiceProps) {
   //           رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات
   //           پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.`;
   return (
-    <div className="flex gap-y-6 flex-col py-10 Container">
+    <div className="flex gap-y-6 flex-col  Container">
       <h2 className="text-gray-500 font-semibold">{`معرفی`}</h2>
       <div className="w-full  overflow-hidden">
         {/* <Collapse isOpened={expanded}>
