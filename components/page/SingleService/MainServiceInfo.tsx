@@ -131,7 +131,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                 delay={0}
                                 className="cursor-pointer"
                             >
-                                <SuccessBtn>خرید</SuccessBtn>
+                                <SuccessBtn SpetialBtn>خرید</SuccessBtn>
                             </ReactScroll>
                         </div>
                     </div>

@@ -3,6 +3,7 @@ import SuccessBtn from '@/components/Layout/Buttons/SuccessBtn'
 import { UserTypeData } from '@/util/data/UserTypeData'
 import { DaysOfWeekArray } from '@/util/data/WorkDayTime'
 import useGetSingleServiceSans from '@/util/hook/SingleService/useGetSingleServiceSans'
+import { Timer1 } from 'iconsax-react'
 import React, { useEffect, useState } from 'react'
 import { Collapse } from 'react-collapse'
 import { NumericFormat } from 'react-number-format'
@@ -42,10 +43,10 @@ function SansService({ id }: { id: string }) {
                             <th className="px-3 py-5 bg-gray-25 rounded-l-2xl font-semibold w-[170px]"></th>
                         </tr>
                     </thead>
-                    <tbody className="overflow-y-scroll divide-y divide-gray-50">
+                    <tbody className="overflow-y-scroll ">
                         {SelectedClient ? SelectedClient?.days.map((item, index) => {
                             return <React.Fragment key={index}>
-                                <tr onClick={() => CollapseHandler(index)} >
+                                <tr onClick={() => CollapseHandler(index)} className={`${index !== expandedRow ? "pb-6 border-b border-b-gray-50" : ""} cursor-pointer select-none `} >
                                     <td className='text-center py-5 px-3'><p>{DaysOfWeekArray[item.dayOfWeek].name}</p></td>
                                     <td className='text-center py-5 px-3'><p>{DaysOfWeekArray[item.dayOfWeek].name}</p></td>
                                     <td className='text-center py-5 px-3'><p>   <NumericFormat
@@ -58,22 +59,25 @@ function SansService({ id }: { id: string }) {
                                     <td className='text-center py-5 px-3 w-[170px]'><div className='w-[170px]'><SuccessBtn>رزور بلیت</SuccessBtn></div></td>
                                 </tr>
                                 <tr>
-                                    <td colSpan={6} className="p-0">
+                                    <td colSpan={6} className={index === expandedRow ? "pb-6 border-b border-b-gray-50" : " p-0"}>
                                         <Collapse
                                             isOpened={index === expandedRow}
-                                            className="w-full"
-                                        >
-                                            <div className='flex items-center flex-wrap gap-3 p-6'>
+                                            className="w-full">
+                                            <div className='text-gray-500 flex items-center gap-4 px-6 mt-2'>
+                                                <Timer1 size="24" />
+                                                <p className='text-gray-400'>سانس مورد نظر را انتخاب کنید</p>
+                                            </div>
+                                            <div className='flex items-center flex-wrap gap-3 py-4 px-6'>
                                                 {item.details.map((item, index) => {
                                                     return (
-                                                        <div key={index} className=' '>
+                                                        <button key={index} className=' '>
                                                             <div className=" relative overflow-hidden h-8 text-sm lg:text-base group lg:h-10 border flex items-center gap-3 border-third-400 hover:border-transparent rounded-lg   hover:shadow px-4 py-2  duration-200">
                                                                 <p className='text-third-400 group-hover:opacity-0'>{(item.end) + "-" + (item.start)}</p>
                                                                 <div className='group-hover:opacity-100 h-8 w-full bg-success-600 text-center flex items-center justify-center lg:h-10 opacity-0 absolute top-full  group-hover:top-1/2 left-1/2 transform -translate-x-1/2 group-hover:-translate-y-1/2 duration-200 '>
                                                                     <p className="text-white">خرید</p>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </button>
                                                     );
                                                 })}
                                             </div>
