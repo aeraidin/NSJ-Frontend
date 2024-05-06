@@ -7,7 +7,6 @@ import { Add, Gps, Location } from "iconsax-react";
 import { motion } from "framer-motion";
 import { UseFormRegister, FieldValues, Path } from "react-hook-form";
 import useClickOutside from "@/util/hook/useClickOutside";
-import "../../Layout/Map/Map.css";
 
 interface mapProps<T extends FieldValues> {
   latlng: (value: any) => void;
@@ -60,16 +59,11 @@ const Map = <T extends FieldValues>({
     return null;
   };
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setTimeout(function () {
-        window.dispatchEvent(new Event("resize"));
-      }, 500);
-    }
-  }, []);
-
-  console.log(window.onresize);
-
+  if (typeof window !== "undefined") {
+    setTimeout(function () {
+      window.dispatchEvent(new Event("resize"));
+    }, 500);
+  }
   let myIcon = L.icon({
     iconUrl: "/icons/LocationMarker.svg",
     iconSize: [52, 52],
@@ -131,6 +125,9 @@ const Map = <T extends FieldValues>({
       mapRef.current.setView(currentPosition, mapRef.current.getZoom());
     }
   };
+
+  console.log(position);
+
   return (
     <>
       {/* <div
@@ -249,11 +246,7 @@ const Map = <T extends FieldValues>({
         </div>
       )}
 
-      {!position ? (
-        <div className=" w-full justify-center items-center h-full">
-          Loading
-        </div>
-      ) : null}
+      {!position ? <div>...</div> : null}
     </>
   );
 };
