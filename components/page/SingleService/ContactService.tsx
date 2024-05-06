@@ -41,7 +41,7 @@ function ContactService({ id }: ContactServiceProps) {
   console.log(phone?.value);
 
   return (
-    <div className=" w-full flex h-[379px] Container py-10">
+    <div className=" w-full flex h-[379px] Container pt-10">
       <div className=" w-full">
         <h2 className=" mb-14 text-gray-500 font-semibold">
           موقعیت مکانی و آدرس
