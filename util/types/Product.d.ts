@@ -49,3 +49,17 @@ interface SingleProductPage {
     end: string;
   };
 }
+interface Sans {
+  clientType: number;
+  days: SansDay[];
+}
+interface SansDay {
+  dayOfWeek: number;
+  price: number;
+  details: SansDayDetail[];
+}
+interface SansDayDetail {
+  id: number;
+  start: string;
+  end: string;
+}

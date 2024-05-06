@@ -13,9 +13,13 @@ import { NumericFormat } from 'react-number-format';
 import { Autoplay, FreeMode, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link as ReactScroll } from 'react-scroll'
+import useGetSingleServiceSans from '@/util/hook/SingleService/useGetSingleServiceSans';
+import { UserTypeData } from '@/util/data/UserTypeData';
 function MainServiceInfo({ id }: { id: string }) {
     const data = useGetSingleService({ id: id })
     const Data = data?.data?.value as SingleProductPage | undefined
+    const Sans = useGetSingleServiceSans({ id: id })
+    const SansData = Sans?.data?.value.list as Sans[] | undefined
     return (
         <div className='Container flex flex-col gap-8 pt-8'>
             <div className='w-full flex items-center justify-between'>
@@ -47,7 +51,7 @@ function MainServiceInfo({ id }: { id: string }) {
             <div className='w-full h-full flex items-start gap-4'>
                 <div className='w-[45%]'>
                     {data.isSuccess ? <div className='flex flex-col '>
-                        <div className='flex flex-col gap-8'>
+                        <div className='flex flex-col gap-5'>
                             <div className='flex-col flex gap-3'>
                                 <h1>{Data?.name}</h1>
                                 <div className='flex items-center justify-between'>
@@ -70,15 +74,21 @@ function MainServiceInfo({ id }: { id: string }) {
                                 </div>
                             </div>
                             {/* ساعت کاری مجموعه  */}
-                            <div className='w-full border border-gray-50 flex items-start flex-col  rounded-3xl p-8'>
-                                <div className=' flex items-center gap-6 text-gray-200'>
+                            <div className='w-full border border-gray-50 flex items-start flex-col rounded-3xl px-8 py-6'>
+                                <div className=' flex items-center gap-6 text-gray-200 w-full border-b border-b-gray-50 pb-4'>
+                                    <Clock size="24" variant="Bold" />
+                                    <div className=' flex flex-col gap-2'>
+                                        <p className='text-gray-300'>نوع پذیرش</p>
+                                        <h5 className='text-gray-500'>مورد استفاده برای {SansData?.map(item => UserTypeData[item.clientType].name)}</h5>
+                                    </div>
+                                </div>
+                                <div className=' flex items-center gap-6 text-gray-200 pt-4'>
                                     <Clock size="24" variant="Bold" />
                                     <div className=' flex flex-col gap-2'>
                                         <p className='text-gray-300'>ساعات کاری مجموعه</p>
                                         <h5 className='text-gray-500'>{DaysOfWeekArray[Data ? Data.workHours.fromDayOfWeak : 0].name} تا {DaysOfWeekArray[Data ? Data.workHours.toDayOfWeak : 0].name} از ساعت {Data?.workHours.start} الی {Data?.workHours.end}</h5>
                                     </div>
                                 </div>
-
                             </div>
                             {/* قیمت سرویس  */}
                             <div className='flex items-end  justify-between'>
@@ -116,7 +126,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                 to={"sans"}
                                 spy={true}
                                 smooth={true}
-                                offset={-100}
+                                offset={-150}
                                 duration={500}
                                 delay={0}
                                 className="cursor-pointer"
