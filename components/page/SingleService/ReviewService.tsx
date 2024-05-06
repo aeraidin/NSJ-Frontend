@@ -29,7 +29,7 @@ function ReviewService({ id }: ReviewServiceProps) {
   const data = useGetSingleServiceComment({ id: id, size: size });
 
   return (
-    <div className="Container">
+    <div className="Container pt-10">
       <h2 className=" mb-8 text-gray-500 font-semibold ">{` امتیاز و نظرات کاربران(${data.data?.value?.list.length} نظر)`}</h2>
 
       {data.data?.value.totalCount !== 0 ? (
@@ -52,7 +52,7 @@ function ReviewService({ id }: ReviewServiceProps) {
             مشاهده بیشتر
           </p>
           <ArrowDown2
-            className="text-gray-500 group-hover:text-gray-300"
+            className="text-gray-500 cursor-pointer group-hover:text-gray-300"
             size={24}
           />
         </div>

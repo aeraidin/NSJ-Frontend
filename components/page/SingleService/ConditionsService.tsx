@@ -11,7 +11,7 @@ function ConditionsService({ id }: ConditionsServiceProps) {
   console.log(data.data?.value.conditions);
 
   return (
-    <div className="Container">
+    <div className="Container pt-10">
       <h2 className="mb-6 text-gray-500 font-semibold">قوانین و مقررات</h2>
       {data.data?.value.conditions.length !== 0 ? (
         <ul className=" gap-y-4 flex flex-col list-disc marker:text-third-400 px-4 ">

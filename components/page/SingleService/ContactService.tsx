@@ -2,8 +2,15 @@
 "use client";
 import { Call, Location } from "iconsax-react";
 import React, { useState } from "react";
-import DynamicMapComponent from "@/components/Layout/Map/Map";
 import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
+import dynamic from "next/dynamic";
+
+const DynamicMapComponent = dynamic(
+  () => import("@/components/Layout/Map/Map"),
+  {
+    ssr: false,
+  }
+);
 
 interface ContactServiceProps {
   id: string;
@@ -34,7 +41,7 @@ function ContactService({ id }: ContactServiceProps) {
   console.log(phone?.value);
 
   return (
-    <div className=" w-full flex h-[379px] Container py-10">
+    <div className=" w-full flex h-[379px] Container pt-10">
       <div className=" w-full">
         <h2 className=" mb-14 text-gray-500 font-semibold">
           موقعیت مکانی و آدرس
@@ -50,7 +57,7 @@ function ContactService({ id }: ContactServiceProps) {
           </div>
         </div>
       </div>
-      <div className=" w-full">
+      <div className=" w-full ">
         <DynamicMapComponent
           selectedValue={Latlng}
           id="map"
