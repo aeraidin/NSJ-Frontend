@@ -15,10 +15,10 @@ function page({ params }: { params: { id: string } }) {
     <MainLayout>
       <MainServiceInfo id={params.id} />
       <SansService />
-      <AboutService param={params.id} />
-      <ContactService param={params.id} />
-      <ConditionsService param={params.id} />
-      <ReviewService />
+      <AboutService id={params.id} />
+      <ContactService id={params.id} />
+      <ConditionsService id={params.id} />
+      <ReviewService id={params.id} />
       <RelatedService id={params.id} />
     </MainLayout>
   );
