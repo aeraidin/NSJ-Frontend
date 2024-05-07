@@ -1,7 +1,9 @@
 /** @format */
 
 import { Like, Like1, Star1 } from "iconsax-react";
-import React from "react";
+import Image from "next/image";
+import React, { useState } from "react";
+import ReactStars from "react-rating-stars-component";
 
 interface commentProps {
   data: any;
@@ -9,11 +11,20 @@ interface commentProps {
 
 function Comment({ data }: commentProps) {
   console.log(data);
+  const ratingChanged = (newRating: any) => {
+    console.log(newRating);
+  };
   return (
     <div className=" w-full h-[219px] flex flex-col rounded-[20px] border border-gray-50 ">
       <div className=" w-full flex">
         <div className="w-full max-w-[65px] py-6 flex justify-center h-full">
-          <div className=" w-10 h-10 bg-slate-600 rounded-full"></div>
+          <div className=" w-10 h-10 bg-slate-600 rounded-full">
+            <Image
+              src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${data.user.profileImage}`}
+              alt="profile"
+              fill
+            />
+          </div>
         </div>
         <div className="  w-full flex flex-col  h-full">
           <div className="  pt-6 flex gap-x-3 h-full w-full">
@@ -38,7 +49,7 @@ function Comment({ data }: commentProps) {
 
               <div className=" flex gap-x-3">
                 <p>4.5/5</p>
-                <div className=" flex">
+                {/* <div className=" flex">
                   <Star1
                     className=" text-secondary-400"
                     size={16}
@@ -63,6 +74,14 @@ function Comment({ data }: commentProps) {
                     className=" text-secondary-400"
                     size={16}
                     variant="Bold"
+                  />
+                </div> */}
+                <div>
+                  <ReactStars
+                    count={5}
+                    onChange={ratingChanged}
+                    size={20}
+                    activeColor="#FEB92E"
                   />
                 </div>
               </div>
