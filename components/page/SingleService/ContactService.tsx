@@ -38,7 +38,9 @@ function ContactService({ id }: ContactServiceProps) {
     return item.type === Contact.Phone;
   });
 
-  console.log(phone?.value);
+  const map = data.data?.value.contacts.find((item: any) => {
+    return item.type === Contact.Map;
+  });
 
   return (
     <div className=" w-full flex h-[379px] Container pt-10">
@@ -59,7 +61,7 @@ function ContactService({ id }: ContactServiceProps) {
       </div>
       <div className=" w-full ">
         <DynamicMapComponent
-          selectedValue={Latlng}
+          selectedValue={map?.value}
           id="map"
           latlng={(e: any) => {
             console.log(e);

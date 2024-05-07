@@ -13,7 +13,7 @@ interface mapProps<T extends FieldValues> {
   register?: UseFormRegister<T>;
   error?: string | undefined;
   id: Path<T>;
-  selectedValue?: any;
+  selectedValue: LatLngExpression;
 }
 
 const Map = <T extends FieldValues>({
@@ -29,7 +29,10 @@ const Map = <T extends FieldValues>({
   //     : undefined
   // );
 
-  const [position, setPosition] = useState<LatLngExpression | undefined>();
+  const [position, setPosition] = useState<LatLngExpression>({
+    lat: 0,
+    lng: 0,
+  });
   const [currentPosition, setCurrentPosition] = useState<
     LatLngExpression | undefined
   >();
@@ -43,6 +46,15 @@ const Map = <T extends FieldValues>({
     setPosition(event.target._latlng);
     latlng(event.target._latlng);
   };
+
+  useEffect(() => {
+    if (selectedValue) {
+      const [lat, lng] = selectedValue.split(",").map(parseFloat); // Parse lat/lng from selectedValue
+      setPosition({ lat, lng }); // Update position state
+    }
+  }, [selectedValue]);
+
+  console.log(position);
 
   const MapEventsHandler = () => {
     const map = useMapEvents({
@@ -65,7 +77,7 @@ const Map = <T extends FieldValues>({
     }, 500);
   }
   let myIcon = L.icon({
-    iconUrl: "../../../public/Icons/LocationMarker.svg",
+    iconUrl: "/Icons/LocationMarker.svg",
     iconSize: [52, 52],
     iconAnchor: [22, 94],
     popupAnchor: [-3, -76],
@@ -83,28 +95,28 @@ const Map = <T extends FieldValues>({
   });
   const [mapInitialized, setMapInitialized] = useState(false);
 
-  useEffect(() => {
-    const getCurrentPosition = async () => {
-      try {
-        const { coords } = await new Promise<GeolocationPosition>(
-          (resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(resolve, reject);
-          }
-        );
+  // useEffect(() => {
+  //   const getCurrentPosition = async () => {
+  //     try {
+  //       const { coords } = await new Promise<GeolocationPosition>(
+  //         (resolve, reject) => {
+  //           navigator.geolocation.getCurrentPosition(resolve, reject);
+  //         }
+  //       );
 
-        setPosition([coords.latitude, coords.longitude]);
-        setCurrentPosition([coords.latitude, coords.longitude]);
+  //       setPosition([coords.latitude, coords.longitude]);
+  //       setCurrentPosition([coords.latitude, coords.longitude]);
 
-        if (selectedValue) {
-          const coordinatesArray = selectedValue.split(",");
-          setPosition({ lat: coordinatesArray[0], lng: coordinatesArray[1] });
-        }
-      } catch (error) {
-        console.error("Error getting current position:", error);
-      }
-    };
-    getCurrentPosition();
-  }, [selectedValue]);
+  //       if (selectedValue) {
+  //         const coordinatesArray = selectedValue.split(",");
+  //         setPosition({ lat: coordinatesArray[0], lng: coordinatesArray[1] });
+  //       }
+  //     } catch (error) {
+  //       console.error("Error getting current position:", error);
+  //     }
+  //   };
+  //   getCurrentPosition();
+  // }, [selectedValue]);
 
   // useEffect(() => {
   //   if (position) {
@@ -119,12 +131,14 @@ const Map = <T extends FieldValues>({
     setIsOpen(false);
   };
 
-  const currentPositionHandler = () => {
-    setPosition(currentPosition);
-    if (currentPosition && mapRef.current) {
-      mapRef.current.setView(currentPosition, mapRef.current.getZoom());
-    }
-  };
+  console.log(position);
+
+  // const currentPositionHandler = () => {
+  //   setPosition(currentPosition);
+  //   if (currentPosition && mapRef.current) {
+  //     mapRef.current.setView(currentPosition, mapRef.current.getZoom());
+  //   }
+  // };
 
   return (
     <>
@@ -135,29 +149,30 @@ const Map = <T extends FieldValues>({
             h-[296px] rounded-lg w-full select-none 
           `}
         >
-          <MapContainer
-            whenReady={() => setMapInitialized(true)}
-            ref={mapRef}
-            className={`blur-none relative rounded-3xl`}
-            center={[35.70053021146702, 51.36374146132388]}
-            zoom={55}
-            style={{ height: `100%`, width: "100%" }}
-            scrollWheelZoom={true}
-          >
-            <MapEventsHandler />
-            <TileLayer
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
-              url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-            />
-            <Marker
-              draggable={false}
-              position={[35.70053021146702, 51.36374146132388]}
-              icon={myIcon}
-              eventHandlers={{
-                dragend: handleMarkerMove,
-              }}
-            />
-            {/* <Marker
+          {selectedValue && position.lat !== 0 ? (
+            <MapContainer
+              whenReady={() => setMapInitialized(true)}
+              ref={mapRef}
+              className={`blur-none relative rounded-3xl`}
+              center={position}
+              zoom={55}
+              style={{ height: `100%`, width: "100%" }}
+              scrollWheelZoom={true}
+            >
+              {/* <MapEventsHandler /> */}
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
+                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+              />
+              <Marker
+                draggable={false}
+                position={position}
+                icon={myIcon}
+                eventHandlers={{
+                  dragend: handleMarkerMove,
+                }}
+              />
+              {/* <Marker
               draggable={false}
               position={[51.505, -0.09]}
               icon={L.icon({
@@ -165,8 +180,9 @@ const Map = <T extends FieldValues>({
                 iconSize: [24, 24],
                 iconAnchor: [12, 24],
               })} */}
-            {/* /> */}
-          </MapContainer>
+              {/* /> */}
+            </MapContainer>
+          ) : null}
           <div className=" absolute top-0 left-0 right-0 bottom-0 select-none"></div>
 
           <div
