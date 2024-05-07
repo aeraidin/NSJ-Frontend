@@ -72,7 +72,7 @@ function SansService({ id }: { id: string }) {
                                                     return (
                                                         <button key={index} className=' '>
                                                             <div className=" relative overflow-hidden h-8 text-sm lg:text-base group lg:h-10 border flex items-center gap-3 border-third-400 hover:border-transparent rounded-lg   hover:shadow px-4 py-2  duration-200">
-                                                                <p className='text-third-400 group-hover:opacity-0'>{(item.end) + "-" + (item.start)}</p>
+                                                                <p className='text-third-400 group-hover:opacity-0  group-hover:-translate-y-full duration-200'>{(item.end) + "-" + (item.start)}</p>
                                                                 <div className='group-hover:opacity-100 h-8 w-full bg-success-600 text-center flex items-center justify-center lg:h-10 opacity-0 absolute top-full  group-hover:top-1/2 left-1/2 transform -translate-x-1/2 group-hover:-translate-y-1/2 duration-200 '>
                                                                     <p className="text-white">خرید</p>
                                                                 </div>
