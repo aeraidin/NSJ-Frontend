@@ -6,8 +6,11 @@ import Profile from "./Profile";
 import SearchBox from "./SearchBox";
 import BookMark from "./BookMark";
 import Link from "next/link";
+import { useSestion } from "@/util/session";
 
 function Header() {
+  const Session = useSestion();
+
   return (
     <div className="w-full sticky top-0 left-0 bg-white z-50  px-6">
       <div className="Container flex items-center  justify-between  py-7 border-b border-gray-50">
@@ -22,9 +25,13 @@ function Header() {
           </div>
         </div>
         <div className="flex items-center gap-x-8">
+
           <Profile />
-          <BookMark />
-          <Cart />
+          {Session ? <React.Fragment>
+            <BookMark />
+            <Cart />
+          </React.Fragment>
+            : null}
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ function RelatedService({ id }: { id: string }) {
     const Data = data?.data?.value.list as ProductCard[] | undefined
 
     return (
-        <div className='Container w-full flex flex-col gap-6'>
+        <div className='Container w-full flex flex-col gap-6 pt-10'>
             <div
                 className='flex items-center justify-between '>
                 <h1>پیشنهاد های مشابه</h1>
