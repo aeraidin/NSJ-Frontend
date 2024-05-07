@@ -29,7 +29,7 @@ function ReviewService({ id }: ReviewServiceProps) {
   const data = useGetSingleServiceComment({ id: id, size: size });
 
   return (
-    <div className="py-10 Container ">
+    <div className="Container pt-10">
       <h2 className=" mb-8 text-gray-500 font-semibold ">{` امتیاز و نظرات کاربران(${data.data?.value?.list.length} نظر)`}</h2>
 
       {data.data?.value.totalCount !== 0 ? (
@@ -43,7 +43,7 @@ function ReviewService({ id }: ReviewServiceProps) {
       )}
 
       {data.data?.value?.totalCount !== 0 &&
-      data.data?.value?.totalCount >= size ? (
+        data.data?.value?.totalCount >= size ? (
         <div
           onClick={() => paginateHandler()}
           className=" w-full gap-x-4 group justify-center flex text-center mt-6"

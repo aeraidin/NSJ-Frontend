@@ -52,7 +52,7 @@ input::-webkit-inner-spin-button {
 
 @layer components {
   .Container {
-    @apply w-full max-w-[1344px] mx-auto;
+    @apply w-full max-w-[1440px] mx-auto px-6;
   }
   .FullContainer {
     @apply w-full mx-auto max-w-[1924px];

@@ -1,10 +1,10 @@
 import { BtnProps } from "@/util/types/type";
 import React from "react";
 
-function SuccessBtn({ isloading, children, ...props }: BtnProps) {
+function SuccessBtn({ isloading, SpetialBtn, children, ...props }: BtnProps) {
   return (
     <button
-      className={`  disabled:bg-success-600/20 flex items-center justify-center gap-2  select-none focus:bg-success-500 w-full h-[48px] lg:h-[56px]  px-6 duration-200 rounded-2xl font-semibold hover:bg-success-400 bg-success-600 text-white text-sm lg:text-base ${isloading ? "disabled:cursor-wait" : "disabled:cursor-not-allowed"
+      className={`  disabled:bg-success-600/20 flex items-center justify-center gap-2  select-none  w-full h-[48px] lg:h-[56px]  px-6 duration-200 rounded-2xl font-semibold  ${SpetialBtn ? "bg-third-500 hover:bg-third-400 focus:bg-third-600  " : "hover:bg-success-400 bg-success-600 focus:bg-success-500"} text-white text-sm lg:text-base ${isloading ? "disabled:cursor-wait" : "disabled:cursor-not-allowed"
         }`}
       {...props}
     >
