@@ -17,7 +17,7 @@ export default function useGetSingleServiceComment({
     queryFn: async () => {
       try {
         const response = await axiosInstance.get(
-          `client/sport-commplex-service/${id}/comment-list?pageSize=${size}&page=1`
+          `client/sport-commplex-service/${id}/comment-list?pageSize=3&page=${size}`
         );
         return response.data;
       } catch (error) {

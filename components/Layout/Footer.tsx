@@ -13,8 +13,8 @@ function Footer() {
   return (
     <footer className=" w-full Container ">
       <div className=" border-t border-gray-50  py-12  flex flex-col gap-y-10 lg:gap-y-0 lg:flex-row">
-        <div className=" w-full h-full flex flex-col gap-y-[68px]">
-          <div className=" grid-cols-3 grid">
+        <div className=" w-full h-full flex flex-col  gap-y-[68px]">
+          <div className=" grid-cols-2 gap-8 lg:gap-0  lg:grid-cols-3 grid">
             <ul className=" space-y-4 select-none ">
               <li className=" text-dark-100 ">فانیتیکت</li>
               <li className="cursor-pointer ">
@@ -53,11 +53,11 @@ function Footer() {
               </li>
             </ul>
 
-            <ul className=" space-y-4 select-none ">
+            <ul className=" space-y-4  select-none ">
               <li>
                 <a
                   href="tel:02187653"
-                  className=" cursor-pointer  text-dark-100"
+                  className=" cursor-pointer  text-gray-600"
                 >
                   پشتیبانی:87653-021
                 </a>
@@ -65,7 +65,7 @@ function Footer() {
               <li>
                 <a
                   href="tel:02187653"
-                  className=" cursor-pointer  text-dark-100"
+                  className=" cursor-pointer  text-gray-600"
                 >
                   شرکت:87653-021
                 </a>
@@ -73,17 +73,17 @@ function Footer() {
             </ul>
           </div>
 
-          <div className=" w-full gap-y-4 flex flex-col">
+          <div className=" w-full gap-y-4 flex flex-col mb-10 lg:mb-0">
             <h4 className=" text-gray-500">
               جهت اطلاع از آخرین تخفیف های شهرتان آدرس ایمیل خود را وارد نمایید!
             </h4>
-            <div className=" w-full  bg-[#F9F8F8] rounded-xl  max-w-[585px]">
+            <div className=" w-full rounded-xl  lg:max-w-[585px]">
               <SubscribeForm />
             </div>
           </div>
         </div>
         <div className=" w-full  h-full flex justify-end items-end flex-col gap-y-10">
-          <h1 className=" text-primary-600 text-4xl">SportTicket</h1>
+          <h1 className=" text-primary-600 text-4xl">Funicket</h1>
           <div className=" flex gap-x-4">
             <div className=" w-12 h-12 flex justify-center hover:bg-gray-25 duration-200 cursor-pointer items-center border border-gray-100 rounded-2xl">
               <Instagram variant="Bold" className=" text-gray-300" size={24} />

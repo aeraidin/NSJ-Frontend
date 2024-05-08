@@ -63,3 +63,15 @@ interface SansDayDetail {
   start: string;
   end: string;
 }
+
+interface CommentItem {
+  id: number;
+  text: string;
+  replay: string;
+  rate: number;
+  createdDate: string;
+  user: {
+    name: string;
+    profileImage: string;
+  };
+}

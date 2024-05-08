@@ -34,18 +34,20 @@ function ContactService({ id }: ContactServiceProps) {
     return item.type === Contact.Address;
   });
 
-  const phone = data.data?.value.contacts.find((item: any) => {
+  const phone = data.data?.value.contacts.filter((item: any) => {
     return item.type === Contact.Phone;
   });
+
+  console.log(phone);
 
   const map = data.data?.value.contacts.find((item: any) => {
     return item.type === Contact.Map;
   });
 
   return (
-    <div className=" w-full flex h-[379px] Container pt-10">
+    <div className=" w-full flex flex-col md:flex-row h-[379px] Container pt-6 lg:pt-10">
       <div className=" w-full">
-        <h2 className=" mb-14 text-gray-500 font-semibold">
+        <h2 className=" mb-5 md:mb-14 text-gray-500 font-semibold">
           موقعیت مکانی و آدرس
         </h2>
         <div className=" flex-col flex gap-y-6">
@@ -55,11 +57,17 @@ function ContactService({ id }: ContactServiceProps) {
           </div>
           <div className=" flex gap-x-3">
             <Call size={24} variant="Bold" className=" text-gray-200" />
-            <p className=" text-gray-500">{phone?.value}</p>
+            {phone?.map((item: any, index: number) => {
+              return (
+                <p key={index} className=" text-gray-500">
+                  {item.value}
+                </p>
+              );
+            })}
           </div>
         </div>
       </div>
-      <div className=" w-full ">
+      <div className=" w-full mt-7 md:mt-0 ">
         <DynamicMapComponent
           selectedValue={map?.value}
           id="map"

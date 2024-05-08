@@ -13,7 +13,7 @@ interface mapProps<T extends FieldValues> {
   register?: UseFormRegister<T>;
   error?: string | undefined;
   id: Path<T>;
-  selectedValue: LatLngExpression;
+  selectedValue: string | undefined; // Ensure selectedValue is of type string
 }
 
 const Map = <T extends FieldValues>({
@@ -29,7 +29,7 @@ const Map = <T extends FieldValues>({
   //     : undefined
   // );
 
-  const [position, setPosition] = useState<LatLngExpression>({
+  const [position, setPosition] = useState<any>({
     lat: 0,
     lng: 0,
   });
@@ -49,8 +49,8 @@ const Map = <T extends FieldValues>({
 
   useEffect(() => {
     if (selectedValue) {
-      const [lat, lng] = selectedValue.split(",").map(parseFloat); // Parse lat/lng from selectedValue
-      setPosition({ lat, lng }); // Update position state
+      const [lat, lng] = selectedValue.split(",").map(parseFloat);
+      setPosition({ lat, lng });
     }
   }, [selectedValue]);
 
@@ -146,7 +146,7 @@ const Map = <T extends FieldValues>({
         <div
           className={` 
           relative
-            h-[296px] rounded-lg w-full select-none 
+           h-[200px] md:h-[296px] rounded-lg w-full select-none 
           `}
         >
           {selectedValue && position.lat !== 0 ? (
@@ -184,7 +184,12 @@ const Map = <T extends FieldValues>({
             </MapContainer>
           ) : null}
           <div className=" absolute top-0 left-0 right-0 bottom-0 select-none"></div>
-
+          <div
+            className={`absolute block  p-3 px-6 rounded-[10px] select-none z-40 cursor-pointer backdrop-blur-sm bg-white/30 shadow-CMSHADOW  duration-200  top-10 lg:top-24 left-1/2 transform -translate-x-1/2 translate-y-1/2`}
+            onClick={() => console.log("click map")}
+          >
+            <p className=" text-primary-600 text-sm"> نمایش روی نقشه</p>
+          </div>
           <div
             className={`${
               error

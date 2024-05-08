@@ -16,22 +16,20 @@ function Header() {
       <div className="Container flex items-center  justify-between  py-7 border-b border-gray-50">
         <div className=" flex justify-between items-center w-full max-w-[900px] ">
           <Link href={"/"}>
-            <h1 className=" text-primary-600 text-4xl select-none">
-              SportTicket
-            </h1>
+            <h1 className=" text-primary-600 text-4xl select-none">Funicket</h1>
           </Link>
           <div className=" max-w-[589px] max-h-[112px]  h-full w-full">
             <SearchBox />
           </div>
         </div>
         <div className="flex items-center gap-x-8">
-
           <Profile />
-          {Session ? <React.Fragment>
-            <BookMark />
-            <Cart />
-          </React.Fragment>
-            : null}
+          {Session ? (
+            <React.Fragment>
+              <BookMark />
+              <Cart />
+            </React.Fragment>
+          ) : null}
         </div>
       </div>
     </div>
