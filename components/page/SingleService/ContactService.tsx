@@ -45,9 +45,9 @@ function ContactService({ id }: ContactServiceProps) {
   });
 
   return (
-    <div className=" w-full flex h-[379px] Container pt-10">
+    <div className=" w-full flex flex-col md:flex-row h-[379px] Container pt-6 lg:pt-10">
       <div className=" w-full">
-        <h2 className=" mb-14 text-gray-500 font-semibold">
+        <h2 className=" mb-5 md:mb-14 text-gray-500 font-semibold">
           موقعیت مکانی و آدرس
         </h2>
         <div className=" flex-col flex gap-y-6">
@@ -67,7 +67,7 @@ function ContactService({ id }: ContactServiceProps) {
           </div>
         </div>
       </div>
-      <div className=" w-full ">
+      <div className=" w-full mt-7 md:mt-0 ">
         <DynamicMapComponent
           selectedValue={map?.value}
           id="map"

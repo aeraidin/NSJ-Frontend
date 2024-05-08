@@ -11,10 +11,10 @@ function ConditionsService({ id }: ConditionsServiceProps) {
   console.log(data.data?.value.conditions);
 
   return (
-    <div className="Container pt-10">
+    <div className="Container pt-6 lg:pt-10">
       <h2 className="mb-6 text-gray-500 font-semibold">قوانین و مقررات</h2>
       {data.data?.value.conditions.length !== 0 ? (
-        <ul className=" gap-y-4 flex flex-col list-disc marker:text-third-400 px-4 ">
+        <ul className=" gap-y-3 md:gap-y-4 flex flex-col list-disc marker:text-third-400 px-4 ">
           {data.data?.value.conditions.map((item: any, index: number) => {
             return (
               <li key={index} className=" text-base text-gray-500">

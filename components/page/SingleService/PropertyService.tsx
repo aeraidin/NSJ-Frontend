@@ -8,18 +8,20 @@ function PropertyService({ id }: { id: string }) {
   const data = useGetSingleService({ id: id });
   return (
     <div className="Container">
-      <h2 className=" font-semibold text-gray-500 mb-6 mt-10">
+      <h2 className=" font-semibold text-gray-500 mb-6  mt-6 lg:mt-10">
         ویژگی ها و امکانات
       </h2>
 
       {data.data?.value?.facilities.length !== 0 ? (
-        <div className=" grid grid-cols-4 gap-6  ">
+        <div className=" grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-6  ">
           {data.data?.value.facilities.map((item: any, index: number) => {
             return (
-              <div key={index} className=" gap-x-3 flex  items-center">
-                <TickCircle size={32} className=" text-third-300" />
-                <p>{item}</p>
-              </div>
+              <>
+                <div key={index} className=" gap-x-3 flex  items-center">
+                  <TickCircle size={32} className=" text-third-300" />
+                  <p>{item}</p>
+                </div>
+              </>
             );
           })}
         </div>

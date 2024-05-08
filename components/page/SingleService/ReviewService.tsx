@@ -39,11 +39,11 @@ function ReviewService({ id }: ReviewServiceProps) {
   }, [data.data?.value.list]);
 
   return (
-    <div className="Container pt-10">
-      <h2 className=" mb-8 text-gray-500 font-semibold ">{` امتیاز و نظرات کاربران(${commentList.length} نظر)`}</h2>
+    <div className="Container  pt-6 lg:pt-10">
+      <h2 className=" mb-3 lg:mb-8 text-gray-500 font-semibold ">{` امتیاز و نظرات کاربران(${commentList.length} نظر)`}</h2>
 
       {commentList ? (
-        <div className=" gap-y-6 flex-col flex">
+        <div className=" gap-y-3 md:gap-y-6 flex-col flex">
           {commentList?.map((item: any, index: number) => {
             return <Comment data={item} key={index} />;
           })}
