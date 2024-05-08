@@ -1,39 +1,58 @@
-/** @format */
+"use client"
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Cart from "./Cart";
 import Profile from "./Profile";
 import SearchBox from "./SearchBox";
 import BookMark from "./BookMark";
 import Link from "next/link";
 import { useSestion } from "@/util/session";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
-function Header() {
-  const Session = useSestion();
-
+function Header({ isLoggedin }: { isLoggedin: boolean }) {
+  const [scrolled, setscroll] = useState(false);
+  const [active, setactive] = useState(false);
+  useEffect(() => {
+    const changecolor = () => {
+      if (window.scrollY >= 50) {
+        setscroll(true);
+      } else {
+        setscroll(false);
+      }
+    };
+    window.addEventListener("scroll", changecolor);
+    return () => {
+      window.removeEventListener("scroll", changecolor);
+    };
+  }, []);
   return (
-    <div className="w-full sticky top-0 left-0 bg-white z-50  px-6">
-      <div className="Container flex items-center  justify-between  py-7 border-b border-gray-50">
-        <div className=" flex justify-between items-center w-full max-w-[900px] ">
+    <div
+      className={`w-full sticky top-0 left-0 bg-white z-50 px-6 border-b border-gray-50`}>
+      <motion.div animate={scrolled ? { paddingTop: "10px", paddingBottom: "10px" } : { paddingTop: "14px", paddingBottom: "14px" }}
+        transition={{ duration: 0.1 }} className={`Container flex items-center justify-between`}>
+        <div className=" flex justify-between items-center w-fit ">
           <Link href={"/"}>
-            <h1 className=" text-primary-600 text-4xl select-none">
-              SportTicket
-            </h1>
+            <div className="flex items-center gap-2">
+              <motion.div animate={scrolled ? { width: "35px", height: "69px" } : { width: "40px", height: "78px" }}
+                transition={{ duration: 0.1 }} className="relative">
+                <Image src={"/Icons/Logo.svg"} fill alt="Logo" />
+              </motion.div>
+              <motion.div animate={scrolled ? { width: "140px", height: "35px" } : { width: "160px", height: "55px" }} className=" relative">
+                <Image src={"/Icons/LogoFont.svg"} fill alt="Logo" />
+              </motion.div>
+            </div>
           </Link>
-          <div className=" max-w-[589px] max-h-[112px]  h-full w-full">
-            <SearchBox />
-          </div>
         </div>
-        <div className="flex items-center gap-x-8">
-
+        <div className="max-w-[590px] w-full hidden lg:block">
+          <SearchBox />
+        </div>
+        <div className=" items-center gap-x-8 hidden lg:flex">
           <Profile />
-          {Session ? <React.Fragment>
-            <BookMark />
-            <Cart />
-          </React.Fragment>
-            : null}
+          <BookMark />
+          <Cart />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

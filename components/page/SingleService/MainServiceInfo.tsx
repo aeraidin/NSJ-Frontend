@@ -37,7 +37,7 @@ function MainServiceInfo({ id }: { id: string }) {
                         اطلاعات و عکس های مجموعه
                     </Breadcrumb.Item> */}
                 </Breadcrumb>
-                <div className='lg:flex-row flex-col flex items-center gap-4'>
+                <div className='lg:flex-row flex-col items-center gap-4 hidden lg:flex'>
                     <button className='px-6 py-3 border hover:shadow-CMSHADOW duration-150 border-gray-100 rounded-2xl text-gray-400 flex items-center gap-2 text-sm font-semibold'>
                         <Share size="24" />
                         <span>اشتراک گذاری</span>
@@ -48,9 +48,19 @@ function MainServiceInfo({ id }: { id: string }) {
                     </button>
                 </div>
             </div>
-            <div className='w-full h-full flex items-start gap-4'>
-                <div className='w-[45%]'>
-                    {data.isSuccess ? <div className='flex flex-col '>
+            <div className='w-full h-full flex flex-col lg:flex-row items-start gap-4'>
+                <div className='lg:hidden w-full flex-row flex items-center gap-4'>
+                    <button className='w-full  px-2 py-2 border hover:shadow-CMSHADOW duration-150 border-gray-100 rounded-xl text-gray-400 flex items-center justify-center gap-2 text-xs font-semibold'>
+                        <Share size="24" />
+                        <span>اشتراک گذاری</span>
+                    </button>
+                    <button className='w-full px-2 py-2 border hover:shadow-CMSHADOW duration-150 border-gray-100 rounded-xl text-gray-400 flex items-center justify-center gap-2 text-xs font-semibold'>
+                        <Heart size="24" />
+                        <span className="whitespace-nowrap">افزودن به علاقه مندی ها</span>
+                    </button>
+                </div>
+                <div className='w-full lg:w-[45%] order-2 lg:order-1'>
+                    {data.isSuccess ? <div className='flex flex-col'>
                         <div className='flex flex-col gap-5'>
                             <div className='flex-col flex gap-3'>
                                 <h1>{Data?.name}</h1>
@@ -73,16 +83,17 @@ function MainServiceInfo({ id }: { id: string }) {
                                     </div>
                                 </div>
                             </div>
+
                             {/* ساعت کاری مجموعه  */}
-                            <div className='w-full border border-gray-50 flex items-start flex-col rounded-3xl px-8 py-6'>
-                                <div className=' flex items-center gap-6 text-gray-200 w-full border-b border-b-gray-50 pb-4'>
+                            <div className='w-full border border-gray-50 flex items-start flex-col rounded-3xl px-6 lg:px-8 py-6'>
+                                <div className=' flex items-center gap-4 lg:gap-6 text-gray-200 w-full border-b border-b-gray-50 pb-4'>
                                     <Clock size="24" variant="Bold" />
-                                    <div className=' flex flex-col gap-2'>
-                                        <p className='text-gray-300'>نوع پذیرش</p>
+                                    <div className='flex flex-col gap-2'>
+                                        <p className='text-gray-300 '>نوع پذیرش</p>
                                         <h5 className='text-gray-500'>مورد استفاده برای {SansData?.map(item => UserTypeData[item.clientType].name)}</h5>
                                     </div>
                                 </div>
-                                <div className=' flex items-center gap-6 text-gray-200 pt-4'>
+                                <div className=' flex items-center gap-4 lg:gap-6 text-gray-200 pt-4'>
                                     <Clock size="24" variant="Bold" />
                                     <div className=' flex flex-col gap-2'>
                                         <p className='text-gray-300'>ساعات کاری مجموعه</p>
@@ -116,7 +127,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                 </div>
                                 {/* درصد تخفیف */}
                                 {Data?.hasDiscount &&
-                                    <div className='py-4 px-8 flex items-center justify-center gap-2 flex-col w-fit rounded-2xl bg-error-400'>
+                                    <div className='py-4 px-8 flex items-center justify-center gap-2 flex-col w-fit rounded-2xl bg-error-500'>
                                         <h2 className='text-white'>تخفیف تا</h2>
                                         <span className=' text-white text-4xl font-bold'>%{Data?.discountPresentage}</span>
                                     </div>}
@@ -137,7 +148,7 @@ function MainServiceInfo({ id }: { id: string }) {
                     </div>
                         : null}
                 </div>
-                <div className='flex flex-1  max-w-[55%]'>
+                <div className='flex flex-1 order-1  w-full lg:max-w-[55%]'>
                     <Swiper
                         spaceBetween={0}
                         slidesPerView={1}

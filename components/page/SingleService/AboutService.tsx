@@ -24,14 +24,14 @@ function AboutService({ id }: AboutServiceProps) {
   //           رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات
   //           پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.`;
   return (
-    <div className="flex gap-y-6 flex-col Container pt-10">
+    <div className="flex gap-y-6 flex-col Container pt-6 lg:pt-10">
       <h2 className="text-gray-500 font-semibold">{`معرفی`}</h2>
       <div className="w-full  overflow-hidden">
         {/* <Collapse isOpened={expanded}>
           <p></p>
         </Collapse> */}
 
-        <p className=" ">
+        <p className=" text-justify">
           {expanded
             ? data.data?.value.description
             : `${data.data?.value.description.substring(0, 550)}... `}
