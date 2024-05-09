@@ -18,7 +18,7 @@ function Comment({ data }: commentProps) {
     <div className=" w-full h-[219px] flex flex-col rounded-[20px] border border-gray-50 ">
       <div className=" w-full flex ">
         <div className="w-full max-w-[65px] py-6 flex justify-center h-full">
-          <div className=" w-10 h-10 bg-slate-600 rounded-full">
+          <div className=" w-10 h-10 bg-slate-600 rounded-full relative">
             <Image
               src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${data.user.profileImage}`}
               alt="profile"
