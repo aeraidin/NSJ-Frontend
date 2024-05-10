@@ -10,19 +10,15 @@ import ReviewService from "@/components/page/SingleService/ReviewService";
 import React from "react";
 import dynamic from "next/dynamic";
 import PropertyService from "@/components/page/SingleService/PropertyService";
+import SansService from "@/components/page/SingleService/SansService";
 
-const Sans = dynamic(
-  () => import("@/components/page/SingleService/SansService"),
-  {
-    ssr: false,
-  }
-);
+
 function page({ params }: { params: { id: string } }) {
   return (
     <MainLayout>
       <MainServiceInfo id={params.id} />
+      <SansService id={params.id} />
       <div className="flex flex-col gap-10 pb-10 divide-y divide-gray-50">
-        <Sans id={params.id} />
         <AboutService id={params.id} />
         <PropertyService id={params.id} />
         <ContactService id={params.id} />
