@@ -1,7 +1,6 @@
 "use client"
 import SuccessBtn from '@/components/Layout/Buttons/SuccessBtn';
 import Breadcrumb from '@/components/Layout/breadcrumb';
-import CmDays from '@/util/data/Date/CmDays';
 import { DaysOfWeekArray } from '@/util/data/WorkDayTime';
 import useGetSingleService from '@/util/hook/SingleService/useGetSingleService'
 import { ArrowLeft2, ArrowRight2, Clock, Heart, Location, Share } from 'iconsax-react';
@@ -22,7 +21,6 @@ function MainServiceInfo({ id }: { id: string }) {
     const Sans = useGetSingleServiceSans({ id: id })
     const SansData = Sans?.data?.value.list as Sans[] | undefined
     const swiper = useSwiper();
-
     return (
         <div className='Container flex flex-col  gap-8 pt-8'>
             <div className='w-full flex items-center justify-between'>
@@ -36,9 +34,6 @@ function MainServiceInfo({ id }: { id: string }) {
                             <div className="h-4 w-[150px] animate-pulse bg-gray-200 rounded-2xl"></div>
                         )}
                     </Breadcrumb.Item>
-                    {/* <Breadcrumb.Item href={`/${params.id}/documents`}>
-                        اطلاعات و عکس های مجموعه
-                    </Breadcrumb.Item> */}
                 </Breadcrumb>
                 <div className='lg:flex-row flex-col items-center gap-4 hidden lg:flex'>
                     <button className='px-6 py-3 border hover:shadow-CMSHADOW duration-150 border-gray-100 rounded-2xl text-gray-400 flex items-center gap-2 text-sm font-semibold'>
@@ -62,10 +57,9 @@ function MainServiceInfo({ id }: { id: string }) {
                         <span className="whitespace-nowrap">افزودن به علاقه مندی ها</span>
                     </button>
                 </div>
-                <div className='w-full lg:w-[45%] order-2 flex-1  2xl:h-[478px] h-full lg:order-1'>
+                <div className='w-full lg:w-[45%] order-2 flex-1 2xl:h-[478px] h-full lg:order-1'>
                     {data.isSuccess ? <div className='flex flex-col h-full  justify-between gap-4'>
                         <div className='flex flex-col gap-5'>
-
                             <div className='flex-col flex gap-3'>
                                 <h1>{Data?.name}</h1>
                                 <div className='flex items-center justify-between'>
@@ -143,7 +137,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                 to={"sans"}
                                 spy={true}
                                 smooth={true}
-                                offset={-150}
+                                offset={-60}
                                 duration={500}
                                 delay={0}
                                 className="cursor-pointer"
@@ -169,7 +163,7 @@ function MainServiceInfo({ id }: { id: string }) {
                         }}
                         className='w-full h-full rounded-2xl relative group'
                     >
-                        {Data?.filePathes.map((item, index) => {
+                        {Data ? Data.filePathes.map((item, index) => {
                             return (
                                 <SwiperSlide key={index} >
                                     <div className='relative  w-full h-full aspect-w-8 aspect-h-5'>
@@ -183,7 +177,9 @@ function MainServiceInfo({ id }: { id: string }) {
                                     </div>
                                 </SwiperSlide>
                             );
-                        })}
+                        }) : <SwiperSlide className='relative  w-full h-full aspect-w-8 aspect-h-5 bg-gray-200 animate-pulse'>
+
+                        </SwiperSlide>}
                         <button
                             onClick={() => swiper && swiper.slidePrev()}
                             className='SinglePagePrevSlide  w-10 h-10 rounded-full opacity-0 group-hover:opacity-100 disabled:cursor-not-allowed disabled:group-hover:opacity-20 duration-150 bg-black/30 text-white hover:shadow-CMSHADOW flex items-center justify-center  absolute top-1/2 transform right-2 -translate-y-1/2 z-20'>

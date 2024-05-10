@@ -14,7 +14,7 @@ import { Link as ReactScroll } from 'react-scroll'
 function MainServiceInfoLoading() {
 
     return (
-        <div className='flex flex-col animate-pulse'>
+        <div className='flex flex-col h-full justify-between gap-4 animate-pulse'>
             <div className='flex flex-col gap-5'>
                 <div className='flex-col flex gap-3'>
                     {/* Name */}
@@ -36,11 +36,10 @@ function MainServiceInfoLoading() {
                         </div>
                     </div>
                 </div>
-
                 {/* ساعت کاری مجموعه  */}
                 <div className='w-full border border-gray-50 flex items-start flex-col rounded-3xl px-6 lg:px-8 py-6'>
                     <div className=' flex items-center gap-4 lg:gap-6 text-gray-200 w-full border-b border-b-gray-50 pb-4'>
-                        <Clock size="24" variant="Bold" />
+                        <Image src={"/Icons/Gender.svg"} width={24} height={24} alt='gendericon' />
                         <div className='flex flex-col gap-2'>
                             <p className='text-gray-300 '>نوع پذیرش</p>
                             <div className='w-full h-4 rounded-lg bg-gray-200'></div>
@@ -54,14 +53,17 @@ function MainServiceInfoLoading() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='flex flex-col gap-4'>
                 {/* قیمت سرویس  */}
+
                 <div className='flex items-end  justify-between'>
                     {/* قیمت */}
                     <div className='flex flex-col flex-1 gap-2 items-start justify-between'>
 
                         <div className=' w-full flex items-center gap-2 '>
                             <h5>شروع قیمت از</h5>
-                            <div className='bg-third-400 w-full max-w-[100px] h-4'></div>
+                            <div className='bg-third-400 w-full max-w-[200px] rounded-2xl h-4'></div>
                         </div>
                     </div>
                     {/* درصد تخفیف */}

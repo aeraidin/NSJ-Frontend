@@ -41,16 +41,24 @@ function SansService({ id }: { id: string }) {
     return (
         <>
             <Toast messege={AddToCartHandler.error ? (AddToCartHandler.error as unknown as string) : "با موفقیت به سبد خرید اضافه شد"} Close={() => setResult(false)} isError={AddToCartHandler.isError} isSuccess={AddToCartHandler.isSuccess} Result={Result} />
-            <div id='sans' className="Container pt-6 lg:pt-10">
+            <div id='sans' className="Container py-6 lg:py-10">
                 <h2 className="text-gray-500 font-semibold ">رزرو</h2>
-                <div className='border-b border-gray-50'>
+                <div className='border-b flex items-center gap-4 border-gray-50'>
                     {Data ? Data.map((item, index) => {
                         return <button onClick={() => setSelectedClient({ clientType: item.clientType, days: item.days })} className={`px-10 py-6 border-b-2 font-semibold ${SelectedClient?.clientType === item.clientType ? "text-third-500 border-third-500" : "border-transparent text-gray-300"} duration-200`} key={index}>
                             {UserTypeData[item.clientType].name}
                         </button>
-                    }) : "Loading"}
+                    }) : <React.Fragment>
+
+                        <button className={`px-10 py-6 border-b-2 font-semibold text-third-500 border-third-500 duration-200`}>
+                            بانوان
+                        </button>
+                        <button className={`px-10 py-6 border-b-2 font-semibold border-transparent text-gray-300 duration-200`}>
+                            اقایان
+                        </button>
+                    </React.Fragment>}
                 </div>
-                <div className='py-6'>
+                <div className='py-6 flex flex-col gap-4'>
                     {SelectedClient ? SelectedClient?.days.map((item, index) => {
                         return <div key={index} className='w-full border flex flex-col border-gray-50 hover:border-gray-100 hover:shadow-CMSHADOW duration-150 rounded-2xl p-4 lg:py-6 lg:px-8'>
                             <div className='flex flex-col gap-6 lg:flex-row items-start lg:items-center justify-between  '>
@@ -156,7 +164,11 @@ function SansService({ id }: { id: string }) {
                                 </Collapse>
                             </div>
                         </div>
-                    }) : null}
+                    }) : <div className='flex flex-col gap-2 animate-pulse'>
+                        <div className='w-full border flex flex-col border-gray-50 hover:border-gray-100 hover:shadow-CMSHADOW duration-150 rounded-2xl p-4 lg:py-6 lg:px-8 h-[100px] bg-gray-50'></div>
+                        <div className='w-full border flex flex-col border-gray-50 hover:border-gray-100 hover:shadow-CMSHADOW duration-150 rounded-2xl p-4 lg:py-6 lg:px-8 h-[100px] bg-gray-50'></div>
+                        <div className='w-full border flex flex-col border-gray-50 hover:border-gray-100 hover:shadow-CMSHADOW duration-150 rounded-2xl p-4 lg:py-6 lg:px-8 h-[100px] bg-gray-50'></div>
+                    </div>}
 
                 </div>
             </div>
