@@ -63,10 +63,10 @@ input::-webkit-inner-spin-button {
 }
 @layer base {
   h1 {
-    @apply text-2xl text-gray-600 font-[600];
+    @apply text-xl lg:text-2xl text-gray-600 font-[600];
   }
   h2 {
-    @apply text-xl text-gray-600;
+    @apply text-base lg:text-xl text-gray-600;
   }
   h3 {
     @apply text-lg text-gray-600;
@@ -78,7 +78,7 @@ input::-webkit-inner-spin-button {
     @apply text-sm text-gray-300;
   }
   p {
-    @apply text-base text-gray-600;
+    @apply text-sm lg:text-base text-gray-600;
   }
 }
 .ReactCollapse--collapse {

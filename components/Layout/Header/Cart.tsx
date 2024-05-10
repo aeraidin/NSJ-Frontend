@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 function Cart() {
     return (
-        <Link href={"/"} className='relative'>
+        <Link href={"/cart"} className='relative'>
             <LengthTag length={0} />
             <Bag2 size="32" className='text-gray-600' />
         </Link>

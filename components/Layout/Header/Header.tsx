@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useEffect, useState } from "react";
 import Cart from "./Cart";
 import Profile from "./Profile";
@@ -9,8 +8,7 @@ import Link from "next/link";
 import { useSestion } from "@/util/session";
 import Image from "next/image";
 import { motion } from "framer-motion";
-
-function Header({ isLoggedin }: { isLoggedin: boolean }) {
+function Header() {
   const [scrolled, setscroll] = useState(false);
   const [active, setactive] = useState(false);
   useEffect(() => {

@@ -15,13 +15,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link as ReactScroll } from 'react-scroll'
 import useGetSingleServiceSans from '@/util/hook/SingleService/useGetSingleServiceSans';
 import { UserTypeData } from '@/util/data/UserTypeData';
+import MainServiceInfoLoading from '@/components/Layout/Loading/MainServiceInfoLoading';
 function MainServiceInfo({ id }: { id: string }) {
     const data = useGetSingleService({ id: id })
     const Data = data?.data?.value as SingleProductPage | undefined
     const Sans = useGetSingleServiceSans({ id: id })
     const SansData = Sans?.data?.value.list as Sans[] | undefined
     return (
-        <div className='Container flex flex-col gap-8 pt-8'>
+        <div className='Container flex flex-col  gap-8 pt-8'>
             <div className='w-full flex items-center justify-between'>
                 <Breadcrumb>
                     <Breadcrumb.Item href="/dashboard/mycomplex">خانه
@@ -59,9 +60,10 @@ function MainServiceInfo({ id }: { id: string }) {
                         <span className="whitespace-nowrap">افزودن به علاقه مندی ها</span>
                     </button>
                 </div>
-                <div className='w-full lg:w-[45%] order-2 lg:order-1'>
-                    {data.isSuccess ? <div className='flex flex-col'>
+                <div className='w-full lg:w-[45%] order-2 flex-1  2xl:h-[478px] h-full lg:order-1'>
+                    {data.isSuccess ? <div className='flex flex-col h-full  justify-between gap-4'>
                         <div className='flex flex-col gap-5'>
+
                             <div className='flex-col flex gap-3'>
                                 <h1>{Data?.name}</h1>
                                 <div className='flex items-center justify-between'>
@@ -101,6 +103,8 @@ function MainServiceInfo({ id }: { id: string }) {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div>
                             {/* قیمت سرویس  */}
                             <div className='flex items-end  justify-between'>
                                 {/* قیمت */}
@@ -126,11 +130,11 @@ function MainServiceInfo({ id }: { id: string }) {
                                     </div>
                                 </div>
                                 {/* درصد تخفیف */}
-                                {Data?.hasDiscount &&
-                                    <div className='py-4 px-8 flex items-center justify-center gap-2 flex-col w-fit rounded-2xl bg-error-500'>
+                                {/* {Data?.hasDiscount &&
+                                    <div className='p-2 lg:py-4 lg:px-8 flex items-center justify-center gap-2 flex-col w-fit rounded-2xl bg-error-500'>
                                         <h2 className='text-white'>تخفیف تا</h2>
-                                        <span className=' text-white text-4xl font-bold'>%{Data?.discountPresentage}</span>
-                                    </div>}
+                                        <span className=' text-white text-xl lg:text-4xl font-bold'>%{Data?.discountPresentage}</span>
+                                    </div>} */}
                             </div>
                             {/* دکمه خرید */}
                             <ReactScroll
@@ -146,7 +150,7 @@ function MainServiceInfo({ id }: { id: string }) {
                             </ReactScroll>
                         </div>
                     </div>
-                        : null}
+                        : <MainServiceInfoLoading />}
                 </div>
                 <div className='flex flex-1 order-1  w-full lg:max-w-[55%]'>
                     <Swiper
