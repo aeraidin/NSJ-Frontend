@@ -1,5 +1,3 @@
-/** @format */
-
 import MainLayout from "@/components/Layout/MainLayout";
 import AboutService from "@/components/page/SingleService/AboutService";
 import ConditionsService from "@/components/page/SingleService/ConditionsService";
@@ -8,11 +6,8 @@ import MainServiceInfo from "@/components/page/SingleService/MainServiceInfo";
 import RelatedService from "@/components/page/SingleService/RelatedService";
 import ReviewService from "@/components/page/SingleService/ReviewService";
 import React from "react";
-import dynamic from "next/dynamic";
 import PropertyService from "@/components/page/SingleService/PropertyService";
 import SansService from "@/components/page/SingleService/SansService";
-
-
 function page({ params }: { params: { id: string } }) {
   return (
     <MainLayout>
