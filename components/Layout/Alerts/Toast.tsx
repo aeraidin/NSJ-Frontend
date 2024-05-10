@@ -44,7 +44,7 @@ function Toast(props: toastProps) {
             animate="open" exit={"closed"}
             variants={variants}
             transition={{ duration: .4 }}
-            className={`fixed top-8 flex w-full max-w-[370px] h-full max-h-[84px] z-30`}
+            className={`fixed top-8 flex w-full max-w-[370px] h-full max-h-[84px] z-50`}
           >
             <div
               className={` w-full flex bg-white  shadow-md h-full  z-50 rounded-[10px]`}

@@ -13,7 +13,6 @@ function OTPCode({ length, otpCode, error }: otpProps) {
   useEffect(() => {
     // otpCode(otp);
     otpCode(otp);
-    console.log(otp);
   }, [otp, otpCode]);
   return (
     <OtpInput

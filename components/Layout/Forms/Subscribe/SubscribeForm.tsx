@@ -45,18 +45,13 @@ function SubscribeForm() {
 
   const SubmitHandler = () => {
     if (inputValue !== "" && emailRegex.test(inputValue)) {
-      console.log("Click");
       setError("");
     } else if (inputValue !== "" && !emailRegex.test(inputValue)) {
       setError("لطفا ایمیل را به درستی وارد کنید");
     } else if (inputValue == "" && emailRegex.test(inputValue)) {
       setError("ایمیل الزامی است");
     }
-
-    console.log(error);
   };
-
-  console.log(selectedOption);
 
   const handleSelectChange = (e: any) => {
     setSelectedOption(e.target.value);

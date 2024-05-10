@@ -9,7 +9,6 @@ const GetHighestDiscountComplexs = async () => {
     );
     return data;
   } catch (error) {
-    console.log("hi");
     console.log(error);
   }
 };

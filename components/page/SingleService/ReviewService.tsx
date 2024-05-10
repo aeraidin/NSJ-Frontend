@@ -21,7 +21,6 @@ function ReviewService({ id }: ReviewServiceProps) {
   };
 
   useEffect(() => {
-    console.log(size);
     queryclient.invalidateQueries({
       queryKey: ["SingleServiceComment", size],
     });
