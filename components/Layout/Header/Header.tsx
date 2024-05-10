@@ -13,7 +13,7 @@ function Header() {
   const [active, setactive] = useState(false);
   useEffect(() => {
     const changecolor = () => {
-      if (window.scrollY >= 50) {
+      if (window.scrollY > 40) {
         setscroll(true);
       } else {
         setscroll(false);

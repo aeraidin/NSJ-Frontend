@@ -26,7 +26,6 @@ function SearchBox() {
 
   useEffect(() => {
     if (inputValue !== null) {
-      console.log(debouncedValue);
       setSearch(true);
     } else {
       setSearch(false);

@@ -10,7 +10,6 @@ interface commentProps {
 }
 
 function Comment({ data }: commentProps) {
-  console.log(data);
   const ratingChanged = (newRating: any) => {
     console.log(newRating);
   };

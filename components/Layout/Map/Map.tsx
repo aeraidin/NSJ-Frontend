@@ -54,7 +54,6 @@ const Map = <T extends FieldValues>({
     }
   }, [selectedValue]);
 
-  console.log(position);
 
   const MapEventsHandler = () => {
     const map = useMapEvents({
@@ -131,7 +130,7 @@ const Map = <T extends FieldValues>({
     setIsOpen(false);
   };
 
-  console.log(position);
+
 
   // const currentPositionHandler = () => {
   //   setPosition(currentPosition);
@@ -191,11 +190,10 @@ const Map = <T extends FieldValues>({
             <p className=" text-primary-600 text-sm"> نمایش روی نقشه</p>
           </div>
           <div
-            className={`${
-              error
-                ? "text-xs text-error-500 mt-1 h-[14px]"
-                : "border-gray-100 focus:border-gray-600 hover:border-gray-300 dark:border-white/10 dark:hover:border-white/25 dark:focus:border-white/45 "
-            } `}
+            className={`${error
+              ? "text-xs text-error-500 mt-1 h-[14px]"
+              : "border-gray-100 focus:border-gray-600 hover:border-gray-300 dark:border-white/10 dark:hover:border-white/25 dark:focus:border-white/45 "
+              } `}
           >
             {error}
           </div>
