@@ -15,17 +15,25 @@ import CmDays from "@/components/Layout/Forms/auth/data/Date/CmDays";
 import CmMonth from "@/components/Layout/Forms/auth/data/Date/CmMonth";
 import ControlledInput from "../../Input/ControlledInput";
 import ControlledSelect from "../../Input/ControlledSelect";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+
 function SignupForm() {
   const [reset, setReset] = useState({});
   const [Genders, setGender] = useState(1);
-
+  const token = Cookies.get("token");
+  const router = useRouter()
   const SignupHandler = useMutation({
     mutationFn: Signup,
-    onSettled(data, error, variables, contextd) { },
+    onSuccess(data, variables, context) {
+      Cookies.remove("isNew");
+      router.replace("/")
+    },
   });
 
   const onSubmit: SubmitHandler<SignupSchemaType> = async (data) => {
     SignupHandler.mutate({
+      token: token!,
       BirthDate: `${data.year}/${data.month}/${data.day}`,
       Family: data.lastName,
       Gender: Genders,

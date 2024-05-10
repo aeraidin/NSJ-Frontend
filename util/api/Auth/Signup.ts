@@ -8,20 +8,22 @@ export const Signup = async ({
   Name,
   BirthDate,
   Gender,
+  token,
 }: {
   Family: string;
   Name: string;
   BirthDate: string;
   Gender: number;
+  token: string;
 }) => {
-  const response = await axiosInstance.post(`/Authentication/update`, {
-    Name: Name,
-    Family: Family,
-    BirthDate: BirthDate,
-    Gender: Gender,
+  const response = await axiosInstance.post(`/client/complete-profile`, {
+    token: token,
+    firstName: Name,
+    lastName: Family,
+    birthDate: BirthDate,
+    gender: Gender,
   });
   if (response.data.isSuccess) {
-    Cookies.set("isNew", response.data.isSuccess);
     return response.data;
   } else if (response.data.isError) {
     throw response.data.error.description;

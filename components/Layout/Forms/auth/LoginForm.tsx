@@ -22,8 +22,6 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
     mutationFn: useSendCodeOtp,
     onSuccess: (data, variables, context) => {
       setResult(true);
-      console.log(data);
-
       PhoneNumber(variables);
     },
     onError: (err) => {
@@ -33,7 +31,6 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
 
   const onSubmit: SubmitHandler<PhoneValidationType> = async (data) => {
     sendotp.mutate(data.phoneNumber);
-    setResult(true);
   };
   return (
     <>
@@ -41,7 +38,7 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
         messege={
           sendotp.error
             ? (sendotp.error as unknown as string)
-            : "کد تایید با موفقیت وارد شد"
+            : "کد تایید با موفقیت ارسال شد"
         }
         Close={() => setResult(false)}
         isError={sendotp.isError}
@@ -61,6 +58,7 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
               id="phoneNumber"
               label="شماره موبایل"
               required
+              disabled={sendotp.isPending}
               PlaceHolder="برای مثال: 09167890987"
               type="number"
               error={errors.phoneNumber?.message}

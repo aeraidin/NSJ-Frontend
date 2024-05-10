@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import Otpcode from "../../Otpcode/Otpcode";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
 import { useMutation } from "@tanstack/react-query";
 import { ResendCode } from "@/util/api/Auth/ResendCode";
@@ -9,14 +8,16 @@ import { OtpLogin } from "@/util/api/Auth/OtpLogin";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
-import Otp from "../../Otpcode/Otp";
 import Toast from "../../Alerts/Toast";
+import OTPCode from "../../Otpcode/OTPCode";
 function OtpCodeForm({
   phone,
   CloseModal,
+  inModal
 }: {
   phone: string;
   CloseModal?: () => void;
+  inModal?: boolean
 }) {
   const [CanResend, setCanResend] = useState(true);
   const [code, setCode] = useState<string>("");
@@ -45,8 +46,11 @@ function OtpCodeForm({
       if (isNew === "true") {
         router.replace("/login/register");
       } else {
-        router.replace("/");
-        CloseModal && CloseModal();
+        if (inModal) {
+          CloseModal && CloseModal();
+        } else {
+          router.replace("/");
+        }
       }
     },
     onError(error, variables, context) {
@@ -68,14 +72,9 @@ function OtpCodeForm({
         Result={result}
       />
       <div className="flex flex-col gap-8">
-        {/* <Otpcode
-          reset={reset}
-          error={LoginOtp.isError}
-          onOTPChange={(e) => setCode(e)}
-          length={5}
-        /> */}
 
-        <Otp error={LoginOtp.isError} otpCode={(e) => setCode(e)} length={5} />
+
+        <OTPCode error={LoginOtp.isError} otpCode={(e) => setCode(e)} length={5} />
 
         <CountdownTimer
           reset={reset}
