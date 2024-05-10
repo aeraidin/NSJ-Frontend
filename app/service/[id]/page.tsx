@@ -21,7 +21,7 @@ function page({ params }: { params: { id: string } }) {
   return (
     <MainLayout>
       <MainServiceInfo id={params.id} />
-      <div className="flex flex-col gap-10 py-10 divide-y divide-gray-25">
+      <div className="flex flex-col gap-10 py-10 divide-y divide-gray-50">
         <Sans id={params.id} />
         <AboutService id={params.id} />
         <PropertyService id={params.id} />
