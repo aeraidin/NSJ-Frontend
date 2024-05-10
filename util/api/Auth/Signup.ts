@@ -17,7 +17,6 @@ export const Signup = async ({
   token: string;
 }) => {
   const response = await axiosInstance.post(`/client/complete-profile`, {
-    token: token,
     firstName: Name,
     lastName: Family,
     birthDate: BirthDate,

@@ -33,16 +33,13 @@ function SansService({ id }: { id: string }) {
                 }) : "Loading"}
             </div>
             <div className='py-6'>
-                <table className="min-w-full table-fixed">
-                    <thead>
-                        <tr className="text-gray-400">
-                            <th className="px-6 py-5 bg-gray-25 rounded-r-2xl font-semibold">روز</th>
-                            <th className="px-3 py-5 bg-gray-25 font-semibold">مدت زمان هر سانس</th>
-                            <th className="px-3 py-5 bg-gray-25 font-semibold">قیمت</th>
-                            <th className="px-3 py-5 bg-gray-25 font-semibold">مدت زمان استفاده</th>
-                            <th className="px-3 py-5 bg-gray-25 rounded-l-2xl font-semibold w-[170px]"></th>
-                        </tr>
-                    </thead>
+                {SelectedClient ? SelectedClient?.days.map((item, index) => {
+                    return <div key={index} className='w-full border border-gray-50 rounded-2xl p-4 lg:py-6 lg:px-8'>
+
+                    </div>
+                }) : null}
+                {/* <table className="min-w-full table-fixed">
+                   
                     <tbody className="overflow-y-scroll ">
                         {SelectedClient ? SelectedClient?.days.map((item, index) => {
                             return <React.Fragment key={index}>
@@ -87,7 +84,7 @@ function SansService({ id }: { id: string }) {
                             </React.Fragment>
                         }) : "loading"}
                     </tbody>
-                </table>
+                </table> */}
             </div>
         </div>
     )

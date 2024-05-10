@@ -16,11 +16,13 @@ import CmMonth from "@/components/Layout/Forms/auth/data/Date/CmMonth";
 import ControlledInput from "../../Input/ControlledInput";
 import ControlledSelect from "../../Input/ControlledSelect";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import Toast from "../../Alerts/Toast";
 
 function SignupForm() {
   const [reset, setReset] = useState({});
   const [Genders, setGender] = useState(1);
+  const [Result, setResult] = useState(false);
   const token = Cookies.get("token");
   const router = useRouter()
   const SignupHandler = useMutation({
@@ -29,107 +31,126 @@ function SignupForm() {
       Cookies.remove("isNew");
       router.replace("/")
     },
+    onError(error, variables, context) {
+      setResult(true)
+    },
   });
 
   const onSubmit: SubmitHandler<SignupSchemaType> = async (data) => {
     SignupHandler.mutate({
       token: token!,
-      BirthDate: `${data.year}/${data.month}/${data.day}`,
+      BirthDate: `${data.year.value}/${data.month.value}/${data.day.value}`,
       Family: data.lastName,
       Gender: Genders,
       Name: data.firstName,
     });
   };
   return (
-    <Form<SignupSchemaType>
-      validationSchema={SignupSchema}
-      onSubmit={onSubmit}
-      resetValues={reset}
-      className="w-full"
-    >
-      {({ register, formState: { errors }, setValue, control }) => (
-        <div className="flex flex-col gap-0 lg:gap-1 ">
-          <ControlledInput
-            register={register}
-            id="firstName"
-            label="نام"
-            required
-            PlaceHolder="نام خود را وارد نمایید"
-            type="text"
-            error={errors.firstName?.message}
-          />
-          <ControlledInput
-            register={register}
-            id="lastName"
-            label="نام خانوادگی"
-            required
-            PlaceHolder="نام خانوادگی خود را وارد نمایید"
-            type="text"
-            error={errors.lastName?.message}
-          />
-          {/* Birthday */}
-          <div className="flex items-center gap-3 ">
-            <Controller
-              control={control}
-              name="day"
-              render={({ field: { onChange, value } }) => (
-                <ControlledSelect
-                  options={CmDays}
-                  error={errors.day?.message}
-                  PlaceHolder="روز"
-                  value={value}
-                  onChange={onChange}
-                  setValue={setValue}
-                  id={"day"}
-                />
-              )}
+    <>
+      <Toast messege={SignupHandler.error as unknown as string} Close={() => setResult(false)} isError={SignupHandler.isError} Result={Result} />
+      <Form<SignupSchemaType>
+        validationSchema={SignupSchema}
+        onSubmit={onSubmit}
+        resetValues={reset}
+        className="w-full"
+      >
+        {({ register, formState: { errors }, setValue, control }) => (
+          <div className="flex flex-col gap-0 lg:gap-1 ">
+            <ControlledInput
+              register={register}
+              id="firstName"
+              label="نام"
+              required
+              PlaceHolder="نام خود را وارد نمایید"
+              type="text"
+              error={errors.firstName?.message}
             />
-            <Controller
-              control={control}
-              name="month"
-              render={({ field: { onChange, value } }) => (
-                <ControlledSelect
-                  options={CmMonth}
-                  error={errors.month?.message}
-                  PlaceHolder="ماه"
-                  value={value}
-                  onChange={onChange}
-                  setValue={setValue}
-                  id={"month"}
-                />
-              )}
+            <ControlledInput
+              register={register}
+              id="lastName"
+              label="نام خانوادگی"
+              required
+              PlaceHolder="نام خانوادگی خود را وارد نمایید"
+              type="text"
+              error={errors.lastName?.message}
             />
-            <Controller
-              control={control}
-              name="year"
-              render={({ field: { onChange, value } }) => (
-                <ControlledSelect
-                  options={CmYears}
-                  error={errors.year?.message}
-                  PlaceHolder="سال"
-                  value={value}
-                  onChange={onChange}
-                  setValue={setValue}
-                  id={"year"}
-                />
-              )}
-            />
-          </div>
-          <div className="mt-5">
-            <Gender selectedValue={(e) => setGender(Number(e))} />
-          </div>
-          <div className="mt-7">
-            <PrimaryBtn
-              type="submit"
-              isloading={SignupHandler.isPending}
-              disabled={SignupHandler.isPending}
+            <label
+              className={`text-sm md:text-base text-gray-600`}
+
             >
-              ثبت نام
-            </PrimaryBtn>
+              تاریخ تولد
+
+            </label>
+            {/* Birthday */}
+            <div className="flex items-center gap-3 ">
+              <Controller
+                control={control}
+                name="day"
+                render={({ field: { onChange, value } }) => (
+                  <ControlledSelect
+                    options={CmDays}
+                    error={errors.day?.message}
+                    PlaceHolder="روز"
+                    value={value}
+                    label="روز"
+                    HideLable
+                    onChange={onChange}
+                    setValue={setValue}
+                    id={"day"}
+                  />
+                )}
+              />
+              <Controller
+                control={control}
+                name="month"
+                render={({ field: { onChange, value } }) => (
+                  <ControlledSelect
+                    options={CmMonth}
+                    error={errors.month?.message}
+                    PlaceHolder="ماه"
+                    value={value}
+                    label="ماه"
+                    HideLable
+                    onChange={onChange}
+                    setValue={setValue}
+                    id={"month"}
+                  />
+                )}
+              />
+              <Controller
+                control={control}
+                name="year"
+                render={({ field: { onChange, value } }) => (
+                  <ControlledSelect
+                    options={CmYears}
+                    error={errors.year?.message}
+                    PlaceHolder="سال"
+                    HideLable
+                    label="سال"
+                    value={value}
+                    onChange={onChange}
+                    setValue={setValue}
+                    id={"year"}
+                  />
+                )}
+              />
+            </div>
+            <div className="mt-5">
+              <Gender selectedValue={(e) => setGender(Number(e))} />
+            </div>
+            <div className="mt-7">
+              <PrimaryBtn
+                type="submit"
+                isloading={SignupHandler.isPending}
+                disabled={SignupHandler.isPending}
+              >
+                ثبت نام
+              </PrimaryBtn>
+            </div>
           </div>
-        </div>
-      )}
-    </Form>
+        )}
+      </Form>
+    </>
   );
 }
 
