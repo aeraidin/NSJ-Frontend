@@ -44,7 +44,9 @@ export function ConditionsServiceLoading() {
   return (
     <>
       <div className=" w-full Container flex flex-col gap-y-6 animate-pulse">
-        <div className=" w-full max-w-[200px] rounded-lg h-5 bg-gray-200"></div>
+        <div className=" w-full max-w-[200px] rounded-lg h-5  mt-10">
+          <h2 className=" text-gray-500 font-semibold">قوانین و مقررات</h2>
+        </div>
         <div className=" flex gap-x-3 items-center">
           <div className=" rounded-full bg-gray-300 w-2 h-2"></div>
           <div className=" w-full max-w-[200px] lg:max-w-[440px] rounded-lg h-3 bg-gray-200"></div>

@@ -40,7 +40,7 @@ function Modal({
           initial="hidden"
           animate="visible"
           exit={"hidden"}
-          className={`flex z-30 w-full h-screen bg-black/70  justify-center items-end  md:items-center  backdrop-blur-[1.5px] fixed left-0 top-0 duration-200`}
+          className={`flex z-50 w-full h-screen bg-black/70  justify-center items-end  md:items-center  backdrop-blur-[1.5px] fixed left-0 top-0 duration-200`}
         >
           <motion.div
             ref={containerRef}
@@ -48,8 +48,9 @@ function Modal({
             className={`min-h-[90%]  md:min-h-[50%] lg:min-h-0 w-full  md:max-w-[532px] py-6 px-6 md:px-[76px] md:py-24  flex items-center justify-center relative rounded-2xl md:rounded-2xl bg-white `}
           >
             <div
-              className={`absolute left-0  top-0 w-full flex items-center ${HaveBack ? "justify-between" : "justify-end"
-                }`}
+              className={`absolute left-0  top-0 w-full flex items-center ${
+                HaveBack ? "justify-between" : "justify-end"
+              }`}
             >
               {HaveBack && (
                 <button
