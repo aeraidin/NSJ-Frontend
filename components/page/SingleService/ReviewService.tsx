@@ -4,9 +4,9 @@
 import React, { useEffect, useState } from "react";
 import Comment from "./Comments/Comment";
 import useGetSingleServiceComment from "@/util/hook/SingleService/useGetSingleServiceComment";
-import { ArrowDown2 } from "iconsax-react";
+import { ArrowDown2, Star, Star1 } from "iconsax-react";
 import { SubmitHandler } from "react-hook-form";
-import { useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ReactStars from "react-rating-stars-component";
 import Image from "next/image";
 import commentIcon from "../../../public/Icons/SingleService/comment 1.png";
@@ -20,6 +20,13 @@ import {
   CommentSchemaType,
 } from "@/util/config/validations/Comment/CommentSchema";
 import ControlledRate from "@/components/Layout/Input/ControlledRate";
+import Cookies from "js-cookie";
+import { FaPersonWalkingDashedLineArrowRight } from "react-icons/fa6";
+import LoginModal from "@/components/Layout/Modals/auth/LoginModal";
+import { AddComment } from "@/util/api/Comment/AddComment";
+import { error } from "console";
+import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
+import Toast from "@/components/Layout/Alerts/Toast";
 
 interface ReviewServiceProps {
   id: string;
@@ -29,12 +36,27 @@ function ReviewService({ id }: ReviewServiceProps) {
   const [size, setSize] = useState(1);
   const queryclient = useQueryClient();
   const [reset, setReset] = useState({});
-
+  const [result, setResult] = useState(false);
   const [commentList, setCommentList] = useState<CommentItem[]>([]);
   const [state, setState] = useState(false);
   const paginateHandler = () => {
     setSize(size + 1);
   };
+
+  const singleService = useGetSingleService({ id: id });
+  console.log(singleService.data?.value.service.name);
+
+  const addComment = useMutation({
+    mutationFn: AddComment,
+    onSuccess: (data, variables, context) => {
+      console.log(data);
+      setState(false);
+      setResult(true);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
 
   useEffect(() => {
     queryclient.invalidateQueries({
@@ -57,60 +79,99 @@ function ReviewService({ id }: ReviewServiceProps) {
     data: CommentSchemaType
   ) => {
     console.log(data);
+
+    addComment.mutate({
+      id: id.toString(),
+      rate: data.rate,
+      comment: data.text,
+    });
   };
+
+  const token = Cookies.get("token");
+
+  console.log(token);
+
   return (
     <>
+      <Toast
+        messege={
+          addComment.error
+            ? (addComment.error as unknown as string)
+            : "دیدگاه شما با موفقیت ثبت شد"
+        }
+        Close={() => setResult(false)}
+        isError={addComment.isError}
+        isSuccess={addComment.isSuccess}
+        Result={result}
+      />
       {/* <div className={`z-50  `}> */}
-      <Modal
-        CloseModal={() => {
-          setState(false);
-        }}
-        State={state}
-      >
-        <div>
-          <h2 className=" text-third-600 font-semibold mb-3">دیدگاه شما</h2>
-          <p className=" text-sm text-gray-300">درمورد استخر هورام</p>
-          <div className=" w-full my-5  border-t border-gray-50 h-1"></div>
-          <p className=" text-base mb-3 text-gray-600 font-semibold ">
-            امتیاز دهید!
-          </p>
-          <Form<CommentSchemaType>
-            validationSchema={CommentSchema}
-            onSubmit={onSubmit}
-            resetValues={reset}
-            className="w-full max-w-[850px] mx-auto"
-          >
-            {({ register, formState: { errors }, setValue }) => (
-              <>
-                <ControlledRate
-                  setValue={setValue}
-                  register={register}
-                  id="rate"
-                  error={""}
-                />
+      {state && token !== undefined ? (
+        <Modal
+          CloseModal={() => {
+            setState(false);
+          }}
+          State={state}
+        >
+          <div>
+            <h2 className=" text-third-600 font-semibold mb-3">دیدگاه شما</h2>
+            <p className=" text-sm text-gray-300">
+              {`
+              درمورد ${singleService.data?.value.name} ${singleService.data?.value.service.name}
+              
+              `}
+            </p>
+            <div className=" w-full my-5  border-t border-gray-50 h-1"></div>
+            <p className=" text-base mb-3 text-gray-600 font-semibold ">
+              امتیاز دهید!
+            </p>
+            <Form<CommentSchemaType>
+              validationSchema={CommentSchema}
+              onSubmit={onSubmit}
+              resetValues={reset}
+              className="w-full max-w-[850px] mx-auto"
+            >
+              {({ register, formState: { errors }, setValue }) => (
+                <>
+                  <ControlledRate
+                    setValue={setValue}
+                    register={register}
+                    id="rate"
+                    error={""}
+                  />
 
-                <div className=" mt-3  flex flex-col">
-                  <p className=" text-gray-600 text-base font-semibold">
-                    متن دیدگاه
-                  </p>
-                  <div>
-                    <ControlledTextArea
-                      id="text"
-                      setValue={setValue}
-                      register={register}
-                      error=""
-                      PlaceHolder="برای ما بنویسید..."
-                    />
+                  <div className=" mt-3  flex flex-col">
+                    <p className=" text-gray-600 text-base font-semibold">
+                      متن دیدگاه
+                    </p>
+                    <div>
+                      <ControlledTextArea
+                        id="text"
+                        setValue={setValue}
+                        register={register}
+                        error={errors.text?.message}
+                        PlaceHolder="برای ما بنویسید..."
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className=" mt-4">
-                  <PrimaryBtn type="submit">ثبت</PrimaryBtn>
-                </div>
-              </>
-            )}
-          </Form>
-        </div>
-      </Modal>
+                  <div className=" mt-4">
+                    <PrimaryBtn isloading={addComment.isPending} type="submit">
+                      ثبت
+                    </PrimaryBtn>
+                  </div>
+                </>
+              )}
+            </Form>
+          </div>
+        </Modal>
+      ) : (
+        <LoginModal
+          CloseModal={() => {
+            setState(false);
+          }}
+          State={state}
+        />
+      )}
+
       {/* </div> */}
       {commentList.length !== 0 ? (
         <div className="Container  pt-6 lg:pt-10">
@@ -123,11 +184,13 @@ function ReviewService({ id }: ReviewServiceProps) {
                   </span>
                   از ۵
                 </p>
-                <div className=" w-full flex justify-center flex-col  items-center">
+                <div className=" w-full flex select-none justify-center flex-col  items-center">
                   <ReactStars
                     count={5}
+                    edit={false}
                     value={4}
-                    // onChange={ratingChanged}
+                    emptyIcon={<Star1 variant="Bold" />}
+                    filledIcon={<Star1 variant="Bold" />}
                     size={28}
                     activeColor="#FEB92E"
                   />
@@ -137,29 +200,29 @@ function ReviewService({ id }: ReviewServiceProps) {
               <div className=" w-full flex justify-center items-center flex-col">
                 <div>
                   <p className=" font-semibold text-gray-500 text-sm">
-                    مجموع امتیاز کاربران به استخر هورام
+                    {`    مجموع امتیاز کاربران به ${singleService.data?.value.name} ${singleService.data?.value.service.name}`}
                   </p>
                 </div>
               </div>
             </div>
-            <div className=" w-full flex   h-[206px] bg-[#FAFAFA] rounded-[20px] ">
-              <div className=" flex items-center gap-x-12">
-                <div>
+            <div className=" w-full flex justify-center lg:justify-start items-center lg:items-start  h-[330px]  lg:h-[206px] bg-[#FAFAFA] rounded-[20px] ">
+              <div className=" flex flex-col lg:flex-row items-center gap-x-12">
+                <div className=" flex justify-center items-center  ">
                   <Image
                     src={commentIcon}
                     alt="cooment"
                     className=" object-cover"
                   />
                 </div>
-                <div className=" flex-col flex gap-y-4">
-                  <p className="   text-primary-600 font-semibold text-base">
+                <div className=" flex-col  flex gap-y-4 justify-center lg:pt-10">
+                  <p className="   text-primary-600 font-semibold px-4 lg:px-0 text-sm lg:text-base">
                     با ثبت دیدگاه خود به کاربران دیگر را برای انتخاب و استفاده
                     از خدمات بهتر یاری نمایید!
                   </p>
-                  <p className=" text-gray-500 text-sm">
+                  <p className=" text-gray-500 text-sm px-4 lg:px-0">
                     شما هم درباره ی این سرویس دیدگاه خود را ثبت کنید{" "}
                   </p>
-                  <div className=" w-full max-w-[236px]">
+                  <div className=" w-full flex pb-4  lg:pb-0  px-4 lg:px-0 lg:max-w-[236px]">
                     <SecondaryBtn onClick={() => setState(!state)}>
                       ثبت دیدگاه
                     </SecondaryBtn>
