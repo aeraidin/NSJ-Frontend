@@ -38,20 +38,22 @@ function Comment({ data }: commentProps) {
             <div>
               <p className=" text-sm md:text-base">{data.text}</p>
             </div>
-            <div className=" w-full  flex justify-center md:justify-end md:max-w-[340px] gap-x-6 md:gap-x-8  md:mx-6 ">
+            <div className=" w-full  flex justify-center items-center md:justify-end md:max-w-[340px] gap-x-6 md:gap-x-8  md:mx-6 ">
               <div className=" flex gap-x-3">
                 <div className=" flex gap-3">
                   <p className=" text-gray-400 text-sm md:text-base">5</p>
-                  <Like1 className=" text-gray-300 rotate-180" />
+                  <Like1 className=" text-gray-300 cursor-pointer rotate-180" />
                 </div>
                 <div className=" flex gap-x-3">
                   <p className=" text-gray-400 text-sm md:text-base">5</p>
-                  <Like1 className=" text-gray-300" />
+                  <Like1 className=" text-gray-300 cursor-pointer" />
                 </div>
               </div>
 
               <div className=" flex items-center gap-x-3">
-                <p className="text-sm md:text-base">4.5/5</p>
+                <p className="text-sm md:text-base">{`${
+                  data.rate === null ? 0 : data.rate
+                }/5`}</p>
                 {/* <div className=" flex">
                   <Star1
                     className=" text-secondary-400"
@@ -81,7 +83,13 @@ function Comment({ data }: commentProps) {
                 </div> */}
                 <div>
                   <ReactStars
+                    className={"cursor-pointer"}
                     count={5}
+                    isHalf={true}
+                    halfIcon={<Star1 variant="Bold" />}
+                    emptyIcon={<Star1 variant="Bold" />}
+                    filledIcon={<Star1 variant="Bold" />}
+                    value={data.rate}
                     onChange={ratingChanged}
                     size={20}
                     activeColor="#FEB92E"

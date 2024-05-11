@@ -44,7 +44,7 @@ function ReviewService({ id }: ReviewServiceProps) {
   };
 
   const singleService = useGetSingleService({ id: id });
-  console.log(singleService.data?.value.service.name);
+  const Data = singleService?.data?.value as SingleProductPage | undefined;
 
   const addComment = useMutation({
     mutationFn: AddComment,
@@ -116,7 +116,7 @@ function ReviewService({ id }: ReviewServiceProps) {
             <h2 className=" text-third-600 font-semibold mb-3">دیدگاه شما</h2>
             <p className=" text-sm text-gray-300">
               {`
-              درمورد ${singleService.data?.value.name} ${singleService.data?.value.service.name}
+              درمورد ${Data?.name} ${Data?.service.name}
               
               `}
             </p>
@@ -180,27 +180,31 @@ function ReviewService({ id }: ReviewServiceProps) {
               <div className=" w-full  mb-8 flex flex-col  justify-center items-center">
                 <p>
                   <span className=" font-semibold text-4xl text-primary-600 pl-[10px]">
-                    4.4
+                    {Data?.rate}
                   </span>
                   از ۵
                 </p>
                 <div className=" w-full flex select-none justify-center flex-col  items-center">
-                  <ReactStars
-                    count={5}
-                    edit={false}
-                    value={4}
-                    emptyIcon={<Star1 variant="Bold" />}
-                    filledIcon={<Star1 variant="Bold" />}
-                    size={28}
-                    activeColor="#FEB92E"
-                  />
+                  {Data?.rate ? (
+                    <ReactStars
+                      count={5}
+                      edit={false}
+                      value={Data?.rate}
+                      isHalf={true}
+                      halfIcon={<Star1 variant="Bold" />}
+                      emptyIcon={<Star1 variant="Bold" />}
+                      filledIcon={<Star1 variant="Bold" />}
+                      size={28}
+                      activeColor="#FEB92E"
+                    />
+                  ) : null}
                 </div>
               </div>
 
               <div className=" w-full flex justify-center items-center flex-col">
                 <div>
                   <p className=" font-semibold text-gray-500 text-sm">
-                    {`    مجموع امتیاز کاربران به ${singleService.data?.value.name} ${singleService.data?.value.service.name}`}
+                    {`    مجموع امتیاز کاربران به ${Data?.name} ${Data?.service.name}`}
                   </p>
                 </div>
               </div>

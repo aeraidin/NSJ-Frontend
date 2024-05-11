@@ -81,6 +81,7 @@ const ControlledRate = <T extends FieldValues>({
         filledIcon={<Star1 variant="Bold" />}
         count={5}
         size={28}
+        className={"cursor-pointer"}
         color={"#D7D7D7"}
         activeColor="#FEB92E"
       />
