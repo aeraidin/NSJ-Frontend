@@ -3,7 +3,6 @@
 import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
 import React, { useState } from "react";
 
-
 interface AboutServiceProps {
   id: string;
 }
@@ -50,7 +49,9 @@ export function AboutServiceLoading() {
   return (
     <>
       <div className=" w-full Container flex flex-col gap-6 animate-pulse">
-        <div className=" w-full max-w-[180px] h-5 rounded-lg  bg-gray-200"></div>
+        <div className=" w-full max-w-[200px] rounded-lg h-5  mt-10">
+          <h2 className=" text-gray-500 font-semibold">معرفی</h2>
+        </div>
         <div className=" w-full max-w-[780px] h-4  rounded-lg  bg-gray-200"></div>
         <div className=" w-full max-w-[310px] h-4  rounded-lg  bg-gray-200"></div>
         <div className=" w-full max-w-[910px] h-4  rounded-lg  bg-gray-200"></div>

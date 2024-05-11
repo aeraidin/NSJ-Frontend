@@ -48,8 +48,9 @@ export function PropertyServiceLoading() {
   return (
     <>
       <div className=" w-full Container gap-y-6 flex flex-col animate-pulse ">
-        <div className=" bg-gray-200 w-full max-w-[180px] h-5 rounded-lg"></div>
-
+        <div className=" w-full max-w-[200px] rounded-lg h-5  mt-10">
+          <h2 className=" text-gray-500 font-semibold">ویژگی ها و امکانات</h2>
+        </div>
         <div className=" grid grid-cols-1 gap-y-4 lg:grid-cols-4">
           <div className=" flex gap-x-3">
             <div className=" rounded-full h-5 w-5 bg-gray-300"></div>
