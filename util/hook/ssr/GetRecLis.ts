@@ -7,7 +7,6 @@ const GetRecLis = async () => {
     const data = await CustomFetch("client/sport-commplex-service/recom-list");
     return data;
   } catch (error) {
-    console.log("hi");
     console.log(error);
   }
 };

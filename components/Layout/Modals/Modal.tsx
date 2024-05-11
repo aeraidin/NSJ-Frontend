@@ -53,14 +53,14 @@ function Modal({
             >
               {HaveBack && (
                 <button
-                  className=" w-fit  cursor-pointer flex justify-end p-8 h-fit text-gray-500 hover:text-gray-600 duration-200"
+                  className="w-fit cursor-pointer flex justify-end p-8 h-fit text-gray-300 hover:text-gray-600 duration-150"
                   onClick={BackFunction}
                 >
                   <ArrowRight size="32" color="#616161" />
                 </button>
               )}
               <button
-                className=" w-fit  cursor-pointer flex justify-end m-8 h-fit text-gray-500 hover:text-gray-600 duration-200"
+                className=" w-fit  cursor-pointer flex justify-end m-8 h-fit text-gray-300 hover:text-gray-600 duration-150"
                 onClick={CloseModal}
               >
                 {CloseIcon ? <Add size="32" className="rotate-45" /> : "بستن"}

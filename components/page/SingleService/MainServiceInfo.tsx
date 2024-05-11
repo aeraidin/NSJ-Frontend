@@ -1,27 +1,28 @@
 "use client"
 import SuccessBtn from '@/components/Layout/Buttons/SuccessBtn';
 import Breadcrumb from '@/components/Layout/breadcrumb';
-import CmDays from '@/util/data/Date/CmDays';
 import { DaysOfWeekArray } from '@/util/data/WorkDayTime';
 import useGetSingleService from '@/util/hook/SingleService/useGetSingleService'
-import { Clock, Heart, Location, Share } from 'iconsax-react';
+import { ArrowLeft2, ArrowRight2, Clock, Heart, Location, Share } from 'iconsax-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import { FaStar } from 'react-icons/fa6';
 import { NumericFormat } from 'react-number-format';
 import { Autoplay, FreeMode, Navigation } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { Link as ReactScroll } from 'react-scroll'
 import useGetSingleServiceSans from '@/util/hook/SingleService/useGetSingleServiceSans';
 import { UserTypeData } from '@/util/data/UserTypeData';
+import MainServiceInfoLoading from '@/components/Layout/Loading/MainServiceInfoLoading';
 function MainServiceInfo({ id }: { id: string }) {
     const data = useGetSingleService({ id: id })
     const Data = data?.data?.value as SingleProductPage | undefined
     const Sans = useGetSingleServiceSans({ id: id })
     const SansData = Sans?.data?.value.list as Sans[] | undefined
+    const swiper = useSwiper();
     return (
-        <div className='Container flex flex-col gap-8 pt-8'>
+        <div className='Container flex flex-col  gap-8 pt-8'>
             <div className='w-full flex items-center justify-between'>
                 <Breadcrumb>
                     <Breadcrumb.Item href="/dashboard/mycomplex">خانه
@@ -33,9 +34,6 @@ function MainServiceInfo({ id }: { id: string }) {
                             <div className="h-4 w-[150px] animate-pulse bg-gray-200 rounded-2xl"></div>
                         )}
                     </Breadcrumb.Item>
-                    {/* <Breadcrumb.Item href={`/${params.id}/documents`}>
-                        اطلاعات و عکس های مجموعه
-                    </Breadcrumb.Item> */}
                 </Breadcrumb>
                 <div className='lg:flex-row flex-col items-center gap-4 hidden lg:flex'>
                     <button className='px-6 py-3 border hover:shadow-CMSHADOW duration-150 border-gray-100 rounded-2xl text-gray-400 flex items-center gap-2 text-sm font-semibold'>
@@ -59,8 +57,8 @@ function MainServiceInfo({ id }: { id: string }) {
                         <span className="whitespace-nowrap">افزودن به علاقه مندی ها</span>
                     </button>
                 </div>
-                <div className='w-full lg:w-[45%] order-2 lg:order-1'>
-                    {data.isSuccess ? <div className='flex flex-col'>
+                <div className='w-full lg:w-[45%] order-2 flex-1 2xl:h-[478px] h-full lg:order-1'>
+                    {data.isSuccess ? <div className='flex flex-col h-full  justify-between gap-4'>
                         <div className='flex flex-col gap-5'>
                             <div className='flex-col flex gap-3'>
                                 <h1>{Data?.name}</h1>
@@ -87,7 +85,7 @@ function MainServiceInfo({ id }: { id: string }) {
                             {/* ساعت کاری مجموعه  */}
                             <div className='w-full border border-gray-50 flex items-start flex-col rounded-3xl px-6 lg:px-8 py-6'>
                                 <div className=' flex items-center gap-4 lg:gap-6 text-gray-200 w-full border-b border-b-gray-50 pb-4'>
-                                    <Clock size="24" variant="Bold" />
+                                    <Image src={"/Icons/Gender.svg"} width={24} height={24} alt='gendericon' />
                                     <div className='flex flex-col gap-2'>
                                         <p className='text-gray-300 '>نوع پذیرش</p>
                                         <h5 className='text-gray-500'>مورد استفاده برای {SansData?.map(item => UserTypeData[item.clientType].name)}</h5>
@@ -101,6 +99,8 @@ function MainServiceInfo({ id }: { id: string }) {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div className='flex flex-col gap-4'>
                             {/* قیمت سرویس  */}
                             <div className='flex items-end  justify-between'>
                                 {/* قیمت */}
@@ -127,9 +127,9 @@ function MainServiceInfo({ id }: { id: string }) {
                                 </div>
                                 {/* درصد تخفیف */}
                                 {Data?.hasDiscount &&
-                                    <div className='py-4 px-8 flex items-center justify-center gap-2 flex-col w-fit rounded-2xl bg-error-500'>
+                                    <div className='p-2 lg:py-4 lg:px-8 flex items-center justify-center gap-2 flex-col w-fit rounded-2xl bg-error-500'>
                                         <h2 className='text-white'>تخفیف تا</h2>
-                                        <span className=' text-white text-4xl font-bold'>%{Data?.discountPresentage}</span>
+                                        <span className=' text-white text-xl lg:text-4xl font-bold'>%{Data?.discountPresentage}</span>
                                     </div>}
                             </div>
                             {/* دکمه خرید */}
@@ -137,7 +137,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                 to={"sans"}
                                 spy={true}
                                 smooth={true}
-                                offset={-150}
+                                offset={-60}
                                 duration={500}
                                 delay={0}
                                 className="cursor-pointer"
@@ -146,7 +146,7 @@ function MainServiceInfo({ id }: { id: string }) {
                             </ReactScroll>
                         </div>
                     </div>
-                        : null}
+                        : <MainServiceInfoLoading />}
                 </div>
                 <div className='flex flex-1 order-1  w-full lg:max-w-[55%]'>
                     <Swiper
@@ -158,12 +158,12 @@ function MainServiceInfo({ id }: { id: string }) {
                         }}
                         modules={[FreeMode, Navigation, Autoplay]}
                         navigation={{
-                            nextEl: ".NextSlide",
-                            prevEl: ".PrevSlide",
+                            nextEl: ".SinglePageNextSlide",
+                            prevEl: ".SinglePagePrevSlide",
                         }}
-                        className='w-full h-full rounded-2xl'
+                        className='w-full h-full rounded-2xl relative group'
                     >
-                        {Data?.filePathes.map((item, index) => {
+                        {Data ? Data.filePathes.map((item, index) => {
                             return (
                                 <SwiperSlide key={index} >
                                     <div className='relative  w-full h-full aspect-w-8 aspect-h-5'>
@@ -177,10 +177,20 @@ function MainServiceInfo({ id }: { id: string }) {
                                     </div>
                                 </SwiperSlide>
                             );
-                        })}
-                        {/* <div className="lg:hidden max-w-[450px] relative mx-auto">
-                            <BtnSlider Gallerymode />
-                        </div> */}
+                        }) : <SwiperSlide className='relative  w-full h-full aspect-w-8 aspect-h-5 bg-gray-200 animate-pulse'>
+
+                        </SwiperSlide>}
+                        <button
+                            onClick={() => swiper && swiper.slidePrev()}
+                            className='SinglePagePrevSlide  w-10 h-10 rounded-full opacity-0 group-hover:opacity-100 disabled:cursor-not-allowed disabled:group-hover:opacity-20 duration-150 bg-black/30 text-white hover:shadow-CMSHADOW flex items-center justify-center  absolute top-1/2 transform right-2 -translate-y-1/2 z-20'>
+                            <ArrowRight2 size="24" />
+                        </button>
+                        <button
+                            onClick={() => swiper && swiper.slideNext()}
+                            className='SinglePageNextSlide  w-10 h-10 rounded-full opacity-0 group-hover:opacity-100 disabled:cursor-not-allowed disabled:group-hover:opacity-20 duration-150 bg-black/30 text-white hover:shadow-CMSHADOW flex items-center justify-center absolute top-1/2 transform left-2 -translate-y-1/2 z-20'>
+                            <ArrowLeft2 size="24" />
+                        </button>
+
                     </Swiper>
                 </div>
             </div>

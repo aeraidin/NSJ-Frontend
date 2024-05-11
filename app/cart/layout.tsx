@@ -7,7 +7,7 @@ function Layout({ children }: { children: React.ReactNode }) {
     if (!Session) {
         redirect("/");
     }
-    return <div>{children}</div>;
+    return <>{children}</>;
 }
 
 export default Layout;

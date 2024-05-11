@@ -5,7 +5,7 @@ import LengthTag from '../Tags/LengthTag'
 
 function BookMark() {
     return (
-        <Link href={"/"} className='relative'>
+        <Link href={"/bookmark"} className='relative'>
             <LengthTag length={0} />
             <Heart size="32" className='text-gray-600' />
         </Link>

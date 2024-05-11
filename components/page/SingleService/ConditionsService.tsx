@@ -8,8 +8,6 @@ interface ConditionsServiceProps {
 
 function ConditionsService({ id }: ConditionsServiceProps) {
   const data = useGetSingleService({ id: id });
-  console.log(data.data?.value.conditions);
-
   return (
     <>
       {data.data?.value ? (

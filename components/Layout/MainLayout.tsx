@@ -8,8 +8,8 @@ function MainLayout({ children }: { children: React.ReactNode }) {
 
     return (
         <React.Fragment>
-            <Header isLoggedin={Session} />
-            <main className="min-h-screen">{children}</main>
+            <Header />
+            <main className="min-h-screen Container">{children}</main>
             <Footer />
         </React.Fragment>
     )
