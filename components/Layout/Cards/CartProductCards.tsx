@@ -1,5 +1,5 @@
 import { RemoveCart } from '@/util/api/Cart/RemoveCart'
-import { UserTypeData } from '@/util/data/UserTypeData'
+import { UserTypeData } from '@/util/Data/UserTypeData'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Calendar, Location, Clock, Trash } from 'iconsax-react'
 import Image from 'next/image'

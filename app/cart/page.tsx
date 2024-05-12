@@ -9,35 +9,36 @@ import { NumericFormat } from 'react-number-format'
 function page() {
     const data = UseGetCart()
     const Data = data?.data?.value as CartDetail | undefined
-    console.log(Data);
+
 
     return (
         <MainLayout>
-            <div className='w-full flex-col lg:flex-row flex  gap-6 py-8'>
-                {/* خلاصه سبد خرید */}
-                <div className='w-full  flex flex-col gap-6 flex-1'>
-                    {Data ? Data.list.map((item, index) => {
-                        return <CartProductCards key={index} data={item} />
-                    }) : null
-                    }
-
-                </div>
-                {/* ایتم های سبد خرید */}
-                <div className='max-w-[430px] flex-1 flex flex-col  border border-gray-50 rounded-2xl justify-between h-[200px] py-6 px-5  sticky top-32'>
-                    <h2>خلاصه سفارش </h2>
-                    <div className='flex flex-col gap-4 pt-4 border-t border-dashed border-gray-50'>
-                        <div className='flex items-center justify-between'>
-                            <p>مبلغ قابل پرداخت</p>
-                            <h2 className='text-third-500'> <NumericFormat
-                                value={Data?.totalPrice}
-                                displayType={"text"}
-                                thousandSeparator={","}
-                            />{" تومان "}</h2>
+            {Data ?
+                <div className='w-full flex-col lg:flex-row flex  gap-6 py-8'>
+                    {/* خلاصه سبد خرید */}
+                    <div className='w-full  flex flex-col gap-6 flex-1'>
+                        {Data ? Data.list.map((item, index) => {
+                            return <CartProductCards key={index} data={item} />
+                        }) : null
+                        }
+                    </div>
+                    {/* ایتم های سبد خرید */}
+                    <div className='max-w-[430px] flex-1 flex flex-col  border border-gray-50 rounded-2xl justify-between h-[200px] py-6 px-5  sticky top-32'>
+                        <h2>خلاصه سفارش </h2>
+                        <div className='flex flex-col gap-4 pt-4 border-t border-dashed border-gray-50'>
+                            <div className='flex items-center justify-between'>
+                                <p>مبلغ قابل پرداخت</p>
+                                <h2 className='text-third-500'> <NumericFormat
+                                    value={Data?.totalPrice}
+                                    displayType={"text"}
+                                    thousandSeparator={","}
+                                />{" تومان "}</h2>
+                            </div>
+                            <SuccessBtn>ادامه فرایند رزرو</SuccessBtn>
                         </div>
-                        <SuccessBtn>ادامه فرایند رزرو</SuccessBtn>
                     </div>
                 </div>
-            </div>
+                : null}
         </MainLayout>
     )
 }
