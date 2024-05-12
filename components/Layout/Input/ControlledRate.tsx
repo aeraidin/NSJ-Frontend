@@ -12,7 +12,7 @@ import {
 import ReactStars from "react-rating-stars-component";
 
 import Image from "next/image";
-import { Eye, EyeSlash } from "iconsax-react";
+import { Eye, EyeSlash, Star1 } from "iconsax-react";
 
 type InputProps<T extends FieldValues> = {
   label?: string;
@@ -77,8 +77,11 @@ const ControlledRate = <T extends FieldValues>({
           }
           ratingChanged(e);
         }}
+        emptyIcon={<Star1 variant="Bold" />}
+        filledIcon={<Star1 variant="Bold" />}
         count={5}
         size={28}
+        className={"cursor-pointer"}
         color={"#D7D7D7"}
         activeColor="#FEB92E"
       />
