@@ -60,6 +60,9 @@ input::-webkit-inner-spin-button {
  .ArrowButtonSlider {
   @apply p-2 rounded-xl border border-primary-400 text-primary-400 hover:text-white hover:bg-primary-600 hover:border-primary-600 disabled:opacity-25 disabled:cursor-not-allowed duration-150;
  }
+ .CartAddButtons {
+  @apply w-[32px] h-[32px] rounded-xl border border-gray-50 text-gray-400 hover:text-gray-600 hover:bg-gray-50/30 hover:border-gray-100 disabled:opacity-25 disabled:cursor-not-allowed duration-150;
+ }
 }
 @layer base {
  h1 {
