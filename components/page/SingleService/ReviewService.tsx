@@ -88,9 +88,6 @@ function ReviewService({ id }: ReviewServiceProps) {
   };
 
   const token = Cookies.get("token");
-
-  console.log(token);
-
   return (
     <>
       <Toast
