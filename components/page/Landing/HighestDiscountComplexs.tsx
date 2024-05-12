@@ -4,14 +4,13 @@ import React from 'react'
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { ArrowLeft2, ArrowRight2 } from 'iconsax-react';
+import Image from 'next/image';
 function HighestDiscountComplexs({ data }: { data: ProductCard[] | undefined }) {
     const swiper = useSwiper();
 
     return (
         <div className='Container w-full flex flex-col gap-6 relative'>
-            <div className='w-full h-[70%] bg-secondary-600 rounded-lg absolute left-0 bottom-0 -z-10' />
-
-
+            <div className='w-full h-[80%] lg:h-[70%] bg-secondary-600 rounded-lg absolute left-0 bottom-0 -z-10' />
             <div
                 className='flex items-center justify-between '>
                 <div></div>
@@ -29,12 +28,15 @@ function HighestDiscountComplexs({ data }: { data: ProductCard[] | undefined }) 
                 </div>
             </div>
 
-            <div className='w-full flex items-center'>
+            <div className='w-full flex flex-col lg:flex-row items-center'>
                 <div
                     className='px-16'>
+                    <div className='w-[260px] h-[290px] relative'>
+                        <Image src={"/sale.png"} fill className='object-contain' alt='sale' />
+                    </div>
                     <span className='text-3xl text-white font-bold'>بیشترین تخفیف ها</span>
                 </div>
-                <div className='flex-1 flex  '>
+                <div className='lg:flex-1 flex w-full items-start'>
                     <Swiper
                         slidesPerView={1.2}
                         spaceBetween={20}
