@@ -55,6 +55,7 @@ function OtpCodeForm({
         }
       }
       queryClient.invalidateQueries({ queryKey: ["UserData"] });
+      queryClient.invalidateQueries({ queryKey: ["Cart"] });
     },
     onError(error, variables, context) {
       console.log(error.message);

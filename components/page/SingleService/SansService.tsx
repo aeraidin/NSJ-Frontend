@@ -69,7 +69,11 @@ function SansService({ id }: { id: string }) {
                                     </div>
                                     <div className='flex items-center gap-2'>
                                         <Clock size="24" className='text-gray-500' />
-                                        <p>{DaysOfWeekArray[item.dayOfWeek].name}</p>
+                                        <p> مدت زمان هر سانس: {item.priod} دقیقه</p>
+                                    </div>
+                                    <div className='flex items-center gap-2'>
+                                        {/* <Clock size="24" className='text-gray-500' /> */}
+                                        <p> مدت زمان استفاده: {item.exp} روز</p>
                                     </div>
                                 </div>
                                 <div className='lg:hidden'>
@@ -116,9 +120,13 @@ function SansService({ id }: { id: string }) {
                                             value={item.price}
                                             displayType={"text"}
                                             thousandSeparator={","}
-                                        />
-                                            {" تومان "}</p>
 
+                                        />
+                                            {" تومان "}
+                                            {item.discountPresentage > 0 ? <div className="px-4 py-1 mx-3  bg-error-500 rounded-xl">
+                                                <h5 className="text-white leading-4"> {item.discountPresentage}٪</h5>
+                                            </div> : null}
+                                        </p>
                                     </div>
                                     <div className='w-full lg:max-w-[166px]'>
                                         <SuccessBtn onClick={() => CollapseHandler(index)}>رزور بلیت</SuccessBtn>
