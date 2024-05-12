@@ -9,7 +9,7 @@ const SelectOptionSchema = z.object({
 });
 export const CommentSchema = z.object({
   rate: z.number().optional(),
-  text: z.string(),
+  text: z.string().min(1, { message: messages.commentIsRequired }),
 });
 
 // generate form types from zod validation schema
