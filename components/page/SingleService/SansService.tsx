@@ -8,6 +8,7 @@ import useGetSingleServiceSans from '@/util/hook/SingleService/useGetSingleServi
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Calendar, Clock, Timer1 } from 'iconsax-react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { Collapse } from 'react-collapse'
 import { NumericFormat } from 'react-number-format'
@@ -19,7 +20,7 @@ function SansService({ id }: { id: string }) {
     const [expandedRow, setexpandedRow] = useState<number | null>(null)
     const Data = data?.data?.value.list as Sans[] | undefined
     const queryClient = useQueryClient();
-
+    const router = useRouter()
     useEffect(() => {
         if (Data) {
             setSelectedClient({ clientType: Data[0].clientType, days: Data[0].days })
@@ -34,6 +35,9 @@ function SansService({ id }: { id: string }) {
         onSuccess(data, variables, context) {
             queryClient.invalidateQueries({ queryKey: ["Cart"] });
             setResult(true)
+            setTimeout(() => {
+                router.replace('/cart')
+            }, 3000);
         },
         onError(error, variables, context) {
             setResult(true)
