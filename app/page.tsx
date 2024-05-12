@@ -1,7 +1,11 @@
 import MainLayout from "@/components/Layout/MainLayout";
+import FirstPartBanner from "@/components/page/Landing/FirstPartBanner";
+import ForthPartBanner from "@/components/page/Landing/ForthPartBanner";
 import HighestDiscountComplexs from "@/components/page/Landing/HighestDiscountComplexs";
 import HighestRateComplexs from "@/components/page/Landing/HighestRateComplexs";
 import RecomendedList from "@/components/page/Landing/RecomendedList";
+import SecondPartBanner from "@/components/page/Landing/SecondPartBanner";
+import ThirdPartBanner from "@/components/page/Landing/ThirdPartBanner";
 import GetHighestDiscountComplexs from "@/util/hook/ssr/GetHighestDiscountComplexs";
 import GetHighestRateComplexs from "@/util/hook/ssr/GetHighestRateComplexs";
 import GetRecLis from "@/util/hook/ssr/GetRecLis";
@@ -14,9 +18,13 @@ export default async function Home() {
     <>
       <MainLayout >
         <div className="py-10  flex flex-col gap-12">
+          <FirstPartBanner />
           <RecomendedList data={RecListData?.value.list} />
           <HighestDiscountComplexs data={HighestDiscountComplexsData?.value.list} />
+          <SecondPartBanner />
           <HighestRateComplexs data={HighestRateComplexsData?.value.list} />
+          <ThirdPartBanner />
+          <ForthPartBanner />
         </div>
       </MainLayout>
     </>

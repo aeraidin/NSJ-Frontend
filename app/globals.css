@@ -2,48 +2,48 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+ -webkit-appearance: none;
+ margin: 0;
 }
 
 .custom-scrollbar {
-  max-height: 302px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  border-radius: 16px;
-  scrollbar-color: #011f3f; /* Change the colors as needed */
+ max-height: 302px;
+ overflow-y: auto;
+ scrollbar-width: thin;
+ border-radius: 16px;
+ scrollbar-color: #011f3f; /* Change the colors as needed */
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 4px; /* Adjust the width as needed */
-  border-radius: 16px;
-  scrollbar-color: #011f3f; /* Change the colors as needed */
+ width: 4px; /* Adjust the width as needed */
+ border-radius: 16px;
+ scrollbar-color: #011f3f; /* Change the colors as needed */
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  border-radius: 16px;
-  background-color: #011f3f; /* Change the color as needed */
-  scrollbar-color: #011f3f; /* Change the colors as needed */
+ border-radius: 16px;
+ background-color: #011f3f; /* Change the color as needed */
+ scrollbar-color: #011f3f; /* Change the colors as needed */
 }
 
 .input-otp {
-  border: 1px solid;
-  border-color: #d7d7d7;
-  width: 64px;
-  height: 64px;
-  outline: none;
+ border: 1px solid;
+ border-color: #d7d7d7;
+ width: 64px;
+ height: 64px;
+ outline: none;
 }
 
 .error-otp {
-  border: 1px solid;
-  border-color: #fd6261;
-  width: 64px;
-  height: 64px;
-  outline: none;
+ border: 1px solid;
+ border-color: #fd6261;
+ width: 64px;
+ height: 64px;
+ outline: none;
 }
 
 .input-otp:focus {
-  border-color: #525252;
+ border-color: #525252;
 }
 
 @tailwind base;
@@ -51,36 +51,39 @@ input::-webkit-inner-spin-button {
 @tailwind utilities;
 
 @layer components {
-  .Container {
-    @apply w-full max-w-[1440px] mx-auto px-6;
-  }
-  .FullContainer {
-    @apply w-full mx-auto max-w-[1924px];
-  }
-  .ArrowButtonSlider {
-    @apply p-2 rounded-xl border border-primary-400 text-primary-400 hover:text-white hover:bg-primary-600 hover:border-primary-600 disabled:opacity-25 disabled:cursor-not-allowed duration-150;
-  }
+ .Container {
+  @apply w-full max-w-[1440px] mx-auto px-3 lg:px-6;
+ }
+ .FullContainer {
+  @apply w-full mx-auto max-w-[1924px];
+ }
+ .ArrowButtonSlider {
+  @apply p-2 rounded-xl border border-primary-400 text-primary-400 hover:text-white hover:bg-primary-600 hover:border-primary-600 disabled:opacity-25 disabled:cursor-not-allowed duration-150;
+ }
+ .CartAddButtons {
+  @apply w-[32px] h-[32px] rounded-xl border border-gray-50 text-gray-400 hover:text-gray-600 hover:bg-gray-50/30 hover:border-gray-100 disabled:opacity-25 disabled:cursor-not-allowed duration-150;
+ }
 }
 @layer base {
-  h1 {
-    @apply text-xl lg:text-2xl text-gray-600 font-[600];
-  }
-  h2 {
-    @apply text-base lg:text-xl text-gray-600;
-  }
-  h3 {
-    @apply text-lg text-gray-600;
-  }
-  h4 {
-    @apply text-gray-300;
-  }
-  h5 {
-    @apply text-sm text-gray-300;
-  }
-  p {
-    @apply text-sm lg:text-base text-gray-600;
-  }
+ h1 {
+  @apply text-xl lg:text-2xl text-gray-600 font-[600];
+ }
+ h2 {
+  @apply text-base lg:text-xl text-gray-600;
+ }
+ h3 {
+  @apply text-lg text-gray-600;
+ }
+ h4 {
+  @apply text-gray-300;
+ }
+ h5 {
+  @apply text-sm text-gray-300;
+ }
+ p {
+  @apply text-sm lg:text-base text-gray-600;
+ }
 }
 .ReactCollapse--collapse {
-  transition: height 400ms;
+ transition: height 400ms;
 }

@@ -9,7 +9,7 @@ import { NumericFormat } from "react-number-format";
 
 function ProductCards({ data }: { data: ProductCard }) {
   return (
-    <div className="w-full select-none bg-white max-w-[321px] h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOWHover duration-200 group">
+    <div className="w-full select-none bg-white max-w-[321px] h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group">
       <Link href={`/service/${data.id}`}>
         <div className="aspect-w-8 aspect-h-5 overflow-hidden relative">
           <Image

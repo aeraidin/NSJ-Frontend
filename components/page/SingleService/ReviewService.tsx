@@ -4,9 +4,29 @@
 import React, { useEffect, useState } from "react";
 import Comment from "./Comments/Comment";
 import useGetSingleServiceComment from "@/util/hook/SingleService/useGetSingleServiceComment";
-import { ArrowDown2, ArrowDown3, ArrowLeft2, ArrowUp2 } from "iconsax-react";
-import { useQueryClient } from "@tanstack/react-query";
+import { ArrowDown2, Star, Star1 } from "iconsax-react";
+import { SubmitHandler } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import ReactStars from "react-rating-stars-component";
+import Image from "next/image";
+import commentIcon from "../../../public/Icons/SingleService/comment 1.png";
+import SecondaryBtn from "@/components/Layout/Buttons/SecondaryBtn";
+import Modal from "@/components/Layout/Modals/Modal";
+import ControlledTextArea from "@/components/Layout/Input/ControlledTextArea";
+import PrimaryBtn from "@/components/Layout/Buttons/PrimaryBtn";
+import { Form } from "@/components/Layout/Forms/Form";
+import {
+  CommentSchema,
+  CommentSchemaType,
+} from "@/util/config/validations/Comment/CommentSchema";
+import ControlledRate from "@/components/Layout/Input/ControlledRate";
+import Cookies from "js-cookie";
 import { FaPersonWalkingDashedLineArrowRight } from "react-icons/fa6";
+import LoginModal from "@/components/Layout/Modals/auth/LoginModal";
+import { AddComment } from "@/util/api/Comment/AddComment";
+import { error } from "console";
+import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
+import Toast from "@/components/Layout/Alerts/Toast";
 
 interface ReviewServiceProps {
   id: string;
@@ -15,10 +35,28 @@ interface ReviewServiceProps {
 function ReviewService({ id }: ReviewServiceProps) {
   const [size, setSize] = useState(1);
   const queryclient = useQueryClient();
+  const [reset, setReset] = useState({});
+  const [result, setResult] = useState(false);
   const [commentList, setCommentList] = useState<CommentItem[]>([]);
+  const [state, setState] = useState(false);
   const paginateHandler = () => {
     setSize(size + 1);
   };
+
+  const singleService = useGetSingleService({ id: id });
+  const Data = singleService?.data?.value as SingleProductPage | undefined;
+
+  const addComment = useMutation({
+    mutationFn: AddComment,
+    onSuccess: (data, variables, context) => {
+      console.log(data);
+      setState(false);
+      setResult(true);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
 
   useEffect(() => {
     queryclient.invalidateQueries({
@@ -37,10 +75,164 @@ function ReviewService({ id }: ReviewServiceProps) {
     }
   }, [data.data?.value.list]);
 
+  const onSubmit: SubmitHandler<CommentSchemaType> = async (
+    data: CommentSchemaType
+  ) => {
+    console.log(data);
+
+    addComment.mutate({
+      id: id.toString(),
+      rate: data.rate,
+      comment: data.text,
+    });
+  };
+
+  const token = Cookies.get("token");
   return (
     <>
-      {commentList ? (
+      <Toast
+        messege={
+          addComment.error
+            ? (addComment.error as unknown as string)
+            : "دیدگاه شما با موفقیت ثبت شد"
+        }
+        Close={() => setResult(false)}
+        isError={addComment.isError}
+        isSuccess={addComment.isSuccess}
+        Result={result}
+      />
+      {/* <div className={`z-50  `}> */}
+      {state && token !== undefined ? (
+        <Modal
+          CloseModal={() => {
+            setState(false);
+          }}
+          State={state}
+        >
+          <div>
+            <h2 className=" text-third-600 font-semibold mb-3">دیدگاه شما</h2>
+            <p className=" text-sm text-gray-300">
+              {`
+              درمورد ${Data?.name} ${Data?.service.name}
+              
+              `}
+            </p>
+            <div className=" w-full my-5  border-t border-gray-50 h-1"></div>
+            <p className=" text-base mb-3 text-gray-600 font-semibold ">
+              امتیاز دهید!
+            </p>
+            <Form<CommentSchemaType>
+              validationSchema={CommentSchema}
+              onSubmit={onSubmit}
+              resetValues={reset}
+              className="w-full max-w-[850px] mx-auto"
+            >
+              {({ register, formState: { errors }, setValue }) => (
+                <>
+                  <ControlledRate
+                    setValue={setValue}
+                    register={register}
+                    id="rate"
+                    error={""}
+                  />
+
+                  <div className=" mt-3  flex flex-col">
+                    <p className=" text-gray-600 text-base font-semibold">
+                      متن دیدگاه
+                    </p>
+                    <div>
+                      <ControlledTextArea
+                        id="text"
+                        setValue={setValue}
+                        register={register}
+                        error={errors.text?.message}
+                        PlaceHolder="برای ما بنویسید..."
+                      />
+                    </div>
+                  </div>
+                  <div className=" mt-4">
+                    <PrimaryBtn isloading={addComment.isPending} type="submit">
+                      ثبت
+                    </PrimaryBtn>
+                  </div>
+                </>
+              )}
+            </Form>
+          </div>
+        </Modal>
+      ) : (
+        <LoginModal
+          CloseModal={() => {
+            setState(false);
+          }}
+          State={state}
+        />
+      )}
+
+      {/* </div> */}
+      {commentList.length !== 0 ? (
         <div className="Container  pt-6 lg:pt-10">
+          <div className=" w-full flex flex-col  lg:flex-row gap-4 mb-10">
+            <div className=" w-full lg:max-w-[400px] flex flex-col h-[206px]   justify-center items-center bg-[#FAFAFA] rounded-[20px] ">
+              <div className=" w-full  mb-8 flex flex-col  justify-center items-center">
+                <p>
+                  <span className=" font-semibold text-4xl text-primary-600 pl-[10px]">
+                    {Data?.rate}
+                  </span>
+                  از ۵
+                </p>
+                <div className=" w-full flex select-none justify-center flex-col  items-center">
+                  {Data?.rate ? (
+                    <ReactStars
+                      count={5}
+                      edit={false}
+                      value={Data?.rate}
+                      isHalf={true}
+                      halfIcon={<Star1 variant="Bold" />}
+                      emptyIcon={<Star1 variant="Bold" />}
+                      filledIcon={<Star1 variant="Bold" />}
+                      size={28}
+                      activeColor="#FEB92E"
+                    />
+                  ) : null}
+                </div>
+              </div>
+
+              <div className=" w-full flex justify-center items-center flex-col">
+                <div>
+                  <p className=" font-semibold text-gray-500 text-sm">
+                    {`    مجموع امتیاز کاربران به ${Data?.name} ${Data?.service.name}`}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className=" w-full flex justify-center lg:justify-start items-center lg:items-start  h-[330px]  lg:h-[206px] bg-[#FAFAFA] rounded-[20px] ">
+              <div className=" flex flex-col lg:flex-row items-center gap-x-12">
+                <div className=" flex justify-center items-center  ">
+                  <Image
+                    src={commentIcon}
+                    alt="cooment"
+                    className=" object-cover"
+                  />
+                </div>
+                <div className=" flex-col  flex gap-y-4 justify-center lg:pt-10">
+                  <p className="   text-primary-600 font-semibold px-4 lg:px-0 text-sm lg:text-base">
+                    با ثبت دیدگاه خود به کاربران دیگر را برای انتخاب و استفاده
+                    از خدمات بهتر یاری نمایید!
+                  </p>
+                  <p className=" text-gray-500 text-sm px-4 lg:px-0">
+                    شما هم درباره ی این سرویس دیدگاه خود را ثبت کنید{" "}
+                  </p>
+                  <div className=" w-full flex pb-4  lg:pb-0  px-4 lg:px-0 lg:max-w-[236px]">
+                    <SecondaryBtn onClick={() => setState(!state)}>
+                      ثبت دیدگاه
+                    </SecondaryBtn>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <h2 className=" mb-3 lg:mb-8 text-gray-500 font-semibold ">{` امتیاز و نظرات کاربران(${commentList.length} نظر)`}</h2>
 
           {commentList ? (
@@ -96,8 +288,24 @@ export default ReviewService;
 export function ReviewServiceLoading() {
   return (
     <>
-      <div className=" Container flex-col flex gap-y-6 animate-pulse">
-        <div className=" w-full max-w-[200px] rounded-[20px] h-5 bg-gray-200"></div>
+      <div className=" Container flex-col flex  animate-pulse">
+        <div className=" flex gap-x-3 w-full my-10  ">
+          <div className=" w-full flex flex-col justify-center items-center gap-y-3 max-w-[400px] h-[206px] rounded-[20px] bg-gray-200">
+            <div className=" bg-gray-100 h-6 max-w-[120px] w-full rounded-[20px]"></div>
+            <div className=" bg-gray-100 h-6 max-w-[140px] w-full rounded-[20px]"></div>
+            <div className=" bg-gray-100 h-4 max-w-[214px] w-full rounded-[20px]"></div>
+          </div>
+          <div className=" w-full p-6 h-[206px] flex gap-x-12 rounded-[20px] bg-gray-200">
+            <div className=" bg-gray-100 w-full max-w-[211px] rounded-[20px] h-[161px]"></div>
+            <div className=" w-full flex flex-col gap-y-6 justify-center items-start">
+              <div className=" bg-gray-100 w-full max-w-[421px] rounded-[20px] h-4"></div>
+              <div className=" bg-gray-100 w-full max-w-[311px] rounded-[20px] h-4"></div>
+              <div className=" bg-gray-100 w-full max-w-[211px] rounded-[20px] h-4"></div>
+            </div>
+          </div>
+        </div>
+
+        <div className=" w-full max-w-[200px] rounded-[20px] mb-8 h-5 bg-gray-200"></div>
 
         <div className=" w-full h-[127px] flex bg-gray-200 rounded-lg">
           <div className=" w-full max-w-[80px] p-3 h-full">

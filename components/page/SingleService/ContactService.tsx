@@ -91,8 +91,9 @@ export function ContactServiceLoading() {
   return (
     <>
       <div className=" Container  w-full flex flex-col gap-y-6 animate-pulse">
-        <div className=" w-full max-w-[200px] rounded-lg h-5 bg-gray-200"></div>
-
+        <div className=" w-full max-w-[200px] rounded-lg h-5  mt-10">
+          <h2 className=" text-gray-500 font-semibold">موقعیت مکانی و آدرس</h2>
+        </div>
         <div className=" flex w-full flex-col gap-y-6 lg:gap-y-0 lg:flex-row">
           <div className=" flex flex-col w-full gap-y-6">
             <div className=" flex gap-x-2 w-full ">

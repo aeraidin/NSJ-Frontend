@@ -1,77 +1,80 @@
 /** @format */
 
 interface ProductCard {
-  id: number;
-  filePath: string;
-  serviceName: string;
-  rate: number;
-  location: string;
-  price: number;
-  service: { id: number; name: string };
-  priceAfterDiscount: number;
-  discountPresentage: number;
-  hasDiscount: boolean;
+ id: number;
+ filePath: string;
+ serviceName: string;
+ rate: number;
+ location: string;
+ price: number;
+ service: { id: number; name: string };
+ priceAfterDiscount: number;
+ discountPresentage: number;
+ hasDiscount: boolean;
 }
 enum Contact {
-  Address = 0,
-  Phone = 1,
-  PostalCode = 2,
-  Map = 3,
+ Address = 0,
+ Phone = 1,
+ PostalCode = 2,
+ Map = 3,
 }
 interface contacts {
-  id: number;
-  type: Contact;
-  value: string;
+ id: number;
+ type: Contact;
+ value: string;
 }
 interface SingleProductPage {
+ id: number;
+ filePathes: string[];
+ conditions: [];
+ contacts: contacts[];
+ description: string;
+ name: string;
+ rate: number;
+ location: string;
+ categoryName: string;
+ service: {
   id: number;
-  filePathes: string[];
-  conditions: [];
-  contacts: contacts[];
-  description: string;
   name: string;
-  rate: number;
-  location: string;
-  categoryName: string;
-  service: {
-    id: number;
-    name: string;
-  };
-  price: number;
-  discount: number;
-  priceAfterDiscount: number;
-  discountPresentage: number;
-  hasDiscount: boolean;
-  workHours: {
-    fromDayOfWeak: number;
-    toDayOfWeak: number;
-    start: string;
-    end: string;
-  };
-}
-interface Sans {
-  clientType: number;
-  days: SansDay[];
-}
-interface SansDay {
-  dayOfWeek: number;
-  price: number;
-  details: SansDayDetail[];
-}
-interface SansDayDetail {
-  id: number;
+ };
+ price: number;
+ discount: number;
+ priceAfterDiscount: number;
+ discountPresentage: number;
+ hasDiscount: boolean;
+ workHours: {
+  fromDayOfWeak: number;
+  toDayOfWeak: number;
   start: string;
   end: string;
+ };
+}
+interface Sans {
+ clientType: number;
+ days: SansDay[];
+}
+interface SansDay {
+ dayOfWeek: number;
+ price: number;
+ details: SansDayDetail[];
+ discountPresentage: number;
+ priod: number;
+ exp: number;
+}
+interface SansDayDetail {
+ id: number;
+ start: string;
+ end: string;
 }
 
 interface CommentItem {
-  id: number;
-  text: string;
-  replay: string;
-  rate: number;
-  createdDate: string;
-  user: {
-    name: string;
-    profileImage: string;
-  };
+ id: number;
+ text: string;
+ replay: string;
+ rate: number;
+ createdDate: string;
+ user: {
+  name: string;
+  profileImage: string;
+ };
 }

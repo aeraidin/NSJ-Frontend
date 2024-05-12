@@ -1,3 +1,5 @@
+/** @format */
+
 export const messages = {
   passwordOneUppercase: "رمز عبور باید حداقل یک حرف بزرگ داشته باشد",
   passwordOneLowercase: "رمز عبور باید حداقل یک حرف کوچک داشته باشد",
@@ -72,4 +74,5 @@ export const messages = {
   roleNameLengthMin: "نام نقش باید حداقل 3 حرف باشد",
   errorSendingEmail: "خطا در ارسال ایمیل",
   emailSentSuccessfully: `ایمیل با موفقیت ارسال شد`,
+  commentIsRequired: "متن دیدگاه الزامی است",
 };

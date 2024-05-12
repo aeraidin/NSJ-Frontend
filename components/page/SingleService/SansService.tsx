@@ -7,6 +7,7 @@ import { DaysOfWeekArray } from '@/util/data/WorkDayTime'
 import useGetSingleServiceSans from '@/util/hook/SingleService/useGetSingleServiceSans'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Calendar, Clock, Timer1 } from 'iconsax-react'
+import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { Collapse } from 'react-collapse'
 import { NumericFormat } from 'react-number-format'
@@ -64,12 +65,16 @@ function SansService({ id }: { id: string }) {
                             <div className='flex flex-col gap-6 lg:flex-row items-start lg:items-center justify-between  '>
                                 <div className='flex flex-col gap-4'>
                                     <div className='flex items-center gap-2'>
-                                        <Calendar size="24" className='text-gray-500' />
+                                        <Calendar size="24" className='text-gray-300' />
                                         <p>{DaysOfWeekArray[item.dayOfWeek].name}</p>
                                     </div>
                                     <div className='flex items-center gap-2'>
-                                        <Clock size="24" className='text-gray-500' />
-                                        <p>{DaysOfWeekArray[item.dayOfWeek].name}</p>
+                                        <Clock size="24" className='text-gray-300' />
+                                        <p> مدت زمان هر سانس: {item.priod} دقیقه</p>
+                                    </div>
+                                    <div className='flex items-center gap-2'>
+                                        <Image src={"/Icons/durationSans.svg"} width={24} height={24} alt='icons' />
+                                        <p> مدت زمان استفاده: {item.exp} روز</p>
                                     </div>
                                 </div>
                                 <div className='lg:hidden'>
@@ -77,7 +82,7 @@ function SansService({ id }: { id: string }) {
                                         isOpened={index === expandedRow}
                                         className="">
                                         <div className='text-gray-500 flex items-center gap-4 px-6'>
-                                            <Timer1 size="24" />
+                                            <Image src={"/Icons/durationClock.svg"} width={24} height={24} alt='durationClock' />
                                             <p className='text-gray-400'>سانس مورد نظر را انتخاب کنید</p>
                                         </div>
                                         <div className='flex items-center flex-wrap gap-3 py-4 px-6'>
@@ -116,9 +121,13 @@ function SansService({ id }: { id: string }) {
                                             value={item.price}
                                             displayType={"text"}
                                             thousandSeparator={","}
-                                        />
-                                            {" تومان "}</p>
 
+                                        />
+                                            {" تومان "}
+                                            {item.discountPresentage > 0 ? <div className="px-4 py-1 mx-3  bg-error-500 rounded-xl">
+                                                <h5 className="text-white leading-4"> {item.discountPresentage}٪</h5>
+                                            </div> : null}
+                                        </p>
                                     </div>
                                     <div className='w-full lg:max-w-[166px]'>
                                         <SuccessBtn onClick={() => CollapseHandler(index)}>رزور بلیت</SuccessBtn>
@@ -130,7 +139,7 @@ function SansService({ id }: { id: string }) {
                                     isOpened={index === expandedRow}
                                     className="">
                                     <div className='text-gray-500 flex items-center gap-4 px-6 pt-6'>
-                                        <Timer1 size="24" />
+                                        <Image src={"/Icons/durationClock.svg"} width={24} height={24} alt='durationClock' />
                                         <p className='text-gray-400'>سانس مورد نظر را انتخاب کنید</p>
                                     </div>
                                     <div className='flex items-center flex-wrap gap-3 py-4 px-6'>
