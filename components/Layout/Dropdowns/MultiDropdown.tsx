@@ -47,6 +47,7 @@ const MultiDropdown: React.FC<DropDownType> = ({
 
   useEffect(() => {
     selectedItems(selectedOptions);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOptions]);
 
   return (

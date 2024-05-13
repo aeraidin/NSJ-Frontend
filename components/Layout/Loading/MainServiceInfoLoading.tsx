@@ -1,7 +1,7 @@
 "use client"
 import SuccessBtn from '@/components/Layout/Buttons/SuccessBtn';
 import Breadcrumb from '@/components/Layout/breadcrumb';
-import { DaysOfWeekArray } from '@/util/data/WorkDayTime';
+import { DaysOfWeekArray } from '@/util/Data/WorkDayTime';
 import { Clock, Heart, Location, Share } from 'iconsax-react';
 import Image from 'next/image';
 import Link from 'next/link';

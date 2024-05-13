@@ -1,5 +1,3 @@
-/** @format */
-
 "use client";
 import LoginForm from "@/components/Layout/Forms/auth/LoginForm";
 import OtpCodeForm from "@/components/Layout/Forms/auth/OtpCodeForm";

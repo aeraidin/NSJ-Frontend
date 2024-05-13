@@ -1,7 +1,7 @@
 "use client"
 import SuccessBtn from '@/components/Layout/Buttons/SuccessBtn';
 import Breadcrumb from '@/components/Layout/breadcrumb';
-import { DaysOfWeekArray } from '@/util/data/WorkDayTime';
+import { DaysOfWeekArray } from '@/util/Data/WorkDayTime';
 import useGetSingleService from '@/util/hook/SingleService/useGetSingleService'
 import { ArrowLeft2, ArrowRight2, Clock, Heart, Location, Share } from 'iconsax-react';
 import Image from 'next/image';
@@ -13,7 +13,7 @@ import { Autoplay, FreeMode, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { Link as ReactScroll } from 'react-scroll'
 import useGetSingleServiceSans from '@/util/hook/SingleService/useGetSingleServiceSans';
-import { UserTypeData } from '@/util/data/UserTypeData';
+import { UserTypeData } from '@/util/Data/UserTypeData';
 import MainServiceInfoLoading from '@/components/Layout/Loading/MainServiceInfoLoading';
 function MainServiceInfo({ id }: { id: string }) {
     const data = useGetSingleService({ id: id })
