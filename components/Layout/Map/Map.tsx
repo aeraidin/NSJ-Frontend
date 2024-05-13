@@ -54,7 +54,6 @@ const Map = <T extends FieldValues>({
     }
   }, [selectedValue]);
 
-
   const MapEventsHandler = () => {
     const map = useMapEvents({
       zoom: () => {
@@ -130,8 +129,6 @@ const Map = <T extends FieldValues>({
     setIsOpen(false);
   };
 
-
-
   // const currentPositionHandler = () => {
   //   setPosition(currentPosition);
   //   if (currentPosition && mapRef.current) {
@@ -187,13 +184,20 @@ const Map = <T extends FieldValues>({
             className={`absolute block  p-3 px-6 rounded-[10px] select-none z-40 cursor-pointer backdrop-blur-sm bg-white/30 shadow-CMSHADOW  duration-200  top-10 lg:top-24 left-1/2 transform -translate-x-1/2 translate-y-1/2`}
             onClick={() => console.log("click map")}
           >
-            <p className=" text-primary-600 text-sm"> نمایش روی نقشه</p>
+            <a
+              href={`https://www.google.com/maps?q=${position.lat},${position.lng}`}
+              className=" text-primary-600 text-sm"
+              target="_blank"
+            >
+              نمایش روی نقشه
+            </a>
           </div>
           <div
-            className={`${error
-              ? "text-xs text-error-500 mt-1 h-[14px]"
-              : "border-gray-100 focus:border-gray-600 hover:border-gray-300 dark:border-white/10 dark:hover:border-white/25 dark:focus:border-white/45 "
-              } `}
+            className={`${
+              error
+                ? "text-xs text-error-500 mt-1 h-[14px]"
+                : "border-gray-100 focus:border-gray-600 hover:border-gray-300 dark:border-white/10 dark:hover:border-white/25 dark:focus:border-white/45 "
+            } `}
           >
             {error}
           </div>

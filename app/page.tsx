@@ -1,3 +1,5 @@
+/** @format */
+
 import MainLayout from "@/components/Layout/MainLayout";
 import FirstPartBanner from "@/components/page/Landing/FirstPartBanner";
 import ForthPartBanner from "@/components/page/Landing/ForthPartBanner";
@@ -11,16 +13,20 @@ import GetHighestRateComplexs from "@/util/hook/ssr/GetHighestRateComplexs";
 import GetRecLis from "@/util/hook/ssr/GetRecLis";
 
 export default async function Home() {
-  const RecListData = await GetRecLis()
-  const HighestRateComplexsData = await GetHighestRateComplexs()
-  const HighestDiscountComplexsData = await GetHighestDiscountComplexs()
+  const RecListData = await GetRecLis();
+  const HighestRateComplexsData = await GetHighestRateComplexs();
+  const HighestDiscountComplexsData = await GetHighestDiscountComplexs();
   return (
     <>
-      <MainLayout >
-        <div className="py-10  flex flex-col gap-12">
-          <FirstPartBanner />
+      <MainLayout>
+        <div className="py-10 flex flex-col gap-12">
+          <div className="pb-10">
+            <FirstPartBanner />
+          </div>
           <RecomendedList data={RecListData?.value.list} />
-          <HighestDiscountComplexs data={HighestDiscountComplexsData?.value.list} />
+          <HighestDiscountComplexs
+            data={HighestDiscountComplexsData?.value.list}
+          />
           <SecondPartBanner />
           <HighestRateComplexs data={HighestRateComplexsData?.value.list} />
           <ThirdPartBanner />
