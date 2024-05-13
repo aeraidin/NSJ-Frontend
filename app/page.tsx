@@ -19,8 +19,10 @@ export default async function Home() {
   return (
     <>
       <MainLayout>
-        <div className="py-10  flex flex-col gap-12">
-          <FirstPartBanner />
+        <div className="py-10 flex flex-col gap-12">
+          <div className="pb-10">
+            <FirstPartBanner />
+          </div>
           <RecomendedList data={RecListData?.value.list} />
           <HighestDiscountComplexs
             data={HighestDiscountComplexsData?.value.list}
