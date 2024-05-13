@@ -104,7 +104,7 @@ function Header() {
                     //     : { width: "40px", height: "78px" }
                     // }
                     // transition={{ duration: 0.1 }}
-                    className="relative w-[40px] h-[78px]"
+                    className="relative w-[30px] h-[68px]"
                   >
                     <Image src={"/Icons/Logo.svg"} fill alt="Logo" />
                   </div>
@@ -114,7 +114,7 @@ function Header() {
                     //     ? { width: "140px", height: "35px" }
                     //     : { width: "160px", height: "55px" }
                     // }
-                    className=" relative w-[160px] h-[55px]"
+                    className=" relative w-[120px] h-[35px]"
                   >
                     <Image src={"/Icons/LogoFont.svg"} fill alt="Logo" />
                   </div>
