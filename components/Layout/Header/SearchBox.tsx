@@ -3,8 +3,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import DropDown from "../Dropdowns/Dropdown";
-import ControlledInput from "../Input/ControlledInput";
 import { usePathname, useRouter } from "next/navigation";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft2, Location, SearchNormal } from "iconsax-react";
 import useDebounce from "@/util/hook/useDebounce";
 import { AnimatePresence, motion } from "framer-motion";
@@ -26,46 +26,44 @@ function SearchBox() {
   const [data, setData] = useState<any>(null);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const queryClient = useQueryClient();
 
   const pathname = usePathname();
 
   const debouncedValue = useDebounce({
-    Delay: 3000,
+    Delay: 1500,
     value: inputValue,
   });
 
-  console.log(debouncedValue);
-
-  const searching = useSearch({
-    serviceName: debouncedValue,
-    sortType: 0,
-    page: 1,
-    pageSize: 3,
+  const searchHandler = useMutation({
+    mutationFn: useSearch,
+    onSuccess(data, variables, context) {
+      console.log(data);
+    },
+    onError(error, variables, context) {},
   });
 
   useEffect(() => {
     if (inputValue !== "") {
       setSearch(true);
       setLoading(true);
+
+      searchHandler.mutate({
+        serviceName: debouncedValue,
+        sortType: 0,
+        page: 1,
+        pageSize: 3,
+      });
     } else {
       setSearch(false);
+
       setLoading(false);
     }
-  }, [inputValue]);
+  }, [inputValue, debouncedValue]);
 
-  useEffect(() => {
-    setLoading(true);
-    searching
-      .then((response) => {
-        console.log(response);
-        setData(response);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedValue]);
+  // useEffect(() => {
+  //  if(inputValue )
+  // }, [debouncedValue]);
 
   const handleClickOutside = () => {
     setSearch(false);
@@ -76,8 +74,9 @@ function SearchBox() {
     <>
       {search ? (
         <div
-          className={` w-full h-screen  absolute bg-black/40 ${pathname !== "/" ? "hidden" : null
-            }  lg:block top-[172px] md:top-[180px] lg:top-[106px] bottom-0 right-0`}
+          className={` w-full h-screen  absolute lg:bg-black/40 ${
+            pathname !== "/" ? "hidden" : null
+          }  lg:block top-[172px] md:top-[180px] lg:top-[11px] bottom-0 right-0`}
         ></div>
       ) : null}
       {/* <div className=" w-full h-screen  absolute bg-white top-0 bottom-0 right-0"></div> */}
@@ -121,17 +120,18 @@ function SearchBox() {
           <AnimatePresence>
             <motion.div
               ref={containerRef}
-              className=" absolute bg-red-300  w-full"
+              className=" absolute  w-full"
               initial={{ opacity: 0, translateY: 30 }}
               exit={{ opacity: 0, translateY: 30 }}
               animate={{ opacity: 1, translateY: 0 }}
               transition={{ duration: 0.5 }}
             >
               <div
-                className={` w-full  ${pathname === "/" ? "" : null
-                  } bg-white border border-gray-50  overflow-y-scroll rounded-2xl h-fit  p-2 absolute top-10 left-1 z-20 `}
+                className={` w-full  ${
+                  pathname === "/" ? "" : null
+                } bg-white lg:border border-gray-50  overflow-y-scroll rounded-2xl h-fit  p-2 absolute top-10 left-1 z-20 `}
               >
-                {loading ? (
+                {searchHandler.isPending ? (
                   <>
                     <div className=" w-full flex justify-center items-center">
                       <svg className="h-6 w-6 animate-spin" viewBox="3 3 18 18">
@@ -148,19 +148,21 @@ function SearchBox() {
                   </>
                 ) : (
                   <>
-                    {data?.value?.list.length > 0 ? (
-                      <>
-                        {data?.value?.list.map((item: any, index: number) => {
-                          return (
-                            <Link
-                              href={`/service/${item.id}`}
-                              key={index}
-                              className=" cursor-pointer hover:bg-gray-50 duration-200 rounded-lg flex items-center px-4 my-2 w-full h-10"
-                            >
-                              {item.serviceName}
-                            </Link>
-                          );
-                        })}
+                    {searchHandler.data?.value?.list.length > 0 ? (
+                      <div className=" h-[460px] overflow-y-scroll">
+                        {searchHandler.data?.value?.list.map(
+                          (item: any, index: number) => {
+                            return (
+                              <Link
+                                href={`/service/${item.id}`}
+                                key={index}
+                                className=" cursor-pointer hover:bg-gray-50 duration-200 rounded-lg flex items-center px-4 my-2 w-full h-10"
+                              >
+                                {item.serviceName}
+                              </Link>
+                            );
+                          }
+                        )}
                         <Link
                           href={`/search/${inputValue}`}
                           className=" w-full flex justify-center items-center gap-x-3 hover:bg-gray-50 rounded-lg p-2 cursor-pointer duration-200"
@@ -170,7 +172,7 @@ function SearchBox() {
                           </p>
                           <ArrowLeft2 size={14} className=" text-primary-600" />
                         </Link>
-                      </>
+                      </div>
                     ) : (
                       <>
                         <div className=" flex justify-center items-center">
