@@ -14,7 +14,7 @@ function FirstPartBanner() {
         <div className='aspect-w-16 aspect-h-6 relative '>
             <Image src={Banner} fill className='object-cover rounded-2xl' alt='Banner' placeholder='blur' />
             {/* Category */}
-            <div className='w-[80%] h-[80px] lg:h-[150px]  rounded-2xl absolute top-[75%] mx-auto bg-white shadow-CMSHADOW '>
+            <div className='w-[80%] h-[80px] lg:h-[150px]  rounded-2xl absolute top-[80%] mx-auto bg-white shadow-CMSHADOW '>
                 <Swiper
                     spaceBetween={0}
                     slidesPerView={5}
@@ -23,6 +23,29 @@ function FirstPartBanner() {
                         disableOnInteraction: false,
                     }}
                     modules={[Autoplay]}
+                    breakpoints={{
+                        480: {
+                            width: 480,
+                            slidesPerView: 2.5,
+                        },
+                        768: {
+                            width: 768,
+                            slidesPerView: 3.5,
+
+                        },
+                        976: {
+                            width: 976,
+                            slidesPerView: 3.8,
+                        },
+                        1024: {
+                            width: 1024,
+                            slidesPerView: 4.5,
+                        },
+                        1280: {
+                            width: 1280,
+                            slidesPerView: 5,
+                        }
+                    }}
 
                     className='w-full h-full rounded-2xl relative group'
                 >
