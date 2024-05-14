@@ -24,7 +24,6 @@ function page() {
           <p className=" text-base lg:text-2xl text-center text-gray-600 font-semibold">
             معرفی اسپورتیکت
           </p>
-
           <p className=" mt-12 leading-7 font-semibold text-gray-500 text-justify">
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
             استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در

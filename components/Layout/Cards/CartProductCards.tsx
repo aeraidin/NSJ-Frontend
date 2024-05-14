@@ -56,7 +56,7 @@ function CartProductCards({ data }: { data: CartItems }) {
                 }
                 Close={() => setUpdateCountResult(false)}
                 isError={UpdateCartCountHandler.isError}
-                isSuccess={UpdateCartCountHandler.isSuccess}
+
                 Result={UpdateCountResult}
             />
             <div className="w-full border border-gray-50 p-7 rounded-2xl hover:border-gray-100 hover:shadow-CMSHADOW duration-200 relative ">
@@ -101,9 +101,9 @@ function CartProductCards({ data }: { data: CartItems }) {
                             <div className="flex items-center gap-2">
                                 <p>تعداد بلیت</p>
                                 <div className="flex items-center gap-2">
-                                    <button onClick={() => UpdateCartCountHandler.mutate({ id: data.id, count: data.count + 1 })} className="CartAddButtons">+</button>
+                                    <button onClick={() => UpdateCartCountHandler.mutate({ id: data.id, count: data.count + 1 })} disabled={UpdateCartCountHandler.isPending} className={`CartAddButtons `}>+</button>
                                     <p>{data.count}</p>
-                                    <button onClick={() => UpdateCartCountHandler.mutate({ id: data.id, count: data.count - 1 })} className="CartAddButtons">-</button>
+                                    <button onClick={() => UpdateCartCountHandler.mutate({ id: data.id, count: data.count - 1 })} disabled={UpdateCartCountHandler.isPending} className="CartAddButtons">-</button>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-2 items-end">

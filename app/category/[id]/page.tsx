@@ -6,7 +6,7 @@ function page({
     params: { id: string };
 }) {
     return (
-        <div>page</div>
+        <div>{params.id}</div>
     )
 }
 
