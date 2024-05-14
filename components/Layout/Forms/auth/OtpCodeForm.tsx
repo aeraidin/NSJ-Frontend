@@ -44,21 +44,23 @@ function OtpCodeForm({
   const LoginOtp = useMutation({
     mutationFn: OtpLogin,
     onSuccess(data) {
-
-      if (isNew === "true") {
-        router.replace("/login/register");
-      } else {
-        if (inModal) {
-          CloseModal && CloseModal();
-        } else {
-          router.replace("/");
-        }
-      }
+      setResult(true)
       queryClient.invalidateQueries({ queryKey: ["UserData"] });
       queryClient.invalidateQueries({ queryKey: ["Cart"] });
+      setTimeout(() => {
+        if (isNew === "true") {
+          router.replace("/login/register");
+        } else {
+          if (inModal) {
+            CloseModal && CloseModal();
+          } else {
+            router.replace("/");
+          }
+        }
+      }, 3000);
     },
     onError(error, variables, context) {
-      console.log(error.message);
+      setResult(true)
     },
   });
 
@@ -68,7 +70,7 @@ function OtpCodeForm({
         messege={
           LoginOtp.error
             ? (LoginOtp.error as unknown as string)
-            : "عملیات با موفقیت انجام شد"
+            : "ورود با موفقیت انجام شد"
         }
         Close={() => setResult(false)}
         isError={LoginOtp.isError}
