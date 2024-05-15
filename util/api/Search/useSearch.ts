@@ -2,34 +2,53 @@
 
 import axiosInstance from "@/util/AxiosInstans";
 import Cookies from "js-cookie";
-
+enum sortType {
+ Default = 0,
+ Newest = 1,
+ MostPopular = 2,
+}
 interface useSearchProps {
-  serviceName: string;
-  sortType: number;
-  pageSize: number;
-  page: number;
+ serviceName?: string;
+ pageSize: number;
+ page: number;
+ sportComplexId?: number;
+ minPrice?: number;
+ maxPrice?: number;
+ minRate?: number;
+ serviceId?: number;
+ sortTyp?: sortType;
 }
 
 export const useSearch = async ({
-  serviceName,
-  sortType,
-  page,
-  pageSize,
+ serviceName,
+ maxPrice,
+ minPrice,
+ minRate,
+ serviceId,
+ sortTyp,
+ sportComplexId,
+ page,
+ pageSize,
 }: useSearchProps) => {
-  const response = await axiosInstance.post(
-    `client/sport-commplex/services-list`,
-    {
-      serviceName: serviceName,
-      sortTyp: sortType,
-      pageSize: pageSize,
-      page: page,
-    }
-  );
-  if (response.data.isSuccess) {
-    return response.data;
-  } else if (response.data.isError) {
-    throw response.data.error.description;
-  } else {
-    throw new Error();
+ const response = await axiosInstance.post(
+  `client/sport-commplex/services-list`,
+  {
+   serviceName,
+   maxPrice,
+   minPrice,
+   minRate,
+   serviceId,
+   sortTyp,
+   sportComplexId,
+   page,
+   pageSize,
   }
+ );
+ if (response.data.isSuccess) {
+  return response.data;
+ } else if (response.data.isError) {
+  throw response.data.error.description;
+ } else {
+  throw new Error();
+ }
 };

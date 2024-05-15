@@ -51,7 +51,7 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
         resetValues={reset}
         className="w-full"
       >
-        {({ register, formState: { errors } }) => (
+        {({ register, formState: { errors }, setValue }) => (
           <div className="flex flex-col gap-2 lg:gap-4 ">
             <ControlledInput
               register={register}
@@ -59,6 +59,7 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
               label="شماره موبایل"
               required
               disabled={sendotp.isPending}
+              setValue={setValue}
               PlaceHolder="برای مثال: 09167890987"
               type="number"
               error={errors.phoneNumber?.message}
