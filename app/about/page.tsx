@@ -7,6 +7,7 @@ import Image from "next/image";
 import React from "react";
 import iran from "../../public/Icons/About/iranmap.png";
 import iranlight from "../../public/Icons/About/iranmap-light.png";
+import banner from "../../public/Banner/AboutUs/1344x360.jpg";
 
 function page() {
   return (
@@ -18,7 +19,9 @@ function page() {
         </Breadcrumb>
       </div>
       <div className=" w-full gap-y-20">
-        <div className=" w-full max-w-[1344px] h-[190px] lg:h-[360px] bg-gray-200 rounded-[35px]"></div>
+        <div className=" w-full relative  max-w-[1344px] h-[190px] lg:h-[360px] rounded-[35px] bg-gray-200 ">
+          <Image src={banner} className="rounded-[35px]" fill alt="aboutUs" />
+        </div>
 
         <div className=" w-full mt-20">
           <p className=" text-base lg:text-2xl text-center text-gray-600 font-semibold">
@@ -64,8 +67,8 @@ function page() {
             مزایای اسپورتیکت
           </p>
 
-          <div className=" flex flex-col lg:flex-row gap-y-7 lg:gap-x-3 justify-center items-start mt-20 lg:mt-[172px]">
-            <div className=" w-full h-[160px] lg:max-w-[502px] bg-gray-300 rounded-2xl "></div>
+          <div className=" flex flex-col xl:flex-row gap-y-7 lg:gap-x-3 justify-center items-start mt-20 lg:mt-[172px]">
+            <div className=" w-full h-[160px] xl:max-w-[502px] bg-gray-300 rounded-2xl "></div>
             <p className=" font-semibold text-justify text-gray-500 leading-7">
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
               استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی
@@ -74,7 +77,7 @@ function page() {
           </div>
         </div>
 
-        <div className=" mt-10 lg:mt-[188px] flex flex-col-reverse  lg:flex-row gap-y-7 lg:gap-x-3 justify-center items-start ">
+        <div className=" mt-10 lg:mt-[188px] flex flex-col-reverse  xl:flex-row gap-y-7 lg:gap-x-3 justify-center items-start ">
           <p className=" font-semibold leading-7 text-justify text-gray-500">
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
             استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در
@@ -84,7 +87,7 @@ function page() {
             می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی
             الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
           </p>
-          <div className=" w-full h-[160px] lg:max-w-[502px] bg-gray-300 rounded-2xl "></div>
+          <div className=" w-full h-[160px] xl:max-w-[502px] bg-gray-300 rounded-2xl "></div>
         </div>
 
         <div className=" w-full mt-12 lg:mt-[315px] mb-[92px] relative">
@@ -92,7 +95,7 @@ function page() {
             اسپورتیکت در کدام شهر ها فعال است؟
           </p>
 
-          <div className=" flex gap-x-3 flex-col lg:flex-row justify-center items-center mt-10 lg:mt-[172px]">
+          <div className=" flex gap-x-3 flex-col xl:flex-row justify-center items-center mt-10 lg:mt-[172px]">
             <p className=" max-w-[632px] font-semibold leading-7  text-justify text-gray-500">
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
               استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی
@@ -101,10 +104,21 @@ function page() {
             <div className=" w-[380px] lg:w-[640px] mt-10 lg:0 h-[350px] lg:h-[591px] relative rounded-2xl ">
               <Image
                 src={iran}
-                className=" select-none object-cover"
+                className=" relative select-none object-cover"
                 fill
                 alt="iranmap"
               />
+              <div className=" absolute w-fit rounded-2xl select-none py-2 px-4 top-20 lg:top-36 animate-bounce left-40 lg:left-64 bg-primary-600">
+                <p className=" text-center font-semibold text-white">تهران</p>
+              </div>
+
+              <div className=" absolute w-fit rounded-2xl select-none py-2 px-4 top-20 lg:top-36 animate-bounce left-64 lg:left-[450px] bg-primary-600">
+                <p className=" text-center font-semibold text-white">مشهد</p>
+              </div>
+
+              <div className=" absolute w-fit rounded-2xl select-none py-2 px-4 top-44 lg:top-[330px] animate-bounce left-20 lg:left-[150px] bg-primary-600">
+                <p className=" text-center font-semibold text-white">اهواز</p>
+              </div>
             </div>
           </div>
 
@@ -117,7 +131,7 @@ function page() {
                 اسپورتیکـــــــــــت
               </p>
             </div>
-            <p className=" max-w-[632px] leading-7 mt-2 lg:mt-0 text-sm font-semibold text-justify text-gray-500">
+            <p className=" w-full lg:max-w-[632px] leading-7 mt-2 lg:mt-0 text-sm font-semibold text-justify text-gray-500">
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
               استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
               در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد
