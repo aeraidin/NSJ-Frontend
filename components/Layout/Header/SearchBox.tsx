@@ -40,7 +40,7 @@ function SearchBox() {
     onSuccess(data, variables, context) {
       console.log(data);
     },
-    onError(error, variables, context) { },
+    onError(error, variables, context) {},
   });
 
   useEffect(() => {
@@ -75,8 +75,9 @@ function SearchBox() {
     <>
       {search ? (
         <div
-          className={` w-full h-screen  absolute lg:bg-black/40 ${pathname !== "/" ? "hidden" : null
-            }  lg:block top-[172px] md:top-[180px] lg:top-[11px] bottom-0 right-0`}
+          className={` w-full h-screen  absolute lg:bg-black/40 ${
+            pathname !== "/" ? "hidden" : null
+          }  lg:block top-[172px] md:top-[180px] lg:top-[100px] bottom-0 right-0`}
         ></div>
       ) : null}
       {/* <div className=" w-full h-screen  absolute bg-white top-0 bottom-0 right-0"></div> */}
@@ -127,8 +128,9 @@ function SearchBox() {
               transition={{ duration: 0.5 }}
             >
               <div
-                className={` w-full  ${pathname === "/" ? "" : null
-                  } bg-white lg:border border-gray-50  overflow-y-scroll rounded-2xl h-fit  p-2 absolute top-10 left-1 z-20 `}
+                className={` w-full  ${
+                  pathname === "/" ? "" : null
+                } bg-white lg:border border-gray-50  overflow-y-scroll rounded-2xl h-fit  p-2 absolute top-10 left-1 z-20 `}
               >
                 {searchHandler.isPending ? (
                   <>

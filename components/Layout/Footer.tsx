@@ -9,6 +9,11 @@ import Image from "next/image";
 import icon1 from "../../public/FooterIcons/1.png";
 import icon2 from "../../public/FooterIcons/2.png";
 import icon3 from "../../public/FooterIcons/3.png";
+import facebook from "../../public/FooterIcons/Facebook.png";
+import instagram from "../../public/FooterIcons/Instagram.png";
+import linkedin from "../../public/FooterIcons/Linkedin.png";
+import telegram from "../../public/FooterIcons/Telegram.png";
+
 function Footer() {
   return (
     <footer className=" w-full Container ">
@@ -18,7 +23,7 @@ function Footer() {
             <ul className=" space-y-4 select-none ">
               <li className=" text-dark-100 ">فانیتیکت</li>
               <li className="cursor-pointer ">
-                <Link className=" text-gray-600" href={"#"}>
+                <Link className=" text-gray-600" href={"/about"}>
                   درباره ی فانیتیکت
                 </Link>
               </li>
@@ -37,12 +42,12 @@ function Footer() {
             <ul className=" space-y-4 select-none  ">
               <li className=" text-dark-100 ">ارتباط با ما</li>
               <li className="cursor-pointer ">
-                <Link className=" text-gray-600" href={"#"}>
+                <Link className=" text-gray-600" href={"/contact"}>
                   تماس با ما
                 </Link>
               </li>
               <li className="cursor-pointer ">
-                <Link className=" text-gray-600" href={"#"}>
+                <Link className=" text-gray-600" href={""}>
                   همکاری با ما
                 </Link>
               </li>
@@ -82,22 +87,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className=" w-full  h-full flex justify-end items-end flex-col gap-y-10">
-          <h1 className=" text-primary-600 text-4xl">Funicket</h1>
-          <div className=" flex gap-x-4">
-            <div className=" w-12 h-12 flex justify-center hover:bg-gray-25 duration-200 cursor-pointer items-center border border-gray-100 rounded-2xl">
-              <Instagram variant="Bold" className=" text-gray-300" size={24} />
-            </div>
-            <div className=" w-12 h-12 flex justify-center hover:bg-gray-25 duration-200 cursor-pointer  items-center border border-gray-100 rounded-2xl">
-              <Sms variant="Bold" className=" text-gray-300" size={24} />
-            </div>
-            <div className=" w-12 h-12 flex justify-center hover:bg-gray-25 duration-200 cursor-pointer items-center border border-gray-100 rounded-2xl">
-              <TbBrandTelegram className=" text-gray-300" size={24} />{" "}
-            </div>
-            <div className=" w-12 h-12 flex justify-center hover:bg-gray-25 duration-200 cursor-pointer  items-center border border-gray-100 rounded-2xl">
-              <Call variant="Bold" className=" text-gray-300" size={24} />
-            </div>
-          </div>
+        <div className=" w-full  lg:mt-12 h-full flex justify-center items-center lg:justify-end lg:items-end flex-col gap-y-10">
           <div className="flex gap-x-4">
             <div className="w-[108px] relative h-[133px] rounded-lg">
               <Image fill src={icon1} alt="icon1" />
@@ -107,6 +97,61 @@ function Footer() {
             </div>{" "}
             <div className="w-[108px] relative h-[133px]  rounded-lg">
               <Image fill src={icon3} alt="icon3" />
+            </div>
+          </div>
+
+          <div className=" flex flex-col justify-center items-start lg:justify-end lg:items-start w-full lg:w-fit gap-5">
+            <p className=" text-gray-400 text-base font-semibold ">
+              فانیکت را در شبکه های اجتماعی دنبال کنید
+            </p>
+
+            <div className=" flex gap-x-4">
+              <Link
+                href={"#"}
+                className=" w-12 h-12  relative  duration-200 cursor-pointer  "
+              >
+                <Image
+                  fill
+                  src={instagram}
+                  className=" object-cover"
+                  alt="icon3"
+                />
+              </Link>
+              <Link
+                href={"#"}
+                className=" w-12 h-12  relative  duration-200 cursor-pointer  "
+              >
+                <Image
+                  fill
+                  src={telegram}
+                  className=" object-cover"
+                  alt="icon3"
+                />
+              </Link>
+
+              <Link
+                href={"#"}
+                className=" w-12 h-12  relative  duration-200 cursor-pointer  "
+              >
+                <Image
+                  fill
+                  src={linkedin}
+                  className=" object-cover"
+                  alt="icon3"
+                />
+              </Link>
+
+              <Link
+                href={"#"}
+                className=" w-12 h-12  relative  duration-200 cursor-pointer  "
+              >
+                <Image
+                  fill
+                  src={facebook}
+                  className=" object-cover"
+                  alt="icon3"
+                />
+              </Link>
             </div>
           </div>
         </div>
