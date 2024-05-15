@@ -95,8 +95,8 @@ function page() {
             اسپورتیکت در کدام شهر ها فعال است؟
           </p>
 
-          <div className=" flex gap-x-3 flex-col xl:flex-row justify-center items-center mt-10 lg:mt-[172px]">
-            <p className=" max-w-[632px] font-semibold leading-7  text-justify text-gray-500">
+          <div className=" flex w-full gap-x-3 flex-col xl:flex-row justify-center items-center mt-10 lg:mt-[172px]">
+            <p className=" xl:max-w-[632px]  w-full font-semibold leading-7  text-justify text-gray-500">
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
               استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی
               نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
