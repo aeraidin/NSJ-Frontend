@@ -1,4 +1,3 @@
-/** @format */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -31,7 +30,6 @@ import Toast from "@/components/Layout/Alerts/Toast";
 interface ReviewServiceProps {
   id: string;
 }
-
 function ReviewService({ id }: ReviewServiceProps) {
   const [size, setSize] = useState(1);
   const queryclient = useQueryClient();

@@ -63,6 +63,12 @@ input::-webkit-inner-spin-button {
  .CartAddButtons {
   @apply w-[32px] h-[32px] rounded-xl border border-gray-50 text-gray-400 hover:text-gray-600 hover:bg-gray-50/30 hover:border-gray-100 disabled:opacity-25 disabled:cursor-not-allowed duration-150;
  }
+ .TabBtn {
+  @apply pb-4 px-2  border-b-2 text-gray-300 border-transparent duration-150;
+ }
+ .TabBtnActice {
+  @apply border-primary-600 text-primary-600;
+ }
 }
 @layer base {
  h1 {
