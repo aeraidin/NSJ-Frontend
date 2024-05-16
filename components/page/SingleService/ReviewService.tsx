@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -246,7 +248,7 @@ function ReviewService({ id }: ReviewServiceProps) {
           {data.data?.value?.totalCount !== 0 ? (
             <div
               onClick={() => paginateHandler()}
-              className=" w-full gap-x-4 group justify-center flex text-center mt-6"
+              className=" w-full gap-x-4 group justify-center cursor-pointer flex text-center mt-6"
             >
               <p className=" text-gray-500 group-hover:text-gray-300 duration-200 cursor-pointer">
                 مشاهده بیشتر
