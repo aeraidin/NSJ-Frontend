@@ -81,8 +81,6 @@ const ControlledRate = <T extends FieldValues>({
         }}
         emptyIcon={<FaStar size={24} />}
         filledIcon={<FaStar size={24} />}
-        isHalf={true}
-        halfIcon={<FaStarHalfAlt size={24} />}
         count={5}
         size={28}
         className={"cursor-pointer"}
