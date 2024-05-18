@@ -51,10 +51,10 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
 
     return (
         <MainLayout>
-            <div className='flex flex-col lg:gap-10 py-10'>
+            <div className='flex flex-col gap-6 lg:gap-10 py-4 lg:py-10'>
                 {/* Title */}
                 <div>
-                    {Insearch ? <h1>جستجو برای :‌{serviceName}</h1> : FoundedCategory && <h1>{FoundedCategory}</h1>}
+                    {Insearch ? <h1>جستجو برای : ‌{serviceName}</h1> : FoundedCategory && <h1>{FoundedCategory}</h1>}
                 </div>
                 {/* Body */}
                 <div className='w-full flex gap-6'>

@@ -85,20 +85,14 @@ export default ProductCards;
 export function ProductCardsLoading() {
   return (
     <div className="w-full select-none bg-white max-w-[321px] h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group animate-pulse ">
-      <Link href={`/`}>
-        <div className="aspect-w-8 aspect-h-5 overflow-hidden relative">
-          <div className="w-full h-full bg-gray-300"></div>
-        </div>
-      </Link>
+      <div className="aspect-w-8 aspect-h-5 overflow-hidden relative">
+        <div className="w-full h-full bg-gray-300"></div>
+      </div>
       <div className="p-3">
         {/* Info Part */}
         <div className="flex flex-col gap-3 pb-3">
           <div className="w-full flex items-center justify-between gap-4">
-            <Link
-              className="  truncate"
-              href={`/`}>
-              <div className=" w-[100px] h-3 rounded-full bg-gray-200"></div>
-            </Link>
+            <div className=" w-[100px] h-3 rounded-full bg-gray-200"></div>
             <div className="flex items-center gap-2 justify-center">
               <h5 className="leading-[12px]">5</h5>
               <FaStar className="text-secondary-600" size={20} />
@@ -111,9 +105,9 @@ export function ProductCardsLoading() {
               <div className="w-[50px] h-2 bg-gray-100 rounded-full"></div>
 
             </div>
-            <Link href={`/`} className="group/item">
+            <div className="group/item">
               <div className="w-[100px] h-2 rounded-full  bg-gray-100"></div>
-            </Link>
+            </div>
           </div>
           <div className={`flex items-center gap-2  opacity-0`}>
             <div className="w-full max-w-[100px] h-2 rounded-full bg-gray-100"></div>
@@ -125,13 +119,11 @@ export function ProductCardsLoading() {
         </div>
         <div className="flex items-center justify-between">
           <div className="w-full max-w-[100px] rounded-2xl h-2 bg-gray-100"></div>
-          <Link
-            href={`/`}
-            className="text-third-600 flex items-center gap-1 -translate-x-10 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-150 "
-          >
+          <div
+            className="text-third-600 flex items-center gap-1 -translate-x-10 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-150">
             <h5 className="text-third-600">مشاهده و خرید</h5>
             <ArrowLeft2 size={20} />
-          </Link>
+          </div>
         </div>
       </div>
     </div>
