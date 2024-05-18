@@ -7,8 +7,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Like, Like1, Star1 } from "iconsax-react";
 import Image from "next/image";
-import React, { useState } from "react";
+import Cookies from "js-cookie";
+const token = Cookies.get("token");
+
+import React, { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
+import LoginModal from "@/components/Layout/Modals/auth/LoginModal";
+import { log } from "console";
 interface commentProps {
   data: any;
 }
@@ -17,9 +22,10 @@ function Comment({ data }: commentProps) {
   const queryClient = useQueryClient();
   const [like, setLike] = useState(0);
   const [dislike, setDisLike] = useState(0);
+  const [token, setToken] = useState<string | undefined>(undefined);
 
   const [Result, setResult] = useState(false);
-
+  const [LoginModalState, setLoginModal] = useState(false);
   const ratingChanged = (newRating: any) => {
     console.log(newRating);
   };
@@ -42,6 +48,9 @@ function Comment({ data }: commentProps) {
     onError(error, variables, context) {},
   });
 
+  useEffect(() => {
+    setToken(Cookies.get("token"));
+  }, [Cookies.get("token")]);
   return (
     <>
       <Toast
@@ -55,6 +64,14 @@ function Comment({ data }: commentProps) {
         isSuccess={addLikeHandler.isError || addDisLikeHandler.isError}
         Result={Result}
       />
+
+      {LoginModalState ? (
+        <LoginModal
+          CloseModal={() => setLoginModal(false)}
+          State={LoginModalState}
+        />
+      ) : null}
+
       <div className=" w-full h-[219px] flex flex-col rounded-[20px] border border-gray-50 ">
         <div className=" w-full flex ">
           <div className="w-full max-w-[65px] py-6 flex justify-center h-full">
@@ -89,7 +106,9 @@ function Comment({ data }: commentProps) {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.5 }}
                       onClick={() => {
-                        if (dislike === 0) {
+                        if (dislike === 0 && !token) {
+                          setLoginModal(true);
+                        } else if (dislike === 0 && token) {
                           addDisLikeHandler.mutate({
                             commentId: data.id,
                           });
@@ -119,7 +138,9 @@ function Comment({ data }: commentProps) {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.5 }}
                       onClick={() => {
-                        if (like === 0) {
+                        if (like === 0 && !token) {
+                          setLoginModal(true);
+                        } else if (like === 0 && token) {
                           addLikeHandler.mutate({
                             commentId: data.id,
                           });
