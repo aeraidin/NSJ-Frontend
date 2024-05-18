@@ -24,9 +24,12 @@ function ProductCards({ data }: { data: ProductCard }) {
       <div className="p-3">
         {/* Info Part */}
         <div className="flex flex-col gap-3 pb-3">
-          <div className="w-full flex items-center justify-between">
+          <div className="w-full flex items-center justify-between gap-4
+          ">
             <Link
+              className="  truncate"
               href={`/service/${data.id}`}>
+
               <h3>{data.serviceName}</h3>
             </Link>
             <div className="flex items-center gap-2 justify-center">
