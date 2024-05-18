@@ -1,3 +1,4 @@
+import CategoryLayout from '@/components/Layout/CategoryLayout';
 import React from 'react'
 
 function page({
@@ -6,7 +7,7 @@ function page({
     params: { id: string };
 }) {
     return (
-        <div>page</div>
+        <CategoryLayout serviceId={Number(params.id)} />
     )
 }
 

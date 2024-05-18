@@ -5,6 +5,8 @@ import Banner from "/public/Banner/1344x504.jpg"
 import useGetAllCategory from '@/util/hook/Category/useGetAllCategory'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
+import Link from 'next/link'
+
 function FirstPartBanner() {
     const data = useGetAllCategory()
 
@@ -52,7 +54,8 @@ function FirstPartBanner() {
                     {Data ? Data.map((item, index) => {
                         return (
                             <SwiperSlide key={index} className='w-full  h-full !flex !items-center !justify-center'  >
-                                <p>{item.name}</p>
+                                <Link href={`/category/${item.id}`}>
+                                    <p>{item.name}</p></Link>
                             </SwiperSlide>
                         );
                     }) : <SwiperSlide className='relative  w-full h-full bg-gray-200 animate-pulse'>

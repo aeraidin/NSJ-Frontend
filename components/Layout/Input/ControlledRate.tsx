@@ -13,6 +13,8 @@ import ReactStars from "react-rating-stars-component";
 
 import Image from "next/image";
 import { Eye, EyeSlash, Star1 } from "iconsax-react";
+import { FaStarHalfAlt } from "react-icons/fa";
+import { FaStar } from "react-icons/fa6";
 
 type InputProps<T extends FieldValues> = {
   label?: string;
@@ -77,8 +79,8 @@ const ControlledRate = <T extends FieldValues>({
           }
           ratingChanged(e);
         }}
-        emptyIcon={<Star1 variant="Bold" />}
-        filledIcon={<Star1 variant="Bold" />}
+        emptyIcon={<FaStar size={24} />}
+        filledIcon={<FaStar size={24} />}
         count={5}
         size={28}
         className={"cursor-pointer"}

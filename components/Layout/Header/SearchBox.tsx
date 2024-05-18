@@ -50,7 +50,7 @@ function SearchBox() {
 
       searchHandler.mutate({
         serviceName: debouncedValue,
-        sortType: 0,
+        sortTyp: 0,
         page: 1,
         pageSize: 3,
       });
@@ -59,6 +59,7 @@ function SearchBox() {
 
       setLoading(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue, debouncedValue]);
 
   // useEffect(() => {
@@ -76,7 +77,7 @@ function SearchBox() {
         <div
           className={` w-full h-screen  absolute lg:bg-black/40 ${
             pathname !== "/" ? "hidden" : null
-          }  lg:block top-[172px] md:top-[180px] lg:top-[11px] bottom-0 right-0`}
+          }  lg:block top-[172px] md:top-[180px] lg:top-[100px] bottom-0 right-0`}
         ></div>
       ) : null}
       {/* <div className=" w-full h-screen  absolute bg-white top-0 bottom-0 right-0"></div> */}

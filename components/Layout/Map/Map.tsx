@@ -181,7 +181,7 @@ const Map = <T extends FieldValues>({
           ) : null}
           <div className=" absolute top-0 left-0 right-0 bottom-0 select-none"></div>
           <div
-            className={`absolute block  p-3 px-6 rounded-[10px] select-none z-40 cursor-pointer backdrop-blur-sm bg-white/30 shadow-CMSHADOW  duration-200  top-10 lg:top-24 left-1/2 transform -translate-x-1/2 translate-y-1/2`}
+            className={`absolute block  p-3 px-6 rounded-[10px] select-none z-20 cursor-pointer backdrop-blur-sm bg-white/30 shadow-CMSHADOW  duration-200  top-10 lg:top-24 left-1/2 transform -translate-x-1/2 translate-y-1/2`}
             onClick={() => console.log("click map")}
           >
             <a

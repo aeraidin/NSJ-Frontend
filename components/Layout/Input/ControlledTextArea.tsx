@@ -26,6 +26,7 @@ type InputProps<T extends FieldValues> = {
   length?: number;
   disabled?: boolean;
   onChange?: () => void;
+  isAbout?: boolean;
 };
 
 const ControlledTextArea = <T extends FieldValues>({
@@ -40,6 +41,7 @@ const ControlledTextArea = <T extends FieldValues>({
   PlaceHolder,
   disabled,
   onChange,
+  isAbout,
 }: InputProps<T>) => {
   // PasswordMode
   const [showPassword, setShowPassword] = useState(false);
@@ -71,7 +73,9 @@ const ControlledTextArea = <T extends FieldValues>({
         {label} {required ? <span className="text-error-600">*</span> : null}
       </label>
       <div
-        className={`w-full h-[180px] md:h-[100px]   relative   flex items-center  overflow-hidden justify-center `}
+        className={`w-full  ${
+          isAbout ? "h-[180px] md:h-[153px]" : "h-[180px] md:h-[100px]"
+        }   relative   flex items-center  overflow-hidden justify-center `}
       >
         <textarea
           disabled={disabled && disabled}
