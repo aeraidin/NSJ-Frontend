@@ -9,7 +9,8 @@ import { Like, Like1, Star1 } from "iconsax-react";
 import Image from "next/image";
 import Cookies from "js-cookie";
 const token = Cookies.get("token");
-
+import { FaStarHalfAlt } from "react-icons/fa";
+import { FaStar } from "react-icons/fa6";
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import LoginModal from "@/components/Layout/Modals/auth/LoginModal";
@@ -35,33 +36,36 @@ function Comment({ data }: commentProps) {
     onSuccess(data, variables, context) {
       setLike(1);
     },
-    onError(error, variables, context) {},
+    onError(error, variables, context) {
+      setResult(true);
+    },
   });
 
   const addDisLikeHandler = useMutation({
     mutationFn: AddDisLike,
     onSuccess(data, variables, context) {
       setDisLike(1);
-
       console.log(data);
     },
-    onError(error, variables, context) {},
+    onError(error, variables, context) {
+      setResult(true);
+    },
   });
 
   useEffect(() => {
     setToken(Cookies.get("token"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Cookies.get("token")]);
   return (
     <>
       <Toast
         messege={
-          addLikeHandler.error
-            ? (addLikeHandler.error as unknown as string)
+          addLikeHandler.error || addDisLikeHandler.error
+            ? "عملیات با خطا مواجه شد"
             : "با موفقیت حذف شد"
         }
         Close={() => setResult(false)}
         isError={addLikeHandler.isError || addDisLikeHandler.isError}
-        isSuccess={addLikeHandler.isError || addDisLikeHandler.isError}
         Result={Result}
       />
 
@@ -200,10 +204,11 @@ function Comment({ data }: commentProps) {
                       className={"cursor-pointer"}
                       count={5}
                       isHalf={true}
-                      halfIcon={<Star1 variant="Bold" />}
-                      emptyIcon={<Star1 variant="Bold" />}
-                      filledIcon={<Star1 variant="Bold" />}
+                      halfIcon={<FaStarHalfAlt size={24} />}
+                      emptyIcon={<FaStar size={24} />}
+                      filledIcon={<FaStar size={24} />}
                       value={data.rate}
+                      edit={false}
                       onChange={ratingChanged}
                       size={20}
                       activeColor="#FEB92E"

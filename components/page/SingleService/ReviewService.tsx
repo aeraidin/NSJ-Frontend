@@ -28,6 +28,8 @@ import { AddComment } from "@/util/api/Comment/AddComment";
 import { error } from "console";
 import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
 import Toast from "@/components/Layout/Alerts/Toast";
+import { FaStarHalfAlt } from "react-icons/fa";
+import { FaStar } from "react-icons/fa6";
 
 interface ReviewServiceProps {
   id: string;
@@ -88,6 +90,7 @@ function ReviewService({ id }: ReviewServiceProps) {
   };
 
   const token = Cookies.get("token");
+
   return (
     <>
       <Toast
@@ -188,9 +191,9 @@ function ReviewService({ id }: ReviewServiceProps) {
                       edit={false}
                       value={Data?.rate}
                       isHalf={true}
-                      halfIcon={<Star1 variant="Bold" />}
-                      emptyIcon={<Star1 variant="Bold" />}
-                      filledIcon={<Star1 variant="Bold" />}
+                      halfIcon={<FaStarHalfAlt size={24} />}
+                      emptyIcon={<FaStar size={24} />}
+                      filledIcon={<FaStar size={24} />}
                       size={28}
                       activeColor="#FEB92E"
                     />
