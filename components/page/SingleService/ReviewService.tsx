@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -26,6 +28,8 @@ import { AddComment } from "@/util/api/Comment/AddComment";
 import { error } from "console";
 import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
 import Toast from "@/components/Layout/Alerts/Toast";
+import { FaStarHalfAlt } from "react-icons/fa";
+import { FaStar } from "react-icons/fa6";
 
 interface ReviewServiceProps {
   id: string;
@@ -86,6 +90,7 @@ function ReviewService({ id }: ReviewServiceProps) {
   };
 
   const token = Cookies.get("token");
+
   return (
     <>
       <Toast
@@ -186,9 +191,9 @@ function ReviewService({ id }: ReviewServiceProps) {
                       edit={false}
                       value={Data?.rate}
                       isHalf={true}
-                      halfIcon={<Star1 variant="Bold" />}
-                      emptyIcon={<Star1 variant="Bold" />}
-                      filledIcon={<Star1 variant="Bold" />}
+                      halfIcon={<FaStarHalfAlt size={24} />}
+                      emptyIcon={<FaStar size={24} />}
+                      filledIcon={<FaStar size={24} />}
                       size={28}
                       activeColor="#FEB92E"
                     />
@@ -246,7 +251,7 @@ function ReviewService({ id }: ReviewServiceProps) {
           {data.data?.value?.totalCount !== 0 ? (
             <div
               onClick={() => paginateHandler()}
-              className=" w-full gap-x-4 group justify-center flex text-center mt-6"
+              className=" w-full gap-x-4 group justify-center cursor-pointer flex text-center mt-6"
             >
               <p className=" text-gray-500 group-hover:text-gray-300 duration-200 cursor-pointer">
                 مشاهده بیشتر

@@ -9,8 +9,8 @@ function Loading() {
       <div className=" Container  mt-16 animate-pulse">
         <div className=" w-full flex-col flex gap-12">
           <div>
-            <div className=" w-full relative flex justify-center h-[190px] lg:h-[504px] bg-gray-300  rounded-2xl lg:mb-32">
-              <div className=" w-full absolute hidden lg:block bottom-[-88px] lg:max-w-[850px]  xl:max-w-[1168px] h-[168px] bg-gray-100  rounded-2xl"></div>
+            <div className=" w-full relative flex justify-center aspect-w-16 aspect-h-6 h-[190px] lg:h-[504px] bg-gray-300  rounded-2xl lg:mb-32">
+              <div className=" w-full absolute hidden lg:block bottom-[-88px] top-[80%] lg:max-w-[850px] mx-auto  xl:max-w-[1168px] h-[168px] bg-gray-100  rounded-2xl"></div>
             </div>
 
             <div className=" flex gap-4 w-full mt-2 ">
@@ -71,9 +71,20 @@ function Loading() {
           </div>
 
           {/* {SecondBanner} */}
-          <div className=" w-full flex flex-col   gap-y-2 lg:gap-x-4 lg:flex-row">
+          {/* <div className=" w-full flex flex-col   gap-y-2 lg:gap-x-4 lg:flex-row">
             <div className=" w-full h-[100px] lg:h-[210px] lg:max-w-[548px] bg-gray-200  rounded-2xl"></div>
             <div className=" w-full h-[100px] lg:h-[210px] bg-gray-200  rounded-2xl"></div>
+          </div> */}
+
+          <div className="aspect-w-16 aspect-h-10 lg:aspect-h-3   relative">
+            <div className="grid grid-cols-1 lg:grid-cols-9 w-full h-full gap-6 ">
+              <div className="relative lg:col-span-4">
+                <div className=" w-full h-[100px] md:h-[180px] lg:h-[210px] lg:max-w-[548px] bg-gray-200  rounded-2xl"></div>
+              </div>
+              <div className="relative lg:col-span-5">
+                <div className=" w-full h-[100px] md:h-[180px] lg:h-[210px] bg-gray-200  rounded-2xl"></div>
+              </div>
+            </div>
           </div>
 
           {/* {HighestRateComplexLoading} */}
@@ -97,7 +108,7 @@ function Loading() {
           </div>
 
           {/* {ThirdBanner} */}
-          <div className=" w-full flex flex-col    gap-y-2 lg:gap-x-4 lg:flex-row">
+          <div className=" w-full flex flex-col mb-10    gap-y-2 lg:gap-x-4 lg:flex-row">
             <div className=" w-full  h-[440px]  bg-gray-200  rounded-2xl"></div>
             <div className=" w-full flex lg:flex-col gap-x-2 gap-y-4">
               <div className=" w-full  sm:max-w-full h-[100px] sm:h-[210px] bg-gray-200  rounded-2xl"></div>
