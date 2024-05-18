@@ -193,7 +193,6 @@ function MainServiceInfo({ id }: { id: string }) {
                                     </SwiperSlide>
                                 );
                             }) : <SwiperSlide className='relative  w-full h-full aspect-w-8 aspect-h-5 bg-gray-200 animate-pulse'>
-
                             </SwiperSlide>}
                             <button
                                 onClick={() => swiper && swiper.slidePrev()}

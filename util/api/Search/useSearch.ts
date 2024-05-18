@@ -9,13 +9,13 @@ enum sortType {
 }
 interface useSearchProps {
  serviceName?: string;
- pageSize: number;
- page: number;
- sportComplexId?: number;
- minPrice?: number;
- maxPrice?: number;
- minRate?: number;
- serviceId?: number;
+ pageSize: number | null;
+ page: number | null;
+ sportComplexId?: number | null;
+ minPrice?: number | null;
+ maxPrice?: number | null;
+ minRate?: number | null;
+ serviceId?: number | null;
  sortTyp?: sortType;
 }
 
