@@ -89,9 +89,20 @@ function Footer() {
         </div>
         <div className=" w-full  lg:mt-12 h-full flex justify-center items-center lg:justify-end lg:items-end flex-col gap-y-10">
           <div className="flex gap-x-4">
-            <div className="w-[108px] relative h-[133px] rounded-lg">
-              <Image fill src={icon1} alt="icon1" />
-            </div>
+            <Link
+              href="https://trustseal.enamad.ir/?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
+              className="w-[108px] relative h-[133px] rounded-lg"
+              target="_blank"
+              referrerPolicy="origin"
+            >
+              <Image
+                referrerPolicy="origin"
+                fill
+                className=" cursor-pointer object-contain"
+                src="https://trustseal.enamad.ir/logo.aspx?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
+                alt="نماد اعتماد الکترونیک"
+              />
+            </Link>
             <div className="w-[108px] relative h-[133px] rounded-lg">
               <Image fill src={icon2} alt="icon2" />
             </div>{" "}
