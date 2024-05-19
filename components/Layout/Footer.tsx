@@ -98,16 +98,17 @@ function Footer() {
               <Image
                 referrerPolicy="origin"
                 fill
+                sizes="(min-width: 640px) 90vw, 100vw"
                 className=" cursor-pointer object-contain"
                 src="https://trustseal.enamad.ir/logo.aspx?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
                 alt="نماد اعتماد الکترونیک"
               />
             </Link>
             <div className="w-[108px] relative h-[133px] rounded-lg">
-              <Image fill src={icon2} alt="icon2" />
+              <Image fill src={icon2} alt="icon2" sizes="(min-width: 640px) 90vw, 100vw" />
             </div>{" "}
             <div className="w-[108px] relative h-[133px]  rounded-lg">
-              <Image fill src={icon3} alt="icon3" />
+              <Image fill src={icon3} alt="icon3" sizes="(min-width: 640px) 90vw, 100vw" />
             </div>
           </div>
 
@@ -126,6 +127,7 @@ function Footer() {
                   src={instagram}
                   className=" object-cover"
                   alt="icon3"
+                  sizes="(min-width: 640px) 90vw, 100vw"
                 />
               </Link>
               <Link
@@ -137,6 +139,7 @@ function Footer() {
                   src={telegram}
                   className=" object-cover"
                   alt="icon3"
+                  sizes="(min-width: 640px) 90vw, 100vw"
                 />
               </Link>
 
@@ -149,6 +152,7 @@ function Footer() {
                   src={linkedin}
                   className=" object-cover"
                   alt="icon3"
+                  sizes="(min-width: 640px) 90vw, 100vw"
                 />
               </Link>
 
@@ -161,6 +165,7 @@ function Footer() {
                   src={facebook}
                   className=" object-cover"
                   alt="icon3"
+                  sizes="(min-width: 640px) 90vw, 100vw"
                 />
               </Link>
             </div>
