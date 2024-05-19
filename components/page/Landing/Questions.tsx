@@ -29,7 +29,7 @@ function Questions() {
                 <p className=" select-none  text-gray-500 font-semibold text-sm lg:text-base text-justify">
                   {item.question}
                 </p>
-                <ArrowDown2 className={`text-gray-300  ${activeIndex === item.id ? "rotate-0" : "rotate-180"} duration-200`} />
+                <ArrowDown2 className={`text-gray-300  ${activeIndex === item.id ? "rotate-180" : "rotate-0"} duration-200`} />
               </div>
 
               <Collapse isOpened={activeIndex === item.id}>
