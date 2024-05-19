@@ -25,6 +25,7 @@ type InputProps<T extends FieldValues> = {
   PlaceHolder?: string;
   length?: number;
   disabled?: boolean;
+  value?: number | string;
   onChange?: () => void;
   shebaField?: boolean;
 };
@@ -36,6 +37,7 @@ const ControlledInput = <T extends FieldValues>({
   type,
   register,
   watch,
+  value,
   setValue,
   required,
   PlaceHolder,
@@ -101,6 +103,7 @@ const ControlledInput = <T extends FieldValues>({
               : "border-gray-100 focus:border-gray-600 hover:border-gray-300"
           } ${shebaField ? "relative" : null} `}
           id={id}
+          value={value}
           inputMode={type === "number" ? "decimal" : "text"}
           onWheel={handleWheel}
           onKeyDown={handleKeyDown}
