@@ -37,7 +37,7 @@ function Page() {
             whileTap={{ scale: 0.9 }}
             className=" absolute top-52 w-[335px] left-72 h-[340px]"
           >
-            <Image src={wallet1} alt="wallet1" fill />
+            <Image src={wallet1} alt="wallet1" fill sizes="90vw" />
           </motion.button>
         </div>
 

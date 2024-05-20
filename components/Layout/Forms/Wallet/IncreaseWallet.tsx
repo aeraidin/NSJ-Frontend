@@ -1,23 +1,14 @@
-/** @format */
-
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   IncreaseWalletSchemaType,
   IncreaseWalletSchema,
 } from "@/util/config/validations/Profile/IncreaseWalletSchema";
 import { Controller, SubmitHandler } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useSendCodeOtp } from "@/util/api/Auth/SendCodeOtp";
-import PrimaryBtn from "../../Buttons/PrimaryBtn";
-import ControlledInput from "../../Input/ControlledInput";
 import Toast from "../../Alerts/Toast";
 import { Form } from "../Form";
-import ControlledSelect from "../../Input/ControlledSelect";
-import ControlledTextArea from "../../Input/ControlledTextArea";
 import { removeCommas } from "@persian-tools/persian-tools";
-
-import { AddContact } from "@/util/api/Contact/AddContact";
 import Amount from "../../Input/Amount";
 import SuccessBtn from "../../Buttons/SuccessBtn";
 import Image from "next/image";
@@ -26,29 +17,24 @@ import pasargad from "@/public/profile/pasargad.png";
 import RadioButton from "../../Buttons/RadioButton";
 import { increase } from "@/util/api/Wallet/increase";
 
-function IncreaseWallet({}: {}) {
+function IncreaseWallet({ }: {}) {
   const [reset, setReset] = useState({});
   const [result, setResult] = useState(false);
   const queryClient = useQueryClient();
-
   const [selectedBank, setSelectedBank] = useState<number | null>(1);
   const [selectedValue, setSelectedValue] = useState<number | null>(1);
-
   const selectionHandler = (value: number) => {
     setSelectedValue(value);
     setSelectedBank(value);
   };
-
   const values = {
     amount: "",
     refrenceNumber: "",
   };
-
   const increaseWallet = useMutation({
     mutationFn: increase,
     onSuccess: (data, variables, context) => {
       setResult(true);
-
       queryClient.invalidateQueries({ queryKey: ["Balance"] });
       setReset(values);
     },
@@ -56,20 +42,17 @@ function IncreaseWallet({}: {}) {
       console.log(err);
     },
   });
-
   const onSubmit: SubmitHandler<IncreaseWalletSchemaType> = async (data) => {
     increaseWallet.mutate({
       amount: Number(removeCommas(data.amount)),
       referenceNumber: "0000",
     });
-    console.log(data);
   };
 
   const options = [
     { name: "نقص فنی", value: "نقص فنی" },
     { name: "ثبت سفارش", value: "ثبت سفارش" },
     { name: "مشکل در پرداخت", value: "مشکل در پرداخت" },
-
     { name: "سایر", value: "سایر" },
   ];
   return (
@@ -103,6 +86,7 @@ function IncreaseWallet({}: {}) {
                     label="مبلغ"
                     PlaceHolder="مبلغ بالای 1000 تومان"
                     value={value}
+                    setValue={setValue}
                     required
                     onChange={onChange}
                     id={"amount"}
@@ -118,7 +102,6 @@ function IncreaseWallet({}: {}) {
               <div className=" w-full px-8 border flex justify-between items-center border-gray-50 h-[74px] rounded-[20px] my-2">
                 <div className=" flex gap-x-6 items-center">
                   {/* <div className=" w-5 h-5 border-gray-100 border rounded-full"></div> */}
-
                   <RadioButton
                     disabled={false}
                     // error={isError}
