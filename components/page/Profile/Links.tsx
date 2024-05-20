@@ -153,7 +153,10 @@ function Links() {
 
         <div>
           <ul>
-            <Link href={"/"} className=" flex  px-6 py-4 rounded-2xl  gap-x-4 ">
+            <Link
+              href={"/"}
+              className=" flex hover:bg-error-100 duration-200  px-6 py-4 rounded-2xl  gap-x-4 "
+            >
               <LogoutCurve className=" text-error-500" />
               <p className="text-error-500 text-base flex-nowrap">خروج</p>
             </Link>

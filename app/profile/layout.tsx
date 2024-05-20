@@ -14,7 +14,7 @@ function layout({ children, params }: any) {
   return (
     <MainLayout>
       <div className=" w-full  lg:gap-x-8 my-8   flex">
-        <div className="w-full h-screen lg:max-w-[257px] relative">
+        <div className="w-full  min-h-screen lg:max-w-[257px] relative">
           <div className="sticky top-32">
             <SideBar />
           </div>
