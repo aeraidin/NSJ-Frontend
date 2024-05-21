@@ -17,7 +17,7 @@ import telegram from "../../public/FooterIcons/Telegram.png";
 function Footer() {
   return (
     <footer className=" w-full Container ">
-      <div className=" border-t border-gray-50  py-12  flex flex-col gap-y-10 lg:gap-y-0 lg:flex-row">
+      <div className=" border-t border-gray-50 px-2 lg:px-0  py-12  flex flex-col gap-y-10 lg:gap-y-0 lg:flex-row">
         <div className=" w-full h-full flex flex-col  gap-y-[68px]">
           <div className=" grid-cols-2 gap-8 lg:gap-0  lg:grid-cols-3 grid">
             <ul className=" space-y-4 select-none ">
@@ -105,10 +105,20 @@ function Footer() {
               />
             </Link>
             <div className="w-[108px] relative h-[133px] rounded-lg">
-              <Image fill src={icon2} alt="icon2" sizes="(min-width: 640px) 90vw, 100vw" />
+              <Image
+                fill
+                src={icon2}
+                alt="icon2"
+                sizes="(min-width: 640px) 90vw, 100vw"
+              />
             </div>{" "}
             <div className="w-[108px] relative h-[133px]  rounded-lg">
-              <Image fill src={icon3} alt="icon3" sizes="(min-width: 640px) 90vw, 100vw" />
+              <Image
+                fill
+                src={icon3}
+                alt="icon3"
+                sizes="(min-width: 640px) 90vw, 100vw"
+              />
             </div>
           </div>
 

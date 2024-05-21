@@ -37,7 +37,7 @@ function SansService({ id }: { id: string }) {
             setResult(true)
             setTimeout(() => {
                 router.replace('/cart')
-            }, 3000);
+            }, 1000);
         },
         onError(error, variables, context) {
             setResult(true)

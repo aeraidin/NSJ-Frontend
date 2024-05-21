@@ -121,7 +121,7 @@ function SearchBox() {
           <AnimatePresence>
             <motion.div
               ref={containerRef}
-              className=" absolute  w-full"
+              className=" absolute   w-full"
               initial={{ opacity: 0, translateY: 30 }}
               exit={{ opacity: 0, translateY: 30 }}
               animate={{ opacity: 1, translateY: 0 }}
@@ -150,7 +150,7 @@ function SearchBox() {
                 ) : (
                   <>
                     {searchHandler.data?.value?.list.length > 0 ? (
-                      <div className=" h-[460px] overflow-y-scroll">
+                      <div className=" h-[460px] lg:h-fit overflow-y-scroll">
                         {searchHandler.data?.value?.list.map(
                           (item: any, index: number) => {
                             return (

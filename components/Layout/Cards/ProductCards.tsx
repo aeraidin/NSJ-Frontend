@@ -30,7 +30,7 @@ function ProductCards({ data }: { data: ProductCard }) {
               className="  truncate"
               href={`/service/${data.id}`}>
 
-              <h3>{data.serviceName}</h3>
+              <h3>{data.serviceName} {data.service.name}</h3>
             </Link>
             <div className="flex items-center gap-2 justify-center">
               <h5 className="leading-[12px]">{data.rate}</h5>
