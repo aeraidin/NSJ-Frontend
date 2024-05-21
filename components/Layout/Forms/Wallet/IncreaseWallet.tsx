@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 import React, { useState } from "react";
 import {
@@ -17,7 +19,7 @@ import pasargad from "@/public/profile/pasargad.png";
 import RadioButton from "../../Buttons/RadioButton";
 import { increase } from "@/util/api/Wallet/increase";
 
-function IncreaseWallet({ }: {}) {
+function IncreaseWallet({}: {}) {
   const [reset, setReset] = useState({});
   const [result, setResult] = useState(false);
   const queryClient = useQueryClient();
@@ -36,6 +38,8 @@ function IncreaseWallet({ }: {}) {
     onSuccess: (data, variables, context) => {
       setResult(true);
       queryClient.invalidateQueries({ queryKey: ["Balance"] });
+      queryClient.invalidateQueries({ queryKey: ["TransactionsList"] });
+
       setReset(values);
     },
     onError: (err) => {
@@ -96,10 +100,10 @@ function IncreaseWallet({ }: {}) {
             </div>
 
             <div className=" w-full">
-              <p className=" text-base font-semibold text-gray-400">
+              <p className=" text-sm lg:text-base font-semibold text-gray-400">
                 انتخاب درگاه پرداخت
               </p>
-              <div className=" w-full px-8 border flex justify-between items-center border-gray-50 h-[74px] rounded-[20px] my-2">
+              <div className=" w-full px-8 border flex flex-col lg:flex-row gap-y-6 justify-center lg:justify-between lg:items-center border-gray-50 h-[146px] lg:h-[74px] rounded-[20px] my-2">
                 <div className=" flex gap-x-6 items-center">
                   {/* <div className=" w-5 h-5 border-gray-100 border rounded-full"></div> */}
                   <RadioButton

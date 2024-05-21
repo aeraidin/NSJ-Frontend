@@ -2,6 +2,8 @@
 
 import ControlledInput from "@/components/Layout/Input/ControlledInput";
 import useGetUser from "@/util/hook/user/useGetUser";
+import { ArrowRight } from "iconsax-react";
+import Link from "next/link";
 import React from "react";
 
 function Informations() {
@@ -11,10 +13,15 @@ function Informations() {
   return (
     <>
       {user.data?.value ? (
-        <div className=" w-full">
+        <div className=" w-full  h-full p-4 lg:p-0 ">
+          <Link href={"/profile"} className=" gap-x-2 mb-9 lg:hidden flex">
+            <ArrowRight className=" text-gray-500" />
+            <p className=" text-sm  text-gray-600">بازگشت</p>
+          </Link>
+
           <p className=" text-lg text-gray-600">اطلاعات حساب کاربری</p>
 
-          <div className=" mt-10 grid grid-cols-2 w-full gap-x-20">
+          <div className=" mt-10 grid grid-cols-1 xl:grid-cols-2 w-full gap-x-20">
             <ControlledInput
               disabled
               id="firstName"
@@ -33,7 +40,7 @@ function Informations() {
               disabled
               id="phoneNumber"
               error=""
-              value={user.data?.value?.phoneNumber}
+              value={user.data?.value?.phone}
               label="شماره موبایل"
             />
             <ControlledInput

@@ -20,23 +20,23 @@ function Links() {
 
   return (
     <div className=" w-full mt-6 h-full ">
-      <div className=" h-full justify-between gap-y-24 flex  flex-col">
+      <div className=" h-full justify-between lg:gap-y-24 flex  flex-col">
         <div>
           <ul className=" flex flex-col gap-1">
             <Link
-              href={"/profile"}
+              href={"/profile/info"}
               className={` flex hover:bg-gray-25 duration-200 ${
-                path === "/profile" ? "bg-gray-25  " : null
+                path === "/profile/info" ? "bg-gray-25  " : null
               } px-6 py-4 rounded-2xl  gap-x-4 `}
             >
-              {path === "/profile" ? (
+              {path === "/profile/info" ? (
                 <Profile variant="Bold" className={`text-third-500`} />
               ) : (
                 <Profile className={`text-gray-300`} />
               )}
               <p
                 className={` text-base text-gray-400 flex-nowrap ${
-                  path === "/profile" ? "text-third-500  " : null
+                  path === "/profile/info" ? "text-third-500  " : null
                 }`}
               >
                 اطلاعات حساب کاربری
@@ -64,21 +64,19 @@ function Links() {
             </Link>
 
             <Link
-              href={"/profile/my-reserves"}
+              href={"/profile/reserves"}
               className={` flex hover:bg-gray-25 duration-200 ${
-                path === "/profile/my-reserves"
-                  ? "bg-gray-25 select-none "
-                  : null
+                path === "/profile/reserves" ? "bg-gray-25 select-none " : null
               } px-6 py-4 rounded-2xl  gap-x-4 `}
             >
-              {path === "/profile/my-reserves" ? (
+              {path === "/profile/reserves" ? (
                 <TableDocument variant="Bold" className={`text-third-500`} />
               ) : (
                 <TableDocument className={`text-gray-300`} />
               )}
               <p
                 className={` text-base flex-nowrap text-gray-400 ${
-                  path === "/profile/my-reserves" ? "text-third-500  " : null
+                  path === "/profile/reserves" ? "text-third-500  " : null
                 }`}
               >
                 رزرو های من
@@ -128,21 +126,19 @@ function Links() {
             </Link>
 
             <Link
-              href={"/profile/my-comments"}
+              href={"/profile/comments"}
               className={` flex hover:bg-gray-25 duration-200 ${
-                path === "/profile/my-comments"
-                  ? "bg-gray-25 select-none "
-                  : null
+                path === "/profile/comments" ? "bg-gray-25 select-none " : null
               } px-6 py-4 rounded-2xl  gap-x-4 `}
             >
-              {path === "/profile/my-comments" ? (
+              {path === "/profile/comments" ? (
                 <MessageText1 variant="Bold" className={`text-third-500`} />
               ) : (
                 <MessageText1 className={`text-gray-300`} />
               )}
               <p
                 className={` text-base flex-nowrap text-gray-400 ${
-                  path === "/profile/my-comments" ? "text-third-500  " : null
+                  path === "/profile/comments" ? "text-third-500  " : null
                 }`}
               >
                 نظرات من
