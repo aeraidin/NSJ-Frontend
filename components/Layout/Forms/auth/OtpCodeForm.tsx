@@ -9,15 +9,16 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
 import Toast from "../../Alerts/Toast";
-import OTPCode from "../../Otpcode/OTPCode";
+import OTPCode from "../../Otpcode/Otpcode";
+OTPCode;
 function OtpCodeForm({
   phone,
   CloseModal,
-  inModal
+  inModal,
 }: {
   phone: string;
   CloseModal?: () => void;
-  inModal?: boolean
+  inModal?: boolean;
 }) {
   const [CanResend, setCanResend] = useState(true);
   const [code, setCode] = useState<string>("");
@@ -44,7 +45,7 @@ function OtpCodeForm({
   const LoginOtp = useMutation({
     mutationFn: OtpLogin,
     onSuccess(data) {
-      setResult(true)
+      setResult(true);
       queryClient.invalidateQueries({ queryKey: ["UserData"] });
       queryClient.invalidateQueries({ queryKey: ["Cart"] });
       setTimeout(() => {
@@ -60,7 +61,7 @@ function OtpCodeForm({
       }, 3000);
     },
     onError(error, variables, context) {
-      setResult(true)
+      setResult(true);
     },
   });
 
@@ -78,9 +79,11 @@ function OtpCodeForm({
         Result={result}
       />
       <div className="flex flex-col gap-8">
-
-
-        <OTPCode error={LoginOtp.isError} otpCode={(e) => setCode(e)} length={5} />
+        <OTPCode
+          error={LoginOtp.isError}
+          otpCode={(e) => setCode(e)}
+          length={5}
+        />
 
         <CountdownTimer
           reset={reset}

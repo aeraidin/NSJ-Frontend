@@ -1,15 +1,31 @@
 /** @format */
 "use client";
 
-import Informations from "@/components/page/Profile/Informations";
-import React from "react";
+import SideBar from "@/components/page/Profile/SideBar";
+import useMediaQuery from "@/util/hook/useMediaQuery";
+import { redirect } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
-function page() {
+function Page() {
+  const isTabletOrLarger = useMediaQuery("(min-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 1024px)");
+  const token = Cookies.get("token");
+  const [LoginModalState, setLoginModal] = useState(true);
+
+  useEffect(() => {
+    if (!token) {
+      redirect("/login");
+    }
+    if (isTabletOrLarger && token) {
+      redirect("/profile/info");
+    }
+  }, [isMobile, isTabletOrLarger, token]);
   return (
-    <div className=" w-full ">
-      <Informations />
-    </div>
+    <>
+      <div className=" w-full lg:hidden  ">{<SideBar />}</div>
+    </>
   );
 }
 
-export default page;
+export default Page;

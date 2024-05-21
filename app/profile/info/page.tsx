@@ -1,10 +1,11 @@
 /** @format */
 "use client";
+
+import Informations from "@/components/page/Profile/Informations";
 import React, { useEffect } from "react";
 import Cookies from "js-cookie";
 import { redirect } from "next/navigation";
-import Link from "next/link";
-import { ArrowRight } from "iconsax-react";
+
 function Page() {
   const token = Cookies.get("token");
   useEffect(() => {
@@ -12,12 +13,10 @@ function Page() {
       redirect("/login");
     }
   }, [token]);
+
   return (
-    <div className=" w-full p-4 lg:p-0">
-      <Link href={"/profile"} className=" gap-x-2 mb-9 lg:hidden flex">
-        <ArrowRight className=" text-gray-500" />
-        <p className=" text-sm  text-gray-600">بازگشت</p>
-      </Link>
+    <div className=" w-full  ">
+      <Informations />
     </div>
   );
 }

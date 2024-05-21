@@ -2,9 +2,11 @@
 "use client";
 import MainLayout from "@/components/Layout/MainLayout";
 import SideBar from "@/components/page/Profile/SideBar";
-import React from "react";
+import React, { useState } from "react";
 import Breadcrumb from "@/components/Layout/breadcrumb";
 import { usePathname } from "next/navigation";
+import Modal from "@/components/Layout/Modals/Modal";
+import { stat } from "fs";
 
 function layout({ children, params }: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -14,28 +16,28 @@ function layout({ children, params }: any) {
   return (
     <MainLayout>
       <div className=" w-full  lg:gap-x-8 my-8   flex">
-        <div className="w-full h-screen lg:max-w-[257px] relative">
+        <div className="w-full  min-h-screen lg:max-w-[257px] relative">
           <div className="sticky top-32">
             <SideBar />
           </div>
         </div>
 
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 lg:flex flex-col">
           <div className=" hidden lg:block">
             <Breadcrumb>
-              <Breadcrumb.Item href="/dashboard/">خانه</Breadcrumb.Item>
+              <Breadcrumb.Item href="/">خانه</Breadcrumb.Item>
               <Breadcrumb.Item href={path}>
-                {path === "/profile" ? "اطلاعات حساب کاربری" : null}
+                {path === "/profile/info" ? "اطلاعات حساب کاربری" : null}
                 {path === "/profile/wallet" ? "کیف پول" : null}
-                {path === "/profile/my-reserves" ? "رزومه های من" : null}
+                {path === "/profile/reserves" ? "رزرو های من" : null}
                 {path === "/profile/favorite" ? "علاقه مندی" : null}
                 {path === "/profile/transactions" ? "تراکنش ها" : null}
-                {path === "/profile/my-comments" ? " نظرات من" : null}
+                {path === "/profile/comments" ? " نظرات من" : null}
               </Breadcrumb.Item>
             </Breadcrumb>
           </div>
 
-          <div className="flex-1 overflow-y-auto hidden lg:flex px-[146px] mt-[70px]">
+          <div className="  lg:flex-1 overflow-y-auto z-50 lg:z-0  fixed  lg:static top-7  left-0 right-0 bottom-0 bg-white lg:flex lg:px-[146px] mt-[70px]">
             {children}
           </div>
         </div>
