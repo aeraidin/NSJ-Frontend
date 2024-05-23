@@ -82,9 +82,10 @@ function MainServiceInfo({ id }: { id: string }) {
                             onClick={ToggleFavoriteHandler}
                             disabled={ToggleFavoriteApi.isPending}
                             transition={{ type: "spring", stiffness: 400 }}
-                            whileTap={{ scale: 0.85 }} className='px-6 py-3 border border-gray-100 rounded-2xl text-gray-400 flex items-center gap-2 text-sm font-semibold hover:bg-error-600 hover:text-white group  hover:border-transparent'>
+                            whileTap={{ scale: 0.85 }} className='px-6 py-3 border border-gray-100 rounded-2xl text-gray-400 flex items-center gap-2 text-sm font-semibold hover:bg-error-600 hover:text-white group hover:border-transparent'>
                             <Heart size="24" variant={Data?.isUserFavorite ? "Bold" : "Linear"} className={`${Data?.isUserFavorite ? "text-error-600" : ""} group-hover:text-white`} />
-                            <span>افزودن به علاقه مندی ها</span>
+                            <span className="whitespace-nowrap"> {Data?.isUserFavorite ? "حذف از علاقه مندی ها" : "افزودن به علاقه مندی ها"}</span>
+
                         </motion.button>
                     </div>
                 </div>
@@ -106,8 +107,8 @@ function MainServiceInfo({ id }: { id: string }) {
                         </motion.button>
                         <motion.button whileTap={{ scale: 0.85 }} transition={{ type: "spring", stiffness: 400 }} onClick={ToggleFavoriteHandler}
                             className='w-full px-2 py-2 border  border-gray-100 rounded-xl text-gray-400 flex items-center justify-center gap-2 text-xs font-semibold hover:bg-error-600 hover:text-white  hover:border-transparent'>
-                            <Heart size="24" />
-                            <span className="whitespace-nowrap">افزودن به علاقه مندی ها</span>
+                            <Heart size="24" variant={Data?.isUserFavorite ? "Bold" : "Linear"} className={`${Data?.isUserFavorite ? "text-error-600" : ""} group-hover:text-white`} />
+                            <span className="whitespace-nowrap"> {Data?.isUserFavorite ? "حذف از علاقه مندی ها" : "افزودن به علاقه مندی ها"}</span>
                         </motion.button>
                     </div>
                     <div className='w-full lg:w-[45%] order-2 flex-1 2xl:h-[478px] h-full lg:order-1'>
