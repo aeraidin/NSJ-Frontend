@@ -32,6 +32,7 @@ interface SingleProductPage {
  name: string;
  rate: number;
  location: string;
+ isUserFavorite: boolean;
  categoryName: string;
  service: {
   id: number;
