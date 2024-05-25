@@ -19,6 +19,8 @@ import { GoShareAndroid } from "react-icons/go";
 import { usePathname } from 'next/navigation';
 import Toast from '@/components/Layout/Alerts/Toast';
 import { motion } from "framer-motion";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { ToggleFavorite } from '@/util/api/Favorite/ToggleFavorite';
 
 function MainServiceInfo({ id }: { id: string }) {
     const data = useGetSingleService({ id: id })
@@ -29,13 +31,26 @@ function MainServiceInfo({ id }: { id: string }) {
     const [CopyResult, SetCopyResult] = useState(false)
     const [url, seturl] = useState("");
     const pathname = usePathname();
-
+    const queryClient = useQueryClient();
+    const ToggleFavoriteApi = useMutation({
+        mutationFn: ToggleFavorite,
+        onSuccess(data, variables, context) {
+            queryClient.invalidateQueries({ queryKey: ["SingleService", id] });
+            console.log(data);
+        },
+        onError(error, variables, context) {
+            console.log(error);
+        },
+    })
+    const ToggleFavoriteHandler = () => {
+        ToggleFavoriteApi.mutate({ sportComplexServiceId: Number(id) })
+    }
     useEffect(() => {
         seturl(window.location.origin + pathname.toString());
     }, [pathname, url]);
     return (
         <>
-            <Toast messege="با موفقیت کپی شد" Close={() => SetCopyResult(false)} isSuccess Result={CopyResult} />
+
             <div className='Container flex flex-col  gap-8 pt-8'>
                 <div className='w-full flex items-center justify-between'>
                     <Breadcrumb>
@@ -50,32 +65,51 @@ function MainServiceInfo({ id }: { id: string }) {
                         </Breadcrumb.Item>
                     </Breadcrumb>
                     <div className='lg:flex-row flex-col items-center gap-4 hidden lg:flex'>
-                        <button
+                        <motion.button
+                            transition={{ type: "spring", stiffness: 400 }}
+                            whileTap={{ scale: 0.9 }}
                             onClick={() => {
                                 navigator.clipboard.writeText(url);
                                 SetCopyResult(true)
-                            }} className='px-6 py-3 border  border-gray-100 rounded-2xl text-gray-400 flex items-center gap-2 text-sm font-semibold hover:bg-third-600 hover:text-white  hover:border-transparent'>
+                                setTimeout(() => {
+                                    SetCopyResult(false)
+                                }, 5000);
+                            }} className='px-6 py-3 border  border-gray-100 rounded-2xl cursor-copy text-gray-400 flex items-center gap-2 text-sm font-semibold hover:bg-third-600 hover:text-white  hover:border-transparent'>
                             <GoShareAndroid size="24" />
-                            <span>اشتراک گذاری</span>
-                        </button>
+                            <span>{CopyResult ? "لینک کپی شد ! " : "اشتراک گذاری"}</span>
+                        </motion.button>
                         <motion.button
+                            onClick={ToggleFavoriteHandler}
+                            disabled={ToggleFavoriteApi.isPending}
                             transition={{ type: "spring", stiffness: 400 }}
-                            whileTap={{ scale: 0.85 }} className='px-6 py-3 border border-gray-100 rounded-2xl text-gray-400 flex items-center gap-2 text-sm font-semibold hover:bg-error-600 hover:text-white  hover:border-transparent'>
-                            <Heart size="24" />
-                            <span>افزودن به علاقه مندی ها</span>
+                            whileTap={{ scale: 0.85 }} className='px-6 py-3 border border-gray-100 rounded-2xl text-gray-400 flex items-center gap-2 text-sm font-semibold hover:bg-error-600 hover:text-white group hover:border-transparent'>
+                            <Heart size="24" variant={Data?.isUserFavorite ? "Bold" : "Linear"} className={`${Data?.isUserFavorite ? "text-error-600" : ""} group-hover:text-white`} />
+                            <span className="whitespace-nowrap"> {Data?.isUserFavorite ? "حذف از علاقه مندی ها" : "افزودن به علاقه مندی ها"}</span>
+
                         </motion.button>
                     </div>
                 </div>
                 <div className='w-full h-full flex flex-col lg:flex-row items-start gap-4'>
                     <div className='lg:hidden w-full flex-row flex items-center gap-4'>
-                        <button className='w-full  px-2 py-2 border  border-gray-100 rounded-xl text-gray-400 flex items-center justify-center gap-2 text-xs font-semibold hover:bg-third-600 hover:text-white  hover:border-transparent'>
+                        <motion.button
+                            transition={{ type: "spring", stiffness: 400 }}
+                            whileTap={{ scale: 0.9 }}
+                            onClick={() => {
+                                navigator.clipboard.writeText(url);
+                                SetCopyResult(true)
+                                setTimeout(() => {
+                                    SetCopyResult(false)
+                                }, 5000);
+                            }} className='w-full  px-2 py-2 border  border-gray-100 rounded-xl text-gray-400 flex items-center justify-center gap-2 text-xs font-semibold hover:bg-third-600 hover:text-white  hover:border-transparent'>
                             <Share size="24" />
-                            <span>اشتراک گذاری</span>
-                        </button>
-                        <button className='w-full px-2 py-2 border  border-gray-100 rounded-xl text-gray-400 flex items-center justify-center gap-2 text-xs font-semibold hover:bg-error-600 hover:text-white  hover:border-transparent'>
-                            <Heart size="24" />
-                            <span className="whitespace-nowrap">افزودن به علاقه مندی ها</span>
-                        </button>
+                            <span>{CopyResult ? "لینک کپی شد ! " : "اشتراک گذاری"}</span>
+
+                        </motion.button>
+                        <motion.button whileTap={{ scale: 0.85 }} transition={{ type: "spring", stiffness: 400 }} onClick={ToggleFavoriteHandler}
+                            className='w-full px-2 py-2 border  border-gray-100 rounded-xl text-gray-400 flex items-center justify-center gap-2 text-xs font-semibold hover:bg-error-600 hover:text-white  hover:border-transparent'>
+                            <Heart size="24" variant={Data?.isUserFavorite ? "Bold" : "Linear"} className={`${Data?.isUserFavorite ? "text-error-600" : ""} group-hover:text-white`} />
+                            <span className="whitespace-nowrap"> {Data?.isUserFavorite ? "حذف از علاقه مندی ها" : "افزودن به علاقه مندی ها"}</span>
+                        </motion.button>
                     </div>
                     <div className='w-full lg:w-[45%] order-2 flex-1 2xl:h-[478px] h-full lg:order-1'>
                         {data.isSuccess ? <div className='flex flex-col h-full  justify-between gap-4'>
