@@ -1,6 +1,7 @@
 /** @format */
 
 interface ProductCard {
+
   id: number;
   filePath: string;
   serviceName: string;
@@ -25,6 +26,19 @@ interface favoriteCard {
   priceAfterDiscount: number;
   hasDiscount: boolean;
   totalCount: number;
+
+ id: number;
+ filePath: string;
+ serviceName: string;
+ rate: number;
+ location: string;
+ price: number;
+ service: { id: number; name: string };
+ sportComplex: { id: number; name: string };
+ priceAfterDiscount: number;
+ discountPresentage: number;
+ hasDiscount: boolean;
+
 }
 enum Contact {
   Address = 0,

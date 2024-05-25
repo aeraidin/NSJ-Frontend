@@ -19,17 +19,12 @@ function Profile() {
     visible: { opacity: 1, translateY: 0, },
     hidden: { opacity: 0, translateY: 50 },
   };
-  const Backdrop = {
-    visible: { opacity: 1 },
-    hidden: { opacity: 0 },
-  }
   return (
     <>
       {Data ? (
         <div ref={containerRef} onClick={() => setProfileModalState(!ProfileModalState)} className="px-3 py-2 rounded-2xl border border-gray-50 text-gray-500 items-center gap-2 hover:border-gray-200 duration-150 cursor-pointer hidden lg:flex relative select-none">
           <ProfileCircle size="20" variant="Bold" />
           <p>{Data.firstName}</p>
-          <ArrowDown2 size="24" />
           <AnimatePresence>
             {ProfileModalState && (
               <motion.div

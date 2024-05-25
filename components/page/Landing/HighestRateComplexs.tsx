@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { ArrowLeft2, ArrowRight2 } from 'iconsax-react';
 function HighestRateComplexs({ data }: { data: ProductCard[] | undefined }) {
+    console.log(data);
 
     const swiper = useSwiper();
     return (
