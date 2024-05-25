@@ -13,6 +13,7 @@ import { NumericFormat } from "react-number-format";
 function page() {
     const data = UseGetCart();
     const Data = data?.data?.value as CartDetail | undefined;
+    console.log(Data);
 
     return (
         <MainLayout>

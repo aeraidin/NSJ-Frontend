@@ -7,6 +7,7 @@ import { ArrowLeft2, ArrowRight2 } from 'iconsax-react';
 import Image from 'next/image';
 function HighestDiscountComplexs({ data }: { data: ProductCard[] | undefined }) {
     const swiper = useSwiper();
+    console.log(data);
 
     return (
         <div className='Container w-full flex flex-col gap-6 relative'>

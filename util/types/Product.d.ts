@@ -8,6 +8,7 @@ interface ProductCard {
  location: string;
  price: number;
  service: { id: number; name: string };
+ sportComplex: { id: number; name: string };
  priceAfterDiscount: number;
  discountPresentage: number;
  hasDiscount: boolean;
