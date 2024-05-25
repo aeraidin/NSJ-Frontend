@@ -101,7 +101,6 @@ function MainServiceInfo({ id }: { id: string }) {
                             }} className='w-full  px-2 py-2 border  border-gray-100 rounded-xl text-gray-400 flex items-center justify-center gap-2 text-xs font-semibold hover:bg-third-600 hover:text-white  hover:border-transparent'>
                             <Share size="24" />
                             <span>{CopyResult ? "لینک کپی شد ! " : "اشتراک گذاری"}</span>
-
                         </motion.button>
                         <motion.button
                             disabled={ToggleFavoriteApi.isPending}
