@@ -37,7 +37,7 @@ function Page() {
               </p>
               {balance.isPending ? (
                 <span className=" select-none flex justify-center items-center text-base  lg:text-[40px] text-primary-600 font-bold">
-                  <div className=" w-48  h-8 animate-pulse rounded-2xl bg-gray-200"></div>
+                  <div className=" w-28 lg:w-48 h-4  lg:h-8 animate-pulse rounded-2xl bg-gray-200"></div>
 
                   <span className=" select-none mr-1 lg:mr-4 text-sm lg:text-[20px] text-gray-200 font-semibold">
                     تومان
