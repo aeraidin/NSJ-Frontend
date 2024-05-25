@@ -85,7 +85,7 @@ function Comments({ data }: { data: myCommentData }) {
             </div>
           </div>
           <div className="  w-full flex flex-col  h-full">
-            <div className=" w-full flex items-start  pt-6 justify-between lg:px-6 flex-col gap-y-2 lg:gap-y-0 lg:flex-row">
+            <div className=" w-full flex items-start  pt-6 justify-between lg:px-6 flex-col gap-y-2 lg:gap-y-0 xl:flex-row">
               <div className="  flex gap-x-3 w-fit  h-full">
                 <p className=" text-gray-500 text-sm md:text-base">
                   {data.user.name}
