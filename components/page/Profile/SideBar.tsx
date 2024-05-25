@@ -31,7 +31,7 @@ function SideBar() {
       </div>
       <p className=" mt-12 text-gray-500 font-semibold">{`${user?.data?.value.firstName} ${user?.data?.value.lastName}`}</p>
 
-      <div className=" border mt-5 h-[77px] rounded-[20px] relative px-6 border-gray-50 flex w-full">
+      <div className=" border mt-5 h-[77px] rounded-[20px] relative px-6 border-gray-50 flex  w-full">
         <motion.button
           whileTap={{ scale: 0.9 }}
           className=" absolute bottom-0 right-0  w-24 h-24"

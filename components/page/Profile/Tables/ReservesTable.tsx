@@ -53,9 +53,7 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
                               />
                               تومان{" "}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4">
-                              {item.reserveDate.split(" ")[0]}
-                            </td>
+                            <td className="whitespace-nowrap px-3 py-4">---</td>
                             <td className="whitespace-nowrap px-3 py-4">
                               {item.reserveDate.split(" ")[0]}
                             </td>
@@ -178,6 +176,9 @@ export function ReservesTableLoading() {
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 ">
                           <div className=" w-[75px] rounded-lg bg-gray-100  h-6"></div>
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 ">
+                          <div className=" w-[75px] rounded-lg bg-gray-100 h-6"></div>
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 ">
                           <div className=" w-[75px] rounded-lg bg-gray-100 h-6"></div>

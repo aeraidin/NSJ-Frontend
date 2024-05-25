@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { UseFormRegister, FieldValues, Path } from "react-hook-form";
 import useClickOutside from "@/util/hook/useClickOutside";
 import "../../../components/Layout/Map/Map.css";
+import Link from "next/link";
 interface mapProps<T extends FieldValues> {
   latlng: (value: any) => void;
   register?: UseFormRegister<T>;
@@ -139,8 +140,9 @@ const Map = <T extends FieldValues>({
   return (
     <>
       <div className="w-full h-full select-none  rounded-[10px]  ">
-        <div
-          className={` 
+        <Link
+          href={`https://www.google.com/maps?q=${position.lat},${position.lng}`}
+          className={`
           relative
            h-[200px] md:h-[296px] rounded-lg w-full select-none 
           `}
@@ -149,7 +151,7 @@ const Map = <T extends FieldValues>({
             <MapContainer
               whenReady={() => setMapInitialized(true)}
               ref={mapRef}
-              className={`blur-none relative rounded-3xl`}
+              className={`blur-none  relative rounded-3xl`}
               center={position}
               zoom={55}
               style={{ height: `100%`, width: "100%" }}
@@ -201,7 +203,7 @@ const Map = <T extends FieldValues>({
           >
             {error}
           </div>
-        </div>
+        </Link>
       </div>
     </>
   );
