@@ -14,7 +14,7 @@ function Informations() {
     <>
       {user.data?.value && !user.isPending ? (
         <div className=" w-full  h-full p-4 lg:p-0 ">
-          <Link href={"/profile"} className=" gap-x-2 mb-9 lg:hidden flex">
+          <Link href={"/profile"} className=" gap-x-2 mb-9  lg:hidden flex">
             <ArrowRight className=" text-gray-500" />
             <p className=" text-sm  text-gray-600">بازگشت</p>
           </Link>
@@ -106,19 +106,19 @@ export function InformationsLoading() {
       <div className=" mt-10 grid grid-cols-1 xl:grid-cols-2 w-full gap-4">
         <div className=" flex flex-col gap-y-4">
           <p className=" text-gray-300">نام</p>
-          <div className=" w-full bg-gray-200 h-12 max-w-64 rounded-2xl"></div>
+          <div className=" w-full bg-gray-200 h-12 lg:max-w-64 rounded-2xl"></div>
         </div>
         <div className=" flex flex-col gap-y-4">
           <p className=" text-gray-300">نام خانوادگی</p>
-          <div className=" w-full bg-gray-200 h-12 max-w-64 rounded-2xl"></div>
+          <div className=" w-full bg-gray-200 h-12 lg:max-w-64 rounded-2xl"></div>
         </div>
         <div className=" flex flex-col gap-y-4">
           <p className=" text-gray-300">شماره موبایل</p>
-          <div className=" w-full bg-gray-200 h-12 max-w-64 rounded-2xl"></div>
+          <div className=" w-full bg-gray-200 h-12 lg:max-w-64 rounded-2xl"></div>
         </div>
         <div className=" flex flex-col gap-y-4">
           <p className=" text-gray-300">تاریخ تولد</p>
-          <div className=" w-full bg-gray-200 h-12 max-w-64 rounded-2xl"></div>
+          <div className=" w-full bg-gray-200 h-12 lg:max-w-64 rounded-2xl"></div>
         </div>
 
         <div className="">

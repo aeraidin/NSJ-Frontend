@@ -180,7 +180,7 @@ function ReviewService({ id }: ReviewServiceProps) {
               <div className=" w-full  mb-8 flex flex-col  justify-center items-center">
                 <p>
                   <span className=" font-semibold text-4xl text-primary-600 pl-[10px]">
-                    {Data?.rate}
+                    {Data?.rate.toFixed(1)}
                   </span>
                   از ۵
                 </p>
