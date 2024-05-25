@@ -29,7 +29,13 @@ function SideBar() {
           </div>
         </div>
       </div>
-      <p className=" mt-12 text-gray-500 font-semibold">{`${user?.data?.value.firstName} ${user?.data?.value.lastName}`}</p>
+      {user.isPending ? (
+        <div className=" w-24 mt-12 h-4 animate-pulse rounded-2xl bg-gray-200"></div>
+      ) : (
+        <>
+          <p className=" mt-12 text-gray-500 font-semibold">{`${user?.data?.value.firstName} ${user?.data?.value.lastName}`}</p>
+        </>
+      )}
 
       <div className=" border mt-5 h-[77px] rounded-[20px] relative px-6 border-gray-50 flex  w-full">
         <motion.button
@@ -42,15 +48,24 @@ function SideBar() {
         </motion.button>
         <div className=" flex flex-col w-full justify-center items-end">
           <p className=" text-gray-300 font-semibold text-xs">موجودی کیف پول</p>
-          <p className=" text-third-500  text-base font-semibold">
-            <NumericFormat
-              value={balance?.data?.value.balance}
-              displayType={"text"}
-              className="text-third-500 "
-              thousandSeparator={","}
-            />
-            <span className=" pr-1">{"تومان"}</span>
-          </p>
+          {balance.isPending ? (
+            <div className=" flex  text-base animate-pulse justify-center items-center font-semibold">
+              <div className=" w-20 h-4 rounded-2xl bg-gray-200"></div>
+              <span className=" pr-1 text-gray-200 ">{"تومان"}</span>
+            </div>
+          ) : (
+            <>
+              <p className=" text-third-500  text-base font-semibold">
+                <NumericFormat
+                  value={balance?.data?.value.balance}
+                  displayType={"text"}
+                  className="text-third-500 "
+                  thousandSeparator={","}
+                />
+                <span className=" pr-1">{"تومان"}</span>
+              </p>
+            </>
+          )}
         </div>
       </div>
       <Links />

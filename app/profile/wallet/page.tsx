@@ -33,17 +33,29 @@ function Page() {
             <p className=" text-xs lg:text-[20px] select-none  font-semibold text-gray-400">
               موجودی کیف پول شما
             </p>
-            <span className=" select-none text-base  lg:text-[40px] text-primary-600 font-bold">
-              <NumericFormat
-                value={balance?.data?.value.balance}
-                displayType={"text"}
-                className="text-primary-600 "
-                thousandSeparator={","}
-              />
-              <span className=" select-none mr-1 lg:mr-4 text-sm lg:text-[20px] text-gray-200 font-semibold">
-                تومان
+            {balance.isPending ? (
+              <span className=" select-none flex justify-center items-center text-base  lg:text-[40px] text-primary-600 font-bold">
+                <div className=" w-48  h-8 animate-pulse rounded-2xl bg-gray-200"></div>
+
+                <span className=" select-none mr-1 lg:mr-4 text-sm lg:text-[20px] text-gray-200 font-semibold">
+                  تومان
+                </span>
               </span>
-            </span>
+            ) : (
+              <>
+                <span className=" select-none text-base  lg:text-[40px] text-primary-600 font-bold">
+                  <NumericFormat
+                    value={balance?.data?.value.balance}
+                    displayType={"text"}
+                    className="text-primary-600 "
+                    thousandSeparator={","}
+                  />
+                  <span className=" select-none mr-1 lg:mr-4 text-sm lg:text-[20px] text-gray-200 font-semibold">
+                    تومان
+                  </span>
+                </span>
+              </>
+            )}
           </div>
 
           <motion.button

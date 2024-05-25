@@ -5,7 +5,9 @@ import Cookies from "js-cookie";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight } from "iconsax-react";
-import FavoriteCards from "@/components/Layout/Cards/FavoriteCards";
+import FavoriteCards, {
+  FavoriteCardsLoading,
+} from "@/components/Layout/Cards/FavoriteCards";
 import useGetFavorites from "@/util/hook/user/useGetFavorites";
 import Pagination from "@/components/Layout/Pagination/Pagination";
 function Page() {
@@ -51,12 +53,20 @@ function Page() {
         </div>
       </div>
 
+      {favorites.isPending && (
+        <div className=" mt-4 xl:mt-10 gap-y-4 flex flex-col">
+          <FavoriteCardsLoading />
+          <FavoriteCardsLoading />
+          <FavoriteCardsLoading />
+        </div>
+      )}
+
       {favorites?.data?.value?.list.length <= 0 ? (
         <div className=" text-gray-600 text-sm lg:text-base text-center h-40 flex justify-center items-center">
           علاقه مندی ثبت نشده است
         </div>
       ) : (
-        <div className=" w-full flex justify-center  flex-col gap-y-4 mt-4">
+        <div className=" w-full flex justify-center  flex-col gap-y-4 mt-4 xl:mt-10">
           {favorites?.data?.value?.list.map((item: any, index: number) => {
             return (
               <>

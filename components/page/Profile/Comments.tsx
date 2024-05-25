@@ -178,3 +178,29 @@ function Comments({ data }: { data: myCommentData }) {
 }
 
 export default Comments;
+
+export function CommentsLoading() {
+  return (
+    <>
+      <div className=" Container flex-col flex  animate-pulse">
+        <div className=" w-full h-[127px] flex bg-gray-200 rounded-lg">
+          <div className=" w-full max-w-[80px] p-3 h-full">
+            <div className=" rounded-full w-8 h-8  bg-gray-100"></div>
+          </div>
+
+          <div className=" w-full p-4 flex flex-col gap-4">
+            <div className=" w-full flex gap-x-4 pl-10 lg:pl-0">
+              <div className=" rounded-lg w-full max-w-[120px] h-4 bg-gray-100"></div>
+              <div className=" rounded-lg w-full max-w-[220px] lg:max-w-[90px] h-4 bg-gray-100"></div>
+            </div>
+            <div className=" rounded-lg w-full max-w-[220px] lg:max-w-[520px] h-4  bg-gray-100"></div>
+
+            <div className=" w-full hidden  lg:flex lg:justify-end gap-x-6   pl-10 lg:pl-0 ">
+              <div className=" flex gap-x-6 px-10"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

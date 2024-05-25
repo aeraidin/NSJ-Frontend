@@ -12,7 +12,7 @@ function Informations() {
 
   return (
     <>
-      {user.data?.value ? (
+      {user.data?.value && !user.isPending ? (
         <div className=" w-full  h-full p-4 lg:p-0 ">
           <Link href={"/profile"} className=" gap-x-2 mb-9 lg:hidden flex">
             <ArrowRight className=" text-gray-500" />
@@ -84,9 +84,64 @@ function Informations() {
             </div>
           </div>
         </div>
-      ) : null}
+      ) : (
+        <InformationsLoading />
+      )}
     </>
   );
 }
 
 export default Informations;
+
+export function InformationsLoading() {
+  return (
+    <div className=" w-full  h-full p-4 lg:p-0 animate-pulse ">
+      <Link href={"/profile"} className=" gap-x-2 mb-9 lg:hidden flex">
+        <ArrowRight className=" text-gray-500" />
+        <p className=" text-sm  text-gray-600">بازگشت</p>
+      </Link>
+
+      <p className=" text-lg text-gray-600">اطلاعات حساب کاربری</p>
+
+      <div className=" mt-10 grid grid-cols-1 xl:grid-cols-2 w-full gap-4">
+        <div className=" flex flex-col gap-y-4">
+          <p className=" text-gray-300">نام</p>
+          <div className=" w-full bg-gray-200 h-12 max-w-64 rounded-2xl"></div>
+        </div>
+        <div className=" flex flex-col gap-y-4">
+          <p className=" text-gray-300">نام خانوادگی</p>
+          <div className=" w-full bg-gray-200 h-12 max-w-64 rounded-2xl"></div>
+        </div>
+        <div className=" flex flex-col gap-y-4">
+          <p className=" text-gray-300">شماره موبایل</p>
+          <div className=" w-full bg-gray-200 h-12 max-w-64 rounded-2xl"></div>
+        </div>
+        <div className=" flex flex-col gap-y-4">
+          <p className=" text-gray-300">تاریخ تولد</p>
+          <div className=" w-full bg-gray-200 h-12 max-w-64 rounded-2xl"></div>
+        </div>
+
+        <div className="">
+          <p className=" text-gray-300 my-6 ">جنسیت</p>
+
+          <div className=" flex  gap-x-20">
+            <div className=" text-gray-300 gap-x-2 flex">
+              <p className=" text-gray-300">زن</p>
+
+              <div
+                className={`rounded-full  flex justify-center items-center bg-gray-200 border border-gray-50 w-5 h-5`}
+              ></div>
+            </div>
+
+            <div className=" gap-x-2 flex">
+              <p className=" text-gray-300">مرد</p>
+              <div
+                className={`rounded-full  flex justify-center items-center bg-gray-200 border border-gray-50 w-5 h-5`}
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

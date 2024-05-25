@@ -160,14 +160,14 @@ export default FavoriteCards;
 
 export function FavoriteCardsLoading() {
   return (
-    <div className="w-full select-none bg-white max-w-[321px] h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group animate-pulse ">
-      <div className="aspect-w-8 aspect-h-5 overflow-hidden relative">
-        <div className="w-full h-full bg-gray-300"></div>
+    <div className=" select-none bg-white  w-full h-fit flex flex-col  xl:flex-row border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group animate-pulse ">
+      <div className=" w-full xl:max-w-[290px] overflow-hidden relative">
+        <div className="aspect-w-8 aspect-h-5  md:aspect-w-16 md:aspect-h-9  xl:aspect-w-8 xl:aspect-h-5  bg-gray-300"></div>
       </div>
       <div className="p-3">
         {/* Info Part */}
         <div className="flex flex-col gap-3 pb-3">
-          <div className="w-full flex items-center justify-between gap-4">
+          <div className="w-full flex items-center  gap-4">
             <div className=" w-[100px] h-3 rounded-full bg-gray-200"></div>
             <div className="flex items-center gap-2 justify-center">
               <h5 className="leading-[12px]">5</h5>
@@ -192,9 +192,9 @@ export function FavoriteCardsLoading() {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center w-full xl:min-w-[500px] justify-between">
           <div className="w-full max-w-[100px] rounded-2xl h-2 bg-gray-100"></div>
-          <div className="text-third-600 flex items-center gap-1 -translate-x-10 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-150">
+          <div className="text-third-600 flex items-center gap-1 -translate-x-32 opacity-0 group-hover:opacity-100 group-hover:-translate-x-0 duration-150">
             <h5 className="text-third-600">مشاهده و خرید</h5>
             <ArrowLeft2 size={20} />
           </div>
