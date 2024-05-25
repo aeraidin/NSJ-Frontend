@@ -189,6 +189,89 @@ export function TransactionTableLoading() {
           </div>
         </div>
       </div>
+
+      <div className=" px-4  flex flex-col gap-y-3">
+        <div className=" flex rounded-2xl  border border-gray-50 justify-center items-center gap-y-6  h-[220px] flex-col md:hidden">
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              نوع تراکنش
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              مبلغ
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              تاریخ
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              ساعت
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+        </div>
+
+        <div className=" flex rounded-2xl  border border-gray-50 justify-center items-center gap-y-6  h-[220px] flex-col md:hidden">
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              نوع تراکنش
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              مبلغ
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              تاریخ
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              ساعت
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+        </div>
+
+        <div className=" flex rounded-2xl  border border-gray-50 justify-center items-center gap-y-6  h-[220px] flex-col md:hidden">
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              نوع تراکنش
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              مبلغ
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              تاریخ
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              ساعت
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
