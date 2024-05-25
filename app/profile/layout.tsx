@@ -11,7 +11,6 @@ import { stat } from "fs";
 function layout({ children, params }: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const path = usePathname();
-  console.log(path);
 
   return (
     <MainLayout>
@@ -21,7 +20,6 @@ function layout({ children, params }: any) {
             <SideBar />
           </div>
         </div>
-
         <div className="flex-1 lg:flex flex-col">
           <div className=" hidden lg:block">
             <Breadcrumb>
@@ -36,8 +34,7 @@ function layout({ children, params }: any) {
               </Breadcrumb.Item>
             </Breadcrumb>
           </div>
-
-          <div className="  lg:flex-1 overflow-y-auto z-50 lg:z-0  fixed  lg:static top-7  left-0 right-0 bottom-0 bg-white lg:flex lg:px-[146px] mt-[70px]">
+          <div className="lg:flex-1 overflow-y-auto fixed lg:static top-7 left-0 right-0 bottom-0 bg-white lg:flex lg:px-[146px] mt-[70px]">
             {children}
           </div>
         </div>

@@ -76,7 +76,7 @@ function Comment({ data }: commentProps) {
         />
       ) : null}
 
-      <div className=" w-full h-[219px] flex flex-col rounded-[20px] border border-gray-50 ">
+      <div className=" w-full h-fit flex pb-6 flex-col rounded-[20px] border border-gray-50 ">
         <div className=" w-full flex ">
           <div className="w-full max-w-[65px] py-6 flex justify-center h-full">
             <div className=" w-10 h-10 bg-slate-600 rounded-full relative">
@@ -222,21 +222,23 @@ function Comment({ data }: commentProps) {
 
         {data.replay && (
           <div className=" px-6 w-full mt-8">
-            <div className="  w-full   h-[65px] ">
-              <div className="w-full bg-[#FBFBFB] rounded-[20px]  flex justify-start px-6 py-2 h-full">
+            <div className="  w-full   h-full ">
+              <div className="w-full bg-[#FBFBFB] rounded-[20px]  flex justify-start px-6 py-4  lg:p-6 h-fit">
                 <div className="w-full max-w-[65px]">
                   <div className=" w-10 h-10 bg-red-600 rounded-full"></div>
                 </div>
-                <div>
+                <div className="flex-1 overflow-hidden">
                   <div className="  w-full flex flex-col  h-full">
                     <div className="   flex gap-x-3 h-full w-full">
-                      <p className=" text-gray-500 text-sm md:text-base">
+                      <p className="text-gray-500 text-sm md:text-base whitespace-pre-wrap">
                         پاسخ مدیر مجموعه
                       </p>
                     </div>
-                    <div className=" h-full w-full flex justify-between">
-                      <div>
-                        <p className="text-sm md:text-base">{data.replay}</p>
+                    <div className=" h-full w-full mt-2 lg:mt-5 flex justify-between">
+                      <div className=" w-full">
+                        <p className="text-sm md:text-base text-justify break-words">
+                          {data.replay}
+                        </p>
                       </div>
                     </div>
                   </div>

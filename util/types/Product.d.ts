@@ -12,6 +12,32 @@ interface ProductCard {
  discountPresentage: number;
  hasDiscount: boolean;
 }
+
+interface favoriteCard {
+ id: number;
+ filePath: string;
+ serviceName: string;
+ rate: number;
+ location: string;
+ price: number;
+ service: { id: number; name: string };
+ discountPresentage: number;
+ priceAfterDiscount: number;
+ hasDiscount: boolean;
+ totalCount: number;
+
+ id: number;
+ filePath: string;
+ serviceName: string;
+ rate: number;
+ location: string;
+ price: number;
+ service: { id: number; name: string };
+ sportComplex: { id: number; name: string };
+ priceAfterDiscount: number;
+ discountPresentage: number;
+ hasDiscount: boolean;
+}
 enum Contact {
  Address = 0,
  Phone = 1,
@@ -32,7 +58,6 @@ interface SingleProductPage {
  name: string;
  rate: number;
  location: string;
- isUserFavorite: boolean;
  categoryName: string;
  service: {
   id: number;
@@ -43,6 +68,7 @@ interface SingleProductPage {
  priceAfterDiscount: number;
  discountPresentage: number;
  hasDiscount: boolean;
+ isUserFavorite?: boolean;
  workHours: {
   fromDayOfWeak: number;
   toDayOfWeak: number;

@@ -21,5 +21,4 @@ export const IncreaseWalletSchema = z.object({
     .optional(),
 });
 
-// generate form types from zod validation schema
 export type IncreaseWalletSchemaType = z.infer<typeof IncreaseWalletSchema>;

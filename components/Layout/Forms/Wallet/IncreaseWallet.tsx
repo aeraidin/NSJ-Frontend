@@ -65,13 +65,14 @@ function IncreaseWallet({}: {}) {
         messege={
           increaseWallet.error
             ? (increaseWallet.error as unknown as string)
-            : "با موفقیت ارسال شد"
+            : "کیف پول با موفقیت افزایش یافت"
         }
         Close={() => setResult(false)}
         isError={increaseWallet.isError}
         isSuccess={increaseWallet.isSuccess}
         Result={result}
       />
+
       <Form<IncreaseWalletSchemaType>
         validationSchema={IncreaseWalletSchema}
         onSubmit={onSubmit}
