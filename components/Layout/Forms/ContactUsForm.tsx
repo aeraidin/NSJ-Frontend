@@ -17,7 +17,7 @@ import ControlledSelect from "../Input/ControlledSelect";
 import ControlledTextArea from "../Input/ControlledTextArea";
 import { AddContact } from "@/util/api/Contact/AddContact";
 
-function ContactUsForm({}: {}) {
+function ContactUsForm({ }: {}) {
   const [reset, setReset] = useState({});
   const [result, setResult] = useState(false);
 
@@ -39,7 +39,6 @@ function ContactUsForm({}: {}) {
       phoneNumber: data.phoneNumber,
       subject: data.subject.value,
     });
-    console.log(data);
   };
 
   const options = [

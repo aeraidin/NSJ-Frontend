@@ -2,16 +2,22 @@
 "use client";
 import MainLayout from "@/components/Layout/MainLayout";
 import SideBar from "@/components/page/Profile/SideBar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Layout/breadcrumb";
 import { usePathname } from "next/navigation";
-import Modal from "@/components/Layout/Modals/Modal";
-import { stat } from "fs";
+import Cookies from "js-cookie";
+import { redirect } from "next/navigation";
 
-function layout({ children, params }: any) {
+function Layout({ children, params }: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const path = usePathname();
 
+  const token = Cookies.get("token");
+  useEffect(() => {
+    if (!token) {
+      redirect("/login");
+    }
+  }, [token]);
   return (
     <MainLayout>
       <div className=" w-full  lg:gap-x-8 my-8   flex">
@@ -43,4 +49,4 @@ function layout({ children, params }: any) {
   );
 }
 
-export default layout;
+export default Layout;
