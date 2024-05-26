@@ -20,6 +20,7 @@ function Links({ inHeader }: { inHeader?: boolean }) {
         <div>
           <ul className="flex flex-col gap-1 whitespace-nowrap select-none">
             <Link
+
               href={"/profile/info"}
               className={` flex hover:bg-gray-25 duration-200 ${path === "/profile/info" ? "bg-gray-25  " : null
                 } ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"}  rounded-2xl   `}

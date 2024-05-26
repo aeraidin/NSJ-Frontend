@@ -17,15 +17,12 @@ function Page() {
       redirect("/login");
     }
   }, [token]);
-
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState<number>(1);
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected);
   };
-
   const favorites = useGetFavorites(currentPage + 1);
-
   useEffect(() => {
     if (favorites.isSuccess) {
       setTotalPages(favorites?.data?.value.totalCount);

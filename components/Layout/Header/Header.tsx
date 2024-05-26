@@ -85,12 +85,6 @@ function Header() {
         className={`w-full sticky top-0 left-0 bg-white z-30 px-6 border-b border-gray-50`}
       >
         <motion.div
-          // animate={
-          //   scrolled
-          //     ? { paddingTop: "10px", paddingBottom: "10px" }
-          //     : { paddingTop: "14px", paddingBottom: "14px" }
-          // }
-          // transition={{ duration: 0.1 }}
           className={`Container flex items-center justify-between py-4`}
         >
           <div className=" flex flex-col lg:flex-row gap-4 lg:gap-0  justify-between items-center w-full lg:w-fit ">
@@ -98,29 +92,17 @@ function Header() {
               <Link href={"/"}>
                 <div className="flex items-center gap-2">
                   <div
-                    // animate={
-                    //   scrolled
-                    //     ? { width: "35px", height: "69px" }
-                    //     : { width: "40px", height: "78px" }
-                    // }
-                    // transition={{ duration: 0.1 }}
                     className="relative w-[30px] h-[68px]"
                   >
                     <Image src={"/Icons/Logo.svg"} fill alt="Logo" />
                   </div>
                   <div
-                    // animate={
-                    //   scrolled
-                    //     ? { width: "140px", height: "35px" }
-                    //     : { width: "160px", height: "55px" }
-                    // }
                     className=" relative w-[120px] h-[35px]"
                   >
                     <Image src={"/Icons/LogoFont.svg"} fill alt="Logo" />
                   </div>
                 </div>
               </Link>
-
               <div className=" w-full flex items-center gap-x-7 lg:hidden justify-end ">
                 <SearchNormal1
                   onClick={() => setSearching(true)}

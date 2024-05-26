@@ -11,15 +11,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addRemoveFavorites } from "@/util/api/Profile/AddRemoveFavorites";
 function FavoriteCards({ data }: { data: favoriteCard }) {
   const queryClient = useQueryClient();
-
   const RemoveFavorite = useMutation({
     mutationFn: addRemoveFavorites,
     onSuccess(data, variables, context) {
       queryClient.invalidateQueries({ queryKey: ["FavoriteList"] });
     },
-    onError(error, variables, context) {},
+    onError(error, variables, context) { },
   });
-
   return (
     <div className="w-full  select-none relative bg-white flex flex-col xl:flex-row  h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group">
       <div
@@ -115,9 +113,8 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
             </Link>
           </div>
           <div
-            className={`flex items-center gap-2 ${
-              data.hasDiscount ? "opacity-100" : "opacity-0"
-            }`}
+            className={`flex items-center gap-2 ${data.hasDiscount ? "opacity-100" : "opacity-0"
+              }`}
           >
             <h5 className="text-gray-200 line-through">
               {" "}
