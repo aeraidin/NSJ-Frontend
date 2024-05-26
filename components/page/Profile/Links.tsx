@@ -54,45 +54,43 @@ function Links({ inHeader }: { inHeader?: boolean }) {
                 کیف پول
               </p>
             </Link>
-            {!inHeader &&
-              <Link
-                href={"/profile/reserves"}
-                className={` flex hover:bg-gray-25 duration-200 ${path === "/profile/reserves" ? "bg-gray-25 select-none " : null
-                  } ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"} rounded-2xl  `}
-              >
-                {path === "/profile/reserves" ? (
-                  <TableDocument variant="Bold" className={`text-third-500`} />
-                ) : (
-                  <TableDocument className={`text-gray-300`} />
-                )}
-                <p
-                  className={` text-base flex-nowrap text-gray-400 ${path === "/profile/reserves" ? "text-third-500  " : null
-                    }`}
-                >
-                  رزرو های من
-                </p>
-              </Link>
-            }
 
             <Link
-              href={"/profile/favorite"}
-              className={` flex hover:bg-gray-25 duration-200 ${path === "/profile/favorite" ? "bg-gray-25 select-none " : null
-                } ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"} rounded-2xl`}
+              href={"/profile/reserves"}
+              className={` flex hover:bg-gray-25 duration-200 ${path === "/profile/reserves" ? "bg-gray-25 select-none " : null
+                } ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"} rounded-2xl  `}
             >
-              {path === "/profile/favorite" ? (
-                <Heart variant="Bold" className={`text-third-500`} />
+              {path === "/profile/reserves" ? (
+                <TableDocument variant="Bold" className={`text-third-500`} />
               ) : (
-                <Heart className={`text-gray-300`} />
+                <TableDocument className={`text-gray-300`} />
               )}
               <p
-                className={` text-base flex-nowrap text-gray-400 ${path === "/profile/favorite" ? "text-third-500  " : null
+                className={` text-base flex-nowrap text-gray-400 ${path === "/profile/reserves" ? "text-third-500  " : null
                   }`}
               >
-                علاقه مندی
+                رزرو های من
               </p>
             </Link>
             {!inHeader &&
               <React.Fragment>
+                <Link
+                  href={"/profile/favorite"}
+                  className={` flex hover:bg-gray-25 duration-200 ${path === "/profile/favorite" ? "bg-gray-25 select-none " : null
+                    } ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"} rounded-2xl`}
+                >
+                  {path === "/profile/favorite" ? (
+                    <Heart variant="Bold" className={`text-third-500`} />
+                  ) : (
+                    <Heart className={`text-gray-300`} />
+                  )}
+                  <p
+                    className={` text-base flex-nowrap text-gray-400 ${path === "/profile/favorite" ? "text-third-500  " : null
+                      }`}
+                  >
+                    علاقه مندی
+                  </p>
+                </Link>
                 <Link
                   href={"/profile/transactions"}
                   className={` flex hover:bg-gray-25 duration-200 ${path === "/profile/transaction"

@@ -85,19 +85,19 @@ function Header() {
         className={`w-full sticky top-0 left-0 bg-white z-30 px-6 border-b border-gray-50`}
       >
         <motion.div
-          className={`Container flex items-center justify-between py-4`}
+          className={`Container flex items-center justify-between gap-6 py-4`}
         >
           <div className=" flex flex-col lg:flex-row gap-4 lg:gap-0  justify-between items-center w-full lg:w-fit ">
             <div className=" w-full justify-between flex  items-center">
               <Link href={"/"}>
                 <div className="flex items-center gap-2">
                   <div
-                    className="relative w-[30px] h-[68px]"
+                    className="relative w-[24px] h-[45px] lg:w-[30px] lg:h-[68px]"
                   >
                     <Image src={"/Icons/Logo.svg"} fill alt="Logo" />
                   </div>
                   <div
-                    className=" relative w-[120px] h-[35px]"
+                    className="relative w-[80px] h-[34px]  lg:w-[120px] lg:h-[35px]"
                   >
                     <Image src={"/Icons/LogoFont.svg"} fill alt="Logo" />
                   </div>

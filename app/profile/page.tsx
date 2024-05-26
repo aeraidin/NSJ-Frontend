@@ -23,7 +23,7 @@ function Page() {
   }, [isMobile, isTabletOrLarger, token]);
   return (
     <>
-      <div className=" w-full lg:hidden  ">{<SideBar />}</div>
+      <div className="w-full lg:hidden  ">{<SideBar />}</div>
     </>
   );
 }

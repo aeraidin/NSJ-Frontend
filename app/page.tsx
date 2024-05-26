@@ -6,6 +6,7 @@ import ForthPartBanner from "@/components/page/Landing/ForthPartBanner";
 import HighestDiscountComplexs from "@/components/page/Landing/HighestDiscountComplexs";
 import HighestRateComplexs from "@/components/page/Landing/HighestRateComplexs";
 import Questions from "@/components/page/Landing/Questions";
+import RandomCategory from "@/components/page/Landing/RandomCategory";
 import RecomendedList from "@/components/page/Landing/RecomendedList";
 import SecondPartBanner from "@/components/page/Landing/SecondPartBanner";
 import ThirdPartBanner from "@/components/page/Landing/ThirdPartBanner";
@@ -31,6 +32,7 @@ export default async function Home() {
           <SecondPartBanner />
           <HighestRateComplexs data={HighestRateComplexsData?.value.list} />
           <ThirdPartBanner />
+          <RandomCategory />
           <ForthPartBanner />
           <Questions />
         </div>
