@@ -1,8 +1,5 @@
-/** @format */
-"use client";
-
 import Informations from "@/components/page/Profile/Informations";
-import React, { useEffect } from "react";
+import React from "react";
 
 function Page() {
   return (

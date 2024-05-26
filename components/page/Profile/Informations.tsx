@@ -1,5 +1,4 @@
-/** @format */
-
+"use client";
 import ControlledInput from "@/components/Layout/Input/ControlledInput";
 import useGetUser from "@/util/hook/user/useGetUser";
 import { ArrowRight } from "iconsax-react";

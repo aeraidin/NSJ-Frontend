@@ -1,4 +1,3 @@
-/** @format */
 "use client";
 
 import Breadcrumb from "@/components/Layout/breadcrumb";
