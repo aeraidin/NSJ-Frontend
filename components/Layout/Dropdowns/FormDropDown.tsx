@@ -2,9 +2,10 @@
 
 "use client";
 import React, { useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+
 import useClickOutside from "@/util/hook/useClickOutside";
 import { motion } from "framer-motion";
+import { ArrowDown2 } from "iconsax-react";
 
 interface DropDownType {
   options: { name: string; value: string | number }[];
@@ -32,25 +33,27 @@ const FormDropDown: React.FC<DropDownType> = ({
   return (
     <div ref={containerRef} className={`relative inline-block w-full `}>
       <div
-        className={` ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
-          } ${error && !disabled
+        className={` ${
+          disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+        } ${
+          error && !disabled
             ? " border-red-500 "
             : "border-gray-100  focus:border-gray-600 hover:border-gray-300"
-          }  ${isOpen ? " border-gray-100 " : "border-gray-100"
-          }   border  text-sm bg-white text-nowrap md:text-base text-gray-300 select-none   duration-200  text-center w-full flex items-center justify-between  outline-none rounded-lg font-semibold px-3 py-3 `}
+        }  ${
+          isOpen ? " border-gray-100 " : "border-gray-100"
+        }   border  text-sm bg-white text-nowrap md:text-base text-gray-300 select-none   duration-200  text-center w-full flex items-center justify-between  outline-none rounded-lg font-semibold px-3 py-3 `}
         onClick={() => setIsOpen(!disabled && !isOpen)}
       >
         <p
-          className={`${Haveplaceholder
-            ? "text-gray-600"
-            : " text-gray-200"
-            }  text-sm`}
+          className={`${
+            Haveplaceholder ? "text-gray-600" : " text-gray-200"
+          }  text-sm`}
         >
           {initialSelectedValue}
         </p>
-        <ChevronDownIcon
-          className={`w-3 h-3 lg:h-5 lg:w-5 ${isOpen ? "rotate-180" : null
-            } duration-200 `}
+        <ArrowDown2
+          size={24}
+          className={` ${isOpen ? "rotate-180" : null} duration-200 `}
         />
       </div>
 

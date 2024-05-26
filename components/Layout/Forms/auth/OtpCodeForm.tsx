@@ -1,27 +1,31 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import Otpcode from "../../Otpcode/Otpcode";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ResendCode } from "@/util/api/Auth/ResendCode";
 import { OtpLogin } from "@/util/api/Auth/OtpLogin";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
-import Otp from "../../Otpcode/Otp";
+import Toast from "../../Alerts/Toast";
+import OTPCode from "../../Otpcode/OTPCode";
 function OtpCodeForm({
   phone,
   CloseModal,
+  inModal,
 }: {
   phone: string;
   CloseModal?: () => void;
+  inModal?: boolean;
 }) {
   const [CanResend, setCanResend] = useState(true);
   const [code, setCode] = useState<string>("");
   const isNew = Cookies.get("isNew");
   const router = useRouter();
   const [reset, setReset] = useState(false);
+  const [result, setResult] = useState(false);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (reset) {
@@ -40,29 +44,44 @@ function OtpCodeForm({
   const LoginOtp = useMutation({
     mutationFn: OtpLogin,
     onSuccess(data) {
-      if (isNew === "true") {
-        router.replace("/login/register");
-      } else {
-        router.replace("/");
-        CloseModal && CloseModal();
-      }
+      setResult(true);
+      queryClient.invalidateQueries();
+      setTimeout(() => {
+        if (isNew === "true") {
+          router.replace("/login/register");
+        } else {
+          if (inModal) {
+            CloseModal && CloseModal();
+          } else {
+            router.replace("/");
+          }
+        }
+      }, 3000);
     },
     onError(error, variables, context) {
-      console.log(error.message);
+      setResult(true);
     },
   });
 
   return (
     <>
+      <Toast
+        messege={
+          LoginOtp.error
+            ? (LoginOtp.error as unknown as string)
+            : "ورود با موفقیت انجام شد"
+        }
+        Close={() => setResult(false)}
+        isError={LoginOtp.isError}
+        isSuccess={LoginOtp.isSuccess}
+        Result={result}
+      />
       <div className="flex flex-col gap-8">
-        {/* <Otpcode
-          reset={reset}
+        <OTPCode
           error={LoginOtp.isError}
-          onOTPChange={(e) => setCode(e)}
+          otpCode={(e) => setCode(e)}
           length={5}
-        /> */}
-
-        <Otp error={LoginOtp.isError} otpCode={(e) => setCode(e)} length={5} />
+        />
 
         <CountdownTimer
           reset={reset}
@@ -82,7 +101,7 @@ function OtpCodeForm({
           تایید
         </PrimaryBtn>
       </div>
-      <p className="text-sm md:text-base text-center mt-6 text-gray-300">
+      <p className="text-sm  text-center mt-6 text-gray-300">
         کد را دریافت نکرده اید؟
         <button
           disabled={CanResend}

@@ -1,4 +1,23 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+/**
+ * @type {import('next').NextConfig}
+ */
 
-module.exports = nextConfig
+const nextConfig = {
+ experimental: {
+  missingSuspenseWithCSRBailout: false,
+ },
+ images: {
+  remotePatterns: [
+   {
+    protocol: "http",
+    hostname: "**",
+   },
+   {
+    protocol: "https",
+    hostname: "**",
+   },
+  ],
+ },
+};
+
+module.exports = nextConfig;

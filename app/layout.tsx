@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import Localfont from "next/font/local";
 import "./globals.css";
 import TenstackProvider from "@/util/config/Providers/TenstackProvider";
-import Header from "@/components/Layout/Header";
-import Footer from "@/components/Layout/Footer";
 import NextNProgressWrapper from "@/components/Layout/NextNProgressWrapper";
-
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 const yekan = Localfont({
   src: [
     {
@@ -48,10 +48,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fa" dir="rtl">
-      <body className={yekan.className}>
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
+      <body className={yekan.className} >
         <NextNProgressWrapper>
-          <TenstackProvider>{children}</TenstackProvider>
+          <TenstackProvider>
+
+            {children}
+
+          </TenstackProvider>
         </NextNProgressWrapper>
       </body>
     </html>

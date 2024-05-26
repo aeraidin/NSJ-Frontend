@@ -6,7 +6,7 @@ import FormDropDown from "../Dropdowns/FormDropDown";
 import MultiDropdown from "../Dropdowns/MultiDropdown";
 type SelectProps<T extends FieldValues> = {
   options: { name: string; value: string | number }[];
-
+  HideLable?: boolean
   label?: string;
   id: Path<T>;
   setValue?: any;
@@ -31,10 +31,11 @@ const ControlledSelect = <T extends FieldValues>({
   multiValues,
   value,
   disabled,
+  HideLable
 }: SelectProps<T>) => {
   return (
     <div className="w-full ">
-      {label && (
+      {label && !HideLable && (
         <label
           className={`pb-2 text-sm md:text-base text-gray-600 ${error && !disabled ? "text-[#F55F56] " : ""
             } ${disabled ? "opacity-50" : "opacity-100"}`}
