@@ -50,15 +50,14 @@ function FirstPartBanner() {
 
                     className='w-full h-full rounded-2xl relative group'
                 >
-                    {Data ? Data.map((item, index) => {
+                    {Data && Data.map((item, index) => {
                         return (
                             <SwiperSlide key={index} className='w-full  h-full !flex !items-center !justify-center'  >
                                 <Link href={`/category/${item.id}`}>
                                     <p className='whitespace-nowrap'>{item.name}</p></Link>
                             </SwiperSlide>
                         );
-                    }) : <SwiperSlide className='relative  w-full h-full bg-gray-200 animate-pulse'>
-                    </SwiperSlide>}
+                    })}
                 </Swiper>
             </div>
         </div>

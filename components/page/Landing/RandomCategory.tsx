@@ -90,7 +90,7 @@ function RandomCategory() {
                         },
                     }}
                     modules={[Navigation]}
-                    className="cursor-grab w-full "
+                    className="cursor-grab w-full"
                 >
                     {/* data.value?.list */}
                     {Data ? Data.map((item: ProductCard, index: number) => {
