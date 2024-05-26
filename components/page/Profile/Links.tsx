@@ -9,136 +9,62 @@ import {
   Wallet,
 } from "iconsax-react";
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React from "react";
 
-function Links({ inHeader }: { inHeader?: boolean }) {
+interface LinkItem {
+  href: string;
+  icon: React.ElementType;
+  text: string;
+}
+
+interface LinksProps {
+  inHeader?: boolean;
+}
+
+const Links: React.FC<LinksProps> = ({ inHeader }) => {
   const path = usePathname();
+
+  const linkItems: LinkItem[] = [
+    { href: "/profile/info", icon: Profile, text: "اطلاعات حساب کاربری" },
+    { href: "/profile/wallet", icon: Wallet, text: "کیف پول" },
+    { href: "/profile/reserves", icon: TableDocument, text: "رزرو های من" },
+  ];
+
+  if (!inHeader) {
+    linkItems.push(
+      { href: "/profile/favorite", icon: Heart, text: "علاقه مندی" },
+      { href: "/profile/transactions", icon: Receipt1, text: "تراکنش ها" },
+      { href: "/profile/comments", icon: MessageText1, text: "نظرات من" }
+    );
+  }
+
+  const renderLink = ({ href, icon: Icon, text }: LinkItem) => (
+    <Link
+      href={href}
+      key={href}
+      className={`flex hover:bg-gray-25 duration-200 ${path === href ? "bg-gray-25 select-none" : ""} ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"} rounded-2xl`}
+    >
+      <Icon className={`text-${path === href ? "third-500" : "gray-300"}`} variant={path === href ? "Bold" : "Linear"} />
+      <p className={`text-base flex-nowrap text-${path === href ? "third-500" : "gray-400"}`}>{text}</p>
+    </Link>
+  );
+
   return (
-    <div className="w-full h-full ">
+    <div className="w-full h-full">
       <div className="h-full justify-between flex flex-col">
         <div>
           <ul className="flex flex-col gap-1 whitespace-nowrap select-none">
-            <Link
-
-              href={"/profile/info"}
-              className={` flex hover:bg-gray-25 duration-200 ${path === "/profile/info" ? "bg-gray-25  " : null
-                } ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"}  rounded-2xl   `}
-            >
-              {path === "/profile/info" ? (
-                <Profile variant="Bold" className={`text-third-500`} />
-              ) : (
-                <Profile className={`text-gray-300`} />
-              )}
-              <p
-                className={` text-base text-gray-400 flex-nowrap ${path === "/profile/info" ? "text-third-500  " : null
-                  }`}
-              >
-                اطلاعات حساب کاربری
-              </p>
-            </Link>
-            <Link
-              href={"/profile/wallet"}
-              className={` flex hover:bg-gray-25 duration-200 ${path === "/profile/wallet" ? "bg-gray-25 select-none " : null
-                } ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"} rounded-2xl`}
-            >
-              {path === "/profile/wallet" ? (
-                <Wallet variant="Bold" className={`text-third-500`} />
-              ) : (
-                <Wallet className={`text-gray-300`} />
-              )}
-              <p
-                className={` text-base flex-nowrap text-gray-400 ${path === "/profile/wallet" ? "text-third-500  " : null
-                  }`}
-              >
-                کیف پول
-              </p>
-            </Link>
-
-            <Link
-              href={"/profile/reserves"}
-              className={` flex hover:bg-gray-25 duration-200 ${path === "/profile/reserves" ? "bg-gray-25 select-none " : null
-                } ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"} rounded-2xl  `}
-            >
-              {path === "/profile/reserves" ? (
-                <TableDocument variant="Bold" className={`text-third-500`} />
-              ) : (
-                <TableDocument className={`text-gray-300`} />
-              )}
-              <p
-                className={` text-base flex-nowrap text-gray-400 ${path === "/profile/reserves" ? "text-third-500  " : null
-                  }`}
-              >
-                رزرو های من
-              </p>
-            </Link>
-            {!inHeader &&
-              <React.Fragment>
-                <Link
-                  href={"/profile/favorite"}
-                  className={` flex hover:bg-gray-25 duration-200 ${path === "/profile/favorite" ? "bg-gray-25 select-none " : null
-                    } ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"} rounded-2xl`}
-                >
-                  {path === "/profile/favorite" ? (
-                    <Heart variant="Bold" className={`text-third-500`} />
-                  ) : (
-                    <Heart className={`text-gray-300`} />
-                  )}
-                  <p
-                    className={` text-base flex-nowrap text-gray-400 ${path === "/profile/favorite" ? "text-third-500  " : null
-                      }`}
-                  >
-                    علاقه مندی
-                  </p>
-                </Link>
-                <Link
-                  href={"/profile/transactions"}
-                  className={` flex hover:bg-gray-25 duration-200 ${path === "/profile/transaction"
-                    ? "bg-gray-25 select-none "
-                    : null
-                    } px-6 py-4 rounded-2xl  gap-x-4 `}
-                >
-                  {path === "/profile/transactions" ? (
-                    <Receipt1 variant="Bold" className={`text-third-500`} />
-                  ) : (
-                    <Receipt1 className={`text-gray-300`} />
-                  )}
-                  <p
-                    className={` text-base flex-nowrap text-gray-400 ${path === "/profile/transactions" ? "text-third-500  " : null
-                      }`}
-                  >
-                    تراکنش ها
-                  </p>
-                </Link>
-                <Link
-                  href={"/profile/comments"}
-                  className={` flex hover:bg-gray-25 duration-200 ${path === "/profile/comments" ? "bg-gray-25 select-none " : null
-                    } px-6 py-4 rounded-2xl  gap-x-4 `}
-                >
-                  {path === "/profile/comments" ? (
-                    <MessageText1 variant="Bold" className={`text-third-500`} />
-                  ) : (
-                    <MessageText1 className={`text-gray-300`} />
-                  )}
-                  <p
-                    className={` text-base flex-nowrap text-gray-400 ${path === "/profile/comments" ? "text-third-500  " : null
-                      }`}
-                  >
-                    نظرات من
-                  </p>
-                </Link>
-              </React.Fragment>
-            }
+            {linkItems.map(renderLink)}
           </ul>
         </div>
-
         <div>
           <ul>
             <Link
-              href={"/"}
+              href="/"
               className={`flex hover:bg-error-100 duration-200 rounded-2xl ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"}`}
             >
-              <LogoutCurve className=" text-error-500" />
+              <LogoutCurve className="text-error-500" />
               <p className="text-error-500 text-base flex-nowrap">خروج</p>
             </Link>
           </ul>
