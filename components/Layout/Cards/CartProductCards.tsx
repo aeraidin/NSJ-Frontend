@@ -1,7 +1,5 @@
-/** @format */
-
 import { RemoveCart } from "@/util/api/Cart/RemoveCart";
-import { UserTypeData } from "@/util/Data/UserTypeData";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Calendar, Location, Clock, Trash } from "iconsax-react";
 import Image from "next/image";
@@ -10,6 +8,7 @@ import { NumericFormat } from "react-number-format";
 import Toast from "../Alerts/Toast";
 import { UpdateCount } from "@/util/api/Cart/UpdateCount";
 import Link from "next/link";
+import { UserTypeData } from "@/util/Data/UserTypeData";
 
 function CartProductCards({ data }: { data: CartItems }) {
     const queryClient = useQueryClient();
