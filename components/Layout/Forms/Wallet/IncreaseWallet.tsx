@@ -53,12 +53,6 @@ function IncreaseWallet({}: {}) {
     });
   };
 
-  const options = [
-    { name: "نقص فنی", value: "نقص فنی" },
-    { name: "ثبت سفارش", value: "ثبت سفارش" },
-    { name: "مشکل در پرداخت", value: "مشکل در پرداخت" },
-    { name: "سایر", value: "سایر" },
-  ];
   return (
     <>
       <Toast
