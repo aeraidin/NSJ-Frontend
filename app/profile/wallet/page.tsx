@@ -8,19 +8,11 @@ import useGetBalance from "@/util/hook/Wallet/useGetBalance";
 import IncreaseWallet from "@/components/Layout/Forms/Wallet/IncreaseWallet";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Cookies from "js-cookie";
-import { redirect } from "next/navigation";
 import { ArrowRight } from "iconsax-react";
 import Toast from "@/components/Layout/Alerts/Toast";
 function Page() {
   const balance = useGetBalance();
   console.log(balance);
-  const token = Cookies.get("token");
-  useEffect(() => {
-    if (!token) {
-      redirect("/login");
-    }
-  }, [token]);
   return (
     <>
       <div className=" w-full px-4 mt-10">

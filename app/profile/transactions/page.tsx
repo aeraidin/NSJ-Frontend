@@ -8,8 +8,6 @@ import useGetTransactions from "@/util/hook/Wallet/useGetTransactions";
 import React, { useEffect, useState } from "react";
 import { ArrowRight } from "iconsax-react";
 import Link from "next/link";
-import Cookies from "js-cookie";
-import { redirect } from "next/navigation";
 
 function Page() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -18,13 +16,6 @@ function Page() {
     setCurrentPage(selected);
   };
   const transactions = useGetTransactions(currentPage + 1);
-
-  const token = Cookies.get("token");
-  useEffect(() => {
-    if (!token) {
-      redirect("/login");
-    }
-  }, [token]);
   useEffect(() => {
     if (transactions.isSuccess) {
       setTotalPages(transactions?.data?.value.totalCount);

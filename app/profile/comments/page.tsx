@@ -2,21 +2,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Pagination from "@/components/Layout/Pagination/Pagination";
-import Cookies from "js-cookie";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight } from "iconsax-react";
 import Comments, { CommentsLoading } from "@/components/page/Profile/Comments";
 import useGetComments from "@/util/hook/user/useGetComments";
 
 function Page() {
-  const token = Cookies.get("token");
-  useEffect(() => {
-    if (!token) {
-      redirect("/login");
-    }
-  }, [token]);
-
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState<number>(1);
   const handlePageChange = ({ selected }: { selected: number }) => {

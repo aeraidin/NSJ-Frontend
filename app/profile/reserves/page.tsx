@@ -5,8 +5,6 @@ import ReservesTable, {
   ReservesTableLoading,
 } from "@/components/page/Profile/Tables/ReservesTable";
 import useGetReserves from "@/util/hook/user/useGetReserves";
-import Cookies from "js-cookie";
-import { redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { ArrowRight } from "iconsax-react";
 import Link from "next/link";
@@ -17,13 +15,6 @@ function Page() {
     setCurrentPage(selected);
   };
   const reserves = useGetReserves(currentPage + 1);
-
-  const token = Cookies.get("token");
-  useEffect(() => {
-    if (!token) {
-      redirect("/login");
-    }
-  }, [token]);
 
   useEffect(() => {
     if (reserves.isSuccess) {
