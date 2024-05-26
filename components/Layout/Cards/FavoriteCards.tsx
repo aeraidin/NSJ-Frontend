@@ -16,7 +16,7 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
     onSuccess(data, variables, context) {
       queryClient.invalidateQueries({ queryKey: ["FavoriteList"] });
     },
-    onError(error, variables, context) { },
+    onError(error, variables, context) {},
   });
   return (
     <div className="w-full  select-none relative bg-white flex flex-col xl:flex-row  h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group">
@@ -26,7 +26,7 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
             sportComplexServiceId: data.id,
           });
         }}
-        className=" p-3 border cursor-pointer  border-error-100 absolute rounded-2xl opacity-0 lg:group-hover:opacity-100 left-5 duration-200 top-5 hidden lg:block "
+        className=" p-3 border cursor-pointer bg-white  border-error-100 absolute rounded-2xl opacity-0 lg:group-hover:opacity-100 left-5 duration-200 top-5 hidden lg:block "
       >
         <div className="  bg-white hidden xl:flex   duration-200 justify-center items-center  rounded-2xl">
           {RemoveFavorite.isPending ? (
@@ -46,8 +46,8 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
         </div>
       </div>
 
-      <div className=" w-full xl:max-w-[290px]">
-        <div className="aspect-w-8 aspect-h-5  md:aspect-w-16 md:aspect-h-9  xl:aspect-w-8 xl:aspect-h-5  overflow-hidden relative">
+      <div className="    w-full  mx-auto overflow-hidden xl:w-[290px]">
+        <div className="aspect-w-8 aspect-h-5  md:aspect-w-16 md:aspect-h-9  xl:aspect-w-16 xl:aspect-h-9  overflow-hidden relative">
           <Image
             fill
             className="object-cover   group-hover:scale-110 duration-150"
@@ -96,7 +96,7 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
               </h3>
             </Link>
             <div className="flex items-center gap-2 justify-center">
-              <h5 className="leading-[12px]">{data.rate}</h5>
+              <h5 className="leading-[12px]">{data.rate.toFixed(1)}</h5>
               <FaStar className="text-secondary-600" size={20} />
             </div>
           </div>
@@ -113,8 +113,9 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
             </Link>
           </div>
           <div
-            className={`flex items-center gap-2 ${data.hasDiscount ? "opacity-100" : "opacity-0"
-              }`}
+            className={`flex items-center gap-2 ${
+              data.hasDiscount ? "opacity-100" : "opacity-0"
+            }`}
           >
             <h5 className="text-gray-200 line-through">
               {" "}

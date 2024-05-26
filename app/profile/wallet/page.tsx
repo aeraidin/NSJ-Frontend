@@ -8,19 +8,11 @@ import useGetBalance from "@/util/hook/Wallet/useGetBalance";
 import IncreaseWallet from "@/components/Layout/Forms/Wallet/IncreaseWallet";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Cookies from "js-cookie";
-import { redirect } from "next/navigation";
 import { ArrowRight } from "iconsax-react";
 import Toast from "@/components/Layout/Alerts/Toast";
 function Page() {
   const balance = useGetBalance();
   console.log(balance);
-  const token = Cookies.get("token");
-  useEffect(() => {
-    if (!token) {
-      redirect("/login");
-    }
-  }, [token]);
   return (
     <>
       <div className=" w-full px-4 mt-10">
@@ -29,17 +21,24 @@ function Page() {
           <p className=" text-sm  text-gray-600">بازگشت</p>
         </Link>
         <p className=" text-lg text-gray-600">کیف پول</p>
-        <div className=" w-full items-center">
-          <div className=" max-w-[843px]  mt-10 h-[157px] lg:h-[229px]  w-full bg-gray-25 rounded-[34px]">
+        <div className=" w-full   items-center">
+          <div className=" max-w-[843px] relative   mt-10 h-[157px] lg:h-[229px]  w-full bg-gray-25 rounded-[34px]">
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              className=" absolute w-[187px] left-0 h-[190px] lg:w-[220px] lg:h-[220px] xl:top-[-80px] xl:w-[335px] xl:h-[340px]"
+            >
+              <Image src={wallet1} alt="wallet1" fill sizes="90vw" />
+            </motion.button>
+
             <div className=" justify-center h-full px-[100px] items-start flex gap-y-7 flex-col">
-              <p className=" text-xs lg:text-[20px] select-none  font-semibold text-gray-400">
+              <p className=" text-xs lg:text-base xl:text-[20px] select-none  font-semibold text-gray-400">
                 موجودی کیف پول شما
               </p>
               {balance.isPending ? (
                 <span className=" select-none flex justify-center items-center text-base  lg:text-[40px] text-primary-600 font-bold">
                   <div className=" w-28 lg:w-48 h-4  lg:h-8 animate-pulse rounded-2xl bg-gray-200"></div>
 
-                  <span className=" select-none mr-1 lg:mr-4 text-sm lg:text-[20px] text-gray-200 font-semibold">
+                  <span className=" select-none mr-1 lg:mr-4 text-sm lg:text-base xl:text-[20px] text-gray-200 font-semibold">
                     تومان
                   </span>
                 </span>
@@ -49,23 +48,16 @@ function Page() {
                     <NumericFormat
                       value={balance?.data?.value.balance}
                       displayType={"text"}
-                      className="text-primary-600 "
+                      className="text-primary-600 lg:text-2xl xl:text-4xl "
                       thousandSeparator={","}
                     />
-                    <span className=" select-none mr-1 lg:mr-4 text-sm lg:text-[20px] text-gray-200 font-semibold">
+                    <span className=" select-none mr-1 lg:mr-4 text-sm lg:text-base xl:text-[20px] text-gray-200 font-semibold">
                       تومان
                     </span>
                   </span>
                 </>
               )}
             </div>
-
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              className=" absolute top-28 lg:top-52 w-[187px] h-[190px] lg:w-[335px] left-6 lg:left-72 lg:h-[340px]"
-            >
-              <Image src={wallet1} alt="wallet1" fill sizes="90vw" />
-            </motion.button>
           </div>
 
           <div className=" w-full flex justify-center items-center flex-col">
