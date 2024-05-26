@@ -9,8 +9,7 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
 import Toast from "../../Alerts/Toast";
-import OTPCode from "../../Otpcode/Otpcode";
-OTPCode;
+import OTPCode from "../../Otpcode/OTPCode";
 function OtpCodeForm({
   phone,
   CloseModal,
@@ -46,8 +45,7 @@ function OtpCodeForm({
     mutationFn: OtpLogin,
     onSuccess(data) {
       setResult(true);
-      queryClient.invalidateQueries({ queryKey: ["UserData"] });
-      queryClient.invalidateQueries({ queryKey: ["Cart"] });
+      queryClient.invalidateQueries();
       setTimeout(() => {
         if (isNew === "true") {
           router.replace("/login/register");

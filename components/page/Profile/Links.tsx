@@ -9,8 +9,10 @@ import {
   Wallet,
 } from "iconsax-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
+import Cookies from "js-cookie";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface LinkItem {
   href: string;
@@ -24,6 +26,9 @@ interface LinksProps {
 
 const Links: React.FC<LinksProps> = ({ inHeader }) => {
   const path = usePathname();
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
 
   const linkItems: LinkItem[] = [
     { href: "/profile/info", icon: Profile, text: "اطلاعات حساب کاربری" },
@@ -49,7 +54,12 @@ const Links: React.FC<LinksProps> = ({ inHeader }) => {
       <p className={`text-base flex-nowrap text-${path === href ? "third-500" : "gray-400"}`}>{text}</p>
     </Link>
   );
+  const LogOutMutation = () => {
 
+    Cookies.remove("token");
+    queryClient.invalidateQueries();
+    router.replace("/");
+  }
   return (
     <div className="w-full h-full">
       <div className="h-full justify-between flex flex-col">
@@ -58,17 +68,17 @@ const Links: React.FC<LinksProps> = ({ inHeader }) => {
             {linkItems.map(renderLink)}
           </ul>
         </div>
-        <div>
-          <ul>
-            <Link
-              href="/"
-              className={`flex hover:bg-error-100 duration-200 rounded-2xl ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"}`}
-            >
-              <LogoutCurve className="text-error-500" />
-              <p className="text-error-500 text-base flex-nowrap">خروج</p>
-            </Link>
-          </ul>
-        </div>
+
+
+        <button
+          onClick={LogOutMutation}
+          className={`flex hover:bg-error-100 duration-200 rounded-2xl ${inHeader ? "pr-2 pl-6 gap-x-2 py-3" : "px-6 gap-x-4 py-4"}`}
+        >
+          <LogoutCurve className="text-error-500" />
+          <p className="text-error-500 text-base flex-nowrap">خروج</p>
+        </button>
+
+
       </div>
     </div>
   );

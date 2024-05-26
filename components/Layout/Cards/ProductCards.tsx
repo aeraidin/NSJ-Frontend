@@ -33,7 +33,7 @@ function ProductCards({ data }: { data: ProductCard }) {
               <h3>{data.serviceName} {data.service.name}</h3>
             </Link>
             <div className="flex items-center gap-2 justify-center">
-              <h5 className="leading-[12px]">{data.rate}</h5>
+              <h5 className="leading-[12px]">{data.rate.toFixed(1)}</h5>
               <FaStar className="text-secondary-600" size={20} />
             </div>
           </div>
