@@ -145,8 +145,8 @@ function CartProductCards({ data }: { data: CartItems }) {
                 </div>
                 <div className="pt-4">
                     <h3 className="font-semibold text-gray-400">جزئیات رزرو بلیت</h3>
-                    <div className="w-full grid grid-cols-3 items-center content-center pt-8 py-4 ">
-                        <div className="flex flex-col items-center gap-4 border-l border-l-gray-50">
+                    <div className="w-full grid grid-cols-1 md:grid-cols-3 md:items-center md:content-center gap-4  pt-8 py-4 ">
+                        <div className="flex flex-col items-center gap-4 md:border-l border-b md:border-b-0 pb-2 md:pb-0 border-gray-50">
                             <div className="flex items-center gap-2">
                                 <Image
                                     src={"/Icons/Gender.svg"}
@@ -158,7 +158,7 @@ function CartProductCards({ data }: { data: CartItems }) {
                             </div>
                             <p>{UserTypeData[data.clientType].name}</p>
                         </div>
-                        <div className="flex flex-col items-center gap-4 border-l border-l-gray-50">
+                        <div className="flex flex-col items-center gap-4 md:border-l border-b md:border-b-0 pb-2 md:pb-0 border-gray-50">
                             <div className="flex items-center gap-2">
                                 <Calendar size="24" className="text-gray-200" variant="Bold" />
                                 <p className="text-gray-400">تاریخ</p>

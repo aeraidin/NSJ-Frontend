@@ -1,4 +1,4 @@
-/** @format */
+
 "use client";
 import MainLayout from "@/components/Layout/MainLayout";
 import React from "react";
