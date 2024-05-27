@@ -72,6 +72,7 @@ function OtpCodeForm({
     if (code.length === 5) {
       handlerOtp();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code.length]);
 
   return (
