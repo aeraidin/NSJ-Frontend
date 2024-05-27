@@ -36,17 +36,20 @@ function Page() {
         <ArrowRight className=" text-gray-500" />
         <p className=" text-sm  text-gray-600">بازگشت</p>
       </Link>
+
+      <h1 className=" mb-6 lg:mb-10 text-gray-600">تراکنش ها</h1>
+
       {transactions.isPending ? (
         <>
           <TransactionTableLoading />
         </>
       ) : (
-        <>
+        <div className=" wf">
           <TransactionTable
             data={transactions?.data?.value.list}
             selectedRow={(e: any) => console.log(e)}
           />
-        </>
+        </div>
       )}
       <div className=" w-full my-10  h-fit">
         {totalPages > 1 ? (

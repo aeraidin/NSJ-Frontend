@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import PrimaryBtn from "../../Buttons/PrimaryBtn";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ResendCode } from "@/util/api/Auth/ResendCode";
@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
 import Toast from "../../Alerts/Toast";
-import OTPCode from "../../Otpcode/OTPCode";
+import OTPCode from "../../Otpcode/Otpcode";
 function OtpCodeForm({
   phone,
   CloseModal,
@@ -63,6 +63,16 @@ function OtpCodeForm({
     },
   });
 
+  const handlerOtp = useCallback(() => {
+    LoginOtp.mutate({ code: code, phone: phone });
+  }, [code, phone, LoginOtp]);
+
+  useEffect(() => {
+    if (code.length === 5) {
+      handlerOtp();
+    }
+  }, [code.length]);
+
   return (
     <>
       <Toast
@@ -90,9 +100,7 @@ function OtpCodeForm({
         />
         <PrimaryBtn
           type="submit"
-          onClick={() => {
-            LoginOtp.mutate({ code: code, phone: phone });
-          }}
+          onClick={handlerOtp}
           isloading={LoginOtp.isPending}
           disabled={
             code?.length < 5 || RsendCode.isPending || LoginOtp.isPending

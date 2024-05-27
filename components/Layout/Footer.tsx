@@ -1,9 +1,5 @@
-/** @format */
-
 import React from "react";
 import SubscribeForm from "./Forms/Subscribe/SubscribeForm";
-import { Call, Instagram, Sms } from "iconsax-react";
-import { TbBrandTelegram } from "react-icons/tb";
 import Link from "next/link";
 import Image from "next/image";
 import icon1 from "../../public/FooterIcons/1.png";
@@ -13,11 +9,10 @@ import facebook from "../../public/FooterIcons/Facebook.png";
 import instagram from "../../public/FooterIcons/Instagram.png";
 import linkedin from "../../public/FooterIcons/Linkedin.png";
 import telegram from "../../public/FooterIcons/Telegram.png";
-
 function Footer() {
   return (
     <footer className=" w-full Container ">
-      <div className=" border-t border-gray-50 px-2 lg:px-0  py-12  flex flex-col gap-y-10 lg:gap-y-0 lg:flex-row">
+      <div className=" border-t border-gray-50 px-2 lg:px-0  py-12 mb-16 lg:mb-0  flex flex-col gap-y-10 lg:gap-y-0 lg:flex-row">
         <div className=" w-full h-full flex flex-col  gap-y-[68px]">
           <div className=" grid-cols-2 gap-8 lg:gap-0  lg:grid-cols-3 grid">
             <ul className=" space-y-4 select-none ">

@@ -13,7 +13,7 @@ interface TransactionsProps {
 
 function TransactionTable({ data = [], selectedRow }: TransactionsProps) {
   return (
-    <div className=" px-4 lg:px-0">
+    <div className=" w-full overflow-hidden">
       {data.length !== 0 && data ? (
         <>
           <div className="  flex-col border border-gray-50   rounded-lg hidden lg:flex  ">
@@ -39,7 +39,6 @@ function TransactionTable({ data = [], selectedRow }: TransactionsProps) {
                           >
                             <td className="whitespace-nowrap px-3 py-4 ">
                               <div className=" w-full flex justify-center items-center">
-                                {/* <TransactionStatus data={item.type} /> */}
                                 {item.type === 0 ? "واریز" : null}
                                 {item.type === 1 ? "برداشت" : null}
                               </div>
@@ -81,7 +80,7 @@ function TransactionTable({ data = [], selectedRow }: TransactionsProps) {
             return (
               <div
                 key={index}
-                className=" w-full border border-gray-50 gap-y-4  flex-col flex lg:hidden  my-4 px-4 py-6  h-[198px] rounded-2xl"
+                className="  mx-auto  border border-gray-50 gap-y-4  flex-col flex lg:hidden  my-4 px-4 py-6  h-[198px] rounded-2xl"
               >
                 <div className=" w-full justify-between flex">
                   <p className="text-sm text-gray-400 font-semibold">

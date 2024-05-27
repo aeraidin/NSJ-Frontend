@@ -27,14 +27,14 @@ function Page() {
   ]);
 
   return (
-    <div className=" w-full p-4 lg:p-0">
+    <div className=" w-full ">
       <Link href={"/profile"} className=" gap-x-2 mb-9 lg:hidden flex">
         <ArrowRight className=" text-gray-500" />
         <p className=" text-sm  text-gray-600">بازگشت</p>
       </Link>
 
       <div className=" flex gap-x-2 items-center">
-        <p className=" text-lg text-gray-600">علاقه مندی</p>
+        <h1 className="  text-gray-600">علاقه مندی</h1>
         <div className=" bg-secondary-500 w-[25px] h-[18px] rounded-lg flex justify-center items-center">
           <span className=" text-white text-base font-bold">
             {favorites?.data?.value?.list.length}
@@ -55,7 +55,7 @@ function Page() {
           علاقه مندی ثبت نشده است
         </div>
       ) : (
-        <div className=" w-full flex justify-center  flex-col gap-y-4 mt-4 xl:mt-10">
+        <div className=" w-full flex justify-center   flex-col gap-y-4 mt-4 xl:mt-10">
           {favorites?.data?.value?.list.map((item: any, index: number) => {
             return (
               <>

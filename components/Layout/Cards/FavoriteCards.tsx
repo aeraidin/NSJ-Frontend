@@ -16,10 +16,10 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
     onSuccess(data, variables, context) {
       queryClient.invalidateQueries({ queryKey: ["FavoriteList"] });
     },
-    onError(error, variables, context) {},
+    onError(error, variables, context) { },
   });
   return (
-    <div className="w-full  select-none relative bg-white flex flex-col xl:flex-row  h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group">
+    <div className="w-full     select-none relative bg-white    flex flex-col xl:flex-row  h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group">
       <div
         onClick={() => {
           RemoveFavorite.mutate({
@@ -28,7 +28,7 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
         }}
         className=" p-3 border cursor-pointer bg-white  border-error-100 absolute rounded-2xl opacity-0 lg:group-hover:opacity-100 left-5 duration-200 top-5 hidden lg:block "
       >
-        <div className="  bg-white hidden xl:flex   duration-200 justify-center items-center  rounded-2xl">
+        <div className="  bg-white hidden xl:flex duration-200 justify-center items-center  rounded-2xl">
           {RemoveFavorite.isPending ? (
             <svg className="h-6 w-6 animate-spin" viewBox="3 3 18 18">
               <path
@@ -46,7 +46,7 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
         </div>
       </div>
 
-      <div className="    w-full  mx-auto overflow-hidden xl:w-[290px]">
+      <div className="    w-full  mx-auto overflow-hidden ">
         <div className="aspect-w-8 aspect-h-5  md:aspect-w-16 md:aspect-h-9  xl:aspect-w-16 xl:aspect-h-9  overflow-hidden relative">
           <Image
             fill
@@ -87,11 +87,11 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
         {/* Info Part */}
         <div className="flex w-full flex-col  gap-3 pb-3">
           <div
-            className="w-full flex items-center  gap-x-3
+            className="w-full flex  items-center  gap-x-3
           "
           >
-            <Link className="  truncate" href={`/service/${data.id}`}>
-              <h3>
+            <Link href={`/service/${data.id}`}>
+              <h3 className=" truncate max-w-[260px] lg:w-full">
                 {data.serviceName} {data.service.name}
               </h3>
             </Link>
@@ -113,9 +113,8 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
             </Link>
           </div>
           <div
-            className={`flex items-center gap-2 ${
-              data.hasDiscount ? "opacity-100" : "opacity-0"
-            }`}
+            className={`flex items-center gap-2 ${data.hasDiscount ? "opacity-100" : "opacity-0"
+              }`}
           >
             <h5 className="text-gray-200 line-through">
               {" "}

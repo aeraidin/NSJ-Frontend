@@ -27,13 +27,13 @@ function Page() {
     comments.isSuccess,
   ]);
   return (
-    <div className=" w-full p-4 lg:p-0">
+    <div className=" w-full ">
       <Link href={"/profile"} className=" gap-x-2 mb-9 lg:hidden flex">
         <ArrowRight className=" text-gray-500" />
         <p className=" text-sm  text-gray-600">بازگشت</p>
       </Link>
 
-      <p className=" text-lg text-gray-600">نظرات من</p>
+      <h1 className=" mb-6 lg:mb-10 text-gray-600">نظرات من</h1>
 
       {comments.isPending && (
         <div className=" mt-4 lg:mt-10 flex flex-col gap-y-6">

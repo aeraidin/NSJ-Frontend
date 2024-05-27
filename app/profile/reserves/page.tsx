@@ -28,11 +28,12 @@ function Page() {
   ]);
 
   return (
-    <div className=" w-full p-4 lg:p-0">
+    <div className=" w-full">
       <Link href={"/profile"} className=" gap-x-2 mb-9 lg:hidden flex">
         <ArrowRight className=" text-gray-500" />
         <p className=" text-sm  text-gray-600">بازگشت</p>
       </Link>
+      <h1 className="  text-gray-600 mb-6 lg:mb-10">رزرو های من</h1>
 
       {reserves.isPending ? (
         <>

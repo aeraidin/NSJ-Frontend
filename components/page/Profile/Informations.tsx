@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 import ControlledInput from "@/components/Layout/Input/ControlledInput";
 import useGetUser from "@/util/hook/user/useGetUser";
@@ -10,13 +12,13 @@ function Informations() {
   return (
     <>
       {user.data?.value && !user.isPending ? (
-        <div className=" w-full  h-full p-4 lg:p-0 ">
+        <div className=" w-full  h-full ">
           <Link href={"/profile"} className=" gap-x-2 mb-9  lg:hidden flex">
             <ArrowRight className=" text-gray-500" />
             <p className=" text-sm  text-gray-600">بازگشت</p>
           </Link>
 
-          <p className=" text-lg text-gray-600">اطلاعات حساب کاربری</p>
+          <h1 className=" mb-6 lg:mb-10 text-gray-600">اطلاعات حساب کاربری</h1>
 
           <div className=" mt-10 grid grid-cols-1 xl:grid-cols-2 w-full gap-x-20">
             <ControlledInput
@@ -55,8 +57,9 @@ function Informations() {
                 <div className=" text-gray-300 gap-x-2 flex">
                   <p className=" text-gray-300">زن</p>
                   <div
-                    className={` rounded-full flex justify-center items-center bg-white border border-gray-50 w-5 h-5 ${user?.data?.value.gender === 1 ? " bg-gray-50" : null
-                      }`}
+                    className={` rounded-full flex justify-center items-center bg-white border border-gray-50 w-5 h-5 ${
+                      user?.data?.value.gender === 1 ? " bg-gray-50" : null
+                    }`}
                   >
                     {user?.data?.value.gender === 1 ? (
                       <div className=" w-3 h-3 rounded-full bg-gray-300"></div>
@@ -67,8 +70,9 @@ function Informations() {
                 <div className=" gap-x-2 flex">
                   <p className=" text-gray-300">مرد</p>
                   <div
-                    className={`rounded-full  flex justify-center items-center${user?.data?.value.gender === 0 ? " bg-gray-50" : null
-                      } border border-gray-50 w-5 h-5`}
+                    className={`rounded-full  flex justify-center items-center${
+                      user?.data?.value.gender === 0 ? " bg-gray-50" : null
+                    } border border-gray-50 w-5 h-5`}
                   >
                     {user?.data?.value.gender === 0 ? (
                       <div className=" w-3 h-3 rounded-full bg-gray-300"></div>
@@ -90,7 +94,7 @@ export default Informations;
 
 export function InformationsLoading() {
   return (
-    <div className=" w-full  h-full p-4 lg:p-0 animate-pulse ">
+    <div className=" w-full  h-full  animate-pulse ">
       <Link href={"/profile"} className=" gap-x-2 mb-9 lg:hidden flex">
         <ArrowRight className=" text-gray-500" />
         <p className=" text-sm  text-gray-600">بازگشت</p>

@@ -62,7 +62,7 @@ function CartProductCards({ data }: { data: CartItems }) {
             <div className="w-full border border-gray-50 p-7 rounded-2xl hover:border-gray-100 hover:shadow-CMSHADOW duration-200 relative ">
                 <button
                     onClick={() => DeleteCartHandler.mutate(data.id)}
-                    className="border border-error-500/30 p-2 rounded-xl bg-white hover:bg-error-600 hover:text-white text-error-600 absolute left-3 top-5 duration-200 z-20"
+                    className="border border-error-500/30 p-2 rounded-xl bg-white hover:bg-error-600 hover:text-white text-error-600 absolute left-3 top-5 duration-200 z-[12]"
                 >
                     {DeleteCartHandler.isPending ? (
                         <svg className="h-6 w-6 animate-spin" viewBox="3 3 18 18">
