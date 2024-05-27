@@ -41,12 +41,12 @@ function Page() {
           <TransactionTableLoading />
         </>
       ) : (
-        <>
+        <div className=" wf">
           <TransactionTable
             data={transactions?.data?.value.list}
             selectedRow={(e: any) => console.log(e)}
           />
-        </>
+        </div>
       )}
       <div className=" w-full my-10  h-fit">
         {totalPages > 1 ? (

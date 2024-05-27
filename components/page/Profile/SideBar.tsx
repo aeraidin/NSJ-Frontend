@@ -17,7 +17,7 @@ function SideBar() {
   const balance = useGetBalance();
 
   return (
-    <div className=" w-full flex  flex-col p-2 items-center rounded-[20px]   lg:border border-gray-50 ">
+    <div className=" w-full flex   flex-col p-2 items-center rounded-[20px]   lg:border border-gray-50 ">
       <div className=" w-full  relative ">
         <div className="  aspect-w-12 aspect-h-6 md:aspect-w-16 md:aspect-h-5 lg:aspect-w-16 lg:aspect-h-9">
           <Image src={sidebarPicture} fill alt="sidebar-pic" />
@@ -68,7 +68,10 @@ function SideBar() {
           )}
         </div>
       </div>
-      <Links />
+
+      <div className=" w-full mt-4">
+        <Links />
+      </div>
     </div>
   );
 }

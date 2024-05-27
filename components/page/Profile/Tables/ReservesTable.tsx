@@ -11,7 +11,7 @@ interface TransactionsProps {
 
 function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
   return (
-    <div className=" px-4 lg:px-0">
+    <div>
       {data.length !== 0 && data ? (
         <>
           <div className=" flex-col border border-gray-50   rounded-lg hidden lg:flex  ">
@@ -84,8 +84,6 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
                     نام مجموعه
                   </p>
                   <p className=" text-gray-300 text-sm font-semibold">
-                    {/* {item.type === 0 ? "واریز" : null}
-                    {item.type === 1 ? "برداشت" : null} */}
                     {item.serviceName}
                   </p>
                 </div>

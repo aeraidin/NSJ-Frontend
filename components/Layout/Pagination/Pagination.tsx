@@ -24,7 +24,9 @@ function Pagination({
       pageLinkClassName={
         " w-full h-full flex rounded-full flex justify-center  disabled:hover:cursor-not-allowed  items-center "
       }
-      pageRangeDisplayed={2}
+      breakLabel="..."
+      pageRangeDisplayed={1}
+      marginPagesDisplayed={1}
       nextLabel={<ArrowLeft2 size={24} className="  " />}
       previousLabel={<ArrowRight2 size={24} className=" w-full h-full" />}
       previousClassName="rounded-full border text-gray-300 text-2xl w-11 h-11   border-gray-50 flex justify-center items-center"
