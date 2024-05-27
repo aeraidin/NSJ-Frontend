@@ -26,21 +26,6 @@ function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
         <div className="flex-1 lg:flex flex-col">
-          <div className=" hidden lg:block">
-            <Breadcrumb>
-              <Breadcrumb>
-                <Breadcrumb.Item href="/">خانه</Breadcrumb.Item>
-                <Breadcrumb.Item href={path}>
-                  {path === "/profile/info" ? "اطلاعات حساب کاربری" : null}
-                  {path === "/profile/wallet" ? "کیف پول" : null}
-                  {path === "/profile/reserves" ? "رزرو های من" : null}
-                  {path === "/profile/favorite" ? "علاقه مندی" : null}
-                  {path === "/profile/transactions" ? "تراکنش ها" : null}
-                  {path === "/profile/comments" ? " نظرات من" : null}
-                </Breadcrumb.Item>
-              </Breadcrumb>
-            </Breadcrumb>
-          </div>
           <div className="  flex-1 pb-10 overflow-y-auto mx-auto w-full  lg:max-w-[843px] lg:mt-[70px] ">
             <div className=" min-h-screen  w-full mb-12 mt-8 lg:mb-0 lg:mt-0 lg:my-0    ">
               {children}
