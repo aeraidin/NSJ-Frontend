@@ -105,72 +105,70 @@ function ReviewService({ id }: ReviewServiceProps) {
         Result={result}
       />
       {/* <div className={`z-50  `}> */}
-      {state && token !== undefined ? (
-        <Modal
-          CloseModal={() => {
-            setState(false);
-          }}
-          State={state}
-        >
-          <div>
-            <h2 className=" text-third-600 font-semibold mb-3">دیدگاه شما</h2>
-            <p className=" text-sm text-gray-300">
-              {`
+      <Modal
+        CloseModal={() => {
+          setState(false);
+        }}
+        State={state && token ? true : false}
+      >
+        <div>
+          <h2 className=" text-third-600 font-semibold mb-3">دیدگاه شما</h2>
+          <p className=" text-sm text-gray-300">
+            {`
               درمورد ${Data?.name} ${Data?.service.name}
               
               `}
-            </p>
-            <div className=" w-full my-5  border-t border-gray-50 h-1"></div>
-            <p className=" text-base mb-3 text-gray-600 font-semibold ">
-              امتیاز دهید!
-            </p>
-            <Form<CommentSchemaType>
-              validationSchema={CommentSchema}
-              onSubmit={onSubmit}
-              resetValues={reset}
-              className="w-full max-w-[850px] mx-auto"
-            >
-              {({ register, formState: { errors }, setValue }) => (
-                <>
-                  <ControlledRate
-                    setValue={setValue}
-                    register={register}
-                    id="rate"
-                    error={""}
-                  />
+          </p>
+          <div className=" w-full my-5  border-t border-gray-50 h-1"></div>
+          <p className=" text-base mb-3 text-gray-600 font-semibold ">
+            امتیاز دهید!
+          </p>
+          <Form<CommentSchemaType>
+            validationSchema={CommentSchema}
+            onSubmit={onSubmit}
+            resetValues={reset}
+            className="w-full max-w-[850px] mx-auto"
+          >
+            {({ register, formState: { errors }, setValue }) => (
+              <>
+                <ControlledRate
+                  setValue={setValue}
+                  register={register}
+                  id="rate"
+                  error={""}
+                />
 
-                  <div className=" mt-3  flex flex-col">
-                    <p className=" text-gray-600 text-base font-semibold">
-                      متن دیدگاه
-                    </p>
-                    <div>
-                      <ControlledTextArea
-                        id="text"
-                        setValue={setValue}
-                        register={register}
-                        error={errors.text?.message}
-                        PlaceHolder="برای ما بنویسید..."
-                      />
-                    </div>
+                <div className=" mt-3  flex flex-col">
+                  <p className=" text-gray-600 text-base font-semibold">
+                    متن دیدگاه
+                  </p>
+                  <div>
+                    <ControlledTextArea
+                      id="text"
+                      setValue={setValue}
+                      register={register}
+                      error={errors.text?.message}
+                      PlaceHolder="برای ما بنویسید..."
+                    />
                   </div>
-                  <div className=" mt-4">
-                    <PrimaryBtn isloading={addComment.isPending} type="submit">
-                      ثبت
-                    </PrimaryBtn>
-                  </div>
-                </>
-              )}
-            </Form>
-          </div>
-        </Modal>
-      ) : (
-        <LoginModal
-          CloseModal={() => {
-            setState(false);
-          }}
-          State={state}
-        />
-      )}
+                </div>
+                <div className=" mt-4">
+                  <PrimaryBtn isloading={addComment.isPending} type="submit">
+                    ثبت
+                  </PrimaryBtn>
+                </div>
+              </>
+            )}
+          </Form>
+        </div>
+      </Modal>
+      {/* ) : ( */}
+      <LoginModal
+        CloseModal={() => {
+          setState(false);
+        }}
+        State={state && !token ? true : false}
+      />
 
       {/* </div> */}
       {commentList.length !== 0 ? (
