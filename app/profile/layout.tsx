@@ -41,8 +41,8 @@ function Layout({ children }: { children: React.ReactNode }) {
               </Breadcrumb>
             </Breadcrumb>
           </div>
-          <div className="  flex-1 pb-10 overflow-y-auto mx-auto w-full lg:max-w-[843px] lg:mt-[70px] ">
-            <div className=" min-h-screen  w-full my-12 lg:my-0    ">
+          <div className="  flex-1 pb-10 overflow-y-auto mx-auto w-full  lg:max-w-[843px] lg:mt-[70px] ">
+            <div className=" min-h-screen  w-full mb-12 mt-8 lg:mb-0 lg:mt-0 lg:my-0    ">
               {children}
             </div>
           </div>

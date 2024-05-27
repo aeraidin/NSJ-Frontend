@@ -34,7 +34,7 @@ function Page() {
       </Link>
 
       <div className=" flex gap-x-2 items-center">
-        <p className=" text-lg text-gray-600">علاقه مندی</p>
+        <h1 className="  text-gray-600">علاقه مندی</h1>
         <div className=" bg-secondary-500 w-[25px] h-[18px] rounded-lg flex justify-center items-center">
           <span className=" text-white text-base font-bold">
             {favorites?.data?.value?.list.length}

@@ -36,6 +36,9 @@ function Page() {
         <ArrowRight className=" text-gray-500" />
         <p className=" text-sm  text-gray-600">بازگشت</p>
       </Link>
+
+      <h1 className=" mb-6 lg:mb-10 text-gray-600">تراکنش ها</h1>
+
       {transactions.isPending ? (
         <>
           <TransactionTableLoading />

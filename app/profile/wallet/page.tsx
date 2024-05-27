@@ -19,9 +19,9 @@ function Page() {
           <ArrowRight className=" text-gray-500" />
           <p className=" text-sm  text-gray-600">بازگشت</p>
         </Link>
-        <p className=" text-lg text-gray-600">کیف پول</p>
+        <h1 className="  text-gray-600">کیف پول</h1>
         <div className=" w-full   items-center">
-          <div className=" max-w-[843px] relative   mt-10 h-[157px] lg:h-[229px]  w-full bg-gray-25 rounded-[34px]">
+          <div className=" xl:max-w-[843px] relative   mt-10 h-[157px] lg:h-[229px]  w-full bg-gray-25 rounded-[34px]">
             <motion.button
               whileTap={{ scale: 0.9 }}
               className=" absolute w-[120px] top-[-40px] left-0 h-[140px] md:w-[220px] md:h-[220px] xl:top-[-80px] xl:w-[335px] xl:h-[340px]"

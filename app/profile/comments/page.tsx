@@ -33,7 +33,7 @@ function Page() {
         <p className=" text-sm  text-gray-600">بازگشت</p>
       </Link>
 
-      <p className=" text-lg text-gray-600">نظرات من</p>
+      <h1 className=" mb-6 lg:mb-10 text-gray-600">نظرات من</h1>
 
       {comments.isPending && (
         <div className=" mt-4 lg:mt-10 flex flex-col gap-y-6">
