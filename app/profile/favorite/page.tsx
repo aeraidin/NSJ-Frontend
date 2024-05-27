@@ -55,7 +55,7 @@ function Page() {
           علاقه مندی ثبت نشده است
         </div>
       ) : (
-        <div className=" w-full flex justify-center  flex-col gap-y-4 mt-4 xl:mt-10">
+        <div className=" w-full flex justify-center   flex-col gap-y-4 mt-4 xl:mt-10">
           {favorites?.data?.value?.list.map((item: any, index: number) => {
             return (
               <>
