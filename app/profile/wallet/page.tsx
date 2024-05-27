@@ -14,7 +14,7 @@ function Page() {
   const balance = useGetBalance();
   return (
     <>
-      <div className=" w-full px-4 mt-10">
+      <div className=" w-full lg:px-4 ">
         <Link href={"/profile"} className=" gap-x-2 mb-9 lg:hidden flex">
           <ArrowRight className=" text-gray-500" />
           <p className=" text-sm  text-gray-600">بازگشت</p>
@@ -24,7 +24,7 @@ function Page() {
           <div className=" max-w-[843px] relative   mt-10 h-[157px] lg:h-[229px]  w-full bg-gray-25 rounded-[34px]">
             <motion.button
               whileTap={{ scale: 0.9 }}
-              className=" absolute w-[187px] left-0 h-[190px] lg:w-[220px] lg:h-[220px] xl:top-[-80px] xl:w-[335px] xl:h-[340px]"
+              className=" absolute w-[120px] top-[-40px] left-0 h-[140px] md:w-[220px] md:h-[220px] xl:top-[-80px] xl:w-[335px] xl:h-[340px]"
             >
               <Image src={wallet1} alt="wallet1" fill sizes="90vw" />
             </motion.button>

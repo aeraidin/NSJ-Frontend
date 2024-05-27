@@ -19,7 +19,7 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
     onError(error, variables, context) {},
   });
   return (
-    <div className="w-full  select-none relative bg-white flex flex-col xl:flex-row  h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group">
+    <div className="w-full    select-none relative bg-white flex flex-col xl:flex-row  h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group">
       <div
         onClick={() => {
           RemoveFavorite.mutate({
