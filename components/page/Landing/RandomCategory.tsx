@@ -1,25 +1,56 @@
-"use client";
-import ProductCards from '@/components/Layout/Cards/ProductCards';
-import React from 'react'
+"use client"
+import { useSearch } from '@/util/api/Search/useSearch'
+import useGetAllCategory from '@/util/hook/Category/useGetAllCategory'
+import { useMutation } from '@tanstack/react-query'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { ArrowLeft2, ArrowRight2 } from 'iconsax-react';
-function HighestRateComplexs({ data }: { data: ProductCard[] | undefined }) {
+import ProductCards, { ProductCardsLoading } from '@/components/Layout/Cards/ProductCards'
+function RandomCategory() {
+    const [Data, setData] = useState<ProductCard[] | null>(null)
+    const [FoundedCategory, setFoundedCategory] = useState<null | string>(null)
+    const AllCategory = useGetAllCategory()
+    const DataAllCategory = AllCategory?.data?.value.list as CategoryItem[] | undefined
+    const getRandomItem = (items: CategoryItem[]): CategoryItem => {
+        const randomIndex = Math.floor(Math.random() * items.length);
+        return items[randomIndex];
+    };
+    const searchHandler = useMutation({
+        mutationFn: useSearch,
+        onSuccess(data, variables, context) {
+            setData(data.value.list);
+        },
+        onError(error, variables, context) { },
+    });
+    useEffect(() => {
+        if (DataAllCategory) {
+            const randomItem = getRandomItem(DataAllCategory);
+            setFoundedCategory(randomItem.name)
+            searchHandler.mutate({
+                page: 1,
+                pageSize: 20,
+                serviceId: randomItem.id,
+            })
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [DataAllCategory])
     const swiper = useSwiper();
+
     return (
         <div className='Container w-full flex flex-col gap-6'>
             <div
                 className='flex items-center justify-between '>
-                <h1>برترین مجموعه ها</h1>
+                <h1>{FoundedCategory}</h1>
                 <div className='flex items-center gap-2'>
                     <button
                         onClick={() => swiper && swiper.slidePrev()}
-                        className='HighestRateComplexsPrevSlide  ArrowButtonSlider'>
+                        className='RecPrevSlide  ArrowButtonSlider'>
                         <ArrowRight2 size="20" />
                     </button>
                     <button
                         onClick={() => swiper && swiper.slideNext()}
-                        className='HighestRateComplexsNextSlide  ArrowButtonSlider'>
+                        className='RecNextSlide  ArrowButtonSlider'>
                         <ArrowLeft2 size="20" />
                     </button>
                 </div>
@@ -32,8 +63,8 @@ function HighestRateComplexs({ data }: { data: ProductCard[] | undefined }) {
                         clickable: true,
                     }}
                     navigation={{
-                        nextEl: ".HighestRateComplexsNextSlide",
-                        prevEl: ".HighestRateComplexsPrevSlide",
+                        nextEl: ".RecNextSlide",
+                        prevEl: ".RecPrevSlide",
                     }}
                     breakpoints={{
                         480: {
@@ -57,13 +88,12 @@ function HighestRateComplexs({ data }: { data: ProductCard[] | undefined }) {
                             width: 1280,
                             slidesPerView: 4,
                         },
-
                     }}
                     modules={[Navigation]}
-                    className="cursor-grab w-full "
+                    className="cursor-grab w-full"
                 >
                     {/* data.value?.list */}
-                    {data && data.map((item: ProductCard, index: number) => {
+                    {Data && Data.map((item: ProductCard, index: number) => {
                         return <SwiperSlide className='py-6' key={index}>
                             <ProductCards data={item} />
                         </SwiperSlide>
@@ -74,4 +104,4 @@ function HighestRateComplexs({ data }: { data: ProductCard[] | undefined }) {
     )
 }
 
-export default HighestRateComplexs
+export default RandomCategory

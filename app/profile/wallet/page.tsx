@@ -12,7 +12,6 @@ import { ArrowRight } from "iconsax-react";
 import Toast from "@/components/Layout/Alerts/Toast";
 function Page() {
   const balance = useGetBalance();
-  console.log(balance);
   return (
     <>
       <div className=" w-full px-4 mt-10">

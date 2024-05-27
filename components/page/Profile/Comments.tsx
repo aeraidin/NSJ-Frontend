@@ -25,7 +25,6 @@ function Comments({ data }: { data: myCommentData }) {
   const [Result, setResult] = useState(false);
   const [LoginModalState, setLoginModal] = useState(false);
   const ratingChanged = (newRating: any) => {
-    console.log(newRating);
   };
 
   const addLikeHandler = useMutation({
@@ -42,7 +41,6 @@ function Comments({ data }: { data: myCommentData }) {
     mutationFn: AddDisLike,
     onSuccess(data, variables, context) {
       setDisLike(1);
-      console.log(data);
     },
     onError(error, variables, context) {
       setResult(true);
@@ -95,9 +93,8 @@ function Comments({ data }: { data: myCommentData }) {
                 </p>
               </div>
               <div className=" flex max-w-[420px] items-center  gap-x-3">
-                <p className="text-sm md:text-base">{`${
-                  data.rate === null ? 0 : data.rate
-                }/5`}</p>
+                <p className="text-sm md:text-base">{`${data.rate === null ? 0 : data.rate
+                  }/5`}</p>
                 <div>
                   <ReactStars
                     className={"cursor-pointer"}

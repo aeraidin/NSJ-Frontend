@@ -1,7 +1,5 @@
-/** @format */
-
 import { RemoveCart } from "@/util/api/Cart/RemoveCart";
-import { UserTypeData } from "@/util/Data/UserTypeData";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Calendar, Location, Clock, Trash } from "iconsax-react";
 import Image from "next/image";
@@ -9,6 +7,8 @@ import React, { useState } from "react";
 import { NumericFormat } from "react-number-format";
 import Toast from "../Alerts/Toast";
 import { UpdateCount } from "@/util/api/Cart/UpdateCount";
+import Link from "next/link";
+import { UserTypeData } from "@/util/Data/UserTypeData";
 
 function CartProductCards({ data }: { data: CartItems }) {
     const queryClient = useQueryClient();
@@ -80,18 +80,20 @@ function CartProductCards({ data }: { data: CartItems }) {
                     )}
                 </button>
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-5 pb-7 border-b border-dashed border-gray-50">
-                    <div className="aspect-w-8 aspect-h-5 overflow-hidden relative rounded-2xl">
-                        <Image
-                            fill
-                            className="object-cover group-hover:scale-110 duration-150 "
-                            alt={data.filePath}
-                            src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${data.filePath}`}
-                            sizes="90vw"
-                        />
-                    </div>
+                    <Link href={`/service/${data.id}`}>
+                        <div className="aspect-w-8 aspect-h-5 overflow-hidden relative rounded-2xl">
+                            <Image
+                                fill
+                                className="object-cover group-hover:scale-110 duration-150 "
+                                alt={data.filePath}
+                                src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${data.filePath}`}
+                                sizes="90vw"
+                            />
+                        </div>
+                    </Link>
                     <div className="flex flex-col items-start justify-between">
                         <div className="flex flex-col gap-4">
-                            <h2>{data.serviceName}</h2>
+                            <Link href={`/service/${data.id}`}><h2>{data.serviceName}</h2></Link>
                             <div className="flex items-center gap-2">
                                 <Location size="24" className="text-gray-300" variant="Bold" />
                                 <h5>{data.location}</h5>
@@ -142,8 +144,8 @@ function CartProductCards({ data }: { data: CartItems }) {
                 </div>
                 <div className="pt-4">
                     <h3 className="font-semibold text-gray-400">جزئیات رزرو بلیت</h3>
-                    <div className="w-full grid grid-cols-3 items-center content-center pt-8 py-4 ">
-                        <div className="flex flex-col items-center gap-4 border-l border-l-gray-50">
+                    <div className="w-full grid grid-cols-1 md:grid-cols-3 md:items-center md:content-center gap-4  pt-8 py-4 ">
+                        <div className="flex flex-col items-center gap-4 md:border-l border-b md:border-b-0 pb-2 md:pb-0 border-gray-50">
                             <div className="flex items-center gap-2">
                                 <Image
                                     src={"/Icons/Gender.svg"}
@@ -155,7 +157,7 @@ function CartProductCards({ data }: { data: CartItems }) {
                             </div>
                             <p>{UserTypeData[data.clientType].name}</p>
                         </div>
-                        <div className="flex flex-col items-center gap-4 border-l border-l-gray-50">
+                        <div className="flex flex-col items-center gap-4 md:border-l border-b md:border-b-0 pb-2 md:pb-0 border-gray-50">
                             <div className="flex items-center gap-2">
                                 <Calendar size="24" className="text-gray-200" variant="Bold" />
                                 <p className="text-gray-400">تاریخ</p>

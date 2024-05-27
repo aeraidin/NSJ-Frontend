@@ -28,7 +28,6 @@ function Comment({ data }: commentProps) {
   const [Result, setResult] = useState(false);
   const [LoginModalState, setLoginModal] = useState(false);
   const ratingChanged = (newRating: any) => {
-    console.log(newRating);
   };
 
   const addLikeHandler = useMutation({
@@ -45,7 +44,6 @@ function Comment({ data }: commentProps) {
     mutationFn: AddDisLike,
     onSuccess(data, variables, context) {
       setDisLike(1);
-      console.log(data);
     },
     onError(error, variables, context) {
       setResult(true);
@@ -169,9 +167,8 @@ function Comment({ data }: commentProps) {
                 </div>
 
                 <div className=" flex items-center gap-x-3">
-                  <p className="text-sm md:text-base">{`${
-                    data.rate === null ? 0 : data.rate
-                  }/5`}</p>
+                  <p className="text-sm md:text-base">{`${data.rate === null ? 0 : data.rate
+                    }/5`}</p>
                   {/* <div className=" flex">
                   <Star1
                     className=" text-secondary-400"

@@ -1,5 +1,4 @@
-/** @format */
-
+"use client";
 import ControlledInput from "@/components/Layout/Input/ControlledInput";
 import useGetUser from "@/util/hook/user/useGetUser";
 import { ArrowRight } from "iconsax-react";
@@ -8,8 +7,6 @@ import React from "react";
 
 function Informations() {
   const user = useGetUser();
-  console.log(user.data);
-
   return (
     <>
       {user.data?.value && !user.isPending ? (
@@ -58,9 +55,8 @@ function Informations() {
                 <div className=" text-gray-300 gap-x-2 flex">
                   <p className=" text-gray-300">زن</p>
                   <div
-                    className={` rounded-full flex justify-center items-center bg-white border border-gray-50 w-5 h-5 ${
-                      user?.data?.value.gender === 1 ? " bg-gray-50" : null
-                    }`}
+                    className={` rounded-full flex justify-center items-center bg-white border border-gray-50 w-5 h-5 ${user?.data?.value.gender === 1 ? " bg-gray-50" : null
+                      }`}
                   >
                     {user?.data?.value.gender === 1 ? (
                       <div className=" w-3 h-3 rounded-full bg-gray-300"></div>
@@ -71,9 +67,8 @@ function Informations() {
                 <div className=" gap-x-2 flex">
                   <p className=" text-gray-300">مرد</p>
                   <div
-                    className={`rounded-full  flex justify-center items-center${
-                      user?.data?.value.gender === 0 ? " bg-gray-50" : null
-                    } border border-gray-50 w-5 h-5`}
+                    className={`rounded-full  flex justify-center items-center${user?.data?.value.gender === 0 ? " bg-gray-50" : null
+                      } border border-gray-50 w-5 h-5`}
                   >
                     {user?.data?.value.gender === 0 ? (
                       <div className=" w-3 h-3 rounded-full bg-gray-300"></div>

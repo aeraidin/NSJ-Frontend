@@ -52,7 +52,9 @@ export default function RootLayout({
       <body className={yekan.className} >
         <NextNProgressWrapper>
           <TenstackProvider>
+
             {children}
+
           </TenstackProvider>
         </NextNProgressWrapper>
       </body>
