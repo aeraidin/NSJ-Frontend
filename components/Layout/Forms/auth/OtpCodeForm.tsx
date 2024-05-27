@@ -9,7 +9,8 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
 import Toast from "../../Alerts/Toast";
-import OTPCode from "../../Otpcode/Otpcode";
+import OTPCode from "../../Otpcode/OTPCode";
+
 function OtpCodeForm({
   phone,
   CloseModal,
@@ -71,6 +72,7 @@ function OtpCodeForm({
     if (code.length === 5) {
       handlerOtp();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code.length]);
 
   return (
