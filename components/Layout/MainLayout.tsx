@@ -9,7 +9,7 @@ function MainLayout({ children }: { children: React.ReactNode }) {
     <React.Fragment>
       <Header />
       <BottomNavigation />
-      <main className="min-h-screen Container">{children}</main>
+      <main className="min-h-screen Container overflow-x-hidden">{children}</main>
       <Footer />
     </React.Fragment>
   );
