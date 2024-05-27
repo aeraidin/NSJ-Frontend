@@ -27,13 +27,12 @@ function Comment({ data }: commentProps) {
 
   const [Result, setResult] = useState(false);
   const [LoginModalState, setLoginModal] = useState(false);
-  const ratingChanged = (newRating: any) => {
-  };
+  const ratingChanged = (newRating: any) => {};
 
   const addLikeHandler = useMutation({
     mutationFn: AddLike,
     onSuccess(data, variables, context) {
-      setLike(1);
+      if (dislike === 0) setLike(1);
     },
     onError(error, variables, context) {
       setResult(true);
@@ -43,7 +42,7 @@ function Comment({ data }: commentProps) {
   const addDisLikeHandler = useMutation({
     mutationFn: AddDisLike,
     onSuccess(data, variables, context) {
-      setDisLike(1);
+      if (like === 0) setDisLike(1);
     },
     onError(error, variables, context) {
       setResult(true);
@@ -110,7 +109,7 @@ function Comment({ data }: commentProps) {
                       onClick={() => {
                         if (dislike === 0 && !token) {
                           setLoginModal(true);
-                        } else if (dislike === 0 && token) {
+                        } else if (dislike === 0 && token && like === 0) {
                           addDisLikeHandler.mutate({
                             commentId: data.id,
                           });
@@ -142,7 +141,7 @@ function Comment({ data }: commentProps) {
                       onClick={() => {
                         if (like === 0 && !token) {
                           setLoginModal(true);
-                        } else if (like === 0 && token) {
+                        } else if (like === 0 && token && dislike === 0) {
                           addLikeHandler.mutate({
                             commentId: data.id,
                           });
@@ -167,8 +166,9 @@ function Comment({ data }: commentProps) {
                 </div>
 
                 <div className=" flex items-center gap-x-3">
-                  <p className="text-sm md:text-base">{`${data.rate === null ? 0 : data.rate
-                    }/5`}</p>
+                  <p className="text-sm md:text-base">{`${
+                    data.rate === null ? 0 : data.rate
+                  }/5`}</p>
                   {/* <div className=" flex">
                   <Star1
                     className=" text-secondary-400"
