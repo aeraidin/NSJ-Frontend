@@ -93,15 +93,11 @@ function RandomCategory() {
                     className="cursor-grab w-full"
                 >
                     {/* data.value?.list */}
-                    {Data ? Data.map((item: ProductCard, index: number) => {
+                    {Data && Data.map((item: ProductCard, index: number) => {
                         return <SwiperSlide className='py-6' key={index}>
                             <ProductCards data={item} />
                         </SwiperSlide>
-                    }) : <React.Fragment>
-                        <ProductCardsLoading />
-                        <ProductCardsLoading />
-                        <ProductCardsLoading />
-                    </React.Fragment>}
+                    })}
                 </Swiper>
             </div>
         </div>
