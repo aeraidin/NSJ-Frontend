@@ -9,7 +9,8 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
 import Toast from "../../Alerts/Toast";
-import OTPCode from "../../Otpcode/Otpcode";
+import OTPCode from "../../Otpcode/OTPCode";
+
 function OtpCodeForm({
   phone,
   CloseModal,
