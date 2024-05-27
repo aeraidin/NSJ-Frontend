@@ -18,6 +18,19 @@ function Page() {
     const Data = data?.data?.value as CartDetail | undefined;
     const [DoneStep, setDoneStep] = useState<number[]>([]);
     const [step, setstep] = useState(1);
+    const CheckOutHandler = () => {
+        if (step === 1) {
+            setstep(2)
+            setDoneStep(prevDoneStep => [...prevDoneStep, 1]);
+        }
+        if (step === 2) {
+            setstep(3)
+            setDoneStep(prevDoneStep => [...prevDoneStep, 2]);
+        }
+        if (step === 3) {
+            //  
+        }
+    }
     return (
         <MainLayout>
             <div className="w-full flex items-start py-10 text-gray-400 ">
@@ -68,7 +81,7 @@ function Page() {
                                     {" تومان "}
                                 </h2>
                             </div>
-                            <SuccessBtn>ادامه فرایند رزرو</SuccessBtn>
+                            <SuccessBtn onClick={CheckOutHandler}>ادامه فرایند رزرو</SuccessBtn>
                         </div>
                     </div>
                 </div>
