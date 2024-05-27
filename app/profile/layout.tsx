@@ -42,7 +42,9 @@ function Layout({ children }: { children: React.ReactNode }) {
             </Breadcrumb>
           </div>
           <div className="  flex-1 pb-10 overflow-y-auto mx-auto w-full lg:max-w-[843px] lg:mt-[70px] ">
-            <div className=" min-h-screen  w-full my-12    ">{children}</div>
+            <div className=" min-h-screen  w-full my-12 lg:my-0    ">
+              {children}
+            </div>
           </div>
         </div>
       </div>
