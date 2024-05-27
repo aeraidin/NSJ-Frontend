@@ -6,19 +6,30 @@ import CartProductCards, {
     CartProductCardsLoading,
 } from "@/components/Layout/Cards/CartProductCards";
 import MainLayout from "@/components/Layout/MainLayout";
+import PaymentSteps from "@/components/page/Cart/PaymentSteps";
 import UseGetCart from "@/util/hook/Cart/UseGetCart";
-import React from "react";
+import { ArrowRight } from "iconsax-react";
+import Link from "next/link";
+import React, { useState } from "react";
 import { NumericFormat } from "react-number-format";
 
-function page() {
+function Page() {
     const data = UseGetCart();
     const Data = data?.data?.value as CartDetail | undefined;
+    const [DoneStep, setDoneStep] = useState<number[]>([]);
+    const [step, setstep] = useState(1);
     return (
         <MainLayout>
+            <div className="w-full flex items-start py-10 text-gray-400 ">
+                <Link href={"/"} className="flex items-center gap-2 hover:text-gray-600"><ArrowRight size="24" /><p className="text-gray-400 hover:text-gray-600">بازگشت به صفحه اصلی</p></Link>
+            </div>
             {Data ? (
-                <div className="w-full flex-col lg:flex-row flex  gap-6 py-8">
+                <div className="w-full flex-col lg:flex-row flex  gap-6 py-6">
                     {/* خلاصه سبد خرید */}
-                    <div className="w-full  flex flex-col gap-6 flex-1">
+                    <div className="w-full flex flex-col gap-6 flex-1">
+                        <PaymentSteps step={step} OnClick={(e) => {
+                            DoneStep.includes(e) && setstep(e)
+                        }} />
                         {Data
                             ? Data.list.map((item, index) => {
                                 return <CartProductCards key={index} data={item} />;
@@ -26,7 +37,7 @@ function page() {
                             : null}
                     </div>
                     {/* ایتم های سبد خرید */}
-                    <div className="max-w-[430px] flex-1 flex flex-col  border border-gray-50 rounded-2xl justify-between h-fit  py-6 px-5  sticky top-32">
+                    <div className="max-w-[430px] flex-1 flex flex-col  border border-gray-50 rounded-2xl justify-between h-fit  py-6 px-5 sticky top-28 ">
                         <h2>خلاصه سفارش </h2>
                         {Data?.totalDiscount !== 0 ?
                             <div className="flex items-center justify-between py-6">
@@ -88,4 +99,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;
