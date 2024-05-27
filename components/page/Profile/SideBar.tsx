@@ -19,7 +19,7 @@ function SideBar() {
   return (
     <div className=" w-full flex   flex-col p-2 items-center rounded-[20px]   lg:border border-gray-50 ">
       <div className=" w-full  relative ">
-        <div className="  aspect-w-12 aspect-h-6 md:aspect-w-16 md:aspect-h-5 lg:aspect-w-16 lg:aspect-h-9">
+        <div className="  aspect-w-12 aspect-h-4 md:aspect-w-16 md:aspect-h-5 lg:aspect-w-16 lg:aspect-h-9">
           <Image src={sidebarPicture} fill alt="sidebar-pic" />
           <div className=" w-full  flex h-full  justify-center">
             <div className=" rounded-full border  h-20 w-20 bg-white bottom-[-32px]  absolute "></div>
@@ -40,13 +40,13 @@ function SideBar() {
       <div className=" border mt-5 h-[77px] rounded-[20px] relative px-6 border-gray-50 flex  w-full">
         <motion.button
           whileTap={{ scale: 0.9 }}
-          className=" absolute bottom-0 right-0  w-24 h-24"
+          className=" absolute bottom-0 left-0  w-24 h-24"
         >
           <div>
             <Image src={walletPicture} fill alt="wallet" />
           </div>
         </motion.button>
-        <div className=" flex flex-col w-full justify-center items-end">
+        <div className=" flex flex-col w-full justify-center items-start">
           <p className=" text-gray-300 font-semibold text-xs">موجودی کیف پول</p>
           {balance.isPending ? (
             <div className=" flex  text-base animate-pulse justify-center items-center font-semibold">

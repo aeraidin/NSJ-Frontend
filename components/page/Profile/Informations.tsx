@@ -18,7 +18,7 @@ function Informations() {
             <p className=" text-sm  text-gray-600">بازگشت</p>
           </Link>
 
-          <p className=" text-lg text-gray-600">اطلاعات حساب کاربری</p>
+          <h1 className=" mb-6 lg:mb-10 text-gray-600">اطلاعات حساب کاربری</h1>
 
           <div className=" mt-10 grid grid-cols-1 xl:grid-cols-2 w-full gap-x-20">
             <ControlledInput

@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
 function Page() {
-  const isTabletOrLarger = useMediaQuery("(min-width: 768px)");
+  const isTabletOrLarger = useMediaQuery("(min-width: 1024px)");
   const isMobile = useMediaQuery("(max-width: 1024px)");
   const token = Cookies.get("token");
   const [LoginModalState, setLoginModal] = useState(true);
