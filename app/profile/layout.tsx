@@ -41,7 +41,6 @@ function Layout({ children }: { children: React.ReactNode }) {
               </Breadcrumb>
             </Breadcrumb>
           </div>
-          {/* <div className="lg:flex-1 overflow-y-auto fixed lg:static top-7 left-0 right-0 bottom-0 bg-red-400 lg:flex lg:px-[146px] "> */}
           <div className="  flex-1 pb-10 overflow-y-auto mx-auto w-full lg:max-w-[843px] lg:mt-[70px] ">
             <div className=" min-h-screen  w-full my-12    ">{children}</div>
           </div>
