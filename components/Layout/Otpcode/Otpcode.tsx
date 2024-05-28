@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import OtpInput from "react-otp-input";
 
@@ -20,7 +22,8 @@ function OTPCode({ length, otpCode, error }: otpProps) {
       inputStyle={{
         // border: "1px solid",
         borderRadius: "8px",
-        width: "64px",
+        maxWidth: "64px",
+        width: "100%",
         height: "64px",
         // borderColor: "#525252",
         caretColor: "#525252",
@@ -48,8 +51,9 @@ function OTPCode({ length, otpCode, error }: otpProps) {
           {...props}
           inputMode="decimal"
           type="number"
-          className={` ${error ? "error-otp" : "input-otp"
-            } rounded-lg text-xl text-gray-600 `}
+          className={` ${
+            error ? "error-otp" : "input-otp"
+          } rounded-lg text-xl text-gray-600 `}
         />
       )}
     />
