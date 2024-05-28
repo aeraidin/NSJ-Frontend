@@ -16,7 +16,7 @@ const GetFavorites = async (curentPage: number) => {
 };
 const useGetFavorites = (curentPage: number) => {
  return useQuery({
-  queryKey: ["FavoriteList", curentPage],
+  queryKey: ["FavoriteList"],
   queryFn: () => GetFavorites(curentPage),
  });
 };
