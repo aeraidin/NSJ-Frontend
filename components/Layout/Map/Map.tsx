@@ -139,12 +139,12 @@ const Map = <T extends FieldValues>({
 
   return (
     <>
-      <div className="w-full h-full select-none  rounded-[10px]  ">
+      <div className="w-full h-full select-none   rounded-[10px]  ">
         <Link
           href={`https://www.google.com/maps?q=${position.lat},${position.lng}`}
           className={`
           relative
-           h-[200px] md:h-[296px] rounded-lg w-full select-none 
+           h-[200px]  md:h-[296px] rounded-lg w-full select-none 
           `}
         >
           {selectedValue && position.lat !== 0 ? (
@@ -160,7 +160,7 @@ const Map = <T extends FieldValues>({
               {/* <MapEventsHandler /> */}
               <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
-                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               <Marker
                 draggable={false}
