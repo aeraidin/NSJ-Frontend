@@ -193,6 +193,7 @@ function ReviewService({ id }: ReviewServiceProps) {
                       emptyIcon={<FaStar size={24} />}
                       filledIcon={<FaStar size={24} />}
                       size={28}
+                      c
                       activeColor="#FEB92E"
                     />
                   ) : null}
