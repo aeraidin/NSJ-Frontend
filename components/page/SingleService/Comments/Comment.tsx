@@ -22,8 +22,13 @@ interface commentProps {
 function Comment({ data }: commentProps) {
   const queryClient = useQueryClient();
   const [like, setLike] = useState(0);
+  const [type, setType] = useState<string>();
   const [dislike, setDisLike] = useState(0);
   const [token, setToken] = useState<string | undefined>(undefined);
+
+  console.log("dislike" + dislike);
+  console.log("like" + like);
+  console.log(type);
 
   const [Result, setResult] = useState(false);
   const [LoginModalState, setLoginModal] = useState(false);
@@ -32,7 +37,10 @@ function Comment({ data }: commentProps) {
   const addLikeHandler = useMutation({
     mutationFn: AddLike,
     onSuccess(data, variables, context) {
-      if (dislike === 0) setLike(1);
+      if (type === "like") {
+        setLike(1);
+        setDisLike(0);
+      }
     },
     onError(error, variables, context) {
       setResult(true);
@@ -42,7 +50,10 @@ function Comment({ data }: commentProps) {
   const addDisLikeHandler = useMutation({
     mutationFn: AddDisLike,
     onSuccess(data, variables, context) {
-      if (like === 0) setDisLike(1);
+      if (type === "dislike") {
+        setDisLike(1);
+        setLike(0);
+      }
     },
     onError(error, variables, context) {
       setResult(true);
@@ -107,9 +118,10 @@ function Comment({ data }: commentProps) {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.5 }}
                       onClick={() => {
+                        setType("dislike");
                         if (dislike === 0 && !token) {
                           setLoginModal(true);
-                        } else if (dislike === 0 && token && like === 0) {
+                        } else if (dislike === 0 && token) {
                           addDisLikeHandler.mutate({
                             commentId: data.id,
                           });
@@ -139,9 +151,11 @@ function Comment({ data }: commentProps) {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.5 }}
                       onClick={() => {
+                        setType("like");
+
                         if (like === 0 && !token) {
                           setLoginModal(true);
-                        } else if (like === 0 && token && dislike === 0) {
+                        } else if (like === 0 && token) {
                           addLikeHandler.mutate({
                             commentId: data.id,
                           });
@@ -201,9 +215,11 @@ function Comment({ data }: commentProps) {
                       className={"cursor-pointer"}
                       count={5}
                       isHalf={true}
-                      halfIcon={<FaStarHalfAlt size={24} />}
-                      emptyIcon={<FaStar size={24} />}
-                      filledIcon={<FaStar size={24} />}
+                      halfIcon={
+                        <FaStarHalfAlt className=" text-sm lg:text-2xl" />
+                      }
+                      emptyIcon={<FaStar className=" text-base lg:text-2xl" />}
+                      filledIcon={<FaStar className=" text-base lg:text-2xl" />}
                       value={data.rate}
                       edit={false}
                       onChange={ratingChanged}

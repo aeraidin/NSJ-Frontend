@@ -66,7 +66,7 @@ function ContactService({ id }: ContactServiceProps) {
               </div>
             </div>
           </div>
-          <div className=" w-full mt-7 md:mt-0 ">
+          <div className=" w-full h-[200px] md:h-[296px] mt-7 md:mt-0 ">
             <DynamicMapComponent
               selectedValue={map?.value}
               id="map"
