@@ -1,0 +1,99 @@
+import SuccessBtn from '@/components/Layout/Buttons/SuccessBtn'
+import { UserTypeData } from '@/util/Data/UserTypeData'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Calendar, Clock, Ticket } from 'iconsax-react'
+import Image from 'next/image'
+import React from 'react'
+import { NumericFormat } from 'react-number-format'
+
+function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled }: { Data: null | CartDetail, totalDiscount: number, totalPrice: number, onClick: () => void, disabled: boolean }) {
+    return (
+        <div className="max-w-[430px] flex-1 flex flex-col  border border-gray-50 rounded-2xl justify-between h-fit  py-6 px-5 sticky top-28 ">
+            <h2>خلاصه سفارش </h2>
+            {Data && <AnimatePresence mode="wait">
+                <motion.div
+                    className='flex flex-col gap-4 max-h-[380px] overflow-y-auto mt-4 '
+                    key={Data ? 1 : 2}
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -10, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                >
+                    {Data.list.map((item, index) => {
+                        return <div key={index} className='w-full rounded-2xl bg-gray-50 px-4 py-5'>
+                            <p className='text-sm text-gray-500 w-full truncate'>{item.serviceName}</p>
+                            <div className='w-full grid grid-cols-2 grid-rows-2 gap-y-3 gap-2 mt-3'>
+                                <div className='flex items-center gap-1'>
+                                    <Image
+                                        src={"/Icons/Gender.svg"}
+                                        width={16}
+                                        height={16}
+                                        alt="gendericon" />
+                                    <p className='text-xs text-gray-400 w-full truncate'>{UserTypeData[item.clientType].name}</p>
+                                </div>
+                                <div className='flex items-center gap-1 text-gray-200'>
+                                    <Calendar
+                                        size="16"
+                                        className='text-gray-200'
+                                        variant="Bold" />
+                                    <p className='text-xs text-gray-400 w-full truncate'>{item.date}</p>
+                                </div>
+                                <div className='flex items-center gap-1'>
+                                    <Clock
+                                        size="16"
+                                        className='text-gray-200'
+                                        variant="Bold"
+                                    />
+
+                                    <p className='text-xs text-gray-400 w-full truncate'>{item.endTime + " الی " + item.startTime}</p>
+                                </div>
+                                <div className='flex items-center gap-1'>
+                                    <Ticket
+                                        size="16"
+                                        className='text-gray-200'
+                                        variant="Bold"
+                                    />
+                                    <p className='text-xs text-gray-400 w-full truncate'>تعداد بلیت: {item.count} </p>
+                                </div>
+                            </div>
+                        </div>
+                    })}
+                </motion.div>
+            </AnimatePresence>
+            }
+            {totalDiscount !== 0 ?
+                <div className="flex items-center justify-between py-6">
+                    <p>تخفیف</p>
+                    <p >
+                        {" "}
+                        <NumericFormat
+                            value={totalDiscount}
+                            displayType={"text"}
+                            thousandSeparator={","}
+                        />
+                        {" تومان "}
+                    </p>
+                </div>
+                :
+                null
+            }
+            <div className={`flex flex-col gap-4 pt-4 ${totalDiscount === 0 ? "" : "border-t border-dashed"} border-gray-50`}>
+                <div className="flex items-center justify-between">
+                    <p>مبلغ قابل پرداخت</p>
+                    <h2 className="text-third-500">
+                        {" "}
+                        <NumericFormat
+                            value={totalPrice}
+                            displayType={"text"}
+                            thousandSeparator={","}
+                        />
+                        {" تومان "}
+                    </h2>
+                </div>
+                <SuccessBtn isloading={disabled} disabled={disabled} onClick={onClick}>ادامه فرایند رزرو</SuccessBtn>
+            </div>
+        </div>
+    )
+}
+
+export default CartSummery
