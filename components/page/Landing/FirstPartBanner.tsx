@@ -16,7 +16,7 @@ function FirstPartBanner() {
         <div className='aspect-w-16 aspect-h-6 relative '>
             <Image src={Banner} fill className='object-cover rounded-2xl' alt='Banner' placeholder='blur' />
             {/* Category */}
-            <div className='w-[90%] lg:w-[80%] h-[60px] lg:h-[120px]  rounded-2xl absolute top-[85%] mx-auto bg-white shadow-CMSHADOW '>
+            <div className='w-[90%] lg:w-[80%]  h-fit py-4  rounded-2xl absolute top-[85%] mx-auto bg-white shadow-CMSHADOW '>
                 <Swiper
                     spaceBetween={10}
                     slidesPerView={2}
@@ -53,7 +53,8 @@ function FirstPartBanner() {
                     {Data && Data.map((item, index) => {
                         return (
                             <SwiperSlide key={index} className='w-full  h-full !flex !items-center !justify-center'  >
-                                <Link href={`/category/${item.id}`}>
+                                <Link href={`/category/${item.id}`} className='flex items-center justify-center flex-col gap-2'>
+                                    <Image src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${item.icon}`} alt={item.name} width={32} height={32} className='object-contain' />
                                     <p className='whitespace-nowrap'>{item.name}</p></Link>
                             </SwiperSlide>
                         );
