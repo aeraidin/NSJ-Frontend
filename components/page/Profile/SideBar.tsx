@@ -70,13 +70,11 @@ function SideBar() {
     }
   };
 
-  console.log(uploadedPhoto);
-
   return (
     <div className=" w-full flex   flex-col p-2 items-center rounded-[20px]   lg:border border-gray-50 ">
       <div className=" w-full  relative ">
         <div className="  aspect-w-12 aspect-h-4 md:aspect-w-16 md:aspect-h-5 lg:aspect-w-16 lg:aspect-h-9">
-          <Image src={sidebarPicture} fill alt="sidebar-pic" />
+          <Image src={sidebarPicture} fill alt="sidebar-pic" sizes="90vw" />
 
           {UploadFileMutation.isPending || user.isPending ? (
             <div className=" w-full flex h-full justify-center">
@@ -136,8 +134,8 @@ function SideBar() {
           whileTap={{ scale: 0.9 }}
           className=" absolute bottom-0 left-0  w-24 h-24"
         >
-          <div>
-            <Image src={walletPicture} fill alt="wallet" />
+          <div className=" relative w-24 h-24">
+            <Image src={walletPicture} fill alt="wallet" sizes="90vw" />
           </div>
         </motion.button>
         <div className=" flex flex-col w-full justify-center items-start">
