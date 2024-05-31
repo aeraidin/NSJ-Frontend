@@ -114,7 +114,7 @@ function MainServiceInfo({ id }: { id: string }) {
                         {data.isSuccess ? <div className='flex flex-col h-full  justify-between gap-4'>
                             <div className='flex flex-col gap-5'>
                                 <div className='flex-col flex gap-3'>
-                                    <h1>{Data?.name} {Data?.service.name}</h1>
+                                    <h1>{Data?.name} {Data?.sportComplex.name}</h1>
                                     <div className='flex items-center justify-between'>
                                         <div className="w-full flex items-center gap-2 ">
                                             {/* Location */}

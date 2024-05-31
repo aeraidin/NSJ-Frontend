@@ -9,7 +9,9 @@ import { NumericFormat } from "react-number-format";
 import image from "../../../public/Banner/435x210.jpg";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addRemoveFavorites } from "@/util/api/Profile/AddRemoveFavorites";
-function FavoriteCards({ data }: { data: favoriteCard }) {
+function FavoriteCards({ data }: { data: ProductCard }) {
+  console.log(data);
+
   const queryClient = useQueryClient();
   const RemoveFavorite = useMutation({
     mutationFn: addRemoveFavorites,
@@ -19,7 +21,7 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
     onError(error, variables, context) { },
   });
   return (
-    <div className="w-full     select-none relative bg-white    flex flex-col xl:flex-row  h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group">
+    <div className="w-full  select-none relative bg-white    flex flex-col xl:flex-row  h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group">
       <div
         onClick={() => {
           RemoveFavorite.mutate({
@@ -91,8 +93,8 @@ function FavoriteCards({ data }: { data: favoriteCard }) {
           "
           >
             <Link href={`/service/${data.id}`}>
-              <h3 className=" truncate max-w-[260px] lg:w-full">
-                {data.serviceName} {data.service.name}
+              <h3 className=" truncate w-full max-w-[250px] lg:max-w-none">
+                {data.serviceName} {data.sportComplex.name}
               </h3>
             </Link>
             <div className="flex items-center gap-2 justify-center">
