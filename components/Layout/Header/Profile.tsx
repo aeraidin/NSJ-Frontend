@@ -22,7 +22,7 @@ function Profile() {
   return (
     <>
       {Data ? (
-        <div ref={containerRef} onClick={() => setProfileModalState(!ProfileModalState)} className="px-3 py-2 rounded-2xl border border-gray-50 text-gray-500 items-center gap-2 hover:border-gray-200 duration-150 cursor-pointer hidden lg:flex relative select-none">
+        <div ref={containerRef} onClick={() => setProfileModalState(!ProfileModalState)} className="px-3 py-2 rounded-xl border border-gray-50 text-gray-500 items-center gap-2 hover:border-gray-200 duration-150 cursor-pointer hidden lg:flex relative select-none">
           <ProfileCircle size="20" variant="Bold" />
           <p>{Data.firstName}</p>
           <AnimatePresence>
@@ -46,7 +46,7 @@ function Profile() {
             onClick={() => setLoginModal(true)}
             className="bg-secondary-600  text-white px-6 py-4 rounded-xl shadow-xl text-sm shadow-secondary-600/60 hover:shadow-none duration-200"
           >
-            ورود | عضویت
+            <span className="whitespace-nowrap">ورود | عضویت</span>
           </button>
           <LoginModal
             CloseModal={() => setLoginModal(false)}

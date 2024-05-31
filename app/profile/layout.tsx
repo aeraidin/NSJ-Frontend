@@ -1,22 +1,14 @@
-/** @format */
-"use client";
 import MainLayout from "@/components/Layout/MainLayout";
 import SideBar from "@/components/page/Profile/SideBar";
-import { redirect, usePathname } from "next/navigation";
-import React, { useEffect } from "react";
-import Cookies from "js-cookie";
-import Breadcrumb from "@/components/Layout/breadcrumb";
+import { useSestion } from "@/util/session";
+import { redirect } from "next/navigation";
+import React from "react";
 
 function Layout({ children }: { children: React.ReactNode }) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const path = usePathname();
-
-  const token = Cookies.get("token");
-  useEffect(() => {
-    if (!token) {
-      redirect("/login");
-    }
-  }, [token]);
+  const Session = useSestion();
+  if (!Session) {
+    redirect("/");
+  }
   return (
     <MainLayout isProfile>
       <div className=" w-full  lg:gap-x-8 lg:my-8    flex">

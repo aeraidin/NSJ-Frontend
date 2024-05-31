@@ -19,7 +19,7 @@ function page({ params }: { params: { id: string } }) {
         <ContactService id={params.id} />
         <ConditionsService id={params.id} />
         <ReviewService id={params.id} />
-        <RelatedService id={params.id} />
+        {/* <RelatedService id={params.id} /> */}
       </div>
     </MainLayout>
   );

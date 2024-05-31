@@ -13,7 +13,7 @@ function BottomNavigation() {
 
     const navItems: NavItem[] = [
         { icon: Home2, text: "خانه", href: "/" },
-        { icon: Category, text: "دسته بندی", href: "/category" },
+        { icon: Category, text: "دسته بندی", href: "/category/all" },
         { icon: Heart, text: "علاقه مندی", href: "/profile/favorite" },
         { icon: Profile, text: "پروفایل", href: "/profile" },
     ];
