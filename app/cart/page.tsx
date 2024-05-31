@@ -14,6 +14,7 @@ import { useMutation } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "iconsax-react";
 import Link from "next/link";
+import { redirect, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 function Page() {
@@ -22,10 +23,13 @@ function Page() {
     const [CardPayment, setCardPayment] = useState(false)
     const [DoneStep, setDoneStep] = useState<number[]>([]);
     const [step, setstep] = useState(1);
+    const router = useRouter()
     const PaymentMutation = useMutation({
         mutationFn: PaymentApi,
         onSuccess(data, variables, context) {
-            console.log(data);
+            if (data.value.mustGoToPaymentGatway) {
+                router.push(data.value.paymentGatwayUrl);
+            }
         },
         onError(error, variables, context) {
             console.log(error);
