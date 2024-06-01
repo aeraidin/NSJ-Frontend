@@ -51,16 +51,31 @@ function ContactService({ id }: ContactServiceProps) {
             </h2>
             <div className=" flex-col flex gap-y-6">
               <div className=" flex gap-x-3">
-                <Location size={24} variant="Bold" className=" text-gray-200" />
+                <div className=" gap-3 flex">
+                  <Location
+                    size={24}
+                    variant="Bold"
+                    className=" text-gray-200"
+                  />
+                  <p>آدرس :</p>
+                </div>
                 <p className=" text-gray-500">{address?.value}</p>
               </div>
               <div className=" flex gap-x-3">
-                <Call size={24} variant="Bold" className=" text-gray-200" />
+                <div className=" gap-3 flex">
+                  <Call size={24} variant="Bold" className=" text-gray-200" />
+
+                  <p>شماره تماس :</p>
+                </div>
                 {phone?.map((item: any, index: number) => {
                   return (
-                    <p key={index} className=" text-gray-500">
+                    <a
+                      href={`tel:${item.value}`}
+                      key={index}
+                      className=" text-gray-500"
+                    >
                       {item.value}
-                    </p>
+                    </a>
                   );
                 })}
               </div>

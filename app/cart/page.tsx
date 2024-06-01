@@ -10,7 +10,7 @@ import Payment from "@/components/page/Cart/Payment";
 import PaymentSteps from "@/components/page/Cart/PaymentSteps";
 import { PaymentApi } from "@/util/api/Cart/Payment";
 import UseGetCart from "@/util/hook/Cart/UseGetCart";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "iconsax-react";
 import Link from "next/link";
@@ -24,11 +24,16 @@ function Page() {
     const [DoneStep, setDoneStep] = useState<number[]>([]);
     const [step, setstep] = useState(1);
     const router = useRouter()
+    const queryClient = useQueryClient();
     const PaymentMutation = useMutation({
         mutationFn: PaymentApi,
         onSuccess(data, variables, context) {
+            queryClient.invalidateQueries({ queryKey: ["Cart"] });
+
             if (data.value.mustGoToPaymentGatway) {
                 router.push(data.value.paymentGatwayUrl);
+            } else if (data.value.mustGoToPaymentGatway === false) {
+                router.push("/payment/result");
             }
         },
         onError(error, variables, context) {
