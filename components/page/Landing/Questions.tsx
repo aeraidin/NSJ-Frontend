@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 import React, { useState } from "react";
 import { LandingQuestions } from "@/util/Data/LandingQuestions";
@@ -12,7 +14,6 @@ function Questions() {
           ســــــــــــــــوالات{" "}
           <span className=" text-secondary-500">متــــــــــــــــداول</span>
         </p>
-
       </div>
 
       <div className=" w-full  flex-col gap-6 flex h-fit">
@@ -21,19 +22,27 @@ function Questions() {
             <div
               key={index}
               onClick={() => {
-                setActiveIndex((prev) => (prev === item.id ? null : item.id))
+                setActiveIndex((prev) => (prev === item.id ? null : item.id));
               }}
-              className={`w-full flex-col cursor-pointer py-6 px-6 border  ${activeIndex === item.id ? "border-gray-200  shadow-CMSHADOWHover" : "border-gray-50"} duration-200 flex rounded-2xl`}
+              className={`w-full flex-col cursor-pointer py-6 px-6 border  ${
+                activeIndex === item.id
+                  ? "border-gray-200  shadow-CMSHADOWHover"
+                  : "border-gray-50"
+              } duration-200 flex rounded-2xl`}
             >
               <div className=" w-full flex justify-between gap-4 items-center ">
                 <p className=" select-none  text-gray-500 font-semibold text-sm lg:text-base text-justify">
                   {item.question}
                 </p>
-                <ArrowDown2 className={`text-gray-300  ${activeIndex === item.id ? "rotate-180" : "rotate-0"} duration-200`} />
+                <ArrowDown2
+                  className={`text-gray-300  ${
+                    activeIndex === item.id ? "rotate-180" : "rotate-0"
+                  } duration-200`}
+                />
               </div>
 
               <Collapse isOpened={activeIndex === item.id}>
-                <p className=" text-gray-500 text-xs lg:text-sm pt-6 select-none">
+                <p className=" text-gray-500 text-xs text-justify lg:text-sm pt-6 select-none">
                   {item.answer}
                 </p>
               </Collapse>

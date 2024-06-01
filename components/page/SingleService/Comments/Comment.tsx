@@ -26,10 +26,6 @@ function Comment({ data }: commentProps) {
   const [dislike, setDisLike] = useState(0);
   const [token, setToken] = useState<string | undefined>(undefined);
 
-  console.log("dislike" + dislike);
-  console.log("like" + like);
-  console.log(type);
-
   const [Result, setResult] = useState(false);
   const [LoginModalState, setLoginModal] = useState(false);
   const ratingChanged = (newRating: any) => {};
