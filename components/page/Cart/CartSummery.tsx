@@ -61,19 +61,34 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled }: { D
                 </motion.div>
             </AnimatePresence>
             }
+
             {totalDiscount !== 0 ?
-                <div className="flex items-center justify-between py-6">
-                    <p>تخفیف</p>
-                    <p >
-                        {" "}
-                        <NumericFormat
-                            value={totalDiscount}
-                            displayType={"text"}
-                            thousandSeparator={","}
-                        />
-                        {" تومان "}
-                    </p>
-                </div>
+                <React.Fragment>
+                    <div className="flex items-center justify-between pt-6">
+                        <p>قیمت کل</p>
+                        <p>
+                            <NumericFormat
+                                value={totalPrice}
+                                displayType={"text"}
+                                thousandSeparator={","}
+                            />
+                            {""}
+                            {" تومان "}
+                        </p>
+                    </div>
+                    <div className="flex items-center justify-between py-4">
+                        <p className='text-error-600'>تخفیف</p>
+                        <p className='text-error-600'>
+                            <NumericFormat
+                                value={totalDiscount}
+                                displayType={"text"}
+                                thousandSeparator={","}
+                            />
+                            {"-"}
+                            {" تومان "}
+                        </p>
+                    </div>
+                </React.Fragment>
                 :
                 null
             }
@@ -83,7 +98,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled }: { D
                     <h2 className="text-third-500">
                         {" "}
                         <NumericFormat
-                            value={totalPrice}
+                            value={totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice}
                             displayType={"text"}
                             thousandSeparator={","}
                         />
