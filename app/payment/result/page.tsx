@@ -3,7 +3,7 @@ import PrimaryBtn from '@/components/Layout/Buttons/PrimaryBtn';
 import MainLayout from '@/components/Layout/MainLayout';
 import { UserTypeData } from '@/util/Data/UserTypeData';
 import { VerifyPayment } from '@/util/api/Cart/VerifyPayment';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { BagCross, BagTick2, Calendar, Clock, Ticket } from 'iconsax-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,17 +20,22 @@ function Page({
 }: {
     searchParams: { Authority: string, Status: string };
 }) {
+    const [isloading, setisloading] = useState(true)
     const [Reserves, setReserves] = useState<null | reserve[]>(null)
     // if (!searchParams.Authority || !searchParams.Status) {
     //     redirect("/");
     // }
-
+    const queryClient = useQueryClient();
     const Verfiy = useMutation({
         mutationFn: VerifyPayment, onSuccess(data, variables, context) {
+            queryClient.invalidateQueries({ queryKey: ["Cart"] });
+            queryClient.invalidateQueries({ queryKey: ["Balance"] });
             if (data.value.reserves.length > 0) {
                 setReserves(data.value.reserves)
+                setisloading(false)
             } else {
                 setReserves(null)
+                setisloading(false)
             }
         },
         onError(error, variables, context) {
@@ -96,14 +101,14 @@ function Page({
                         </div>
                     })}
                 </React.Fragment>
-                    : <div className='w-fit px-10 py-7 rounded-2xl bg-error-400/20 relative '>
+                    : !isloading && Reserves ? <div className='w-fit px-10 py-7 rounded-2xl bg-error-400/20 relative '>
                         <div className='w-8 h-8 bg-white rounded-full absolute -left-[16px] top-1/2 -translate-y-1/2 transform'></div>
                         <div className='w-8 h-8 bg-white rounded-full absolute -right-[16px] top-1/2 -translate-y-1/2 transform'></div>
                         <div className='p-4 rounded-full bg-white text-error-600 w-fit absolute -top-1/2 left-1/2 -translate-x-1/2 '>
                             <BagCross size="32" variant="Bold" />
                         </div>
                         <h2 className='text-error-600 '>مشکلی در پرداخت پیش امده است</h2>
-                    </div>}
+                    </div> : null}
                 <Link href={"/"}><PrimaryBtn>بازگشت به صفحه اصلی</PrimaryBtn></Link>
             </div>
         </MainLayout>
