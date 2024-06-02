@@ -1,3 +1,5 @@
+/** @format */
+
 import MainLayout from "@/components/Layout/MainLayout";
 import AboutService from "@/components/page/SingleService/AboutService";
 import ConditionsService from "@/components/page/SingleService/ConditionsService";
@@ -8,6 +10,7 @@ import ReviewService from "@/components/page/SingleService/ReviewService";
 import React from "react";
 import PropertyService from "@/components/page/SingleService/PropertyService";
 import SansService from "@/components/page/SingleService/SansService";
+
 function page({ params }: { params: { id: string } }) {
   return (
     <MainLayout>
