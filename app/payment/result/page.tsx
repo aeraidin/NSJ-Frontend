@@ -30,6 +30,7 @@ function Page({
         mutationFn: VerifyPayment, onSuccess(data, variables, context) {
             queryClient.invalidateQueries({ queryKey: ["Cart"] });
             queryClient.invalidateQueries({ queryKey: ["Balance"] });
+            queryClient.invalidateQueries({ queryKey: ["ReserveList"] });
             if (data.value.reserves.length > 0) {
                 setReserves(data.value.reserves)
                 setisloading(false)
