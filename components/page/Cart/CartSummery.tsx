@@ -8,7 +8,7 @@ import { NumericFormat } from 'react-number-format'
 
 function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled }: { Data: null | CartDetail, totalDiscount: number, totalPrice: number, onClick: () => void, disabled: boolean }) {
     return (
-        <div className="max-w-[430px] flex-1 flex flex-col  border border-gray-50 rounded-2xl justify-between h-fit  py-6 px-5 sticky top-28 ">
+        <div className="max-w-[430px] mx-auto w-full flex-1 flex flex-col  border border-gray-50 rounded-2xl justify-between h-fit  py-6 px-5 sticky top-28 ">
             <h2>خلاصه سفارش </h2>
             {Data && <AnimatePresence mode="wait">
                 <motion.div

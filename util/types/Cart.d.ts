@@ -11,6 +11,10 @@ interface CartItems {
  price: number;
  priceAfterDiscount: number;
  discountPresentage: number;
+ service: {
+  id: number;
+  name: string;
+ };
  hasDiscount: false;
  count: number;
  clientType: 1 | 0;
