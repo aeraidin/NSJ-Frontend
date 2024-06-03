@@ -27,7 +27,6 @@ function TransactionTable({ data = [], selectedRow }: TransactionsProps) {
                         <th className="px-3 py-4">مبلغ</th>
                         <th className="px-3 py-4">تاریخ</th>
                         <th className="px-3 py-4">ساعت</th>
-                        <th className="px-3 py-4">وضعیت</th>
                       </tr>
                     </thead>
                     <tbody className=" overflow-y-scroll">
@@ -57,14 +56,6 @@ function TransactionTable({ data = [], selectedRow }: TransactionsProps) {
                             </td>
                             <td className="whitespace-nowrap px-3 py-4">
                               {item.createDate.split(" ")[1].slice(0, 5)}
-                            </td>
-                            <td
-                              onClick={() => {
-                                selectedRow(item.id);
-                              }}
-                              className=" cursor-pointer whitespace-nowrap px-3 py-4 text-third-500"
-                            >
-                              مشاهده
                             </td>
                           </tr>
                         );
@@ -115,12 +106,6 @@ function TransactionTable({ data = [], selectedRow }: TransactionsProps) {
                   <p className="text-sm text-gray-400 font-semibold">ساعت</p>
                   <p className=" text-gray-300 text-sm font-semibold">
                     {item.createDate.split(" ")[1].slice(0, 5)}
-                  </p>
-                </div>
-
-                <div className=" w-full">
-                  <p className=" text-center text-third-500 text-sm">
-                    مشاهده جزییات
                   </p>
                 </div>
               </div>

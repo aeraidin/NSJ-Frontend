@@ -25,7 +25,6 @@ https://dev.funicket.ir/api/v1/client/sport-commplex-service/${params.id}`
     }
 
     const product = await response.json();
-    console.log(product.value.description);
 
     return {
       title: ` ${product.value.sportComplex.name}${product.value.service.name}`,
