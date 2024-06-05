@@ -134,7 +134,7 @@ function SansService({ id }: { id: string }) {
                                         </p>
                                     </div>
                                     <div className='w-full lg:max-w-[166px]'>
-                                        <SuccessBtn onClick={() => CollapseHandler(index)}>رزور بلیت</SuccessBtn>
+                                        <SuccessBtn onClick={() => CollapseHandler(index)}>رزرو بلیت</SuccessBtn>
                                     </div>
                                 </div>
                             </div>
