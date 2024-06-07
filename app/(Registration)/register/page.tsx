@@ -7,7 +7,7 @@ function Page() {
     <div className="w-full h-full flex items-center justify-center">
       <div className="w-full max-w-[380px]  flex flex-col gap-4 lg:gap-6 ">
         <h1 className="text-xl lg:text-2xl font-medium ">
-          سلام! به اسپورتیکت خوش آمدید.
+          سلام! به فانیکت خوش آمدید.
         </h1>
 
         <div className="flex flex-col gap-4">

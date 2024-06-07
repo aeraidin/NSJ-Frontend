@@ -23,7 +23,7 @@ function Page() {
         </button>
       )}
       <div className="w-full max-w-[380px]  flex flex-col gap-6 ">
-        <h1 className="text-xl md:text-2xl ">سلام! به اسپورتیکت خوش آمدید.</h1>
+        <h1 className="text-xl md:text-2xl ">سلام! به فانیکت خوش آمدید.</h1>
         <div className="flex flex-col gap-4">
           <p className="text-2xl md:text-3xl">
             {" "}
