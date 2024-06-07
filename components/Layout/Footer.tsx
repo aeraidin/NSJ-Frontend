@@ -36,17 +36,17 @@ function Footer() {
 
             <ul className=" space-y-4 select-none  ">
               <li className=" text-dark-100 ">ارتباط با ما</li>
-              <li className="cursor-pointer ">
+              <li>
                 <Link className=" text-gray-600" href={"/contact"}>
                   تماس با ما
                 </Link>
               </li>
-              <li className="cursor-pointer ">
-                <Link className=" text-gray-600" href={""}>
+              <li>
+                <Link className=" text-gray-600" href={"/contribution"}>
                   همکاری با ما
                 </Link>
               </li>
-              <li className="cursor-pointer ">
+              <li>
                 <Link className=" text-gray-600" href={"#"}>
                   سوالات متداول
                 </Link>
@@ -57,7 +57,7 @@ function Footer() {
               <li>
                 <a
                   href="tel:02187653"
-                  className=" cursor-pointer  text-gray-600"
+                  className="  text-gray-600"
                 >
                   پشتیبانی:87653-021
                 </a>
@@ -65,7 +65,7 @@ function Footer() {
               <li>
                 <a
                   href="tel:02187653"
-                  className=" cursor-pointer  text-gray-600"
+                  className="  text-gray-600"
                 >
                   شرکت:87653-021
                 </a>
@@ -94,7 +94,7 @@ function Footer() {
                 referrerPolicy="origin"
                 fill
                 sizes="(min-width: 640px) 90vw, 100vw"
-                className=" cursor-pointer object-contain"
+                className=" object-contain"
                 src="https://trustseal.enamad.ir/logo.aspx?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
                 alt="نماد اعتماد الکترونیک"
               />
