@@ -49,7 +49,7 @@ function OtpCodeForm({
       queryClient.invalidateQueries();
       setTimeout(() => {
         if (isNew === "true") {
-          router.replace("/login/register");
+          router.replace("/register");
         } else {
           if (inModal) {
             CloseModal && CloseModal();

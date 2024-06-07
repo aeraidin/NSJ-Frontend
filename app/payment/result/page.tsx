@@ -67,7 +67,9 @@ function Page({
 
                             <div className='py-6 flex items-center justify-center gap-4  flex-col'>
                                 <h1 className='w-full truncate text-center'>{item.sportComplexService.name} {item.sportComplex.name}</h1>
-                                <h3 className='text-third-600'>کد رزور : {item.reserveRefNumber}</h3>
+
+                                <h3 className='text-third-600'>کد رزرو : {item.reserveRefNumber}</h3>
+
                             </div>
                             <div className="pt-4 border-t border-dashed border-gray-50">
                                 <h3 className="font-semibold text-gray-400">جزئیات رزرو بلیت</h3>
