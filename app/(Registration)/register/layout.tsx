@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-
+// test
 function layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="w-full h-screen  bg-[#E0E0E0]  flex items-center justify-center lg:px-6">
