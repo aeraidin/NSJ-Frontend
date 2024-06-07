@@ -2,6 +2,7 @@ import React from 'react'
 import Modal from '../Modal'
 import PreRegisterOTP from '../../Forms/auth/PreRegisterOTP'
 
+
 function OTPModal({ CloseModal, Phone, NationalCode, State }: { CloseModal: () => void, State: boolean, Phone: string, NationalCode: string }) {
   return (
     <Modal State={State} CloseModal={CloseModal}

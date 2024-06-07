@@ -4,7 +4,7 @@ import OtpInput from "react-otp-input";
 interface otpProps {
   length: number;
   otpCode: (value: string) => void;
-  error: boolean;
+  error?: boolean;
 }
 
 function OTPCode({ length, otpCode, error }: otpProps) {

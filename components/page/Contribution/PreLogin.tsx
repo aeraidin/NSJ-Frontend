@@ -1,5 +1,3 @@
-/** @format */
-
 "use client";
 
 import Toast from "@/components/Layout/Alerts/Toast";
@@ -7,6 +5,7 @@ import PrimaryBtn from "@/components/Layout/Buttons/PrimaryBtn";
 import { Form } from "@/components/Layout/Forms/Form";
 import ControlledInput from "@/components/Layout/Input/ControlledInput";
 import ControlledSelect from "@/components/Layout/Input/ControlledSelect";
+import OTPModal from "@/components/Layout/Modals/auth/OTPModal";
 import { PreLoginApi } from "@/util/api/contribution/PreLoginApi";
 import { PreRegistrationSchema, PreRegistrationSchemaType } from "@/util/config/validations/Registration/PreRegistrationSchema";
 import CmDays from "@/util/data/Date/CmDays";
@@ -71,12 +70,12 @@ function PreLogin() {
         isSuccess={SendOtp.isSuccess}
         Result={Result}
       />
-      {/* <OTPModal
+      <OTPModal
         State={Modal}
         CloseModal={() => setModal(false)}
         Phone={Phone!}
         NationalCode={NationalCode!}
-      /> */}
+      />
       <div className=" aspect-square sm:aspect-video bg-gray-50 rounded-[36px] relative">
         <Image src={"/Prelogin/Banner.png"} alt="image" fill className="object-cover rounded-[36px]" />
         <h6 className="text-primary-600 text-xl md:text-3xl absolute top-[10%] lg:top-[30%] right-[5%]">

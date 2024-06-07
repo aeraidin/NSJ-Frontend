@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import Otpcode from '../../Otpcode/Otpcode';
+
 import CountdownTimer from '../../CountDown/CountDownTimer';
 import PrimaryBtn from '../../Buttons/PrimaryBtn';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
-import { VerifyManager } from '@/util/api/Landing/Verify';
+
 import Toast from '../../Alerts/Toast';
+import { VerifyManager } from '@/util/api/contribution/Verify';
+import OTPCode from '../../Otpcode/OTPCode';
 function PreRegisterOTP({ CloseModal, phone, nationalCode }: { CloseModal: () => void, phone: string, nationalCode: string }) {
     const [code, setCode] = useState<string>("");
     const router = useRouter();
@@ -36,10 +38,9 @@ function PreRegisterOTP({ CloseModal, phone, nationalCode }: { CloseModal: () =>
         <>
             <Toast Result={Result} Close={() => setResult(false)} isError messege={Verify.error?.message} />
             <div className="flex flex-col gap-8">
-                <Otpcode
-                    reset={reset}
-                    // error={LoginOtp.isError}
-                    onOTPChange={(e) => setCode(e)}
+                <OTPCode
+                    //   error={LoginOtp.isError}
+                    otpCode={(e) => setCode(e)}
                     length={5}
                 />
                 <PrimaryBtn
