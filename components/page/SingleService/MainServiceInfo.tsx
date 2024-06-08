@@ -122,7 +122,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                                 <Location size="20" className="text-gray-300" variant="Bold" />
                                                 <h4>{Data?.location}</h4>
                                             </div>
-                                            <Link href={`category/${Data?.service.id}`} className="group/item border-l border-gray-50 pl-2">
+                                            <Link href={`/category/${Data?.service.id}`} className="group/item border-l border-gray-50 pl-2">
                                                 <h4 className="group-hover/item:text-third-500 group-hover/item:underline duration-150">
                                                     {Data?.service.name}
                                                 </h4>
@@ -141,7 +141,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                         <Image src={"/Icons/Gender.svg"} width={24} height={24} alt='gendericon' />
                                         <div className='flex flex-col gap-2'>
                                             <p className='text-gray-300 '>نوع پذیرش</p>
-                                            <h5 className='text-gray-500'>مورد استفاده برای {SansData?.map(item => UserTypeData[item.clientType].name)}</h5>
+                                            <h5 className='text-gray-500'>مورد استفاده برای {SansData?.map(item => `${UserTypeData[item.clientType].name} `)}</h5>
                                         </div>
                                     </div>
                                     <div className=' flex items-center gap-4 lg:gap-6 text-gray-200 pt-4'>
