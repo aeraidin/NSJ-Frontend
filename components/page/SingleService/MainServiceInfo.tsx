@@ -134,7 +134,6 @@ function MainServiceInfo({ id }: { id: string }) {
                                         </div>
                                     </div>
                                 </div>
-
                                 {/* ساعت کاری مجموعه  */}
                                 <div className='w-full border border-gray-50 flex items-start flex-col rounded-3xl px-6 lg:px-8 py-6'>
                                     <div className=' flex items-center gap-4 lg:gap-6 text-gray-200 w-full border-b border-b-gray-50 pb-4'>
