@@ -20,6 +20,10 @@ export const messages = {
  invalidPhoneNumber: "شماره موبایل به درستی وارد نشده است",
  roleIsRequired: "نقش الزامی است",
  permissionIsRequired: "مجوز الزامی است",
+ usernameRequired: "نام کاربری الزامی است",
+ NationalCodeReq: "کدملی الزامی است",
+ NationalCodeIsMin: "کد ملی نمیتواند کمتر از ۱۱ کارکتر باشد",
+ NationalCodeMAX: "کدملی نمیتواند بیشتر از ۱۱ کارکتر باشد",
  teamIsRequired: "عضو جدید باید به یک تیم اختصاص یابد",
  productNameIsRequired: "نام محصول الزامی است",
  productTypeIsRequired: "نوع محصول الزامی است",
@@ -32,6 +36,7 @@ export const messages = {
  countryIsRequired: "کشور الزامی است",
  addressLineOneRequired: "آدرس خط 1 الزامی است",
  zipCodeRequired: "کد پستی الزامی است",
+
  cardHolderNameIsRequired: "نام دارنده کارت الزامی است",
  cardNumberIsRequired: "شماره کارت الزامی است",
  cardExpireIsRequired: "تاریخ انقضاء الزامی است",
