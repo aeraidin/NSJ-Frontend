@@ -21,12 +21,14 @@ import Toast from '@/components/Layout/Alerts/Toast';
 import { motion } from "framer-motion";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ToggleFavorite } from '@/util/api/Favorite/ToggleFavorite';
+import GalleryModal from '@/components/Layout/Modals/GalleryModal';
 
 function MainServiceInfo({ id }: { id: string }) {
     const data = useGetSingleService({ id: id })
     const Data = data?.data?.value as SingleProductPage | undefined
     const Sans = useGetSingleServiceSans({ id: id })
     const SansData = Sans?.data?.value.list as Sans[] | undefined
+    const [GalleryOpen, setGalleryOpen] = useState(false)
     const swiper = useSwiper();
     const [CopyResult, SetCopyResult] = useState(false)
     const [url, seturl] = useState("");
@@ -50,6 +52,7 @@ function MainServiceInfo({ id }: { id: string }) {
     }, [pathname, url]);
     return (
         <>
+            <GalleryModal Data={Data ? Data.filePathes : null} State={GalleryOpen} CloseModal={() => setGalleryOpen(false)} />
             <div className='Container flex flex-col  gap-8 pt-8'>
                 <div className='w-full flex items-center justify-between'>
                     <Breadcrumb>
@@ -134,7 +137,6 @@ function MainServiceInfo({ id }: { id: string }) {
                                         </div>
                                     </div>
                                 </div>
-
                                 {/* ساعت کاری مجموعه  */}
                                 <div className='w-full border border-gray-50 flex items-start flex-col rounded-3xl px-6 lg:px-8 py-6'>
                                     <div className=' flex items-center gap-4 lg:gap-6 text-gray-200 w-full border-b border-b-gray-50 pb-4'>
@@ -209,6 +211,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                 delay: 5500,
                                 disableOnInteraction: false,
                             }}
+                            onClick={() => setGalleryOpen(true)}
                             modules={[FreeMode, Navigation, Autoplay]}
                             navigation={{
                                 nextEl: ".SinglePageNextSlide",
