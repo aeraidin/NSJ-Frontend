@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import SubscribeForm from "./Forms/Subscribe/SubscribeForm";
 import Link from "next/link";
@@ -16,7 +18,6 @@ function Footer() {
         <div className=" w-full h-full flex flex-col  gap-y-[68px]">
           <div className=" grid-cols-2 gap-8 lg:gap-0  lg:grid-cols-3 grid">
             <ul className=" space-y-4 select-none ">
-              <li className=" text-dark-100 ">فانیتیکت</li>
               <li className="cursor-pointer ">
                 <Link className=" text-gray-600" href={"/about"}>
                   درباره ی فانیتیکت
@@ -35,7 +36,6 @@ function Footer() {
             </ul>
 
             <ul className=" space-y-4 select-none  ">
-              <li className=" text-dark-100 ">ارتباط با ما</li>
               <li>
                 <Link className=" text-gray-600" href={"/contact"}>
                   تماس با ما
@@ -55,18 +55,12 @@ function Footer() {
 
             <ul className=" space-y-4  select-none ">
               <li>
-                <a
-                  href="tel:02187653"
-                  className="  text-gray-600"
-                >
+                <a href="tel:02187653" className="  text-gray-600">
                   پشتیبانی:87653-021
                 </a>
               </li>
               <li>
-                <a
-                  href="tel:02187653"
-                  className="  text-gray-600"
-                >
+                <a href="tel:02187653" className="  text-gray-600">
                   شرکت:87653-021
                 </a>
               </li>
