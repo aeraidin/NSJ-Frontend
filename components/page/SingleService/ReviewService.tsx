@@ -50,12 +50,12 @@ function ReviewService({ id }: ReviewServiceProps) {
 
   const addComment = useMutation({
     mutationFn: AddComment,
-    onSuccess: (data, variables, context) => {
+    onSuccess: () => {
       console.log(data);
       setState(false);
       setResult(true);
     },
-    onError: (err) => {
+    onError: (err: Error) => {
       console.log(err);
     },
   });
@@ -171,7 +171,7 @@ function ReviewService({ id }: ReviewServiceProps) {
       />
 
       {/* </div> */}
-      {commentList.length !== 0 ? (
+      {commentList && !data.isPending ? (
         <div className="Container  pt-6 lg:pt-10">
           <div className=" w-full flex flex-col  lg:flex-row gap-4 mb-10">
             <div className=" w-full lg:max-w-[400px] flex flex-col h-[206px]   justify-center items-center bg-[#FAFAFA] rounded-[20px] ">
@@ -237,7 +237,7 @@ function ReviewService({ id }: ReviewServiceProps) {
 
           <h2 className=" mb-3 lg:mb-8 text-gray-500 font-semibold ">{` امتیاز و نظرات کاربران(${commentList.length} نظر)`}</h2>
 
-          {commentList ? (
+          {commentList.length !== 0 ? (
             <div className=" gap-y-3 md:gap-y-6 flex-col flex">
               {commentList?.map((item: any, index: number) => {
                 return <Comment data={item} key={index} />;
