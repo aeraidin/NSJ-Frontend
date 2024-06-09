@@ -55,10 +55,10 @@ const Links: React.FC<LinksProps> = ({ inHeader }) => {
     </Link>
   );
   const LogOutMutation = () => {
-
     Cookies.remove("token");
     queryClient.invalidateQueries();
     router.replace("/");
+    router.refresh()
   }
   return (
     <div className="w-full h-full">
