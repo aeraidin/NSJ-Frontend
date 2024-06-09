@@ -18,7 +18,7 @@ function GalleryModal({ CloseModal, State, Data }: { State: boolean, CloseModal:
             State={State}
             CloseModal={CloseModal}
         >
-            <div className='w-full h-full bg-red-400'>
+            <div className='w-full h-full '>
                 <Swiper
                     spaceBetween={0}
                     slidesPerView={1}
@@ -63,38 +63,40 @@ function GalleryModal({ CloseModal, State, Data }: { State: boolean, CloseModal:
                     </button>
 
                 </Swiper>
-                <Swiper
-                    onSwiper={setThumbsSwiper}
-                    spaceBetween={10}
-                    slidesPerView={5}
-                    freeMode={true}
-                    watchSlidesProgress={true}
-                    modules={[FreeMode, Navigation, Thumbs]}
-                    className=""
-                >
-                    {Data ? Data.map((item, index) => {
-                        return (
-                            <SwiperSlide key={index} >
-                                <div className='relative  w-full h-full aspect-w-7 aspect-h-4 rounded-2xl overflow-hidden'>
-                                    <Image
-                                        alt={item}
-                                        fill
-                                        src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${item}`}
-                                        sizes="(min-width: 640px) 90vw, 100vw"
-                                        className="object-cover"
-                                    />
-                                    <div
-                                        className={`w-full h-full absolute top-0 left-0  ${activeIndex === index
-                                            ? ""
-                                            : "bg-black/55 group-hover:bg-black/30"
-                                            }  duration-200`}
-                                    ></div>
-                                </div>
-                            </SwiperSlide>
-                        );
-                    }) : <SwiperSlide className='relative  w-full h-full aspect-w-8 aspect-h-5 bg-gray-200 animate-pulse'>
-                    </SwiperSlide>}
-                </Swiper>
+                {swiper && Data ?
+                    <Swiper
+                        onSwiper={setThumbsSwiper}
+                        spaceBetween={10}
+                        slidesPerView={5}
+                        freeMode={true}
+                        watchSlidesProgress={true}
+                        modules={[FreeMode, Navigation, Thumbs]}
+                        className=""
+                    >
+                        {Data ? Data.map((item, index) => {
+                            return (
+                                <SwiperSlide key={index} >
+                                    <div className='relative  w-full h-full aspect-w-8 aspect-h-4 rounded-2xl overflow-hidden'>
+                                        <Image
+                                            alt={item}
+                                            fill
+                                            src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${item}`}
+                                            sizes="(min-width: 640px) 90vw, 100vw"
+                                            className="object-cover"
+                                        />
+                                        <div
+                                            className={`w-full h-full absolute top-0 left-0  ${activeIndex === index
+                                                ? ""
+                                                : "bg-black/55 group-hover:bg-black/30"
+                                                }  duration-200`}
+                                        ></div>
+                                    </div>
+                                </SwiperSlide>
+                            );
+                        }) : <SwiperSlide className='relative  w-full h-full aspect-w-8 aspect-h-5 bg-gray-200 animate-pulse'>
+                        </SwiperSlide>}
+                    </Swiper>
+                    : null}
             </div>
         </GalleryModalMain>
     )

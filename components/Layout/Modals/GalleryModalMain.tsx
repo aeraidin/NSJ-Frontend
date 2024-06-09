@@ -45,7 +45,7 @@ function GalleryModalMain({
                     <motion.div
                         ref={containerRef}
                         variants={variants}
-                        className={`  aspect-video  max-w-[1420px]  w-full py-6 px-6  md:py-24  flex items-center justify-center relative rounded-2xl md:rounded-2xl bg-white `}
+                        className={`  aspect-video max-w-[1480px]  w-full py-6 px-6 md:px-[76px] md:py-24  flex items-center justify-center relative rounded-2xl md:rounded-2xl bg-white `}
                     >
                         <div
                             className={`absolute left-0  top-0 w-full flex items-center ${HaveBack ? "justify-between" : "justify-end"
@@ -67,8 +67,7 @@ function GalleryModalMain({
                             </button>
                         </div>
 
-                        <div className="w-[80%] h-full  ">{children}</div>
-
+                        <div className="w-full h-full">{children}</div>
 
                     </motion.div>
                 </motion.div>
