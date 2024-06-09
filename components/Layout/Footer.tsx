@@ -20,7 +20,7 @@ function Footer() {
             <ul className=" space-y-4 select-none ">
               <li className="cursor-pointer ">
                 <Link className=" text-gray-600" href={"/about"}>
-                  درباره ی فانیتیکت
+                  درباره ی فانیکت
                 </Link>
               </li>
               <li className="cursor-pointer ">
@@ -55,13 +55,8 @@ function Footer() {
 
             <ul className=" space-y-4  select-none ">
               <li>
-                <a href="tel:02187653" className="  text-gray-600">
-                  پشتیبانی:87653-021
-                </a>
-              </li>
-              <li>
-                <a href="tel:02187653" className="  text-gray-600">
-                  شرکت:87653-021
+                <a href="tel:02188748501" className="  text-gray-600">
+                  پشتیبانی : 88748501-021
                 </a>
               </li>
             </ul>
