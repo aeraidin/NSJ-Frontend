@@ -120,9 +120,9 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
                                 {item.reserveTime.slice(0, 5)}
                               </td>
                               <td className=" cursor-pointer whitespace-nowrap px-3 py-4 text-third-500">
-                                <ReserveStatus status={item.isApproved} />
+                                <ReserveStatus usedState={item.usedState} />
                               </td>
-                              {item.isApproved === true ? (
+                              {item.usedState === 0 ? (
                                 <td
                                   onClick={() => {
                                     setReserveItem(item.id);
@@ -187,12 +187,12 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
                   <div className=" w-full justify-between  flex">
                     <p className="text-sm text-gray-400 font-semibold">وضعیت</p>
                     <p className=" text-gray-300 text-sm font-semibold">
-                      <ReserveStatus status={item.isApproved} />
+                      <ReserveStatus usedState={item.usedState} />
                     </p>
                   </div>
 
                   <div className=" w-full justify-end  flex">
-                    {item.isApproved === true ? (
+                    {item.usedState === 0 ? (
                       <p
                         onClick={() => {
                           setReserveItem(item.id);

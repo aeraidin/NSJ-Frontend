@@ -1,9 +1,14 @@
+/** @format */
 
 "use client";
 import MainLayout from "@/components/Layout/MainLayout";
 import React from "react";
 import Breadcrumb from "@/components/Layout/breadcrumb";
 import ContactUsForm from "@/components/Layout/Forms/ContactUsForm";
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+import support from "@/public/Support/support.png";
 
 function contact() {
   return (
@@ -24,8 +29,23 @@ function contact() {
 
       <h2 className=" text-primary-600 font-semibold  mt-16">فرم تماس</h2>
       <div className=" w-full flex mt-8">
-        <div className=" w-full max-w-[924px] px-9 py-[74px] mb-10 border-gray-50 h-fit lg:h-[536px] border rounded-3xl">
+        <div className=" w-full max-w-[924px] px-9 py-[74px] mb-10 border-gray-50 h-fit lg:h-[636px] border rounded-3xl">
           <ContactUsForm />
+        </div>
+        <div className=" w-full hidden  lg:flex justify-center items-start">
+          <div className="  w-full h-full flex justify-center items-start relative">
+            <motion.button
+              className=" absolute w-[373px]  h-[373px]"
+              whileTap={{ scale: 0.9 }}
+            >
+              <Image
+                src={support}
+                className=" select-none"
+                fill
+                alt="support"
+              />
+            </motion.button>
+          </div>
         </div>
       </div>
     </MainLayout>
