@@ -74,11 +74,11 @@ function SansService({ id }: { id: string }) {
                                     </div>
                                     <div className='flex items-center gap-2'>
                                         <Clock size="24" className='text-gray-300' />
-                                        <p> مدت زمان هر سانس: {item.priod} دقیقه</p>
+                                        <p className='text-gray-400'> مدت زمان هر سانس: <span className='text-gray-600'>{item.priod} دقیقه</span> </p>
                                     </div>
                                     <div className='flex items-center gap-2'>
                                         <Image src={"/Icons/durationSans.svg"} width={24} height={24} alt='icons' />
-                                        <p> مدت زمان استفاده: {item.exp} روز</p>
+                                        <p className='text-gray-400'> مدت زمان استفاده <span className='text-gray-600'>{item.exp} روز پس از خرید</span></p>
                                     </div>
                                 </div>
                                 <div className='lg:hidden'>
