@@ -67,10 +67,10 @@ function Page({
                             <h2 className='text-success-600 '>بلیت شما با موفقیت رزرو شد</h2>
                         </div>
                         {Reserves?.map((item, index) => {
-                            return <div key={index} className='w-full border border-gray-50 rounded-2xl pt-6   px-6 pb-6'>
+                            return <div key={index} className='w-full border border-gray-50 rounded-2xl   px-6 pb-6'>
 
                                 <div
-                                    className='flex items-center  justify-center gap-4 pb-4 '>
+                                    className='flex items-center flex-col  justify-center gap-6 py-4 '>
                                     <QRCodeSVG
                                         value={"https://dev.funicket.ir/Favicon/Favicon.png"}
                                         size={128}
@@ -87,7 +87,7 @@ function Page({
                                             excavate: true,
                                         }}
                                     />
-                                    <div className='py-6 flex items-center justify-center gap-4  flex-col'>
+                                    <div className='py-b flex items-center justify-center gap-4  flex-col'>
                                         <h1 className='w-full truncate text-center'>{item.sportComplexService.name} {item.sportComplex.name}</h1>
                                         <h3 className='text-third-600'>کد رزرو : {item.reserveRefNumber}</h3>
                                     </div>
