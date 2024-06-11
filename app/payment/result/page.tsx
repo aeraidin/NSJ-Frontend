@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React, { StrictMode, useEffect, useState } from 'react'
+import { QRCodeSVG } from 'qrcode.react';
 interface reserve {
     type: number,
     date: string,
@@ -66,13 +67,31 @@ function Page({
                             <h2 className='text-success-600 '>بلیت شما با موفقیت رزرو شد</h2>
                         </div>
                         {Reserves?.map((item, index) => {
-                            return <div key={index} className='w-full border border-gray-50 rounded-2xl  p-6'>
+                            return <div key={index} className='w-full border border-gray-50 rounded-2xl pt-6   px-6 pb-6'>
 
-                                <div className='py-6 flex items-center justify-center gap-4  flex-col'>
-                                    <h1 className='w-full truncate text-center'>{item.sportComplexService.name} {item.sportComplex.name}</h1>
-
-                                    <h3 className='text-third-600'>کد رزرو : {item.reserveRefNumber}</h3>
-
+                                <div
+                                    className='flex items-center  justify-center gap-4 pb-4 '>
+                                    <QRCodeSVG
+                                        value={"https://dev.funicket.ir/Favicon/Favicon.png"}
+                                        size={128}
+                                        bgColor={"#ffffff"}
+                                        fgColor={"#000000"}
+                                        level={"H"}
+                                        includeMargin={false}
+                                        imageSettings={{
+                                            src: "https://dev.funicket.ir/Favicon/Favicon.png",
+                                            x: undefined,
+                                            y: undefined,
+                                            height: 30,
+                                            width: 30,
+                                            excavate: true,
+                                        }}
+                                    />
+                                    <div className='py-6 flex items-center justify-center gap-4  flex-col'>
+                                        <h1 className='w-full truncate text-center'>{item.sportComplexService.name} {item.sportComplex.name}</h1>
+                                        <h3 className='text-third-600'>کد رزرو : {item.reserveRefNumber}</h3>
+                                    </div>
+                                    {/* <div></div> */}
                                 </div>
                                 <div className="pt-4 border-t border-dashed border-gray-50">
                                     <h3 className="font-semibold text-gray-400">جزئیات رزرو بلیت</h3>
