@@ -15,7 +15,7 @@ function MainLayout({ children, isProfile }: MainLayoutProps) {
     <React.Fragment>
       <Header />
       <BottomNavigation />
-      <main className="min-h-screen Container ">
+      <main className="Container">
         {children}
       </main>
       {!isProfile ? <Footer /> : null}
