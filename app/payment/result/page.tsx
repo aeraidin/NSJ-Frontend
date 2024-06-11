@@ -68,7 +68,6 @@ function Page({
                         </div>
                         {Reserves?.map((item, index) => {
                             return <div key={index} className='w-full border border-gray-50 rounded-2xl   px-6 pb-6'>
-
                                 <div
                                     className='flex items-center flex-col  justify-center gap-6 py-4 '>
                                     <QRCodeSVG

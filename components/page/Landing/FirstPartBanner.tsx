@@ -54,21 +54,14 @@ function FirstPartBanner() {
                                 width: 976,
                                 slidesPerView: 5,
                             },
-                            1024: {
-                                width: 1024,
-                                slidesPerView: 6,
-                            },
-                            1580: {
-                                width: 1580,
-                                slidesPerView: 7,
-                            },
+
 
                         }}
-                        className='w-full h-full rounded-2xl relative group'
+                        className=''
                     >
                         {Data!.map((item, index) => {
                             return (
-                                <SwiperSlide key={index} className='h-full '  >
+                                <SwiperSlide key={index} className='h-full select-none'  >
                                     <Link href={`/category/${item.id}`} className='flex items-center justify-center flex-col gap-2'>
                                         <Image src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${item.icon}`} alt={item.name} width={32} height={32} className='object-contain' />
                                         <p className='whitespace-nowrap'>{item.name}</p></Link>
