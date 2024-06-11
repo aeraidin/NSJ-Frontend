@@ -16,15 +16,27 @@ import { Form } from "./Form";
 import ControlledSelect from "../Input/ControlledSelect";
 import ControlledTextArea from "../Input/ControlledTextArea";
 import { AddContact } from "@/util/api/Contact/AddContact";
+import Captcha from "./auth/Captcha";
 
-function ContactUsForm({ }: {}) {
+function ContactUsForm({}: {}) {
   const [reset, setReset] = useState({});
   const [result, setResult] = useState(false);
+  const [resetCaptcha, setResetCaptcha] = useState(false);
+  const values = {
+    fullName: "",
+    phoneNumber: "",
+    text: "",
+    email: "",
+    verify: null,
+    subject: { name: "", value: "" },
+  };
 
   const addContact = useMutation({
     mutationFn: AddContact,
     onSuccess: (data, variables, context) => {
       setResult(true);
+      setReset(values);
+      setResetCaptcha(true);
     },
     onError: (err) => {
       console.log(err);
@@ -78,7 +90,7 @@ function ContactUsForm({ }: {}) {
                 // disabled={sendotp.isPending}
                 PlaceHolder="نام و نام خانوادگی"
                 type="text"
-                error={errors.phoneNumber?.message}
+                error={errors.fullName?.message}
               />
 
               <div className=" w-full mt-5">
@@ -95,7 +107,7 @@ function ContactUsForm({ }: {}) {
                       required
                       PlaceHolder="موضوع را انتخاب کنید"
                       options={options}
-                      error=""
+                      error={""}
                     />
                   )}
                 />
@@ -125,7 +137,7 @@ function ContactUsForm({ }: {}) {
                   error={errors.email?.message}
                 />
               </div>
-              <div className=" w-full max-w-[400px] ">
+              <div className=" w-full lg:max-w-[400px] ">
                 <ControlledTextArea
                   id="text"
                   setValue={setValue}
@@ -136,6 +148,21 @@ function ContactUsForm({ }: {}) {
                   PlaceHolder="برای ما بنویسید..."
                 />
               </div>
+            </div>
+
+            <div className=" w-full flex mb-6 lg:mb-0 justify-center lg:justify-start ">
+              <Controller
+                control={control}
+                name="verify"
+                render={({ field: { onChange, value } }) => (
+                  <div className=" flex flex-col">
+                    <Captcha reset={resetCaptcha} onChange={onChange} />
+                    <p className=" text-error-500 text-xs">
+                      {errors.verify?.message}
+                    </p>
+                  </div>
+                )}
+              />
             </div>
 
             <div className=" w-full flex justify-center items-center">

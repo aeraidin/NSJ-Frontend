@@ -77,14 +77,13 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled }: { D
                         </p>
                     </div>
                     <div className="flex items-center justify-between py-4">
-                        <p className='text-error-600'>تخفیف</p>
+                        <p className='text-error-600'>سود شما از خرید</p>
                         <p className='text-error-600'>
                             <NumericFormat
                                 value={totalDiscount}
                                 displayType={"text"}
                                 thousandSeparator={","}
                             />
-                            {"-"}
                             {" تومان "}
                         </p>
                     </div>

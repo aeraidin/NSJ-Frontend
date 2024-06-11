@@ -5,7 +5,7 @@ import { AddDisLike } from "@/util/api/Comment/AddDisLike";
 import { AddLike } from "@/util/api/Comment/AddLike";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { Like, Like1, Star1 } from "iconsax-react";
+import { Like, Like1, Star1, User, UserOctagon } from "iconsax-react";
 import Image from "next/image";
 import Cookies from "js-cookie";
 const token = Cookies.get("token");
@@ -83,12 +83,17 @@ function Comment({ data }: commentProps) {
       <div className=" w-full h-fit flex pb-6 flex-col rounded-[20px] border border-gray-50 ">
         <div className=" w-full flex ">
           <div className="w-full max-w-[65px] py-6 flex justify-center h-full">
-            <div className=" w-10 h-10 bg-slate-600 rounded-full relative">
-              <Image
-                src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${data.user.profileImage}`}
-                alt="profile"
-                fill
-              />
+            <div className=" w-10 h-10 flex justify-center items-center bg-gradient-to-l from-primary-500 to-primary-200 rounded-full relative">
+              {data.user?.profileImage ? (
+                <Image
+                  className=" rounded-full"
+                  src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${data.user.profileImage}`}
+                  alt="profile"
+                  fill
+                />
+              ) : (
+                <User variant="Bold" color="#fff" size={24} />
+              )}
             </div>
           </div>
           <div className="  w-full flex flex-col  h-full">
@@ -234,7 +239,9 @@ function Comment({ data }: commentProps) {
             <div className="  w-full   h-full ">
               <div className="w-full bg-[#FBFBFB] rounded-[20px]  flex justify-start px-6 py-4  lg:p-6 h-fit">
                 <div className="w-full max-w-[65px]">
-                  <div className=" w-10 h-10 bg-red-600 rounded-full"></div>
+                  <div className=" w-10 h-10 bg-gradient-to-l flex justify-center items-center from-third-500 to-third-200 rounded-full">
+                    <UserOctagon variant="Bold" size={24} color="#fff" />
+                  </div>
                 </div>
                 <div className="flex-1 overflow-hidden">
                   <div className="  w-full flex flex-col  h-full">

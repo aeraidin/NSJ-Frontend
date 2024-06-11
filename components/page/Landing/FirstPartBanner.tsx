@@ -44,31 +44,24 @@ function FirstPartBanner() {
                         breakpoints={{
                             480: {
                                 width: 480,
-                                slidesPerView: 2.5,
+                                slidesPerView: 3,
                             },
                             768: {
                                 width: 768,
-                                slidesPerView: 3.5,
+                                slidesPerView: 4,
                             },
                             976: {
                                 width: 976,
-                                slidesPerView: 3.8,
-                            },
-                            1024: {
-                                width: 1024,
-                                slidesPerView: 4.5,
-                            },
-                            1280: {
-                                width: 1280,
                                 slidesPerView: 5,
-                            }
-                        }}
+                            },
 
-                        className='w-full h-full rounded-2xl relative group'
+
+                        }}
+                        className=''
                     >
                         {Data!.map((item, index) => {
                             return (
-                                <SwiperSlide key={index} className='w-full  h-full !flex !items-center !justify-center'  >
+                                <SwiperSlide key={index} className='h-full select-none'  >
                                     <Link href={`/category/${item.id}`} className='flex items-center justify-center flex-col gap-2'>
                                         <Image src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${item.icon}`} alt={item.name} width={32} height={32} className='object-contain' />
                                         <p className='whitespace-nowrap'>{item.name}</p></Link>
