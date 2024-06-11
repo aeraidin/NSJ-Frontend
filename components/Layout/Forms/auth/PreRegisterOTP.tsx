@@ -7,7 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import Toast from '../../Alerts/Toast';
 import { VerifyManager } from '@/util/api/contribution/Verify';
-import OTPCode from '../../OTPCode/OTPCode';
+import OTPCode from '../../Otpcode/OTPCode';
 function PreRegisterOTP({ CloseModal, phone, nationalCode }: { CloseModal: () => void, phone: string, nationalCode: string }) {
     const [code, setCode] = useState<string>("");
     const router = useRouter();

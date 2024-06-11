@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
 import Toast from "../../Alerts/Toast";
-import OTPCode from "../../OTPCode/OTPCode";
+import OTPCode from "../../Otpcode/OTPCode";
 
 
 function OtpCodeForm({
