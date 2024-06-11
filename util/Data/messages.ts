@@ -36,7 +36,7 @@ export const messages = {
  countryIsRequired: "کشور الزامی است",
  addressLineOneRequired: "آدرس خط 1 الزامی است",
  zipCodeRequired: "کد پستی الزامی است",
-captchaIsRequired: ”کپچا الزامی می باشد”,
+captchaIsRequired: "کپچا الزامی میباشد",
  cardHolderNameIsRequired: "نام دارنده کارت الزامی است",
  cardNumberIsRequired: "شماره کارت الزامی است",
  cardExpireIsRequired: "تاریخ انقضاء الزامی است",
