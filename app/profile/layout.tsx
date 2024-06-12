@@ -9,7 +9,7 @@ import React from "react";
 function Layout({ children }: { children: React.ReactNode }) {
   const Session = useSestion();
   if (!Session) {
-    redirect("/");
+    redirect("/login");
   }
   return (
     <MainLayout isProfile>
