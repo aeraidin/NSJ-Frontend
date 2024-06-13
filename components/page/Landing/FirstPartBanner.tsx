@@ -13,8 +13,9 @@ function FirstPartBanner() {
     return (
         <div className=' relative '>
             <Swiper
+                spaceBetween={10}
                 autoplay={{
-                    delay: 5500,
+                    delay: 7000,
                     disableOnInteraction: true,
                 }}
                 modules={[Autoplay]}

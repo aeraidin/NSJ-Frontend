@@ -19,7 +19,7 @@ function Layout({ children }: { children: React.ReactNode }) {
     <MainLayout isProfile>
       <div className=" w-full  lg:gap-x-8 lg:my-8    flex">
         <div className="w-full  hidden lg:block min-h-screen   lg:max-w-[257px] relative">
-          <div className="  sticky  top-32">
+          <div className="sticky top-32">
             <SideBar />
           </div>
         </div>
