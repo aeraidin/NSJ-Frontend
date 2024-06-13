@@ -5,12 +5,16 @@ import SideBar from "@/components/page/Profile/SideBar";
 import { useSestion } from "@/util/session";
 import { redirect } from "next/navigation";
 import React from "react";
+import Cookies from "js-cookie";
 
 function Layout({ children }: { children: React.ReactNode }) {
   const Session = useSestion();
+  const token = Cookies.get("token");
+
   if (!Session) {
     redirect("/login");
   }
+
   return (
     <MainLayout isProfile>
       <div className=" w-full  lg:gap-x-8 lg:my-8    flex">
