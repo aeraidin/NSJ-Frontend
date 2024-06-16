@@ -53,12 +53,12 @@ function GalleryModal({ CloseModal, State, Data }: { State: boolean, CloseModal:
                     </SwiperSlide>}
                     <button
                         onClick={() => swiper && swiper.slidePrev()}
-                        className='SinglePagePrevSlide  w-10 h-10 rounded-full opacity-0 group-hover:opacity-100 disabled:cursor-not-allowed disabled:group-hover:opacity-20 duration-150 bg-black/30 text-white hover:shadow-CMSHADOW flex items-center justify-center  absolute top-1/2 transform right-2 -translate-y-1/2 z-20'>
+                        className='SinglePagePrevSlide  w-16 h-16 rounded-full disabled:cursor-not-allowed disabled:group-hover:opacity-20 duration-150 bg-black/30 text-white hover:shadow-CMSHADOW flex items-center justify-center  absolute top-1/2 transform right-2 -translate-y-1/2 z-20'>
                         <ArrowRight2 size="24" />
                     </button>
                     <button
                         onClick={() => swiper && swiper.slideNext()}
-                        className='SinglePageNextSlide  w-10 h-10 rounded-full opacity-0 group-hover:opacity-100 disabled:cursor-not-allowed disabled:group-hover:opacity-20 duration-150 bg-black/30 text-white hover:shadow-CMSHADOW flex items-center justify-center absolute top-1/2 transform left-2 -translate-y-1/2 z-20'>
+                        className='SinglePageNextSlide  w-16 h-16 rounded-full disabled:cursor-not-allowed disabled:group-hover:opacity-20 duration-150 bg-black/30 text-white hover:shadow-CMSHADOW flex items-center justify-center absolute top-1/2 transform left-2 -translate-y-1/2 z-20'>
                         <ArrowLeft2 size="24" />
                     </button>
 

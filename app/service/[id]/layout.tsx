@@ -25,9 +25,10 @@ https://dev.funicket.ir/api/v1/client/sport-commplex-service/${params.id}`
     }
 
     const product = await response.json();
+    console.log(product.value);
 
     return {
-      title: ` ${product.value.sportComplex.name}${product.value.service.name}`,
+      title: `${product.value.name} ${product.value.sportComplex.name}`,
       description: `${product.value.description}`,
       openGraph: {
         images: `https://dev.funicket.ir/${product.value.filePathes[0]}`,

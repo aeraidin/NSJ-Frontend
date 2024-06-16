@@ -21,8 +21,8 @@ function PaymentSteps({
         <button onClick={onClick} className=" cursor-pointer  z-0 flex items-center flex-col gap-2">
             <motion.div
                 animate={isActive ? { scale: [1, 1.4, 1] } : { scale: 1 }}
-                transition={{ duration: 0.3 }} className={`p-2 rounded-full bg-${isActive ? "success-600" : "white"} duration-150`}>
-                <Icon className={`text-${isActive ? "white" : "gray-300"}`} size={24} variant={"Bold"} />
+                transition={{ duration: 0.3 }} className={`p-2 rounded-full bg-${isActive ? "success-600" : "white"} duration-150 `}>
+                <Icon className={`text-${isActive ? "white" : "gray-300"} size-4 lg:size-6`} variant={"Bold"} />
 
             </motion.div>
             <p className={`text-base flex-nowrap text-${isActive ? "success-600" : "gray-400"}`}>{label}</p>

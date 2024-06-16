@@ -64,6 +64,7 @@ interface SansDay {
  discountPresentage: number;
  priod: number;
  exp: number;
+ date: string;
 }
 interface SansDayDetail {
  id: number;

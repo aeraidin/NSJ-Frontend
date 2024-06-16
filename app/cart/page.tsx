@@ -100,7 +100,10 @@ function Page() {
                     {/* خلاصه سبد خرید */}
                     <div className="w-full flex flex-col gap-6 flex-1">
                         <PaymentSteps step={step} OnClick={(e) => {
-                            DoneStep.includes(e) && setstep(e)
+                            DoneStep.includes(e) &&
+                                setstep(e)
+                            setCardPayment(false)
+
                         }} />
                         <AnimatePresence mode="wait">
                             <motion.div
@@ -113,7 +116,10 @@ function Page() {
 
                     </div>
                     {/* ایتم های سبد خرید */}
-                    <CartSummery Data={step === 2 ? Data : null} onClick={CheckOutHandler} disabled={PaymentMutation.isPending || !Data} totalDiscount={Data?.totalDiscount} totalPrice={Data?.totalPrice} />
+                    <CartSummery back={() => {
+                        setstep(1)
+                        setCardPayment(false)
+                    }} step={step} CardPayment={CardPayment} Data={step === 2 ? Data : null} onClick={CheckOutHandler} disabled={PaymentMutation.isPending || !Data} totalDiscount={Data?.totalDiscount} totalPrice={Data?.totalPrice} />
                 </div>
             ) : <div className="w-full flex-col lg:flex-row flex  gap-6 py-6">
                 <div className="flex flex-1 items-center justify-center flex-col gap-4 border border-gray-50  max-w-[500px] w-full mx-auto py-10 rounded-2xl">

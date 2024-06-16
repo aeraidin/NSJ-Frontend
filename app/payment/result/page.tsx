@@ -10,6 +10,8 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React, { StrictMode, useEffect, useState } from 'react'
 import { QRCodeSVG } from 'qrcode.react';
+import { useWindowSize } from 'react-use';
+import Confetti from 'react-confetti'
 interface reserve {
     type: number,
     date: string,
@@ -24,6 +26,8 @@ function Page({
 }: {
     searchParams: { Authority: string, Status: string };
 }) {
+    const { width, height } = useWindowSize();
+    const [showConfetti, setShowConfetti] = useState(false);
     const [isloading, setisloading] = useState(true)
     const [Reserves, setReserves] = useState<null | reserve[]>(null)
     const [step, setstep] = useState(0)
@@ -38,6 +42,10 @@ function Page({
             queryClient.invalidateQueries({ queryKey: ["ReserveList"] });
             if (data.value.reserves.length > 0) {
                 setReserves(data.value.reserves)
+                setShowConfetti(true)
+                setTimeout(() => {
+                    setShowConfetti(false)
+                }, 3000);
                 setisloading(false)
             } else {
                 setReserves(null)
@@ -50,12 +58,25 @@ function Page({
     })
     if ((step == 0)) {
         Verfiy.mutate(searchParams.Authority)
-        console.log('i fire once');
         setstep(1)
     }
     return (
         <StrictMode>
             <MainLayout>
+                {showConfetti &&
+                    <Confetti
+                        width={width}
+                        height={height}
+                        numberOfPieces={400}
+                        gravity={0.3}
+                        colors={[
+                            '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5',
+                            '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50',
+                            '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800',
+                            '#FF5722'
+                        ]}
+                    />
+                }
                 <div className='w-full max-w-[890px] mx-auto py-12 flex items-center justify-center flex-col gap-6'>
                     {Reserves && Reserves?.length > 0 ? <React.Fragment>
                         <div className='w-fit px-10 py-7 rounded-2xl bg-success-400/20 relative '>

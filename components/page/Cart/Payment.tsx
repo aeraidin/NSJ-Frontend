@@ -26,14 +26,16 @@ function Payment({ state, ChangeState }: { state: boolean, ChangeState: (e: bool
             {/* کیف پول */}
             <div className='mt-6'>
                 <p className='text-gray-300 mb-2'>استفاده از اعتبار کیف پول</p>
-                <button onClick={() => ChangeState(true)} className="py-12 w-full bg-gray-25 border border-transparent hover:border-gray-200 duration-150 rounded-2xl gap-2 flex items-center p-6 lg:p-10">
+                <button onClick={() => ChangeState(true)} className="py-12 w-full  bg-gray-25 border border-transparent hover:border-gray-200 duration-150 rounded-2xl gap-2 flex items-center p-6 lg:p-10">
+
                     <RadioButton checked={state} />
                     <motion.button
                         whileTap={{ scale: 0.9 }}
-                        className="w-20 h-20 relative"
+                        className="w-20 h-20 relative hidden md:block"
                     >
                         <Image src={"/profile/wallet.png"} alt="wallet1" fill sizes="90vw" />
                     </motion.button>
+
 
                     <div className="items-start flex gap-y-4 flex-col">
                         <p className="select-none  font-semibold text-gray-400">
