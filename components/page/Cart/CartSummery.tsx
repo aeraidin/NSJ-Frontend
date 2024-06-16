@@ -1,15 +1,19 @@
 import SuccessBtn from '@/components/Layout/Buttons/SuccessBtn'
 import { UserTypeData } from '@/util/Data/UserTypeData'
+import useGetBalance from '@/util/hook/Wallet/useGetBalance'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Calendar, Clock, Ticket } from 'iconsax-react'
 import Image from 'next/image'
 import React from 'react'
+import { TbH5 } from 'react-icons/tb'
 import { NumericFormat } from 'react-number-format'
 
-function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled }: { Data: null | CartDetail, totalDiscount: number, totalPrice: number, onClick: () => void, disabled: boolean }) {
+function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardPayment, step, back }: { Data: null | CartDetail, totalDiscount: number, totalPrice: number, onClick: () => void, back: () => void; disabled: boolean, CardPayment: boolean, step: number }) {
+    const balance = useGetBalance();
+
     return (
         <div className="max-w-[430px] mx-auto w-full flex-1 flex flex-col  border border-gray-50 rounded-2xl justify-between h-fit  py-6 px-5 sticky top-28 ">
-            <h2>خلاصه سفارش </h2>
+            <h1>خلاصه سفارش </h1>
             {Data && <AnimatePresence mode="wait">
                 <motion.div
                     className='flex flex-col gap-4 max-h-[380px] overflow-y-auto mt-4 '
@@ -91,20 +95,50 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled }: { D
                 :
                 null
             }
+            {CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) > balance?.data?.value.balance) ? <div className="flex items-center justify-between pt-4">
+                <h5 className='text-gray-500'>مبلغ کل</h5>
+                <h4 className="text-gray-600">
+                    {" "}
+                    <NumericFormat
+                        value={totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice}
+                        displayType={"text"}
+                        thousandSeparator={","}
+                    />
+                    {" تومان "}
+                </h4>
+            </div> : null}
+            {CardPayment ? <div className="flex items-center justify-between pt-4">
+                <h5 className='text-gray-500'>موجودی کیف پول</h5>
+                <h4 className="text-third-500">
+                    {" "}
+                    <NumericFormat
+                        value={balance?.data?.value.balance}
+                        displayType={"text"}
+                        thousandSeparator={","}
+                    />
+                    {" تومان "}
+                </h4>
+            </div> : null}
             <div className={`flex flex-col gap-4 pt-4 ${totalDiscount === 0 ? "" : "border-t border-dashed"} border-gray-50`}>
                 <div className="flex items-center justify-between">
                     <p>مبلغ قابل پرداخت</p>
-                    <h2 className="text-third-500">
+                    <h3 className="text-third-600">
                         {" "}
                         <NumericFormat
-                            value={totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice}
+                            value={CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) > balance?.data?.value.balance) ? ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) - balance?.data?.value.balance) : (totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice)}
                             displayType={"text"}
                             thousandSeparator={","}
                         />
                         {" تومان "}
-                    </h2>
+                    </h3>
                 </div>
-                <SuccessBtn isloading={disabled} disabled={disabled} onClick={onClick}>ادامه فرایند رزرو</SuccessBtn>
+                <div className='flex items-center justify-between gap-2'>
+                    <SuccessBtn isloading={disabled} disabled={disabled} onClick={onClick}>{CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) < balance?.data?.value.balance) ? "برداشت از کیف پول" : "ادامه فرایند رزرو"}</SuccessBtn>
+                    {step == 2 ?
+                        <button onClick={back} className='px-6  h-[48px] lg:h-[56px] border disabled:cursor-wait disabled:opacity-25 border-gray-100 rounded-2xl text-gray-400 flex items-center gap-2 text-sm font-semibold hover:bg-error-600 hover:text-white group hover:border-transparent duration-150'>
+                            انصراف
+                        </button> : null}
+                </div>
             </div>
         </div>
     )
