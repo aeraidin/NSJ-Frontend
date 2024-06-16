@@ -1,26 +1,17 @@
-/** @format */
-
 "use client";
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRouter } from "next/navigation";
-import { Add, ArrowRight } from "iconsax-react";
+import { Add } from "iconsax-react";
 import useClickOutside from "@/util/hook/useClickOutside";
 interface ModalProps {
     CloseModal: () => void;
     children: React.ReactNode;
-    HaveBack?: boolean;
-    BackFunction?: () => void;
-    CloseIcon?: boolean;
     State: boolean;
 }
 
 function GalleryModalMain({
     CloseModal,
     children,
-    BackFunction,
-    HaveBack,
-    CloseIcon,
     State,
 }: ModalProps) {
     const containerRef = useClickOutside(CloseModal);
@@ -40,33 +31,19 @@ function GalleryModalMain({
                     initial="hidden"
                     animate="visible"
                     exit={"hidden"}
-                    className={`flex z-50 w-full h-screen bg-black/70  justify-center items-end  md:items-center  backdrop-blur-[1.5px] fixed left-0 top-0 duration-200`}
+                    className={`flex z-50 w-full h-screen bg-black/70  justify-center items-end  md:items-center  backdrop-blur-[5px] fixed left-0 top-0 duration-200`}
                 >
                     <motion.div
                         ref={containerRef}
                         variants={variants}
-                        className={`  aspect-video max-w-[1480px]  w-full py-6 px-6 md:px-[76px] md:py-24  flex items-center justify-center relative rounded-2xl md:rounded-2xl bg-white `}
+                        className={` w-[90%] md:w-[80%]  max-w-[1480px] h-fit   flex items-center justify-center relative rounded-2xl md:rounded-2xl  `}
                     >
-                        <div
-                            className={`absolute left-0  top-0 w-full flex items-center ${HaveBack ? "justify-between" : "justify-end"
-                                }`}
+                        <button
+                            className=" absolute -top-10 right-0   duration-150"
+                            onClick={CloseModal}
                         >
-                            {HaveBack && (
-                                <button
-                                    className="w-fit cursor-pointer flex justify-end p-8 h-fit text-gray-300 hover:text-gray-600 duration-150"
-                                    onClick={BackFunction}
-                                >
-                                    <ArrowRight size="32" color="#616161" />
-                                </button>
-                            )}
-                            <button
-                                className=" w-fit  cursor-pointer flex justify-end m-8 h-fit text-gray-300 hover:text-gray-600 duration-150"
-                                onClick={CloseModal}
-                            >
-                                {CloseIcon ? <Add size="32" className="rotate-45" /> : "بستن"}
-                            </button>
-                        </div>
-
+                            <Add size="32" className="rotate-45 text-white" />
+                        </button>
                         <div className="w-full h-full">{children}</div>
 
                     </motion.div>
