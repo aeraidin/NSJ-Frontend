@@ -14,10 +14,8 @@ function GalleryModal({ CloseModal, State, Data }: { State: boolean, CloseModal:
     };
     return (
         <GalleryModalMain
-            CloseIcon
             State={State}
-            CloseModal={CloseModal}
-        >
+            CloseModal={() => { CloseModal(); setThumbsSwiper(null) }}>
             <div className='w-full h-full '>
                 <Swiper
                     spaceBetween={0}
@@ -38,7 +36,7 @@ function GalleryModal({ CloseModal, State, Data }: { State: boolean, CloseModal:
                     {Data ? Data.map((item, index) => {
                         return (
                             <SwiperSlide key={index} >
-                                <div className='relative  w-full h-full aspect-w-7 aspect-h-5'>
+                                <div className='relative  w-full h-full aspect-w-6 aspect-h-3'>
                                     <Image
                                         alt={item}
                                         fill
@@ -63,12 +61,28 @@ function GalleryModal({ CloseModal, State, Data }: { State: boolean, CloseModal:
                     </button>
 
                 </Swiper>
-                {swiper && Data ?
+                {Data ?
                     <Swiper
                         onSwiper={setThumbsSwiper}
                         spaceBetween={10}
-                        slidesPerView={5}
+                        slidesPerView={3}
                         freeMode={true}
+                        breakpoints={{
+                            480: {
+                                width: 480,
+                                slidesPerView: 3,
+                            },
+                            768: {
+                                width: 768,
+                                slidesPerView: 4,
+                            },
+                            976: {
+                                width: 976,
+                                slidesPerView: 5,
+                            },
+
+
+                        }}
                         watchSlidesProgress={true}
                         modules={[FreeMode, Navigation, Thumbs]}
                         className=""
@@ -76,7 +90,7 @@ function GalleryModal({ CloseModal, State, Data }: { State: boolean, CloseModal:
                         {Data ? Data.map((item, index) => {
                             return (
                                 <SwiperSlide key={index} >
-                                    <div className='relative  w-full h-full aspect-w-8 aspect-h-4 rounded-2xl overflow-hidden'>
+                                    <div className='relative  w-full h-full  aspect-w-8 aspect-h-6 lg:aspect-h-4 rounded-2xl overflow-hidden'>
                                         <Image
                                             alt={item}
                                             fill

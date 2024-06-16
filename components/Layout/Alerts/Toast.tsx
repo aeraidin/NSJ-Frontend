@@ -73,13 +73,13 @@ function Toast(props: toastProps) {
             `}
                   >
                     {props.isError
-                      ? "!Error"
+                      ? "خطا"
                       : props.isWarning
-                        ? "!Warning"
+                        ? "اخطار"
                         : props.isSuccess
-                          ? "!Successful"
+                          ? "موفقیت آمیز "
                           : props.isNotif
-                            ? "!Notification"
+                            ? "اعلان"
                             : null}
                   </p>
                   <p className={`text-sm font-light `}>
