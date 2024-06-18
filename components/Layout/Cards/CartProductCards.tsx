@@ -93,7 +93,7 @@ function CartProductCards({ data }: { data: CartItems }) {
                     </Link>
                     <div className="flex flex-col items-start justify-between">
                         <div className="flex flex-col gap-4">
-                            <Link href={`/service/${data.service.id}`}><h2>{data.serviceName}</h2></Link>
+                            <Link href={`/service/${data.service.id}`}><h2>{data.serviceName} {data.sportComplex.name}</h2></Link>
                             <div className="flex items-center gap-2">
                                 <Location size="24" className="text-gray-300" variant="Bold" />
                                 <h5>{data.location}</h5>

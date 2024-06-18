@@ -69,7 +69,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
             {totalDiscount !== 0 ?
                 <React.Fragment>
                     <div className="flex items-center justify-between pt-6">
-                        <p>قیمت کل</p>
+                        <p>قیمت قبل از تخفیف</p>
                         <p>
                             <NumericFormat
                                 value={totalPrice}
@@ -80,7 +80,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
                             {" تومان "}
                         </p>
                     </div>
-                    <div className="flex items-center justify-between py-4">
+                    <div className="flex items-center justify-between pt-4">
                         <p className='text-error-600'>سود شما از خرید</p>
                         <p className='text-error-600'>
                             <NumericFormat
@@ -107,7 +107,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
                     {" تومان "}
                 </h4>
             </div> : null}
-            {CardPayment ? <div className="flex items-center justify-between pt-4">
+            {CardPayment ? <div className="flex items-center justify-between pt-4 pb-2">
                 <h5 className='text-gray-500'>موجودی کیف پول</h5>
                 <h4 className="text-third-500">
                     {" "}
