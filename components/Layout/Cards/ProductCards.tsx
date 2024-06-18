@@ -8,8 +8,6 @@ import { FaStar } from "react-icons/fa6";
 import { NumericFormat } from "react-number-format";
 
 function ProductCards({ data }: { data: ProductCard }) {
-  console.log(data);
-
   return (
     <div className="w-full select-none bg-white max-w-[321px] h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group">
       <Link href={`/service/${data.id}`}>
@@ -31,13 +29,13 @@ function ProductCards({ data }: { data: ProductCard }) {
           "
           >
             <Link className="  truncate" href={`/service/${data.id}`}>
-              <h3>
-                {data.serviceName} {data.service.name}
-              </h3>
+              <h4 className="text-gray-600">
+                {data.sportComplex.name} {data.serviceName}
+              </h4>
             </Link>
             <div className="flex items-center gap-2 justify-center">
-              <h5 className="leading-[12px]">{data.rate.toFixed(1)}</h5>
-              <FaStar className="text-secondary-600" size={20} />
+              <h5 className="text-sm">{data.rate}</h5>
+              <FaStar className="text-secondary-600 size-4" />
             </div>
           </div>
           <div className="w-full flex items-center gap-2 ">
@@ -53,9 +51,8 @@ function ProductCards({ data }: { data: ProductCard }) {
             </Link>
           </div>
           <div
-            className={`flex items-center gap-2 ${
-              data.hasDiscount ? "opacity-100" : "opacity-0"
-            }`}
+            className={`flex items-center gap-2 ${data.hasDiscount ? "opacity-100" : "opacity-0"
+              }`}
           >
             <h5 className="text-gray-200 line-through">
               {" "}

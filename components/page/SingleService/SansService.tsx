@@ -29,7 +29,6 @@ function SansService({ id }: { id: string }) {
     const CollapseHandler = (id: number) => {
         setexpandedRow((prev) => (prev === id ? null : id));
     };
-
     const AddToCartHandler = useMutation({
         mutationFn: AddToCart,
         onSuccess(data, variables, context) {
@@ -54,7 +53,6 @@ function SansService({ id }: { id: string }) {
                             {UserTypeData[item.clientType].name}
                         </button>
                     }) : <React.Fragment>
-
                         <button className={`px-10 py-6 border-b-2 font-semibold text-third-500 border-third-500 duration-200`}>
                             بانوان
                         </button>
@@ -70,7 +68,7 @@ function SansService({ id }: { id: string }) {
                                 <div className='flex flex-col gap-4'>
                                     <div className='flex items-center gap-2'>
                                         <Calendar size="24" className='text-gray-300' />
-                                        <p>{DaysOfWeekArray[item.dayOfWeek].name}</p>
+                                        <p>{DaysOfWeekArray[item.dayOfWeek].name} {item.date}</p>
                                     </div>
                                     <div className='flex items-center gap-2'>
                                         <Clock size="24" className='text-gray-300' />
