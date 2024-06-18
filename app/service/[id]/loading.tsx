@@ -6,7 +6,7 @@ import React from "react";
 function Loading() {
   return (
     <MainLayout>
-      <div className=" Container  mt-16 animate-pulse">
+      <div className=" Container  mt-16 flex items-center justify-center animate-pulse">
         <svg className="h-10 w-10 animate-spin" viewBox="3 3 18 18">
           <path
             className="fill-primary-400/20"

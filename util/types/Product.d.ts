@@ -69,6 +69,7 @@ interface SansDay {
 interface SansDayDetail {
  id: number;
  start: string;
+ isGone: boolean;
  end: string;
 }
 

@@ -1,5 +1,3 @@
-/** @format */
-
 import MainLayout from "@/components/Layout/MainLayout";
 import FirstPartBanner from "@/components/page/Landing/FirstPartBanner";
 import ForthPartBanner from "@/components/page/Landing/ForthPartBanner";

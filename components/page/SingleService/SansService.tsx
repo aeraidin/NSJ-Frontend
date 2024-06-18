@@ -147,7 +147,7 @@ function SansService({ id }: { id: string }) {
                                     <div className='flex items-center flex-wrap gap-3 py-4 px-6'>
                                         {item.details.map((item, index) => {
                                             return (
-                                                <button onClick={() => AddToCartHandler.mutate(item.id)} key={index} className=' '>
+                                                <button disabled={item.isGone} onClick={() => AddToCartHandler.mutate(item.id)} key={index} className=' disabled:opacity-25 disabled:cursor-not-allowed  '>
                                                     <div className=" relative overflow-hidden h-8 text-sm lg:text-base group lg:h-10 border flex items-center gap-3 border-third-400 hover:border-transparent rounded-lg   hover:shadow px-4 py-2  duration-200">
                                                         <p className='text-third-400 group-hover:opacity-0  group-hover:-translate-y-full duration-200'>{(item.end) + "-" + (item.start)}</p>
                                                         {/* ${AddToCartHandler.isPending ? "top-1/2 -translate-y-1/2 opacity-100" : " group-hover:top-1/2 group-hover:-translate-y-1/2 group-hover:opacity-100"} */}

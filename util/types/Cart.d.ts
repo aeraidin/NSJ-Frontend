@@ -11,6 +11,8 @@ interface CartItems {
  price: number;
  priceAfterDiscount: number;
  discountPresentage: number;
+ sportComplex: { id: number; name: string };
+
  service: {
   id: number;
   name: string;
