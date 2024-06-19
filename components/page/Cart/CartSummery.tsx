@@ -57,7 +57,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
                                         className='text-gray-200'
                                         variant="Bold"
                                     />
-                                    <p className='text-xs text-gray-400 w-full truncate'>تعداد بلیت: {item.count} </p>
+                                    <p className='text-xs text-gray-400 w-full truncate'>تعداد بلیط: {item.count} </p>
                                 </div>
                             </div>
                         </div>

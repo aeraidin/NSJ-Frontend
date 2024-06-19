@@ -101,7 +101,7 @@ function CartProductCards({ data }: { data: CartItems }) {
                         </div>
                         <div className="w-full flex items-end justify-between">
                             <div className="flex items-center gap-2">
-                                <p>تعداد بلیت</p>
+                                <p>تعداد بلیط</p>
                                 <div className="flex items-center gap-2">
                                     <button onClick={() => UpdateCartCountHandler.mutate({ id: data.id, count: data.count + 1 })} disabled={UpdateCartCountHandler.isPending} className={`CartAddButtons `}>+</button>
                                     <p>{data.count}</p>
@@ -143,7 +143,7 @@ function CartProductCards({ data }: { data: CartItems }) {
                     </div>
                 </div>
                 <div className="pt-4">
-                    <h3 className="font-semibold text-gray-400">جزئیات رزرو بلیت</h3>
+                    <h3 className="font-semibold text-gray-400">جزئیات رزرو بلیط</h3>
                     <div className="w-full grid grid-cols-1 md:grid-cols-3 md:items-center md:content-center gap-4  pt-8 py-4 ">
                         <div className="flex flex-col items-center gap-4 md:border-l border-b md:border-b-0 pb-2 md:pb-0 border-gray-50">
                             <div className="flex items-center gap-2">
@@ -215,7 +215,7 @@ export function CartProductCardsLoading() {
 
             <div className=" w-full border-t border-gray-50 border-dashed my-4"></div>
             <div className=" w-full h-fit mb-6 ">
-                <h3 className="font-semibold text-gray-400">جزئیات رزرو بلیت</h3>
+                <h3 className="font-semibold text-gray-400">جزئیات رزرو بلیط</h3>
             </div>
 
             <div className=" w-full flex  justify-between px-8 lg:px-16">
