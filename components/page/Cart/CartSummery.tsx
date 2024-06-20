@@ -95,7 +95,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
                 :
                 null
             }
-            {CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) > balance?.data?.value.balance) ? <div className="flex items-center justify-between pt-4">
+            {CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) >= balance?.data?.value.balance) ? <div className="flex items-center justify-between pt-4">
                 <h5 className='text-gray-500'>مبلغ کل</h5>
                 <h4 className="text-gray-600">
                     {" "}
@@ -125,7 +125,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
                     <h3 className="text-third-600">
                         {" "}
                         <NumericFormat
-                            value={CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) > balance?.data?.value.balance) ? ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) - balance?.data?.value.balance) : (totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice)}
+                            value={CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) >= balance?.data?.value.balance) ? ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) - balance?.data?.value.balance) : (totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice)}
                             displayType={"text"}
                             thousandSeparator={","}
                         />
@@ -133,7 +133,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
                     </h3>
                 </div>
                 <div className='flex items-center justify-between gap-2'>
-                    <SuccessBtn isloading={disabled} disabled={disabled} onClick={onClick}>{CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) < balance?.data?.value.balance) ? "برداشت از کیف پول" : "ادامه فرایند رزرو"}</SuccessBtn>
+                    <SuccessBtn isloading={disabled} disabled={disabled} onClick={onClick}>{CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) <= balance?.data?.value.balance) ? "برداشت از کیف پول" : "ادامه فرایند رزرو"}</SuccessBtn>
                     {step == 2 ?
                         <button onClick={back} className='px-6  h-[48px] lg:h-[56px] border disabled:cursor-wait disabled:opacity-25 border-gray-100 rounded-2xl text-gray-400 flex items-center gap-2 text-sm font-semibold hover:bg-error-600 hover:text-white group hover:border-transparent duration-150'>
                             انصراف
