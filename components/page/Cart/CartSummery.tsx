@@ -57,7 +57,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
                                         className='text-gray-200'
                                         variant="Bold"
                                     />
-                                    <p className='text-xs text-gray-400 w-full truncate'>تعداد بلیت: {item.count} </p>
+                                    <p className='text-xs text-gray-400 w-full truncate'>تعداد بلیط: {item.count} </p>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
             {totalDiscount !== 0 ?
                 <React.Fragment>
                     <div className="flex items-center justify-between pt-6">
-                        <p>قیمت کل</p>
+                        <p>قیمت قبل از تخفیف</p>
                         <p>
                             <NumericFormat
                                 value={totalPrice}
@@ -80,7 +80,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
                             {" تومان "}
                         </p>
                     </div>
-                    <div className="flex items-center justify-between py-4">
+                    <div className="flex items-center justify-between pt-4">
                         <p className='text-error-600'>سود شما از خرید</p>
                         <p className='text-error-600'>
                             <NumericFormat
@@ -95,7 +95,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
                 :
                 null
             }
-            {CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) > balance?.data?.value.balance) ? <div className="flex items-center justify-between pt-4">
+            {CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) >= balance?.data?.value.balance) ? <div className="flex items-center justify-between pt-4">
                 <h5 className='text-gray-500'>مبلغ کل</h5>
                 <h4 className="text-gray-600">
                     {" "}
@@ -107,7 +107,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
                     {" تومان "}
                 </h4>
             </div> : null}
-            {CardPayment ? <div className="flex items-center justify-between pt-4">
+            {CardPayment ? <div className="flex items-center justify-between pt-4 pb-2">
                 <h5 className='text-gray-500'>موجودی کیف پول</h5>
                 <h4 className="text-third-500">
                     {" "}
@@ -125,7 +125,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
                     <h3 className="text-third-600">
                         {" "}
                         <NumericFormat
-                            value={CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) > balance?.data?.value.balance) ? ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) - balance?.data?.value.balance) : (totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice)}
+                            value={CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) >= balance?.data?.value.balance) ? ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) - balance?.data?.value.balance) : (totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice)}
                             displayType={"text"}
                             thousandSeparator={","}
                         />
@@ -133,7 +133,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
                     </h3>
                 </div>
                 <div className='flex items-center justify-between gap-2'>
-                    <SuccessBtn isloading={disabled} disabled={disabled} onClick={onClick}>{CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) < balance?.data?.value.balance) ? "برداشت از کیف پول" : "ادامه فرایند رزرو"}</SuccessBtn>
+                    <SuccessBtn isloading={disabled} disabled={disabled} onClick={onClick}>{CardPayment && ((totalDiscount !== 0 ? totalPrice - totalDiscount : totalPrice) <= balance?.data?.value.balance) ? "برداشت از کیف پول" : "ادامه فرایند رزرو"}</SuccessBtn>
                     {step == 2 ?
                         <button onClick={back} className='px-6  h-[48px] lg:h-[56px] border disabled:cursor-wait disabled:opacity-25 border-gray-100 rounded-2xl text-gray-400 flex items-center gap-2 text-sm font-semibold hover:bg-error-600 hover:text-white group hover:border-transparent duration-150'>
                             انصراف

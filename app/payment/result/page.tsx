@@ -85,7 +85,7 @@ function Page({
                             <div className='p-4 rounded-full bg-white text-success-600 w-fit absolute -top-1/2 left-1/2 -translate-x-1/2 '>
                                 <BagTick2 size="32" variant="Bold" />
                             </div>
-                            <h2 className='text-success-600 '>بلیت شما با موفقیت رزرو شد</h2>
+                            <h2 className='text-success-600 '>بلیط شما با موفقیت رزرو شد</h2>
                         </div>
                         {Reserves?.map((item, index) => {
                             return <div key={index} className='w-full border border-gray-50 rounded-2xl   px-6 pb-6'>
@@ -114,7 +114,7 @@ function Page({
                                     {/* <div></div> */}
                                 </div>
                                 <div className="pt-4 border-t border-dashed border-gray-50">
-                                    <h3 className="font-semibold text-gray-400">جزئیات رزرو بلیت</h3>
+                                    <h3 className="font-semibold text-gray-400">جزئیات رزرو بلیط</h3>
                                     <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:items-center md:content-center gap-4  pt-8 py-4 ">
                                         <div className="flex flex-col items-center gap-4 md:border-l border-b md:border-b-0 pb-2 md:pb-0 border-gray-50">
                                             <div className="flex items-center gap-2">
@@ -145,7 +145,7 @@ function Page({
                                         <div className="flex flex-col items-center gap-4">
                                             <div className="flex items-center gap-2">
                                                 <Ticket size="24" className="text-gray-200" variant="Bold" />
-                                                <p className="text-gray-400">تعداد بلیت</p>
+                                                <p className="text-gray-400">تعداد بلیط</p>
                                             </div>
                                             <p>{item.count}</p>
                                         </div>
