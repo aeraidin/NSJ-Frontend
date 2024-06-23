@@ -115,7 +115,7 @@ function CartProductCards({ data }: { data: CartItems }) {
                                 >
                                     <div className="px-2 py-1  bg-error-500 rounded-xl">
                                         <h5 className="text-white leading-4">
-                                            {data.discountPresentage}٪
+                                            {Math.floor(data.discountPresentage)}٪
                                         </h5>
                                     </div>
                                     <h5 className="text-gray-200 line-through">

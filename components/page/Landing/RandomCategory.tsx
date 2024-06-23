@@ -26,6 +26,8 @@ function RandomCategory() {
     useEffect(() => {
         if (DataAllCategory) {
             const randomItem = getRandomItem(DataAllCategory);
+            console.log(randomItem);
+
             setFoundedCategory(randomItem.name)
             searchHandler.mutate({
                 page: 1,
