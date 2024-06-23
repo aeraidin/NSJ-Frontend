@@ -64,7 +64,7 @@ function ProductCards({ data }: { data: ProductCard }) {
             </h5>
             <div className="px-2 py-1 border border-error-500 rounded-xl">
               <h5 className="text-error-500 leading-4">
-                تا {data.discountPresentage}٪ تخفیف
+                تا {Math.floor(data.discountPresentage)}٪ تخفیف
               </h5>
             </div>
           </div>
