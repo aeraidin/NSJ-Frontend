@@ -9,9 +9,13 @@ import { ArrowDown2, Sort } from 'iconsax-react';
 import ProductCards, { ProductCardsLoading } from './Cards/ProductCards';
 import useDebounce from '@/util/hook/useDebounce';
 import useGetAllCategory from '@/util/hook/Category/useGetAllCategory';
+import useGetMaxPriceSans from '@/util/hook/useGetMaxPriceSans';
 function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: string, serviceId?: number, Insearch?: boolean }) {
 
-
+    const MaxPrice = useGetMaxPriceSans()
+    console.log('====================================');
+    console.log(MaxPrice.data);
+    console.log('====================================');
     const [Data, setData] = useState<ProductCard[] | null>(null)
     const [MinRate, setMinRate] = useState<null | number>(null)
     const [Sortby, setSortby] = useState<number>(0)
