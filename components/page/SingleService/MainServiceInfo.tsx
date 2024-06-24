@@ -184,7 +184,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                     {Data?.hasDiscount &&
                                         <div className='p-2 lg:py-4 lg:px-8 flex items-center justify-center gap-2 flex-col w-fit rounded-2xl bg-error-500'>
                                             <h2 className='text-white'>تخفیف تا</h2>
-                                            <span className=' text-white text-xl lg:text-4xl font-bold'>%{Data?.discountPresentage}</span>
+                                            <span className=' text-white text-xl lg:text-4xl font-bold'>%{Math.floor(Data?.discountPresentage)}</span>
                                         </div>}
                                 </div>
                                 {/* دکمه خرید */}

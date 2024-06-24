@@ -127,12 +127,12 @@ function SansService({ id }: { id: string }) {
                                         />
                                             {" تومان "}
                                             {item.discountPresentage > 0 ? <div className="px-4 py-1 mx-3  bg-error-500 rounded-xl">
-                                                <h5 className="text-white leading-4"> {item.discountPresentage}٪</h5>
+                                                <h5 className="text-white leading-4"> {Math.floor(item.discountPresentage)}٪</h5>
                                             </div> : null}
                                         </p>
                                     </div>
                                     <div className='w-full lg:max-w-[166px]'>
-                                        <SuccessBtn onClick={() => CollapseHandler(index)}>رزرو بلیت</SuccessBtn>
+                                        <SuccessBtn onClick={() => CollapseHandler(index)}>رزرو بلیط</SuccessBtn>
                                     </div>
                                 </div>
                             </div>

@@ -10,6 +10,8 @@ import ProductCards, { ProductCardsLoading } from './Cards/ProductCards';
 import useDebounce from '@/util/hook/useDebounce';
 import useGetAllCategory from '@/util/hook/Category/useGetAllCategory';
 function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: string, serviceId?: number, Insearch?: boolean }) {
+
+
     const [Data, setData] = useState<ProductCard[] | null>(null)
     const [MinRate, setMinRate] = useState<null | number>(null)
     const [Sortby, setSortby] = useState<number>(0)
@@ -29,7 +31,7 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
             page: 1,
             pageSize: pageSize,
             serviceId: serviceId,
-            serviceName: serviceName,
+            serviceName: serviceName ? decodeURIComponent(serviceName) : "",
             sortTyp: Sortby,
             maxPrice: DebouncedValue[1],
             minPrice: DebouncedValue[0],
@@ -54,7 +56,7 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
             <div className='flex flex-col gap-6 lg:gap-10 py-4 lg:py-10'>
                 {/* Title */}
                 <div>
-                    {Insearch ? <h1>جستجو برای : ‌{serviceName}</h1> : FoundedCategory && <h1>{FoundedCategory}</h1>}
+                    {Insearch ? <h1>جستجو برای : ‌{decodeURIComponent(serviceName!)}</h1> : FoundedCategory && <h1>{FoundedCategory}</h1>}
                 </div>
                 {/* Body */}
                 <div className='w-full flex gap-6'>
