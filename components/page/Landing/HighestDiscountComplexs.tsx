@@ -27,18 +27,17 @@ function HighestDiscountComplexs({ data }: { data: ProductCard[] | undefined }) 
                 </div>
             </div>
 
-            <div className='w-full flex flex-col lg:flex-row items-center'>
-                <div
-                    className='px-16'>
-                    <div className='w-[260px] h-[290px] relative'>
+            <div className='w-full grid grid-cols-1 grid-rows-2 md:grid-rows-1  md:grid-cols-5 items-center'>
+                <div className='px-6 md:col-span-2 lg:col-span-1  flex items-center justify-center flex-col'>
+                    <div className='w-[240px] h-[290px] relative'>
                         <Image src={"/sale.png"} fill className='object-contain' alt='sale' />
                     </div>
-                    <span className='text-3xl text-white font-bold'>بیشترین تخفیف ها</span>
+                    <span className='text-2xl text-white font-bold'>بیشترین تخفیف ها</span>
                 </div>
-                <div className='lg:flex-1 flex w-full items-start'>
+                <div className='w-full md:col-span-3 lg:col-span-4 ' >
                     <Swiper
                         slidesPerView={1.2}
-                        spaceBetween={20}
+                        spaceBetween={12}
                         pagination={{
                             clickable: true,
                         }}
@@ -58,20 +57,15 @@ function HighestDiscountComplexs({ data }: { data: ProductCard[] | undefined }) 
                             },
                             976: {
                                 width: 976,
-                                slidesPerView: 3.2,
+                                slidesPerView: 3,
                             },
-                            1024: {
-                                width: 1024,
-                                slidesPerView: 3.5,
+                            1080: {
+                                width: 976,
+                                slidesPerView: 3.3,
                             },
-                            1280: {
-                                width: 1280,
-                                slidesPerView: 4,
-                            },
-
                         }}
                         modules={[Navigation]}
-                        className="cursor-grab w-full "
+                        className="cursor-grab !w-full "
                     >
                         {/* data.value?.list */}
                         {data && data.map((item: ProductCard, index: number) => {
@@ -82,7 +76,7 @@ function HighestDiscountComplexs({ data }: { data: ProductCard[] | undefined }) 
                     </Swiper>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

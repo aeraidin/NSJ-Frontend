@@ -44,7 +44,7 @@ function ProductCards({ data }: { data: ProductCard }) {
               <Location size="20" className="text-gray-300" variant="Bold" />
               <h5>{data.location}</h5>
             </div>
-            <Link href={`category/${data.service.id}`} className="group/item">
+            <Link href={`/category/${data.service.id}`} className="group/item">
               <h5 className="group-hover/item:text-third-500 group-hover/item:underline duration-150">
                 {data.service.name}
               </h5>

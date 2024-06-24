@@ -3,7 +3,7 @@ import SuccessBtn from '@/components/Layout/Buttons/SuccessBtn';
 import Breadcrumb from '@/components/Layout/breadcrumb';
 import { DaysOfWeekArray } from '@/util/Data/WorkDayTime';
 import useGetSingleService from '@/util/hook/SingleService/useGetSingleService'
-import { ArrowLeft2, ArrowRight2, Clock, Heart, Location, Share } from 'iconsax-react';
+import { ArrowLeft2, ArrowRight2, Building4, Clock, Heart, Location, Share } from 'iconsax-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
@@ -119,17 +119,23 @@ function MainServiceInfo({ id }: { id: string }) {
                                 <div className='flex-col flex gap-3'>
                                     <h1>{Data?.name} {Data?.sportComplex.name}</h1>
                                     <div className='flex items-center justify-between'>
-                                        <div className="w-full flex items-center gap-2 ">
+                                        <div className="w-full flex items-center justify-between gap-2 ">
                                             {/* Location */}
-                                            <div className="flex items-center border-l border-gray-50 pl-2 gap-1">
-                                                <Location size="20" className="text-gray-300" variant="Bold" />
-                                                <h4>{Data?.location}</h4>
+                                            <div className='items-center gap-2 flex'>
+                                                <Link href={`/complex/${Data?.sportComplex.id}`} className="flex items-center border-l border-gray-50 pl-2 gap-1 group/item">
+                                                    <Building4 size="14" className="text-gray-200" variant="Bold" />
+                                                    <h5 className="group-hover/item:text-third-500 group-hover/item:underline duration-150">{Data?.sportComplex.name}</h5>
+                                                </Link>
+                                                <div className="flex items-center border-l border-gray-50 pl-2 gap-1">
+                                                    {/* <Location size="14" className="text-gray-200" variant="Bold" /> */}
+                                                    <h5>{Data?.location}</h5>
+                                                </div>
+                                                <Link href={`/category/${Data?.service.id}`} className="group/item  pl-2">
+                                                    <h5 className="group-hover/item:text-third-500 group-hover/item:underline duration-150">
+                                                        {Data?.service.name}
+                                                    </h5>
+                                                </Link>
                                             </div>
-                                            <Link href={`/category/${Data?.service.id}`} className="group/item border-l border-gray-50 pl-2">
-                                                <h4 className="group-hover/item:text-third-500 group-hover/item:underline duration-150">
-                                                    {Data?.service.name}
-                                                </h4>
-                                            </Link>
                                             <div className="flex items-center gap-2 justify-center">
                                                 <h5 className="leading-[12px]">{Data?.rate.toFixed(1)}</h5>
                                                 <FaStar className="text-secondary-600" size={20} />

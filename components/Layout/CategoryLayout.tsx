@@ -9,16 +9,22 @@ import { ArrowDown2, Sort } from 'iconsax-react';
 import ProductCards, { ProductCardsLoading } from './Cards/ProductCards';
 import useDebounce from '@/util/hook/useDebounce';
 import useGetAllCategory from '@/util/hook/Category/useGetAllCategory';
+import useGetMaxPriceSans from '@/util/hook/useGetMaxPriceSans';
+import Image from 'next/image';
 function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: string, serviceId?: number, Insearch?: boolean }) {
-
-
+    const MaxPrice = useGetMaxPriceSans()
     const [Data, setData] = useState<ProductCard[] | null>(null)
     const [MinRate, setMinRate] = useState<null | number>(null)
     const [Sortby, setSortby] = useState<number>(0)
-    const [PriceRange, setPriceRange] = useState<number[]>([1000, 200000]);
+    const [PriceRange, setPriceRange] = useState<number[] | null>(null);
     const [pageSize, setPagesize] = useState(20)
     const DebouncedValue = useDebounce({ Delay: 3000, value: PriceRange })
-    const [FoundedCategory, setFoundedCategory] = useState<null | string>(null)
+    const [FoundedCategory, setFoundedCategory] = useState<null | { name: string, icon: string }>(null)
+    useEffect(() => {
+        if (MaxPrice.data) {
+            setPriceRange([1000, MaxPrice.data.value.price])
+        }
+    }, [MaxPrice.data])
     const searchHandler = useMutation({
         mutationFn: useSearch,
         onSuccess(data, variables, context) {
@@ -27,16 +33,21 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
         onError(error, variables, context) { },
     });
     useEffect(() => {
-        searchHandler.mutate({
-            page: 1,
-            pageSize: pageSize,
-            serviceId: serviceId,
-            serviceName: serviceName ? decodeURIComponent(serviceName) : "",
-            sortTyp: Sortby,
-            maxPrice: DebouncedValue[1],
-            minPrice: DebouncedValue[0],
-            minRate: MinRate,
-        })
+        if (PriceRange) {
+
+            searchHandler.mutate({
+                page: 1,
+                pageSize: pageSize,
+                serviceId: serviceId,
+                serviceName: serviceName ? decodeURIComponent(serviceName) : "",
+                sortTyp: Sortby,
+                maxPrice: DebouncedValue[1],
+                minPrice: DebouncedValue[0],
+                minRate: MinRate,
+
+            })
+        }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Sortby, MinRate, DebouncedValue, pageSize])
     // Category
@@ -46,7 +57,7 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
         if (!Insearch && CategoryData && serviceId) {
             const founded = CategoryData.find(item => item.id === serviceId)
             if (founded) {
-                setFoundedCategory(founded.name)
+                setFoundedCategory({ icon: founded.icon, name: founded.name })
             }
         }
     }, [CategoryData, Insearch, serviceId,])
@@ -56,14 +67,27 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
             <div className='flex flex-col gap-6 lg:gap-10 py-4 lg:py-10'>
                 {/* Title */}
                 <div>
-                    {Insearch ? <h1>جستجو برای : ‌{decodeURIComponent(serviceName!)}</h1> : FoundedCategory && <h1>{FoundedCategory}</h1>}
+                    {Insearch ? <h1>جستجو برای : ‌{decodeURIComponent(serviceName!)}</h1> : FoundedCategory && <div className='flex items-center gap-4'>
+                        <div className='lg:w-[64px] lg:h-[64px] w-[32px] h-[32px] relative'>
+                            <Image
+                                src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${FoundedCategory.icon}`}
+                                fill
+                                sizes='90vw'
+                                className='object-contain'
+                                alt={FoundedCategory.name}
+                            />
+                        </div>
+                        <h1>{FoundedCategory.name}</h1>
+                    </div>}
                 </div>
                 {/* Body */}
                 <div className='w-full flex gap-6'>
                     {/* Fillter Part */}
                     <div className='hidden lg:flex px-4 py-6 border border-gray-50 h-fit rounded-2xl w-full max-w-[316px] sticky top-28 divide-y  divide-gray-50 flex-col gap-6 '>
                         {/* فیلتر قیمت */}
-                        <FilterPriceRange onChange={(e) => setPriceRange(e)} values={PriceRange} />
+                        {PriceRange &&
+                            <FilterPriceRange onChange={(e) => setPriceRange(e)} values={PriceRange} />
+                        }
                         <FilterByStars value={MinRate} SelectedRate={(e) => setMinRate((prev) => (prev === e ? null : e))} />
                     </div>
                     {/* Body */}
