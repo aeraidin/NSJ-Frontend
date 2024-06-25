@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import MainLayout from './MainLayout'
 import { useMutation } from '@tanstack/react-query';
 import { useSearch } from '@/util/api/Search/useSearch';
@@ -11,17 +11,32 @@ import useDebounce from '@/util/hook/useDebounce';
 import useGetAllCategory from '@/util/hook/Category/useGetAllCategory';
 import useGetMaxPriceSans from '@/util/hook/useGetMaxPriceSans';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: string, serviceId?: number, Insearch?: boolean }) {
     const MaxPrice = useGetMaxPriceSans()
     const [Data, setData] = useState<ProductCard[] | null>(null)
-    const [Sortby, setSortby] = useState<number>(0)
+
     const [PriceRange, setPriceRange] = useState<number[] | null>(null);
     const [pageSize, setPagesize] = useState(20)
     const DebouncedValue = useDebounce({ Delay: 3000, value: PriceRange })
     const [FoundedCategory, setFoundedCategory] = useState<null | { name: string, icon: string }>(null)
     const searchParams = useSearchParams()
+    const router = useRouter()
+    const pathname = usePathname()
     const rating = searchParams.get("rating")
+    const SortBy = searchParams.get("SortBy")
+    const createQueryString = useCallback(
+        (value: string) => {
+            if (value === SortBy) {
+                return ""
+            } else {
+                const params = new URLSearchParams(searchParams.toString())
+                params.set("SortBy", value)
+                return params.toString()
+            }
+        },
+        [SortBy, searchParams]
+    )
     useEffect(() => {
         if (MaxPrice.data) {
             setPriceRange([1000, MaxPrice.data.value.price])
@@ -42,7 +57,7 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
                 pageSize: pageSize,
                 serviceId: serviceId,
                 serviceName: serviceName ? decodeURIComponent(serviceName) : "",
-                sortTyp: Sortby,
+                sortTyp: SortBy ? Number(SortBy) : 0,
                 maxPrice: DebouncedValue[1],
                 minPrice: DebouncedValue[0],
                 minRate: Number(rating),
@@ -50,7 +65,7 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
             })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [Sortby, rating, DebouncedValue, pageSize])
+    }, [SortBy, rating, DebouncedValue, pageSize])
     // Category
     const Categorydata = useGetAllCategory()
     const CategoryData = Categorydata?.data?.value.list as CategoryItem[] | undefined
@@ -99,9 +114,9 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
                                 <Sort size="20" className='text-gray-500' />
                                 <p className='text-xs '>مرتب سازی</p>
                             </div>
-                            <button onClick={() => setSortby(0)} className={`TabBtn ${Sortby === 0 ? "TabBtnActice" : ""}`}>مرتبط‌ترین</button>
-                            <button onClick={() => setSortby(1)} className={`TabBtn ${Sortby === 1 ? "TabBtnActice" : ""}`} >جدیدترین</button>
-                            <button onClick={() => setSortby(2)} className={`TabBtn ${Sortby === 2 ? "TabBtnActice" : ""}`}>پربازدیدترین</button>
+                            <button onClick={() => router.push(pathname + '?' + createQueryString('0'))} className={`TabBtn ${Number(SortBy) === 0 ? "TabBtnActice" : ""}`}>مرتبط‌ترین</button>
+                            <button onClick={() => router.push(pathname + '?' + createQueryString('1'))} className={`TabBtn ${Number(SortBy) === 1 ? "TabBtnActice" : ""}`} >جدیدترین</button>
+                            <button onClick={() => router.push(pathname + '?' + createQueryString('2'))} className={`TabBtn ${Number(SortBy) === 2 ? "TabBtnActice" : ""}`}>پربازدیدترین</button>
                             {/* <button className='TabBtn'>بیشترین تخفیف</button> */}
                         </div>
                         {/* Items */}

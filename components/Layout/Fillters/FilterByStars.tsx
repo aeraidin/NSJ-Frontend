@@ -20,9 +20,6 @@ function FilterByStars() {
         },
         [rating, searchParams]
     )
-
-
-
     return (
         <div className='flex flex-col gap-6 pt-6'>
             <h4 className='text-gray-500'>بر اساس امتیاز</h4>
