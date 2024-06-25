@@ -11,15 +11,17 @@ import useDebounce from '@/util/hook/useDebounce';
 import useGetAllCategory from '@/util/hook/Category/useGetAllCategory';
 import useGetMaxPriceSans from '@/util/hook/useGetMaxPriceSans';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: string, serviceId?: number, Insearch?: boolean }) {
     const MaxPrice = useGetMaxPriceSans()
     const [Data, setData] = useState<ProductCard[] | null>(null)
-    const [MinRate, setMinRate] = useState<null | number>(null)
     const [Sortby, setSortby] = useState<number>(0)
     const [PriceRange, setPriceRange] = useState<number[] | null>(null);
     const [pageSize, setPagesize] = useState(20)
     const DebouncedValue = useDebounce({ Delay: 3000, value: PriceRange })
     const [FoundedCategory, setFoundedCategory] = useState<null | { name: string, icon: string }>(null)
+    const searchParams = useSearchParams()
+    const rating = searchParams.get("rating")
     useEffect(() => {
         if (MaxPrice.data) {
             setPriceRange([1000, MaxPrice.data.value.price])
@@ -43,13 +45,12 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
                 sortTyp: Sortby,
                 maxPrice: DebouncedValue[1],
                 minPrice: DebouncedValue[0],
-                minRate: MinRate,
+                minRate: Number(rating),
 
             })
         }
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [Sortby, MinRate, DebouncedValue, pageSize])
+    }, [Sortby, rating, DebouncedValue, pageSize])
     // Category
     const Categorydata = useGetAllCategory()
     const CategoryData = Categorydata?.data?.value.list as CategoryItem[] | undefined
@@ -88,7 +89,7 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
                         {PriceRange &&
                             <FilterPriceRange onChange={(e) => setPriceRange(e)} values={PriceRange} />
                         }
-                        <FilterByStars value={MinRate} SelectedRate={(e) => setMinRate((prev) => (prev === e ? null : e))} />
+                        <FilterByStars />
                     </div>
                     {/* Body */}
                     <div className='w-full flex flex-1 flex-col gap-6'>
