@@ -36,7 +36,7 @@ function GalleryModalMain({
                     <motion.div
                         ref={containerRef}
                         variants={variants}
-                        className={` w-[90%] md:w-[80%]  max-w-[1480px] h-fit   flex items-center justify-center relative rounded-2xl md:rounded-2xl  `}
+                        className={` w-[90%] md:w-[80%]    max-w-[70%] h-fit   flex items-center justify-center relative rounded-2xl md:rounded-2xl  `}
                     >
                         <button
                             className=" absolute -top-10 right-0   duration-150"
