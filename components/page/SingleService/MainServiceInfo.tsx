@@ -60,7 +60,7 @@ function MainServiceInfo({ id }: { id: string }) {
                         </Breadcrumb.Item>
                         <Breadcrumb.Item href={`/service/${id}`}>
                             {data.isSuccess ? (
-                                Data?.name
+                                `${Data?.name} ${Data?.sportComplex.name}`
                             ) : (
                                 <div className="h-4 w-[150px] animate-pulse bg-gray-200 rounded-2xl"></div>
                             )}

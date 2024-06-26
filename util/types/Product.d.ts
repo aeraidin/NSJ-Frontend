@@ -62,6 +62,7 @@ interface SansDay {
  price: number;
  details: SansDayDetail[];
  discountPresentage: number;
+ priceAfterDiscount: number;
  priod: number;
  exp: number;
  date: string;

@@ -15,7 +15,6 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: string, serviceId?: number, Insearch?: boolean }) {
     const MaxPrice = useGetMaxPriceSans()
     const [Data, setData] = useState<ProductCard[] | null>(null)
-
     const [PriceRange, setPriceRange] = useState<number[] | null>(null);
     const [pageSize, setPagesize] = useState(20)
     const DebouncedValue = useDebounce({ Delay: 3000, value: PriceRange })
