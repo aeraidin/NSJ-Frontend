@@ -19,6 +19,7 @@ function SansService({ id }: { id: string }) {
     const [SelectedClient, setSelectedClient] = useState<Sans | null>(null)
     const [expandedRow, setexpandedRow] = useState<number | null>(null)
     const Data = data?.data?.value.list as Sans[] | undefined
+
     const queryClient = useQueryClient();
     const router = useRouter()
     useEffect(() => {
@@ -120,7 +121,7 @@ function SansService({ id }: { id: string }) {
                                     <div className='w-full flex items-center justify-between lg:justify-end'>
                                         <p className='lg:hidden'>قیمت:</p>
                                         <p className='flex items-center gap-1'><NumericFormat
-                                            value={item.price}
+                                            value={item.discountPresentage > 0 ? item.priceAfterDiscount : item.price}
                                             displayType={"text"}
                                             thousandSeparator={","}
 
