@@ -26,6 +26,8 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
       setResult(true);
       setState(false);
       queryClient.invalidateQueries({ queryKey: ["ReserveList"] });
+      queryClient.invalidateQueries({ queryKey: ["TransactionsList"] });
+
       queryClient.invalidateQueries({ queryKey: ["Balance"] });
     },
     onError(error, variables, context) {
