@@ -77,7 +77,7 @@ function PreLogin() {
         NationalCode={NationalCode!}
       />
       <div className=" aspect-square sm:aspect-video bg-gray-50 rounded-[36px] relative">
-        <Image src={"/Prelogin/Banner.png"} alt="image" fill className="object-cover rounded-[36px]" />
+        <Image src={"/Prelogin/Banner.png"} alt="image" fill className="object-cover rounded-[36px]" sizes="90vw" />
         <h6 className="text-primary-600 text-xl md:text-3xl absolute top-[10%] lg:top-[30%] right-[5%]">
           همین حالا ثبت نام کنید!
         </h6>

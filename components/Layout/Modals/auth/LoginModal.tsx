@@ -21,10 +21,10 @@ function LoginModal({ CloseModal, State }: { State: boolean, CloseModal: () => v
             <div className="flex items-center justify-center gap-2 mb-6">
               <div
                 className="relative w-[40px] h-[78px]">
-                <Image src={"/Icons/Logo.svg"} fill alt="Logo" />
+                <Image src={"/Icons/Logo.svg"} fill alt="Logo" sizes="90vw" />
               </div>
               <div className="relative  w-[160px] h-[55px]">
-                <Image src={"/Icons/LogoFont.svg"} fill alt="Logo" />
+                <Image src={"/Icons/LogoFont.svg"} fill alt="Logo" sizes="90vw" />
               </div>
             </div>
             <h1>

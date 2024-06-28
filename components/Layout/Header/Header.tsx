@@ -94,12 +94,12 @@ function Header() {
                   <div
                     className="relative w-[24px] h-[45px] lg:w-[30px] lg:h-[68px]"
                   >
-                    <Image src={"/Icons/Logo.svg"} fill alt="Logo" />
+                    <Image src={"/Icons/Logo.svg"} fill alt="Logo" sizes="90vw" />
                   </div>
                   <div
                     className="relative w-[80px] h-[34px]  lg:w-[120px] lg:h-[35px]"
                   >
-                    <Image src={"/Icons/LogoFont.svg"} fill alt="Logo" />
+                    <Image src={"/Icons/LogoFont.svg"} fill alt="Logo" sizes="90vw" />
                   </div>
                 </div>
               </Link>
