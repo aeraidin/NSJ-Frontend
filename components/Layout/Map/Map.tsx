@@ -141,6 +141,7 @@ const Map = <T extends FieldValues>({
     <>
       <div className="w-full h-full select-none   rounded-[10px]  ">
         <Link
+          target="_blank"
           href={`https://www.google.com/maps?q=${position.lat},${position.lng}`}
           className={`
           relative
