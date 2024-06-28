@@ -22,13 +22,13 @@ function FirstPartBanner() {
                 className='!aspect-w-16 !aspect-h-6 rounded-2xl'
             >
                 <SwiperSlide className=' relative'>
-                    <Image src={Banner} fill className='object-cover' alt='Banner' placeholder='blur' />
+                    <Image src={Banner} fill className='object-cover' alt='Banner' placeholder='blur' sizes="90vw" />
                 </SwiperSlide >
                 <SwiperSlide className=' relative'>
-                    <Image src={Banner} fill className='object-cover' alt='Banner' placeholder='blur' />
+                    <Image src={Banner} fill className='object-cover' alt='Banner' placeholder='blur' sizes="90vw" />
                 </SwiperSlide>
                 <SwiperSlide className=' relative'>
-                    <Image src={Banner} fill className='object-cover' alt='Banner' placeholder='blur' />
+                    <Image src={Banner} fill className='object-cover' alt='Banner' placeholder='blur' sizes="90vw" />
                 </SwiperSlide>
             </Swiper>
             {/* Category */}

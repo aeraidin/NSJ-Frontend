@@ -8,10 +8,10 @@ function SecondPartBanner() {
         <div className='aspect-w-16 aspect-h-10 lg:aspect-h-3   relative'>
             <div className='grid grid-cols-1 lg:grid-cols-9 w-full h-full gap-6 '>
                 <div className='relative lg:col-span-4'>
-                    <Image src={BannerRight} fill className='object-cover rounded-2xl' alt='Banner' placeholder='blur' />
+                    <Image src={BannerRight} fill className='object-cover rounded-2xl' alt='Banner' placeholder='blur' sizes="90vw" />
                 </div>
                 <div className='relative lg:col-span-5'>
-                    <Image src={BannerLeft} fill className='object-cover rounded-2xl' alt='Banner' placeholder='blur' />
+                    <Image src={BannerLeft} fill className='object-cover rounded-2xl' alt='Banner' placeholder='blur' sizes="90vw" />
                 </div>
             </div>
 

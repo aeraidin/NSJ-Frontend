@@ -23,7 +23,7 @@ function page() {
       </div>
       <div className=" w-full gap-y-20 px-4 lg:px-0">
         <div className=" w-full relative  max-w-[1344px] h-[190px] lg:h-[360px] rounded-[35px] bg-gray-200 ">
-          <Image src={banner} className="rounded-[35px]" fill alt="aboutUs" />
+          <Image src={banner} className="rounded-[35px]" fill alt="aboutUs" sizes="90vw" />
         </div>
 
         <div className=" w-full mt-20">

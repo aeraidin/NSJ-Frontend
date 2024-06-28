@@ -42,6 +42,7 @@ function contact() {
                 src={support}
                 className=" select-none"
                 fill
+                sizes="90vw"
                 alt="support"
               />
             </motion.button>

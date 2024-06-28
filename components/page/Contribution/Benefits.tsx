@@ -14,7 +14,7 @@ function Benefits() {
                     return <div key={index} className='w-full h-full  flex flex-col gap-6 items-center justify-center group hover:-translate-y-6 duration-150'>
                         <div className='w-full h-[300px] max-w-[500px] mx-auto bg-gray-25 rounded-2xl border border-transparent group-hover:border-gray-200 duration-150'>
                             <div className='w-full max-w-[260px] h-full relative mx-auto'>
-                                <Image src={item.image} fill alt='image' className='object-contain' />
+                                <Image src={item.image} fill alt='image' className='object-contain' sizes="90vw" />
                             </div>
                         </div>
                         <h2 className='font-semibold'>{item.title}</h2>

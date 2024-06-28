@@ -18,7 +18,7 @@ function Payment({ state, ChangeState }: { state: boolean, ChangeState: (e: bool
                 <button onClick={() => ChangeState(false)} className='flex items-center gap-4 px-6 py-4 lg:px-8 lg:py-6 border border-gray-50 rounded-2xl w-full hover:border-gray-200 '>
                     <RadioButton checked={state === false} />
                     <div className='w-14 h-14 lg:w-16 lg:h-16 relative'>
-                        <Image src={"/Icons/ZarinPal.png"} fill alt='iconZarinPal' className='object-contain' />
+                        <Image src={"/Icons/ZarinPal.png"} fill alt='iconZarinPal' className='object-contain' sizes="90vw" />
                     </div>
                     <h3>زرین اپال</h3>
                 </button>

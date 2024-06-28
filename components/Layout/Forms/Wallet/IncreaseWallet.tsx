@@ -19,7 +19,7 @@ import pasargad from "@/public/profile/pasargad.png";
 import RadioButton from "../../Buttons/RadioButton";
 import { increase } from "@/util/api/Wallet/increase";
 
-function IncreaseWallet({}: {}) {
+function IncreaseWallet({ }: {}) {
   const [reset, setReset] = useState({});
   const [result, setResult] = useState(false);
   const queryClient = useQueryClient();
@@ -109,7 +109,7 @@ function IncreaseWallet({}: {}) {
                   />
 
                   <div className=" w-[34px] h-10  relative">
-                    <Image src={zarinPal} alt="zarinpal" fill />
+                    <Image src={zarinPal} alt="zarinpal" fill sizes="90vw" />
                   </div>
                   <p>زرین پال</p>
                 </div>
@@ -123,7 +123,7 @@ function IncreaseWallet({}: {}) {
                     checked={selectedBank === 1}
                   />
                   <div className=" w-[30px] h-10  relative">
-                    <Image src={pasargad} alt="pasargad" fill />
+                    <Image src={pasargad} alt="pasargad" fill sizes="90vw" />
                   </div>
                   <p>بانک پاسارگاد</p>
                 </div>

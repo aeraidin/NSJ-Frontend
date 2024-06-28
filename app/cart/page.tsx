@@ -124,7 +124,7 @@ function Page() {
             ) : <div className="w-full flex-col lg:flex-row flex  gap-6 py-6">
                 <div className="flex flex-1 items-center justify-center flex-col gap-4 border border-gray-50  max-w-[500px] w-full mx-auto py-10 rounded-2xl">
                     <div className="w-[200px] h-[200px] relative">
-                        <Image src={"/Icons/EmptyCart.png"} fill className="object-contain" alt="CartEmpety" />
+                        <Image src={"/Icons/EmptyCart.png"} fill sizes="90vw" className="object-contain" alt="CartEmpety" />
                     </div>
                     <p>سبد خرید شما خالی است!</p>
                     <Link href={"/"} className="w-full max-w-[250px]"><PrimaryBtn>ادامه خرید </PrimaryBtn></Link>
