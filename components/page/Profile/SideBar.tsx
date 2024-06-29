@@ -5,7 +5,7 @@ import React, { ChangeEvent, useState } from "react";
 import sidebarPicture from "../../../public/profile/sidebar.png";
 import walletPicture from "../../../public/profile/wallet.png";
 import Image from "next/image";
-import { Edit2 } from "iconsax-react";
+import { Edit2, User } from "iconsax-react";
 import Links from "./Links";
 import useGetUser from "@/util/hook/user/useGetUser";
 import useGetBalance from "@/util/hook/Wallet/useGetBalance";
@@ -92,31 +92,62 @@ function SideBar() {
               </div>
             </div>
           ) : (
-            <div className=" w-full    h-full  flex justify-center">
-              <Image
-                src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${user?.data?.value.image}`}
-                alt="user_profile"
-                height={80}
-                width={80}
-                className=" rounded-full object-cover border select-none  h-20 w-20 bg-white bottom-[-32px]  absolute "
-              />
+            <div className=" w-full  h-full  flex justify-center">
+              {user?.data?.value.image ? (
+                <>
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${user?.data?.value.image}`}
+                    alt="user_profile"
+                    height={80}
+                    width={80}
+                    className=" rounded-full object-cover border select-none  h-20 w-20 bg-white bottom-[-32px]  absolute "
+                  />
 
-              <input
-                id="photo"
-                disabled={UploadFileMutation.isPending}
-                type="file"
-                onChange={handleFileChange}
-                accept=".jpg, .jpeg, .png"
-                className="hidden"
-              />
+                  <input
+                    id="photo"
+                    disabled={UploadFileMutation.isPending}
+                    type="file"
+                    onChange={handleFileChange}
+                    accept=".jpg, .jpeg, .png"
+                    className="hidden"
+                  />
 
-              {/* Label  Edit2 icon */}
-              <label
-                htmlFor="photo"
-                className=" bg-third-500 cursor-pointer flex justify-center items-center w-6 h-6 rounded-full absolute bottom-[-28px] lg:bottom-[-32px] translate-x-7 lg:translate-x-0 lg:right-[78px]"
-              >
-                <Edit2 size={16} variant="Bold" className="text-white" />
-              </label>
+                  {/* Label  Edit2 icon */}
+                  <label
+                    htmlFor="photo"
+                    className=" bg-third-500 cursor-pointer flex justify-center items-center w-6 h-6 rounded-full absolute bottom-[-28px] lg:bottom-[-32px] translate-x-7 lg:translate-x-0 lg:right-[78px]"
+                  >
+                    <Edit2 size={16} variant="Bold" className="text-white" />
+                  </label>
+                </>
+              ) : (
+                <>
+                  <div className="w-20 h-20 flex justify-center items-center bg-gradient-to-l from-primary-500 to-primary-200  absolute bottom-[-28px]  rounded-full ">
+                    <User
+                      className=" text-xl"
+                      variant="Bold"
+                      color="#fff"
+                      size={32}
+                    />
+                    <input
+                      id="photo"
+                      disabled={UploadFileMutation.isPending}
+                      type="file"
+                      onChange={handleFileChange}
+                      accept=".jpg, .jpeg, .png"
+                      className="hidden"
+                    />
+
+                    {/* Label  Edit2 icon */}
+                    <label
+                      htmlFor="photo"
+                      className=" bg-third-500 cursor-pointer flex justify-center items-center w-6 h-6 rounded-full absolute bottom-[-6px] right-2 xl:top-[62px] xl:right-2  "
+                    >
+                      <Edit2 size={16} variant="Bold" className="text-white" />
+                    </label>
+                  </div>
+                </>
+              )}
             </div>
           )}
         </div>
