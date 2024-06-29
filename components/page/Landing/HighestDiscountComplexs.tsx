@@ -30,7 +30,7 @@ function HighestDiscountComplexs({ data }: { data: ProductCard[] | undefined }) 
             <div className='w-full grid grid-cols-1 grid-rows-2 md:grid-rows-1  md:grid-cols-5 items-center'>
                 <div className='px-6 md:col-span-2 lg:col-span-1  flex items-center justify-center flex-col'>
                     <div className='w-[240px] h-[290px] relative'>
-                        <Image src={"/sale.png"} fill className='object-contain' alt='sale' />
+                        <Image src={"/sale.png"} fill className='object-contain' alt='sale' sizes="90vw" />
                     </div>
                     <span className='text-2xl text-white font-bold'>بیشترین تخفیف ها</span>
                 </div>

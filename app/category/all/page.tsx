@@ -26,7 +26,7 @@ function Page() {
                         return <div key={index} className='p-6 flex flex-col items-center justify-center border border-gray-50 rounded-xl hover:shadow-CMSHADOW duration-150 hover:border-gray-100'>
                             <Link href={`/category/${item.id}`} className='flex items-center justify-center flex-col gap-3'>
                                 <div className='w-[32px] h-[32px] lg:w-[64px] lg:h-[64px] relative'>
-                                    <Image src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${item.icon}`} alt={item.name} fill className='object-contain ' />
+                                    <Image src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${item.icon}`} alt={item.name} fill sizes="90vw" className='object-contain ' />
                                 </div>
                                 <h3 className='whitespace-nowrap text-base lg:text-lg'>{item.name}</h3></Link>
                         </div>

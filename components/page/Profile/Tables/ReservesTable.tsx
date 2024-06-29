@@ -26,6 +26,8 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
       setResult(true);
       setState(false);
       queryClient.invalidateQueries({ queryKey: ["ReserveList"] });
+      queryClient.invalidateQueries({ queryKey: ["TransactionsList"] });
+
       queryClient.invalidateQueries({ queryKey: ["Balance"] });
     },
     onError(error, variables, context) {
@@ -111,7 +113,7 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
                                 تومان{" "}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4">
-                                ---
+                                {item.referenceNumber}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4">
                                 {item.reserveDate.split(" ")[0]}
@@ -147,7 +149,7 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
               return (
                 <div
                   key={index}
-                  className=" w-full border border-gray-50 gap-y-4  flex-col flex lg:hidden my-4 px-4 py-6  h-[260px] rounded-2xl"
+                  className=" w-full border border-gray-50 gap-y-4  flex-col flex lg:hidden my-4 px-4 py-6  h-[290px] rounded-2xl"
                 >
                   <div className=" w-full justify-between flex">
                     <p className="text-sm text-gray-400 font-semibold">
@@ -157,7 +159,6 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
                       {item.serviceName}
                     </p>
                   </div>
-
                   <div className=" w-full justify-between  flex">
                     <p className="text-sm text-gray-400 font-semibold">مبلغ</p>
                     <p className=" text-gray-300 text-sm font-semibold">
@@ -169,28 +170,32 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
                       تومان{" "}
                     </p>
                   </div>
-
                   <div className=" w-full justify-between  flex">
                     <p className="text-sm text-gray-400 font-semibold">تاریخ</p>
                     <p className=" text-gray-300 text-sm font-semibold">
                       {item.reserveDate.split(" ")[0]}
                     </p>
                   </div>
-
                   <div className=" w-full justify-between  flex">
                     <p className="text-sm text-gray-400 font-semibold">ساعت</p>
                     <p className=" text-gray-300 text-sm font-semibold">
                       {item.reserveTime.slice(0, 5)}
                     </p>
                   </div>
-
+                  <div className=" w-full justify-between  flex">
+                    <p className="text-sm text-gray-400 font-semibold">
+                      کد رزرو
+                    </p>
+                    <p className=" text-gray-300 text-sm font-semibold">
+                      {item.referenceNumber}
+                    </p>
+                  </div>
                   <div className=" w-full justify-between  flex">
                     <p className="text-sm text-gray-400 font-semibold">وضعیت</p>
                     <p className=" text-gray-300 text-sm font-semibold">
                       <ReserveStatus usedState={item.usedState} />
                     </p>
                   </div>
-
                   <div className=" w-full justify-end  flex">
                     {item.usedState === 0 ? (
                       <p

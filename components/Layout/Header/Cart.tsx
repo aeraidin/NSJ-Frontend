@@ -11,7 +11,7 @@ function Cart() {
 
   return (
     <Link href={"/cart"} className="relative">
-      <LengthTag length={data.isSuccess ? data.data.value.list.length : 0} />
+      <LengthTag length={data.isSuccess && data.data.isSuccess ? data.data.value.list.length : 0} />
       <Bag2 size="32" className="text-gray-600" />
     </Link>
   );

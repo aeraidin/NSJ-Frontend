@@ -5,6 +5,7 @@ import { AddToCart } from '@/util/api/Cart/AddToCart'
 import { UserTypeData } from '@/util/Data/UserTypeData'
 import { DaysOfWeekArray } from '@/util/Data/WorkDayTime'
 import useGetSingleServiceSans from '@/util/hook/SingleService/useGetSingleServiceSans'
+import useGetUser from '@/util/hook/user/useGetUser'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Calendar, Clock, Timer1 } from 'iconsax-react'
 import Image from 'next/image'
@@ -15,12 +16,13 @@ import { NumericFormat } from 'react-number-format'
 
 function SansService({ id }: { id: string }) {
     const [Result, setResult] = useState(false)
-    const data = useGetSingleServiceSans({ id: id })
     const [SelectedClient, setSelectedClient] = useState<Sans | null>(null)
     const [expandedRow, setexpandedRow] = useState<number | null>(null)
-    const Data = data?.data?.value.list as Sans[] | undefined
-
+    const userData = useGetUser()
     const queryClient = useQueryClient();
+    const data = useGetSingleServiceSans({ id: id })
+    const Data = data?.data?.value.list as Sans[] | undefined
+    const userGender = userData?.data?.value?.gender as number | undefined
     const router = useRouter()
     useEffect(() => {
         if (Data) {
@@ -49,12 +51,26 @@ function SansService({ id }: { id: string }) {
             <div id='sans' className="Container py-6 lg:py-10">
                 <h2 className="text-gray-500 font-semibold ">رزرو</h2>
                 <div className='border-b flex items-center gap-4 border-gray-50'>
-                    {Data ? Data.map((item, index) => {
-                        return <button onClick={() => setSelectedClient({ clientType: item.clientType, days: item.days })} className={`px-10 py-6 border-b-2 font-semibold ${SelectedClient?.clientType === item.clientType ? "text-third-500 border-third-500" : "border-transparent text-gray-300"} duration-200`} key={index}>
+                    {Data ? Data.sort((a, b) => {
+                        if (userGender !== undefined) {
+                            if (a.clientType === userGender && b.clientType !== userGender) {
+                                return -1;
+                            }
+                            if (a.clientType !== userGender && b.clientType === userGender) {
+                                return 1;
+                            }
+                            // If both have the same clientType or both do not match the userGender, maintain the original order
+                            return a.clientType - b.clientType;
+                        } else {
+                            // Default sorting if userGender is not defined
+                            return a.clientType - b.clientType;
+                        }
+                    }).map((item, index) => {
+                        return <button onClick={() => setSelectedClient({ clientType: item.clientType, days: item.days })} className={`px-10 py-6 border-b-2 font-semibold ${SelectedClient?.clientType === item.clientType && item.clientType !== 1 ? "text-third-500 border-third-500" : SelectedClient?.clientType === item.clientType ? "text-pink-400 border-pink-400" : "border-transparent text-gray-300"} duration-200`} key={index}>
                             {UserTypeData[item.clientType].name}
                         </button>
                     }) : <React.Fragment>
-                        <button className={`px-10 py-6 border-b-2 font-semibold text-third-500 border-third-500 duration-200`}>
+                        <button className={`px-10 py-6 border-b-2 font-semibold text-pink-400 border-pink-400 duration-200`}>
                             بانوان
                         </button>
                         <button className={`px-10 py-6 border-b-2 font-semibold border-transparent text-gray-300 duration-200`}>
@@ -91,8 +107,8 @@ function SansService({ id }: { id: string }) {
                                         <div className='flex items-center flex-wrap gap-3 py-4 px-6'>
                                             {item.details.map((item, index) => {
                                                 return (
-                                                    <button onClick={() => AddToCartHandler.mutate(item.id)} key={index} className=' relative overflow-hidden h-8 text-sm lg:text-base group lg:h-10 border flex items-center gap-3 border-third-400 hover:border-transparent rounded-lg   hover:shadow px-4 py-2  duration-200 '>
-                                                        <p className='text-third-400 group-hover:opacity-0  group-hover:-translate-y-full duration-200'>{(item.end) + "-" + (item.start)}</p>
+                                                    <button onClick={() => AddToCartHandler.mutate(item.id)} key={index} className={` relative overflow-hidden h-8 text-sm lg:text-base group lg:h-10 border flex items-center gap-3 ${SelectedClient?.clientType !== 1 ? "border-third-400" : " border-pink-500"}   hover:border-transparent rounded-lg   hover:shadow px-4 py-2  duration-200 `}>
+                                                        <p className={`${SelectedClient.clientType !== 1 ? "text-third-400" : "text-pink-400"} group-hover:opacity-0  group-hover:-translate-y-full duration-200`}>{(item.end) + "-" + (item.start)}</p>
                                                         <div className='group-hover:opacity-100 h-8 w-full bg-success-600 text-center flex items-center justify-center lg:h-10 opacity-0 absolute top-full  group-hover:top-1/2 left-1/2 transform -translate-x-1/2 group-hover:-translate-y-1/2 duration-200 '>
                                                             {AddToCartHandler.isPending ?
                                                                 <svg className="h-6 w-6 animate-spin" viewBox="3 3 18 18">
@@ -149,8 +165,8 @@ function SansService({ id }: { id: string }) {
                                         {item.details.map((item, index) => {
                                             return (
                                                 <button disabled={item.isGone} onClick={() => AddToCartHandler.mutate(item.id)} key={index} className=' disabled:opacity-25 disabled:cursor-not-allowed  '>
-                                                    <div className=" relative overflow-hidden h-8 text-sm lg:text-base group lg:h-10 border flex items-center gap-3 border-third-400 hover:border-transparent rounded-lg   hover:shadow px-4 py-2  duration-200">
-                                                        <p className='text-third-400 group-hover:opacity-0  group-hover:-translate-y-full duration-200'>{(item.end) + "-" + (item.start)}</p>
+                                                    <div className={`relative overflow-hidden h-8 text-sm lg:text-base group lg:h-10 border flex items-center gap-3 ${SelectedClient?.clientType !== 1 ? "border-third-400" : " border-pink-500"} hover:border-transparent rounded-lg   hover:shadow px-4 py-2  duration-200`}>
+                                                        <p className={` ${SelectedClient.clientType !== 1 ? "text-third-400" : "text-pink-400"} group-hover:opacity-0  group-hover:-translate-y-full duration-200`}>{(item.end) + "-" + (item.start)}</p>
                                                         {/* ${AddToCartHandler.isPending ? "top-1/2 -translate-y-1/2 opacity-100" : " group-hover:top-1/2 group-hover:-translate-y-1/2 group-hover:opacity-100"} */}
                                                         <div className={` h-8 w-full bg-success-600 text-center flex items-center justify-center lg:h-10 opacity-0 absolute top-full  left-1/2 transform -translate-x-1/2 duration-200 group-hover:top-1/2 group-hover:-translate-y-1/2 group-hover:opacity-100 `}>
                                                             {AddToCartHandler.isPending ?

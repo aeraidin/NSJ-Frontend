@@ -28,7 +28,7 @@ function Comment({ data }: commentProps) {
 
   const [Result, setResult] = useState(false);
   const [LoginModalState, setLoginModal] = useState(false);
-  const ratingChanged = (newRating: any) => {};
+  const ratingChanged = (newRating: any) => { };
 
   const addLikeHandler = useMutation({
     mutationFn: AddLike,
@@ -90,6 +90,7 @@ function Comment({ data }: commentProps) {
                   src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${data.user.profileImage}`}
                   alt="profile"
                   fill
+                  sizes="90vw"
                 />
               ) : (
                 <User variant="Bold" color="#fff" size={24} />
@@ -181,9 +182,8 @@ function Comment({ data }: commentProps) {
                 </div>
 
                 <div className=" flex items-center gap-x-3">
-                  <p className="text-sm md:text-base">{`${
-                    data.rate === null ? 0 : data.rate
-                  }/5`}</p>
+                  <p className="text-sm md:text-base">{`${data.rate === null ? 0 : data.rate
+                    }/5`}</p>
                   {/* <div className=" flex">
                   <Star1
                     className=" text-secondary-400"

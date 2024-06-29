@@ -8,7 +8,7 @@ function layout({ children }: { children: React.ReactNode }) {
         <div className=" w-full h-fit lg:h-full py-4 px-6 md:p-10 xl:p-0 order-2 lg:order-1 ">{children}</div>
         <div className=" w-full  h-[180px]  lg:h-full block  lg:bg-[#EAEAEA] lg:rounded-l-[30px] relative order-1 lg:order-2 ">
           <div className=" w-full max-w-[430px] mx-auto relative h-full">
-            <Image src={"/SignUp.png"} alt="image" className="object-contain" fill />
+            <Image src={"/SignUp.png"} alt="image" className="object-contain" fill sizes="90vw" />
           </div>
         </div>
       </div>

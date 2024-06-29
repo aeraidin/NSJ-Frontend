@@ -3,7 +3,7 @@ import {
   SignupSchema,
   SignupSchemaType,
 } from "@/util/config/validations/Registration/SignupSchema";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { Controller, SubmitHandler } from "react-hook-form";
 import { Form } from "../Form";
@@ -25,10 +25,12 @@ function SignupForm() {
   const [Result, setResult] = useState(false);
   const token = Cookies.get("token");
   const router = useRouter()
+  const queryClient = useQueryClient();
   const SignupHandler = useMutation({
     mutationFn: Signup,
     onSuccess(data, variables, context) {
       Cookies.remove("isNew");
+      queryClient.invalidateQueries();
       router.replace("/")
     },
     onError(error, variables, context) {
