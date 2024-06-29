@@ -113,7 +113,7 @@ function MainServiceInfo({ id }: { id: string }) {
                             <span className="whitespace-nowrap"> {Data?.isUserFavorite ? "حذف از علاقه مندی ها" : "افزودن به علاقه مندی ها"}</span>
                         </motion.button>
                     </div>
-                    <div className='w-full lg:max-w-[50%] xl:w-[43%] order-2 flex-1 2xl:h-[478px] h-full lg:order-1'>
+                    <div className='w-full lg:max-w-[50%] xl:max-w-[43%] order-2 flex-1 xl:h-[470px] h-full lg:order-1'>
                         {data.isSuccess ? <div className='flex flex-col h-full  justify-between gap-4'>
                             <div className='flex flex-col gap-5'>
                                 <div className='flex-col flex gap-3'>
@@ -137,7 +137,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                                 </Link>
                                             </div>
                                             <div className="flex items-center gap-2 justify-center">
-                                                <h5 className="leading-[12px]">{Data?.rate.toFixed(1)}</h5>
+                                                <h5 className="leading-[12px]">{Number.isInteger(Data?.rate) ? Data?.rate : Data?.rate.toFixed(1)}</h5>
                                                 <FaStar className="text-secondary-600" size={20} />
                                             </div>
                                         </div>
@@ -209,7 +209,7 @@ function MainServiceInfo({ id }: { id: string }) {
                         </div>
                             : <MainServiceInfoLoading />}
                     </div>
-                    <div className='flex flex-1 order-1  w-full lg:max-w-[50%] xl:max-w-[58%]'>
+                    <div className='flex flex-1 order-1  w-full lg:max-w-[50%] xl:max-w-[58%]  h-full'>
                         <Swiper
                             spaceBetween={0}
                             slidesPerView={1}

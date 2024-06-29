@@ -34,7 +34,7 @@ function ProductCards({ data }: { data: ProductCard }) {
               </h4>
             </Link>
             <div className="flex items-center gap-2 justify-center">
-              <h5 className="text-sm">{data.rate}</h5>
+              <h5 className="text-sm">{Number.isInteger(data.rate) ? data.rate : data.rate.toFixed(1)}</h5>
               <FaStar className="text-secondary-600 size-4" />
             </div>
           </div>
