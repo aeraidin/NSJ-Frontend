@@ -22,11 +22,17 @@ import { motion } from "framer-motion";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ToggleFavorite } from '@/util/api/Favorite/ToggleFavorite';
 import GalleryModal from '@/components/Layout/Modals/GalleryModal';
+import LoginModal from '@/components/Layout/Modals/auth/LoginModal';
+import { useSestion } from '@/util/session';
+import useGetUser from '@/util/hook/user/useGetUser';
 
 function MainServiceInfo({ id }: { id: string }) {
     const data = useGetSingleService({ id: id })
     const Data = data?.data?.value as SingleProductPage | undefined
     const Sans = useGetSingleServiceSans({ id: id })
+    const [Login, setLogin] = useState(false);
+    const userData = useGetUser()
+    const userGender = userData?.data?.value as any | undefined
     const SansData = Sans?.data?.value.list as Sans[] | undefined
     const [GalleryOpen, setGalleryOpen] = useState(false)
     const swiper = useSwiper();
@@ -45,13 +51,24 @@ function MainServiceInfo({ id }: { id: string }) {
         },
     })
     const ToggleFavoriteHandler = () => {
-        ToggleFavoriteApi.mutate({ sportComplexServiceId: Number(id) })
+        if (userGender) {
+            setLogin(false)
+            ToggleFavoriteApi.mutate({ sportComplexServiceId: Number(id) })
+        } else {
+            setLogin(true)
+        }
     }
     useEffect(() => {
         seturl(window.location.origin + pathname.toString());
     }, [pathname, url]);
     return (
         <>
+            <LoginModal
+                CloseModal={() => {
+                    setLogin(false);
+                }}
+                State={Login && !userGender ? true : false}
+            />
             <GalleryModal Data={Data ? Data.filePathes : null} State={GalleryOpen} CloseModal={() => setGalleryOpen(false)} />
             <div className='Container flex flex-col  gap-8 pt-8'>
                 <div className='w-full flex items-center justify-between'>

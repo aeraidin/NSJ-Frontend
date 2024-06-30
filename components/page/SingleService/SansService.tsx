@@ -1,6 +1,7 @@
 "use client"
 import Toast from '@/components/Layout/Alerts/Toast'
 import SuccessBtn from '@/components/Layout/Buttons/SuccessBtn'
+import LoginModal from '@/components/Layout/Modals/auth/LoginModal'
 import { AddToCart } from '@/util/api/Cart/AddToCart'
 import { UserTypeData } from '@/util/Data/UserTypeData'
 import { DaysOfWeekArray } from '@/util/Data/WorkDayTime'
@@ -21,6 +22,7 @@ function SansService({ id }: { id: string }) {
     const userData = useGetUser()
     const queryClient = useQueryClient();
     const data = useGetSingleServiceSans({ id: id })
+    const [Login, setLogin] = useState(false);
     const Data = data?.data?.value.list as Sans[] | undefined
     const userGender = userData?.data?.value?.gender as number | undefined
     const router = useRouter()
@@ -47,6 +49,12 @@ function SansService({ id }: { id: string }) {
     })
     return (
         <>
+            <LoginModal
+                CloseModal={() => {
+                    setLogin(false);
+                }}
+                State={Login && !userGender && !userData.isPending ? true : false}
+            />
             <Toast messege={AddToCartHandler.error ? (AddToCartHandler.error as unknown as string) : "با موفقیت به سبد خرید اضافه شد"} Close={() => setResult(false)} isError={AddToCartHandler.isError} isSuccess={AddToCartHandler.isSuccess} Result={Result} />
             <div id='sans' className="Container py-6 lg:py-10">
                 <h2 className="text-gray-500 font-semibold ">رزرو</h2>
@@ -107,7 +115,7 @@ function SansService({ id }: { id: string }) {
                                         <div className='flex items-center flex-wrap gap-3 py-4 px-6'>
                                             {item.details.map((item, index) => {
                                                 return (
-                                                    <button onClick={() => AddToCartHandler.mutate(item.id)} key={index} className={` relative overflow-hidden h-8 text-sm lg:text-base group lg:h-10 border flex items-center gap-3 ${SelectedClient?.clientType !== 1 ? "border-third-400" : " border-pink-500"}   hover:border-transparent rounded-lg   hover:shadow px-4 py-2  duration-200 `}>
+                                                    <button onClick={() => userGender !== undefined ? AddToCartHandler.mutate(item.id) : setLogin(true)} key={index} className={` relative overflow-hidden h-8 text-sm lg:text-base group lg:h-10 border flex items-center gap-3 ${SelectedClient?.clientType !== 1 ? "border-third-400" : " border-pink-500"}   hover:border-transparent rounded-lg   hover:shadow px-4 py-2  duration-200 `}>
                                                         <p className={`${SelectedClient.clientType !== 1 ? "text-third-400" : "text-pink-400"} group-hover:opacity-0  group-hover:-translate-y-full duration-200`}>{(item.end) + "-" + (item.start)}</p>
                                                         <div className='group-hover:opacity-100 h-8 w-full bg-success-600 text-center flex items-center justify-center lg:h-10 opacity-0 absolute top-full  group-hover:top-1/2 left-1/2 transform -translate-x-1/2 group-hover:-translate-y-1/2 duration-200 '>
                                                             {AddToCartHandler.isPending ?
@@ -164,7 +172,7 @@ function SansService({ id }: { id: string }) {
                                     <div className='flex items-center flex-wrap gap-3 py-4 px-6'>
                                         {item.details.map((item, index) => {
                                             return (
-                                                <button disabled={item.isGone} onClick={() => AddToCartHandler.mutate(item.id)} key={index} className=' disabled:opacity-25 disabled:cursor-not-allowed  '>
+                                                <button disabled={item.isGone} onClick={() => userGender !== undefined ? AddToCartHandler.mutate(item.id) : setLogin(true)} key={index} className=' disabled:opacity-25 disabled:cursor-not-allowed  '>
                                                     <div className={`relative overflow-hidden h-8 text-sm lg:text-base group lg:h-10 border flex items-center gap-3 ${SelectedClient?.clientType !== 1 ? "border-third-400" : " border-pink-500"} hover:border-transparent rounded-lg   hover:shadow px-4 py-2  duration-200`}>
                                                         <p className={` ${SelectedClient.clientType !== 1 ? "text-third-400" : "text-pink-400"} group-hover:opacity-0  group-hover:-translate-y-full duration-200`}>{(item.end) + "-" + (item.start)}</p>
                                                         {/* ${AddToCartHandler.isPending ? "top-1/2 -translate-y-1/2 opacity-100" : " group-hover:top-1/2 group-hover:-translate-y-1/2 group-hover:opacity-100"} */}
