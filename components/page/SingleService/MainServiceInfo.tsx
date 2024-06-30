@@ -22,11 +22,17 @@ import { motion } from "framer-motion";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ToggleFavorite } from '@/util/api/Favorite/ToggleFavorite';
 import GalleryModal from '@/components/Layout/Modals/GalleryModal';
+import LoginModal from '@/components/Layout/Modals/auth/LoginModal';
+import { useSestion } from '@/util/session';
+import useGetUser from '@/util/hook/user/useGetUser';
 
 function MainServiceInfo({ id }: { id: string }) {
     const data = useGetSingleService({ id: id })
     const Data = data?.data?.value as SingleProductPage | undefined
     const Sans = useGetSingleServiceSans({ id: id })
+    const [Login, setLogin] = useState(false);
+    const userData = useGetUser()
+    const userGender = userData?.data?.value as any | undefined
     const SansData = Sans?.data?.value.list as Sans[] | undefined
     const [GalleryOpen, setGalleryOpen] = useState(false)
     const swiper = useSwiper();
@@ -45,13 +51,24 @@ function MainServiceInfo({ id }: { id: string }) {
         },
     })
     const ToggleFavoriteHandler = () => {
-        ToggleFavoriteApi.mutate({ sportComplexServiceId: Number(id) })
+        if (userGender) {
+            setLogin(false)
+            ToggleFavoriteApi.mutate({ sportComplexServiceId: Number(id) })
+        } else {
+            setLogin(true)
+        }
     }
     useEffect(() => {
         seturl(window.location.origin + pathname.toString());
     }, [pathname, url]);
     return (
         <>
+            <LoginModal
+                CloseModal={() => {
+                    setLogin(false);
+                }}
+                State={Login && !userGender ? true : false}
+            />
             <GalleryModal Data={Data ? Data.filePathes : null} State={GalleryOpen} CloseModal={() => setGalleryOpen(false)} />
             <div className='Container flex flex-col  gap-8 pt-8'>
                 <div className='w-full flex items-center justify-between'>
@@ -113,7 +130,7 @@ function MainServiceInfo({ id }: { id: string }) {
                             <span className="whitespace-nowrap"> {Data?.isUserFavorite ? "حذف از علاقه مندی ها" : "افزودن به علاقه مندی ها"}</span>
                         </motion.button>
                     </div>
-                    <div className='w-full lg:max-w-[50%] xl:w-[43%] order-2 flex-1 2xl:h-[478px] h-full lg:order-1'>
+                    <div className='w-full lg:max-w-[50%] xl:max-w-[43%] order-2 flex-1 xl:h-[470px] h-full lg:order-1'>
                         {data.isSuccess ? <div className='flex flex-col h-full  justify-between gap-4'>
                             <div className='flex flex-col gap-5'>
                                 <div className='flex-col flex gap-3'>
@@ -137,7 +154,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                                 </Link>
                                             </div>
                                             <div className="flex items-center gap-2 justify-center">
-                                                <h5 className="leading-[12px]">{Data?.rate.toFixed(1)}</h5>
+                                                <h5 className="leading-[12px]">{Number.isInteger(Data?.rate) ? Data?.rate : Data?.rate.toFixed(1)}</h5>
                                                 <FaStar className="text-secondary-600" size={20} />
                                             </div>
                                         </div>
@@ -209,7 +226,7 @@ function MainServiceInfo({ id }: { id: string }) {
                         </div>
                             : <MainServiceInfoLoading />}
                     </div>
-                    <div className='flex flex-1 order-1  w-full lg:max-w-[50%] xl:max-w-[58%]'>
+                    <div className='flex flex-1 order-1  w-full lg:max-w-[50%] xl:max-w-[58%]  h-full'>
                         <Swiper
                             spaceBetween={0}
                             slidesPerView={1}
