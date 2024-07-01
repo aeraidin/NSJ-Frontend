@@ -111,7 +111,7 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
                         <div className='w-full px-6 border-b border-gray-50  flex items-center gap-4'>
                             <div className='flex items-center gap-2 pb-2 '>
                                 <Sort size="20" className='text-gray-500' />
-                                <p className='text-xs '>مرتب سازی</p>
+                                <p className='text-[10px] whitespace-nowrap lg:text-xs '>مرتب سازی</p>
                             </div>
                             <button onClick={() => router.push(pathname + '?' + createQueryString('0'))} className={`TabBtn ${Number(SortBy) === 0 ? "TabBtnActice" : ""}`}>مرتبط‌ترین</button>
                             <button onClick={() => router.push(pathname + '?' + createQueryString('1'))} className={`TabBtn ${Number(SortBy) === 1 ? "TabBtnActice" : ""}`} >جدیدترین</button>

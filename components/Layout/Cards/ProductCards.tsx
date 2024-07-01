@@ -4,7 +4,6 @@ import { ArrowLeft2, Location } from "iconsax-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaStar } from "react-icons/fa6";
 import { NumericFormat } from "react-number-format";
 
 function ProductCards({ data }: { data: ProductCard }) {
@@ -35,7 +34,8 @@ function ProductCards({ data }: { data: ProductCard }) {
             </Link>
             <div className="flex items-center gap-2 justify-center">
               <h5 className="text-sm">{Number.isInteger(data.rate) ? data.rate : data.rate.toFixed(1)}</h5>
-              <FaStar className="text-secondary-600 size-4" />
+              <Image src={"/Icons/Star.svg"} width={16} height={16} alt="icon" />
+
             </div>
           </div>
           <div className="w-full flex items-center gap-2 ">
@@ -107,7 +107,7 @@ export function ProductCardsLoading() {
             <div className=" w-[100px] h-3 rounded-full bg-gray-200"></div>
             <div className="flex items-center gap-2 justify-center">
               <h5 className="leading-[12px]">5</h5>
-              <FaStar className="text-secondary-600" size={20} />
+              <Image src={"/Icons/Star.svg"} width={16} height={16} alt="icon" />
             </div>
           </div>
           <div className="w-full flex items-center gap-2 ">

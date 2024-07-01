@@ -1,18 +1,10 @@
 "use client"
 import SuccessBtn from '@/components/Layout/Buttons/SuccessBtn';
-import Breadcrumb from '@/components/Layout/breadcrumb';
-import { DaysOfWeekArray } from '@/util/Data/WorkDayTime';
-import { Clock, Heart, Location, Share } from 'iconsax-react';
+import { Clock, Location } from 'iconsax-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react'
-import { FaStar } from 'react-icons/fa6';
-import { NumericFormat } from 'react-number-format';
-import { Autoplay, FreeMode, Navigation } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link as ReactScroll } from 'react-scroll'
 function MainServiceInfoLoading() {
-
     return (
         <div className='flex flex-col h-full justify-between gap-4 animate-pulse'>
             <div className='flex flex-col gap-5'>
@@ -31,7 +23,7 @@ function MainServiceInfoLoading() {
                             </div>
                             <div className="flex items-center gap-2 justify-center">
                                 <div className="w-4 h-4 rounded-lg bg-gray-200"></div>
-                                <FaStar className="text-secondary-600" size={20} />
+                                <Image src={"/Icons/Star.svg"} width={20} height={20} alt="icon" />
                             </div>
                         </div>
                     </div>
