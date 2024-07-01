@@ -4,17 +4,12 @@ import Toast from "@/components/Layout/Alerts/Toast";
 import { AddDisLike } from "@/util/api/Comment/AddDisLike";
 import { AddLike } from "@/util/api/Comment/AddLike";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { motion } from "framer-motion";
-import { Like, Like1, Star1 } from "iconsax-react";
 import Image from "next/image";
 import Cookies from "js-cookie";
 const token = Cookies.get("token");
-import { FaStarHalfAlt } from "react-icons/fa";
-import { FaStar } from "react-icons/fa6";
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import LoginModal from "@/components/Layout/Modals/auth/LoginModal";
-import { log } from "console";
 
 function Comments({ data }: { data: myCommentData }) {
   const queryClient = useQueryClient();
@@ -100,9 +95,9 @@ function Comments({ data }: { data: myCommentData }) {
                     className={"cursor-pointer"}
                     count={5}
                     isHalf={true}
-                    halfIcon={<FaStarHalfAlt size={20} />}
-                    emptyIcon={<FaStar size={20} />}
-                    filledIcon={<FaStar size={20} />}
+                    // halfIcon={<FaStarHalfAlt size={20} />}
+                    emptyIcon={<Image src={"/Icons/Stargray.svg"} width={20} height={20} alt="icon" />}
+                    filledIcon={<Image src={"/Icons/Star.svg"} width={20} height={20} alt="icon" />}
                     value={data.rate}
                     edit={false}
                     onChange={ratingChanged}

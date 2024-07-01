@@ -9,8 +9,6 @@ import { Like, Like1, Star1, User, UserOctagon } from "iconsax-react";
 import Image from "next/image";
 import Cookies from "js-cookie";
 const token = Cookies.get("token");
-import { FaStarHalfAlt } from "react-icons/fa";
-import { FaStar } from "react-icons/fa6";
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import LoginModal from "@/components/Layout/Modals/auth/LoginModal";
@@ -216,11 +214,8 @@ function Comment({ data }: commentProps) {
                       className={"cursor-pointer"}
                       count={5}
                       isHalf={true}
-                      halfIcon={
-                        <FaStarHalfAlt className=" text-sm lg:text-2xl" />
-                      }
-                      emptyIcon={<FaStar className=" text-base lg:text-2xl" />}
-                      filledIcon={<FaStar className=" text-base lg:text-2xl" />}
+                      emptyIcon={<Image src={"/Icons/Stargray.svg"} width={20} height={20} alt="icon" />}
+                      filledIcon={<Image src={"/Icons/Star.svg"} width={20} height={20} alt="icon" />}
                       value={data.rate}
                       edit={false}
                       onChange={ratingChanged}

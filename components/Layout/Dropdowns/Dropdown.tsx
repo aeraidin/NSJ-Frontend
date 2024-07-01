@@ -6,8 +6,7 @@ import { ArrowDown2 } from "iconsax-react";
 
 import useClickOutside from "@/util/hook/useClickOutside";
 import { AnimatePresence, motion } from "framer-motion";
-import { TbCheck } from "react-icons/tb";
-
+import Image from "next/image";
 interface DropDownType {
   options: { label: string; value: string }[];
   error?: string | undefined;
@@ -93,7 +92,8 @@ const DropDown: React.FC<DropDownType> = ({
               >
                 <p className="text-nowrap">{item.label}</p>
                 {!SpetialDropDown && selectedIndex === index ? (
-                  <TbCheck className=" text-xs md:text-lg text-gray-300" />
+
+                  <Image width={16} height={16} src={"/Icons/check.svg"} alt="icon" />
                 ) : null}
               </div>
             ))}

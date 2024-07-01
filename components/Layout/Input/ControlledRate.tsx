@@ -10,11 +10,7 @@ import {
   UseFormWatch,
 } from "react-hook-form";
 import ReactStars from "react-rating-stars-component";
-
 import Image from "next/image";
-import { Eye, EyeSlash, Star1 } from "iconsax-react";
-import { FaStarHalfAlt } from "react-icons/fa";
-import { FaStar } from "react-icons/fa6";
 
 type InputProps<T extends FieldValues> = {
   label?: string;
@@ -79,8 +75,8 @@ const ControlledRate = <T extends FieldValues>({
           }
           ratingChanged(e);
         }}
-        emptyIcon={<FaStar size={24} />}
-        filledIcon={<FaStar size={24} />}
+        emptyIcon={<Image src={"/Icons/Stargray.svg"} width={20} height={20} alt="icon" />}
+        filledIcon={<Image src={"/Icons/Star.svg"} width={20} height={20} alt="icon" />}
         count={5}
         size={28}
         className={"cursor-pointer"}

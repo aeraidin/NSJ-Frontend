@@ -4,7 +4,6 @@ import { ArrowLeft2, Location, Trash } from "iconsax-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaStar } from "react-icons/fa6";
 import { NumericFormat } from "react-number-format";
 import image from "../../../public/Banner/435x210.jpg";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -97,9 +96,12 @@ function FavoriteCards({ data }: { data: ProductCard }) {
                 {data.serviceName} {data.sportComplex.name}
               </h3>
             </Link>
-            <div className="flex items-center gap-2 justify-center">
+            <div className="flex items-center gap-2 justify-center ">
               <h5 className="leading-[12px]">{data.rate.toFixed(1)}</h5>
-              <FaStar className="text-secondary-600" size={20} />
+              <Image src={"/Icons/Star.svg"} width={20} height={20} alt="icon" />
+
+
+
             </div>
           </div>
           <div className="w-full flex items-center gap-2 ">
@@ -170,7 +172,7 @@ export function FavoriteCardsLoading() {
             <div className=" w-[100px] h-3 rounded-full bg-gray-200"></div>
             <div className="flex items-center gap-2 justify-center">
               <h5 className="leading-[12px]">5</h5>
-              <FaStar className="text-secondary-600" size={20} />
+              <Image src={"/Icons/Star.svg"} width={20} height={20} alt="icon" />
             </div>
           </div>
           <div className="w-full flex items-center gap-2 ">
