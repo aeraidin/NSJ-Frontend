@@ -74,7 +74,7 @@ function Footer() {
         </div>
         <div className=" w-full  lg:mt-12 h-full flex justify-center items-center lg:justify-end lg:items-end flex-col gap-y-10">
           <div className="flex gap-x-4">
-            <Link
+            {/* <Link
               href="https://trustseal.enamad.ir/?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
               className="w-[108px] relative h-[133px] rounded-lg"
               target="_blank"
@@ -87,6 +87,21 @@ function Footer() {
                 className=" object-contain"
                 src="https://trustseal.enamad.ir/logo.aspx?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
                 alt="نماد اعتماد الکترونیک"
+              />
+            </Link> */}
+            <Link
+              referrerPolicy="origin"
+              target="_blank"
+              className=" border h-[133px] w-[108px] rounded-2xl"
+              href="https://trustseal.enamad.ir/?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
+            >
+              <Image
+                referrerPolicy="origin"
+                src="https://trustseal.enamad.ir/logo.aspx?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
+                alt="ENAMAD Logo"
+                width={200}
+                height={200}
+                className="cursor-pointer"
               />
             </Link>
             <div className="w-[108px] relative h-[133px] rounded-lg">
