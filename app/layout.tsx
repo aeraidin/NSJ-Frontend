@@ -49,6 +49,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "https://dev.funicket.ir/Favicon/Favicon.png",
   },
+  openGraph: {
+    images: "https://dev.funicket.ir/Favicon/Favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -58,6 +61,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
+      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#22386B" />
+      <meta name="msapplication-TileColor" content="#22386B" />
+      <meta name="theme-color" content="#22386B"></meta>
       <body className={yekan.className}>
         <NextNProgressWrapper>
           <TenstackProvider>{children}</TenstackProvider>
