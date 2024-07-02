@@ -9,7 +9,7 @@ function RecomendedList({ data }: { data: ProductCard[] | undefined }) {
     // const data = await GetRecLis()
     const swiper = useSwiper();
     return (
-        <div className='Container w-full flex flex-col gap-6'>
+        <div className='Container w-full flex flex-col mt-6 lg:mt-0  lg:gap-6'>
             <div
                 className='flex items-center justify-between '>
                 <h1>پیشنهاد های ویژه</h1>

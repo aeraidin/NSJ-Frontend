@@ -6,6 +6,10 @@ input::-webkit-inner-spin-button {
  margin: 0;
 }
 
+/* Firefox */
+input[type="number"] {
+ -moz-appearance: textfield;
+}
 .custom-scrollbar {
  max-height: 302px;
  overflow-y: auto;
