@@ -7,7 +7,6 @@ import { ArrowLeft2, ArrowRight2, Building4, Clock, Heart, Location, Share } fro
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-import { FaStar } from 'react-icons/fa6';
 import { NumericFormat } from 'react-number-format';
 import { Autoplay, FreeMode, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
@@ -15,7 +14,6 @@ import { Link as ReactScroll } from 'react-scroll'
 import useGetSingleServiceSans from '@/util/hook/SingleService/useGetSingleServiceSans';
 import { UserTypeData } from '@/util/Data/UserTypeData';
 import MainServiceInfoLoading from '@/components/Layout/Loading/MainServiceInfoLoading';
-import { GoShareAndroid } from "react-icons/go";
 import { usePathname } from 'next/navigation';
 import Toast from '@/components/Layout/Alerts/Toast';
 import { motion } from "framer-motion";
@@ -94,7 +92,8 @@ function MainServiceInfo({ id }: { id: string }) {
                                     SetCopyResult(false)
                                 }, 5000);
                             }} className='px-6 py-3 border  border-gray-100 rounded-2xl cursor-copy text-gray-400 flex items-center gap-2 text-sm font-semibold hover:bg-third-600 hover:text-white  hover:border-transparent'>
-                            <GoShareAndroid size="24" />
+                            <Share size="24" />
+
                             <span>{CopyResult ? "لینک کپی شد ! " : "اشتراک گذاری"}</span>
                         </motion.button>
                         <motion.button
@@ -119,14 +118,14 @@ function MainServiceInfo({ id }: { id: string }) {
                                     SetCopyResult(false)
                                 }, 5000);
                             }} className='w-full  px-2 py-2 border  border-gray-100 rounded-xl text-gray-400 flex items-center justify-center gap-2 text-xs font-semibold hover:bg-third-600 hover:text-white  hover:border-transparent'>
-                            <Share size="24" />
+                            <Share size="20" />
                             <span>{CopyResult ? "لینک کپی شد ! " : "اشتراک گذاری"}</span>
                         </motion.button>
                         <motion.button
                             disabled={ToggleFavoriteApi.isPending}
                             whileTap={{ scale: 0.85 }} transition={{ type: "spring", stiffness: 400 }} onClick={ToggleFavoriteHandler}
                             className='w-full px-2 py-2 border disabled:cursor-wait disabled:opacity-25 border-gray-100 rounded-xl text-gray-400 flex items-center justify-center gap-2 text-xs font-semibold hover:bg-error-600 hover:text-white  hover:border-transparent'>
-                            <Heart size="24" variant={Data?.isUserFavorite ? "Bold" : "Linear"} className={`${Data?.isUserFavorite ? "text-error-600" : ""} group-hover:text-white`} />
+                            <Heart size="20" variant={Data?.isUserFavorite ? "Bold" : "Linear"} className={`${Data?.isUserFavorite ? "text-error-600" : ""} group-hover:text-white`} />
                             <span className="whitespace-nowrap"> {Data?.isUserFavorite ? "حذف از علاقه مندی ها" : "افزودن به علاقه مندی ها"}</span>
                         </motion.button>
                     </div>
@@ -155,7 +154,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                             </div>
                                             <div className="flex items-center gap-2 justify-center">
                                                 <h5 className="leading-[12px]">{Number.isInteger(Data?.rate) ? Data?.rate : Data?.rate.toFixed(1)}</h5>
-                                                <FaStar className="text-secondary-600" size={20} />
+                                                <Image src={"/Icons/Star.svg"} width={20} height={20} alt="icon" />
                                             </div>
                                         </div>
                                     </div>

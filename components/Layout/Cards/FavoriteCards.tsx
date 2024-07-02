@@ -4,7 +4,6 @@ import { ArrowLeft2, Location, Trash } from "iconsax-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaStar } from "react-icons/fa6";
 import { NumericFormat } from "react-number-format";
 import image from "../../../public/Banner/435x210.jpg";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -52,7 +51,7 @@ function FavoriteCards({ data }: { data: ProductCard }) {
         <div className="aspect-w-8 aspect-h-5  md:aspect-w-16 md:aspect-h-9  xl:aspect-w-16 xl:aspect-h-9  overflow-hidden relative">
           <Image
             fill
-            className="object-cover   group-hover:scale-110 duration-150"
+            className="object-cover   lg:group-hover:scale-110 duration-150"
             alt={data.filePath}
             src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${data.filePath}`}
             sizes="90vw"
@@ -89,17 +88,16 @@ function FavoriteCards({ data }: { data: ProductCard }) {
         {/* Info Part */}
         <div className="flex w-full flex-col  gap-3 pb-3">
           <div
-            className="w-full flex  items-center  gap-x-3
-          "
+            className="w-full flex items-center justify-between gap-4"
           >
             <Link href={`/service/${data.id}`}>
               <h3 className=" truncate w-full max-w-[250px] lg:max-w-none">
                 {data.serviceName} {data.sportComplex.name}
               </h3>
             </Link>
-            <div className="flex items-center gap-2 justify-center">
-              <h5 className="leading-[12px]">{data.rate.toFixed(1)}</h5>
-              <FaStar className="text-secondary-600" size={20} />
+            <div className="flex items-center gap-2 justify-center ">
+              <h5 className="leading-[12px]">{Number.isInteger(data.rate) ? data.rate : data.rate.toFixed(1)}</h5>
+              <Image src={"/Icons/Star.svg"} width={20} height={20} alt="icon" />
             </div>
           </div>
           <div className="w-full flex items-center gap-2 ">
@@ -132,7 +130,7 @@ function FavoriteCards({ data }: { data: ProductCard }) {
               </h5>
             </div>
           </div>
-        </div>
+        </div >
         <div className="flex items-center w-full xl:min-w-[500px] justify-between">
           <p>
             <NumericFormat
@@ -144,14 +142,14 @@ function FavoriteCards({ data }: { data: ProductCard }) {
           </p>
           <Link
             href={`/service/${data.id}`}
-            className="text-third-600 flex items-center   lg:justify-end  gap-1 -translate-x-0 xl:-translate-x-32 opacity-100 xl:group-hover:opacity-100 xl:group-hover:-translate-x-0 xl:opacity-0    duration-150 "
+            className="text-third-600 flex items-center   lg:justify-end  gap-1  lg:-translate-x-32  lg:group-hover:opacity-100 lg:group-hover:-translate-x-0 lg:opacity-0  duration-150 "
           >
             <h5 className="text-third-600">مشاهده و خرید</h5>
             <ArrowLeft2 size={20} />
           </Link>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 
@@ -159,7 +157,7 @@ export default FavoriteCards;
 
 export function FavoriteCardsLoading() {
   return (
-    <div className=" select-none bg-white  w-full h-fit flex flex-col  xl:flex-row border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group animate-pulse ">
+    <div className=" select-none bg-white  w-full h-fit flex flex-col  xl:flex-row border border-gray-50 rounded-2xl overflow-hidden lg:hover:shadow-CMSHADOW duration-200 group animate-pulse ">
       <div className=" w-full xl:max-w-[290px] overflow-hidden relative">
         <div className="aspect-w-8 aspect-h-5  md:aspect-w-16 md:aspect-h-9  xl:aspect-w-8 xl:aspect-h-5  bg-gray-300"></div>
       </div>
@@ -170,7 +168,7 @@ export function FavoriteCardsLoading() {
             <div className=" w-[100px] h-3 rounded-full bg-gray-200"></div>
             <div className="flex items-center gap-2 justify-center">
               <h5 className="leading-[12px]">5</h5>
-              <FaStar className="text-secondary-600" size={20} />
+              <Image src={"/Icons/Star.svg"} width={20} height={20} alt="icon" />
             </div>
           </div>
           <div className="w-full flex items-center gap-2 ">
@@ -193,7 +191,7 @@ export function FavoriteCardsLoading() {
         </div>
         <div className="flex items-center w-full xl:min-w-[500px] justify-between">
           <div className="w-full max-w-[100px] rounded-2xl h-2 bg-gray-100"></div>
-          <div className="text-third-600 flex items-center gap-1 -translate-x-32 opacity-0 group-hover:opacity-100 group-hover:-translate-x-0 duration-150">
+          <div className="text-third-600 flex items-center gap-1 lg:-translate-x-32 lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:-translate-x-0 duration-150">
             <h5 className="text-third-600">مشاهده و خرید</h5>
             <ArrowLeft2 size={20} />
           </div>

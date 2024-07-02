@@ -22,14 +22,10 @@ import {
 } from "@/util/config/validations/Comment/CommentSchema";
 import ControlledRate from "@/components/Layout/Input/ControlledRate";
 import Cookies from "js-cookie";
-import { FaPersonWalkingDashedLineArrowRight } from "react-icons/fa6";
 import LoginModal from "@/components/Layout/Modals/auth/LoginModal";
 import { AddComment } from "@/util/api/Comment/AddComment";
-import { error } from "console";
 import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
 import Toast from "@/components/Layout/Alerts/Toast";
-import { FaStarHalfAlt } from "react-icons/fa";
-import { FaStar } from "react-icons/fa6";
 
 interface ReviewServiceProps {
   id: string;
@@ -191,11 +187,9 @@ function ReviewService({ id }: ReviewServiceProps) {
                       edit={false}
                       value={Data?.rate}
                       isHalf={true}
-                      halfIcon={<FaStarHalfAlt size={24} />}
-                      emptyIcon={<FaStar size={24} />}
-                      filledIcon={<FaStar size={24} />}
+                      emptyIcon={<Image src={"/Icons/Stargray.svg"} width={20} height={20} alt="icon" />}
+                      filledIcon={<Image src={"/Icons/Star.svg"} width={20} height={20} alt="icon" />}
                       size={28}
-                      c
                       activeColor="#FEB92E"
                     />
                   ) : null}

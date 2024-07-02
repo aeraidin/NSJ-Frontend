@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Calendar, Clock, Ticket } from 'iconsax-react'
 import Image from 'next/image'
 import React from 'react'
-import { TbH5 } from 'react-icons/tb'
 import { NumericFormat } from 'react-number-format'
 
 function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardPayment, step, back }: { Data: null | CartDetail, totalDiscount: number, totalPrice: number, onClick: () => void, back: () => void; disabled: boolean, CardPayment: boolean, step: number }) {

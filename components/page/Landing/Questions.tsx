@@ -24,20 +24,18 @@ function Questions() {
               onClick={() => {
                 setActiveIndex((prev) => (prev === item.id ? null : item.id));
               }}
-              className={`w-full flex-col cursor-pointer py-6 px-6 border  ${
-                activeIndex === item.id
+              className={`w-full flex-col cursor-pointer py-6 px-6 border  ${activeIndex === item.id
                   ? "border-gray-200  shadow-CMSHADOWHover"
                   : "border-gray-50"
-              } duration-200 flex rounded-2xl`}
+                } duration-200 flex rounded-2xl`}
             >
               <div className=" w-full flex justify-between gap-4 items-center ">
                 <p className=" select-none  text-gray-500 font-semibold text-sm lg:text-base text-justify">
                   {item.question}
                 </p>
                 <ArrowDown2
-                  className={`text-gray-300  ${
-                    activeIndex === item.id ? "rotate-180" : "rotate-0"
-                  } duration-200`}
+                  className={`text-gray-300  ${activeIndex === item.id ? "rotate-180" : "rotate-0"
+                    } duration-200`}
                 />
               </div>
 

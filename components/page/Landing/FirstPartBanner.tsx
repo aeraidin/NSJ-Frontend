@@ -19,7 +19,7 @@ function FirstPartBanner() {
                     disableOnInteraction: true,
                 }}
                 modules={[Autoplay]}
-                className='!aspect-w-16 !aspect-h-6 rounded-2xl'
+                className='!aspect-w-16  !aspect-h-6 rounded-2xl'
             >
                 <SwiperSlide className=' relative'>
                     <Image src={Banner} fill className='object-cover' alt='Banner' placeholder='blur' sizes="90vw" />
@@ -36,7 +36,7 @@ function FirstPartBanner() {
                 <div className='w-[90%] lg:w-[80%]   h-fit py-4  rounded-2xl absolute top-[85%] mx-auto bg-white shadow-CMSHADOW z-10 left-1/2 transform -translate-x-1/2 '>
                     <Swiper
                         spaceBetween={10}
-                        slidesPerView={2}
+                        slidesPerView={2.8}
                         autoplay={{
                             delay: 5500,
                             disableOnInteraction: false,
@@ -64,8 +64,12 @@ function FirstPartBanner() {
                             return (
                                 <SwiperSlide key={index} className='h-full select-none'  >
                                     <Link href={`/category/${item.id}`} className='flex items-center justify-center flex-col gap-2'>
-                                        <Image src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${item.icon}`} alt={item.name} width={32} height={32} className='object-contain' />
-                                        <p className='whitespace-nowrap'>{item.name}</p></Link>
+                                        <div className='w-[24px] h-[24px
+                                    ] lg:w-[32px] lg:h-[32px]'>
+
+                                            <Image src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${item.icon}`} alt={item.name} width={32} height={32} className='object-contain' />
+                                        </div>
+                                        <p className='whitespace-nowrap text-sm lg:text-base'>{item.name}</p></Link>
                                 </SwiperSlide>
                             );
                         })}

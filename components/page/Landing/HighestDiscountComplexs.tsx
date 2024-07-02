@@ -8,7 +8,7 @@ import Image from 'next/image';
 function HighestDiscountComplexs({ data }: { data: ProductCard[] | undefined }) {
     const swiper = useSwiper();
     return (
-        <div className='Container w-full flex flex-col gap-6 relative'>
+        <div className='Container w-full  flex flex-col lg:gap-6 relative'>
             <div className='w-full h-[80%] lg:h-[70%] bg-secondary-600 rounded-lg absolute left-0 bottom-0 -z-10' />
             <div
                 className='flex items-center justify-between '>
@@ -28,8 +28,8 @@ function HighestDiscountComplexs({ data }: { data: ProductCard[] | undefined }) 
             </div>
 
             <div className='w-full grid grid-cols-1 grid-rows-2 md:grid-rows-1  md:grid-cols-5 items-center'>
-                <div className='px-6 md:col-span-2 lg:col-span-1  flex items-center justify-center flex-col'>
-                    <div className='w-[240px] h-[290px] relative'>
+                <div className='lg:px-6 md:col-span-2 lg:col-span-1 h-fit flex items-center justify-center flex-col gap-4'>
+                    <div className='w-[240px] h-[240px] relative'>
                         <Image src={"/sale.png"} fill className='object-contain' alt='sale' sizes="90vw" />
                     </div>
                     <span className='text-2xl text-white font-bold'>بیشترین تخفیف ها</span>

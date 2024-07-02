@@ -1,3 +1,4 @@
+import useMediaQuery from "@/util/hook/useMediaQuery";
 import React, { useEffect, useState } from "react";
 import OtpInput from "react-otp-input";
 
@@ -9,6 +10,7 @@ interface otpProps {
 
 function OTPCode({ length, otpCode, error }: otpProps) {
   const [otp, setOtp] = useState("");
+  const isTabletOrLarger = useMediaQuery("(min-width: 724px)");
 
   useEffect(() => {
     // otpCode(otp);
@@ -17,11 +19,12 @@ function OTPCode({ length, otpCode, error }: otpProps) {
   return (
     <OtpInput
       value={otp}
+
       inputStyle={{
         // border: "1px solid",
         borderRadius: "8px",
-        width: "64px",
-        height: "64px",
+        width: isTabletOrLarger ? "64px" : "46px",
+        height: isTabletOrLarger ? "64px" : "46px",
         // borderColor: "#525252",
         caretColor: "#525252",
       }}
@@ -49,7 +52,7 @@ function OTPCode({ length, otpCode, error }: otpProps) {
           inputMode="decimal"
           type="number"
           className={` ${error ? "error-otp" : "input-otp"
-            } rounded-lg text-xl text-gray-600 `}
+            } rounded-lg text-xl text-gray-600 mx-auto`}
         />
       )}
     />

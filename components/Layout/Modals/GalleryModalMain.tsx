@@ -31,12 +31,12 @@ function GalleryModalMain({
                     initial="hidden"
                     animate="visible"
                     exit={"hidden"}
-                    className={`flex z-50 w-full h-screen bg-black/70  justify-center items-end  md:items-center  backdrop-blur-[5px] fixed left-0 top-0 duration-200`}
+                    className={`flex z-50 w-full h-screen bg-black/70  justify-center items-center  backdrop-blur-[5px] fixed left-0 top-0 duration-200`}
                 >
                     <motion.div
                         ref={containerRef}
                         variants={variants}
-                        className={` w-[90%] md:w-[80%]    max-w-[70%] h-fit   flex items-center justify-center relative rounded-2xl md:rounded-2xl  `}
+                        className={` w-[95%] md:w-[80%] lg:max-w-[70%] h-fit   flex items-center justify-center relative rounded-2xl md:rounded-2xl  `}
                     >
                         <button
                             className=" absolute -top-10 right-0   duration-150"

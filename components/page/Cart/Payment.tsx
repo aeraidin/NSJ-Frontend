@@ -4,7 +4,6 @@ import Image from 'next/image'
 import React from 'react'
 import { NumericFormat } from 'react-number-format'
 import { motion } from "framer-motion";
-import { TbClockHour12 } from 'react-icons/tb';
 
 
 function Payment({ state, ChangeState }: { state: boolean, ChangeState: (e: boolean) => void }) {
