@@ -35,7 +35,6 @@ function ProductCards({ data }: { data: ProductCard }) {
             <div className="flex items-center gap-2 justify-center">
               <h5 className="text-sm">{Number.isInteger(data.rate) ? data.rate : data.rate.toFixed(1)}</h5>
               <Image src={"/Icons/Star.svg"} width={16} height={16} alt="icon" />
-
             </div>
           </div>
           <div className="w-full flex items-center gap-2 ">
