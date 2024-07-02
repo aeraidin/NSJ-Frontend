@@ -105,20 +105,39 @@ function Footer() {
               />
             </Link>
             <div className="w-[108px] relative h-[133px] rounded-lg">
-              <Image
+              <Link
+                href={
+                  "https://logo.samandehi.ir/Verify.aspx?id=369961&p=xlaogvkapfvlpfvlgvkarfth"
+                }
+                target="_blank"
+              >
+                <Image
+                  // referrerpolicy="origin"
+                  referrerPolicy="origin"
+                  id="rgvjfukzsizpsizpfukzjxlz"
+                  width={120}
+                  height={120}
+                  className="cursor-pointer"
+                  // onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=369961&p=xlaogvkapfvlpfvlgvkarfth", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")'
+                  alt="logo-samandehi"
+                  src="https://logo.samandehi.ir/logo.aspx?id=369961&p=qftiwlbqbsiybsiywlbqnbpd"
+                />
+              </Link>
+
+              {/* <Image
                 fill
                 src={icon2}
                 alt="icon2"
                 sizes="(min-width: 640px) 90vw, 100vw"
-              />
+              /> */}
             </div>{" "}
             <div className="w-[108px] relative h-[133px]  rounded-lg">
-              <Image
+              {/* <Image
                 fill
                 src={icon3}
                 alt="icon3"
                 sizes="(min-width: 640px) 90vw, 100vw"
-              />
+              /> */}
             </div>
           </div>
 
