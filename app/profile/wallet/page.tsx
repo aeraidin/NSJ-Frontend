@@ -59,7 +59,7 @@ function Page() {
             </div>
           </div>
 
-          <div className=" w-full flex justify-center items-center flex-col">
+          {/* <div className=" w-full flex justify-center items-center flex-col">
             <p className=" text-gray-600 text-center mt-[30px] text-sm lg:text-[20px] font-semibold">
               افزایش موجودی کیف پول از طریق پرداخت آنلاین
             </p>
@@ -67,7 +67,7 @@ function Page() {
             <div className=" w-full max-w-[428px] mt-7   flex justify-center items-center ">
               <IncreaseWallet />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
