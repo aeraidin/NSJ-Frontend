@@ -61,7 +61,10 @@ function ContactService({ id }: ContactServiceProps) {
                 </div>
                 <p className=" text-gray-500">{address?.value}</p>
               </div>
-              <div className=" flex gap-x-3">
+
+              {/* .......number commented........ */}
+
+              {/* <div className=" flex gap-x-3">
                 <div className=" gap-3 flex">
                   <Call size={24} variant="Bold" className=" text-gray-200" />
 
@@ -78,7 +81,7 @@ function ContactService({ id }: ContactServiceProps) {
                     </a>
                   );
                 })}
-              </div>
+              </div> */}
             </div>
           </div>
           <div className=" w-full h-[200px] md:h-[296px] mt-7 md:mt-0 ">

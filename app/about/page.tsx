@@ -23,7 +23,13 @@ function page() {
       </div>
       <div className=" w-full gap-y-20 px-4 lg:px-0">
         <div className=" w-full relative  max-w-[1344px] h-[190px] lg:h-[360px] rounded-[35px] bg-gray-200 ">
-          <Image src={banner} className="rounded-[35px]" fill alt="aboutUs" sizes="90vw" />
+          <Image
+            src={banner}
+            className="rounded-[35px]"
+            fill
+            alt="aboutUs"
+            sizes="90vw"
+          />
         </div>
 
         <div className=" w-full mt-20">
@@ -154,7 +160,7 @@ function page() {
             </p>
           </div>
 
-          <div className=" w-[110px] h-[110px]   lg:w-full lg:h-full absolute top-10 lg:top-[220px]   rounded-2xl ">
+          <div className=" w-[110px] h-[110px]   lg:w-full lg:h-full absolute top-10 lg:top-[120px]   rounded-2xl ">
             <Image
               src={iranlight}
               className="object-cover select-none"
