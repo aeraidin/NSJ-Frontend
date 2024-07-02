@@ -51,13 +51,13 @@ function GalleryModal({ CloseModal, State, Data }: { State: boolean, CloseModal:
                     </SwiperSlide>}
                     <button
                         onClick={() => swiper && swiper.slidePrev()}
-                        className='SinglePagePrevSlide  w-16 h-16 rounded-full disabled:cursor-not-allowed disabled:group-hover:opacity-20 duration-150 bg-black/30 text-white hover:shadow-CMSHADOW flex items-center justify-center  absolute top-1/2 transform right-2 -translate-y-1/2 z-20'>
-                        <ArrowRight2 size="24" />
+                        className='SinglePagePrevSlide w-6 h-6 lg:w-16 lg:h-16 rounded-full disabled:cursor-not-allowed disabled:group-hover:opacity-20 duration-150 bg-black/30 text-white hover:shadow-CMSHADOW flex items-center justify-center  absolute top-1/2 transform right-2 -translate-y-1/2 z-20'>
+                        <ArrowRight2 className='size-4 lg:size-6' />
                     </button>
                     <button
                         onClick={() => swiper && swiper.slideNext()}
-                        className='SinglePageNextSlide  w-16 h-16 rounded-full disabled:cursor-not-allowed disabled:group-hover:opacity-20 duration-150 bg-black/30 text-white hover:shadow-CMSHADOW flex items-center justify-center absolute top-1/2 transform left-2 -translate-y-1/2 z-20'>
-                        <ArrowLeft2 size="24" />
+                        className='SinglePageNextSlide w-6 h-6 lg:w-16 lg:h-16 rounded-full disabled:cursor-not-allowed disabled:group-hover:opacity-20 duration-150 bg-black/30 text-white hover:shadow-CMSHADOW flex items-center justify-center absolute top-1/2 transform left-2 -translate-y-1/2 z-20'>
+                        <ArrowLeft2 className='size-4 lg:size-6' />
                     </button>
 
                 </Swiper>
@@ -90,7 +90,7 @@ function GalleryModal({ CloseModal, State, Data }: { State: boolean, CloseModal:
                         {Data ? Data.map((item, index) => {
                             return (
                                 <SwiperSlide key={index} >
-                                    <div className='relative  w-full h-full  aspect-w-8 aspect-h-6 lg:aspect-h-4 rounded-2xl overflow-hidden'>
+                                    <div className='relative  w-full h-full  aspect-w-8 aspect-h-5 lg:aspect-h-4 rounded-2xl overflow-hidden'>
                                         <Image
                                             alt={item}
                                             fill

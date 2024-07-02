@@ -8,12 +8,12 @@ import { NumericFormat } from "react-number-format";
 
 function ProductCards({ data }: { data: ProductCard }) {
   return (
-    <div className="w-full select-none bg-white max-w-[321px] h-fit border border-gray-50 rounded-2xl overflow-hidden hover:shadow-CMSHADOW duration-200 group">
+    <div className="w-full select-none bg-white max-w-[321px] h-fit border border-gray-50 rounded-2xl overflow-hidden lg:hover:shadow-CMSHADOW duration-200 group">
       <Link href={`/service/${data.id}`}>
         <div className="aspect-w-8 aspect-h-5 overflow-hidden relative">
           <Image
             fill
-            className="object-cover group-hover:scale-110 duration-150"
+            className="object-cover lg:group-hover:scale-110 duration-150"
             alt={data.filePath}
             src={`${process.env.NEXT_PUBLIC_API_BASE_URLIMAGE}${data.filePath}`}
             sizes="90vw"
@@ -81,7 +81,7 @@ function ProductCards({ data }: { data: ProductCard }) {
           </p>
           <Link
             href={`/service/${data.id}`}
-            className="text-third-600 flex items-center gap-1 -translate-x-10 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-150 "
+            className="text-third-600 flex items-center gap-1 lg:-translate-x-10 lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 duration-150 "
           >
             <h5 className="text-third-600">مشاهده و خرید</h5>
             <ArrowLeft2 size={20} />
@@ -130,7 +130,7 @@ export function ProductCardsLoading() {
         </div>
         <div className="flex items-center justify-between">
           <div className="w-full max-w-[100px] rounded-2xl h-2 bg-gray-100"></div>
-          <div className="text-third-600 flex items-center gap-1 -translate-x-10 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-150">
+          <div className="text-third-600 flex items-center gap-1 lg:-translate-x-10 lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 duration-150">
             <h5 className="text-third-600">مشاهده و خرید</h5>
             <ArrowLeft2 size={20} />
           </div>

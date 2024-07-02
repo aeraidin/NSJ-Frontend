@@ -11,7 +11,7 @@ function Page() {
     <div className="w-full h-full flex items-center justify-center relative">
       {phoneNumber && (
         <button
-          className=" absolute top-[10px] right-[0px] lg:-top-[10px] lg:right-[24px] xl:top-[40px] xl:right-[32px] w-fit  items-center gap-2  cursor-pointer flex justify-end h-fit text-gray-500 hover:text-gray-600 duration-200 group"
+          className="hidden lg:absolute top-[10px] right-[0px] lg:-top-[10px] lg:right-[24px] xl:top-[40px] xl:right-[32px] w-fit  items-center gap-2  cursor-pointer lg:flex justify-end h-fit text-gray-500 hover:text-gray-600 duration-200 group"
           onClick={() => setphoneNumber(null)}
         >
           <ArrowRight

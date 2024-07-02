@@ -40,7 +40,7 @@ function RandomCategory() {
     const swiper = useSwiper();
 
     return (
-        <div className='Container w-full flex flex-col gap-6'>
+        <div className='Container w-full flex flex-col lg:gap-6'>
             <div
                 className='flex items-center justify-between '>
                 <h1>{FoundedCategory}</h1>
