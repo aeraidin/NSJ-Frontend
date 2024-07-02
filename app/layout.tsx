@@ -49,6 +49,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "https://dev.funicket.ir/Favicon/Favicon.png",
   },
+  openGraph: {
+    images: "https://dev.funicket.ir/Favicon/Favicon.png",
+  },
 };
 
 export default function RootLayout({
