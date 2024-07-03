@@ -21,10 +21,38 @@ function contact() {
       </div>
       <h1 className=" text-primary-600 mb-8">تماس با ما</h1>
       <p className=" font-semibold text-sm lg:text-base leading-7">
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-        از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-        سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
-        متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+        در فانیکت، همواره آماده پاسخگویی به سوالات، پیشنهادات و نیازهای شما
+        هستیم. <br />
+        برای ارتباط با تیم پشتیبانی ما، می‌توانید از روش‌های زیر استفاده کنید :
+      </p>
+      <br />
+      <p className=" font-semibold xl:mt-2 text-sm lg:text-base leading-7">
+        آدرس دفتر مرکزی: تهران، خیابان سهروردی، خیابان خرمشهر، خیابان عربعلی،
+        خیابان نسترن شرقی، پلاک 54
+      </p>
+      <br />
+      <p className=" font-semibold xl:mt-2 text-sm lg:text-base leading-7">
+        شماره تماس : 02188748501
+      </p>
+      <br />
+      <p className=" font-semibold xl:mt-2 text-sm lg:text-base leading-7">
+        ایمیل پشتیبانی: support@faniket.ir
+        <br />
+        ایمیل عمومی: info@faniket.ir
+      </p>
+      <br />
+
+      <p className=" font-semibold xl:mt-2 text-sm lg:text-base leading-7">
+        ساعات کاری: <br />
+        شنبه تا چهارشنبه: 9 صبح تا 6 عصر <br />
+        پنج‌شنبه: 9 صبح تا 1 بعدازظهر
+        <br />
+        همچنین می‌توانید از فرم زیر برای ارسال پیام به ما استفاده کنید. تیم ما
+      </p>
+
+      <p className=" font-semibold xl:mt-4 text-sm lg:text-base leading-7">
+        در اسرع وقت با شما تماس خواهد گرفت. مشتاقانه منتظر شنیدن نظرات و
+        پیشنهادات شما هستیم. با ما در تماس باشید!
       </p>
 
       <h2 className=" text-primary-600 font-semibold  mt-16">فرم تماس</h2>

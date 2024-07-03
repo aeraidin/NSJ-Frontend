@@ -72,12 +72,12 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
       <div>
         {data.length !== 0 && data ? (
           <>
-            <div className=" flex-col border border-gray-50   rounded-lg hidden lg:flex  ">
-              <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className=" flex-col border border-gray-50 overflow-hidden   rounded-lg hidden lg:flex  ">
+              <div className="overflow-x-auto sm:-mx-6   lg:-mx-8">
                 <div className="inline-block min-w-full  py-2 sm:px-6 lg:px-8 ">
                   <div className="overflow-hidden ">
-                    <table className="min-w-full border-gray-50   table-fixed border-collapse text-right text-sm font-light">
-                      <thead className="font-medium  dark:border-neutral-500 ">
+                    <table className="min-w-full border-gray-50 overflow-auto   table-fixed border-collapse text-right text-sm font-light">
+                      <thead className="font-medium overflow-auto  dark:border-neutral-500 ">
                         <tr className="text-gray-400   border-b  border-gray-50  ">
                           <th className="px-3 py-4 text-center ">نام مجموعه</th>
                           <th className="px-3 py-4">مبلغ</th>

@@ -21,7 +21,7 @@ function PreRegisterOTP({ CloseModal, phone, nationalCode }: { CloseModal: () =>
     const Verify = useMutation({
         mutationFn: VerifyManager,
         onSuccess(data, variables, context) {
-            router.replace("/dashboard")
+            router.replace("/https://manager.funicket.ir/")
         },
         onError(error, variables, context) {
             CloseModal()

@@ -7,17 +7,18 @@ import Image from "next/image";
 import icon1 from "../../public/FooterIcons/1.png";
 import icon2 from "../../public/FooterIcons/2.png";
 import icon3 from "../../public/FooterIcons/3.png";
-import facebook from "../../public/FooterIcons/Facebook.png";
+import aparat from "../../public/FooterIcons/aparat.svg";
 import instagram from "../../public/FooterIcons/Instagram.png";
 import linkedin from "../../public/FooterIcons/Linkedin.png";
 import telegram from "../../public/FooterIcons/Telegram.png";
+import x from "../../public/FooterIcons/x.svg";
 function Footer() {
   return (
     <footer className=" w-full Container ">
       <div className=" border-t border-gray-50 px-2 lg:px-0  py-12 mb-16 lg:mb-0  flex flex-col gap-y-10 lg:gap-y-0 lg:flex-row">
         <div className=" w-full h-full flex flex-col  gap-y-[68px]">
           <div className=" grid-cols-2 gap-8 lg:gap-0  lg:grid-cols-3 grid">
-            <ul className=" space-y-4 select-none ">
+            <ul className=" space-y-4  ">
               <li className="cursor-pointer ">
                 <Link className=" text-gray-600" href={"/about"}>
                   درباره ی فانیکت
@@ -35,7 +36,7 @@ function Footer() {
               </li>
             </ul>
 
-            <ul className=" space-y-4 select-none  ">
+            <ul className=" space-y-4   ">
               <li>
                 <Link className=" text-gray-600" href={"/contact"}>
                   تماس با ما
@@ -73,7 +74,7 @@ function Footer() {
         </div>
         <div className=" w-full  lg:mt-12 h-full flex justify-center items-center lg:justify-end lg:items-end flex-col gap-y-10">
           <div className="flex gap-x-4">
-            <Link
+            {/* <Link
               href="https://trustseal.enamad.ir/?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
               className="w-[108px] relative h-[133px] rounded-lg"
               target="_blank"
@@ -87,22 +88,56 @@ function Footer() {
                 src="https://trustseal.enamad.ir/logo.aspx?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
                 alt="نماد اعتماد الکترونیک"
               />
+            </Link> */}
+            <Link
+              referrerPolicy="origin"
+              target="_blank"
+              className=" border h-[133px] w-[108px] rounded-2xl"
+              href="https://trustseal.enamad.ir/?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
+            >
+              <Image
+                referrerPolicy="origin"
+                src="https://trustseal.enamad.ir/logo.aspx?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
+                alt="ENAMAD Logo"
+                width={200}
+                height={200}
+                className="cursor-pointer"
+              />
             </Link>
             <div className="w-[108px] relative h-[133px] rounded-lg">
-              <Image
+              <Link
+                href={
+                  "https://logo.samandehi.ir/Verify.aspx?id=369961&p=xlaogvkapfvlpfvlgvkarfth"
+                }
+                target="_blank"
+              >
+                <Image
+                  // referrerpolicy="origin"
+                  referrerPolicy="origin"
+                  id="rgvjfukzsizpsizpfukzjxlz"
+                  width={120}
+                  height={120}
+                  className="cursor-pointer"
+                  // onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=369961&p=xlaogvkapfvlpfvlgvkarfth", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")'
+                  alt="logo-samandehi"
+                  src="https://logo.samandehi.ir/logo.aspx?id=369961&p=qftiwlbqbsiybsiywlbqnbpd"
+                />
+              </Link>
+
+              {/* <Image
                 fill
                 src={icon2}
                 alt="icon2"
                 sizes="(min-width: 640px) 90vw, 100vw"
-              />
+              /> */}
             </div>{" "}
             <div className="w-[108px] relative h-[133px]  rounded-lg">
-              <Image
+              {/* <Image
                 fill
                 src={icon3}
                 alt="icon3"
                 sizes="(min-width: 640px) 90vw, 100vw"
-              />
+              /> */}
             </div>
           </div>
 
@@ -113,7 +148,7 @@ function Footer() {
 
             <div className=" flex gap-x-4">
               <Link
-                href={"#"}
+                href={"https://www.instagram.com/funicket.ir"}
                 className=" w-12 h-12  relative  duration-200 cursor-pointer  "
               >
                 <Image
@@ -125,7 +160,7 @@ function Footer() {
                 />
               </Link>
               <Link
-                href={"#"}
+                href={"https://t.me/funicket"}
                 className=" w-12 h-12  relative  duration-200 cursor-pointer  "
               >
                 <Image
@@ -138,7 +173,7 @@ function Footer() {
               </Link>
 
               <Link
-                href={"#"}
+                href={"https://www.linkedin.com/company/funicket"}
                 className=" w-12 h-12  relative  duration-200 cursor-pointer  "
               >
                 <Image
@@ -151,12 +186,24 @@ function Footer() {
               </Link>
 
               <Link
-                href={"#"}
+                href={"https://www.aparat.com/funicket"}
                 className=" w-12 h-12  relative  duration-200 cursor-pointer  "
               >
                 <Image
                   fill
-                  src={facebook}
+                  src={aparat}
+                  className=" object-cover"
+                  alt="icon3"
+                  sizes="(min-width: 640px) 90vw, 100vw"
+                />
+              </Link>
+              <Link
+                href={"https://x.com/funicket"}
+                className=" w-12 h-12  relative  duration-200 cursor-pointer  "
+              >
+                <Image
+                  fill
+                  src={x}
                   className=" object-cover"
                   alt="icon3"
                   sizes="(min-width: 640px) 90vw, 100vw"
