@@ -32,7 +32,7 @@ function HighestDiscountComplexs({ data }: { data: ProductCard[] | undefined }) 
                     <div className='w-[240px] h-[240px] relative'>
                         <Image src={"/sale.png"} fill className='object-contain' alt='sale' sizes="90vw" />
                     </div>
-                    <span className='text-2xl text-white font-bold'>بیشترین تخفیف ها</span>
+                    <span className='text-2xl text-white font-bold text-nowrap'>بیشترین تخفیف ها</span>
                 </div>
                 <div className='w-full md:col-span-3 lg:col-span-4 ' >
                     <Swiper
