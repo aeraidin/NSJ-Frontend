@@ -74,7 +74,7 @@ function Footer() {
         </div>
         <div className=" w-full  lg:mt-12 h-full flex justify-center items-center lg:justify-end lg:items-end flex-col gap-y-10">
           <div className="flex gap-x-4">
-            <Link
+            {/* <Link
               href="https://trustseal.enamad.ir/?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
               className="w-[108px] relative h-[133px] rounded-lg"
               target="_blank"
@@ -88,22 +88,56 @@ function Footer() {
                 src="https://trustseal.enamad.ir/logo.aspx?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
                 alt="نماد اعتماد الکترونیک"
               />
+            </Link> */}
+            <Link
+              referrerPolicy="origin"
+              target="_blank"
+              className=" border h-[133px] w-[108px] rounded-2xl"
+              href="https://trustseal.enamad.ir/?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
+            >
+              <Image
+                referrerPolicy="origin"
+                src="https://trustseal.enamad.ir/logo.aspx?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
+                alt="ENAMAD Logo"
+                width={200}
+                height={200}
+                className="cursor-pointer"
+              />
             </Link>
             <div className="w-[108px] relative h-[133px] rounded-lg">
-              <Image
+              <Link
+                href={
+                  "https://logo.samandehi.ir/Verify.aspx?id=369961&p=xlaogvkapfvlpfvlgvkarfth"
+                }
+                target="_blank"
+              >
+                <Image
+                  // referrerpolicy="origin"
+                  referrerPolicy="origin"
+                  id="rgvjfukzsizpsizpfukzjxlz"
+                  width={120}
+                  height={120}
+                  className="cursor-pointer"
+                  // onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=369961&p=xlaogvkapfvlpfvlgvkarfth", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")'
+                  alt="logo-samandehi"
+                  src="https://logo.samandehi.ir/logo.aspx?id=369961&p=qftiwlbqbsiybsiywlbqnbpd"
+                />
+              </Link>
+
+              {/* <Image
                 fill
                 src={icon2}
                 alt="icon2"
                 sizes="(min-width: 640px) 90vw, 100vw"
-              />
+              /> */}
             </div>{" "}
             <div className="w-[108px] relative h-[133px]  rounded-lg">
-              <Image
+              {/* <Image
                 fill
                 src={icon3}
                 alt="icon3"
                 sizes="(min-width: 640px) 90vw, 100vw"
-              />
+              /> */}
             </div>
           </div>
 
