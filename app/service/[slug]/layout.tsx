@@ -9,24 +9,23 @@ interface LayoutProps {
 
 interface MetadataParams {
   params: {
-    id: any;
+    slug: any;
   };
 }
 
 export async function generateMetadata({ params }: MetadataParams) {
+  const parts = params.slug.split('-');
+  const lastItem = parts[parts.length - 1];
   try {
     const response = await fetch(
       `
-https://dev.funicket.ir/api/v1/client/sport-commplex-service/${params.id}`
+https://dev.funicket.ir/api/v1/client/sport-commplex-service/${lastItem}`
     );
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
     const product = await response.json();
-    console.log(product.value);
-
     return {
       title: `${product.value.name} ${product.value.sportComplex.name}`,
       description: `${product.value.description}`,
