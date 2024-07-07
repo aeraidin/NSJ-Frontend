@@ -11,17 +11,19 @@ import React from "react";
 import PropertyService from "@/components/page/SingleService/PropertyService";
 import SansService from "@/components/page/SingleService/SansService";
 
-function page({ params }: { params: { id: string } }) {
+function page({ params }: { params: { slug: string } }) {
+  const parts = params.slug.split('-');
+  const lastItem = parts[parts.length - 1];
   return (
     <MainLayout>
-      <MainServiceInfo id={params.id} />
-      <SansService id={params.id} />
+      <MainServiceInfo id={lastItem} />
+      <SansService id={lastItem} />
       <div className="flex flex-col gap-10 pb-10 divide-y divide-gray-50">
-        <AboutService id={params.id} />
-        <PropertyService id={params.id} />
-        <ContactService id={params.id} />
-        <ConditionsService id={params.id} />
-        <ReviewService id={params.id} />
+        <AboutService id={lastItem} />
+        <PropertyService id={lastItem} />
+        <ContactService id={lastItem} />
+        <ConditionsService id={lastItem} />
+        <ReviewService id={lastItem} />
         {/* <RelatedService id={params.id} /> */}
       </div>
     </MainLayout>
