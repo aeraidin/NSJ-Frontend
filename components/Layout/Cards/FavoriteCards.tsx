@@ -143,6 +143,7 @@ function FavoriteCards({ data }: { data: ProductCard }) {
           </p>
           <Link
             href={`/service/${persianToSlug(data.serviceName)}-${persianToSlug(data.sportComplex.name)}-${data.id}`}
+
             className="text-third-600 flex items-center   lg:justify-end  gap-1  lg:-translate-x-32  lg:group-hover:opacity-100 lg:group-hover:-translate-x-0 lg:opacity-0  duration-150 "
           >
             <h5 className="text-third-600">مشاهده و خرید</h5>

@@ -82,6 +82,7 @@ function CartProductCards({ data }: { data: CartItems }) {
                 </button>
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-5 pb-7 border-b border-dashed border-gray-50">
                     <Link href={`/service/${persianToSlug(data.serviceName)}-${persianToSlug(data.sportComplex.name)}-${data.service.id}`}>
+
                         <div className="aspect-w-8 aspect-h-5 overflow-hidden relative rounded-2xl">
                             <Image
                                 fill
