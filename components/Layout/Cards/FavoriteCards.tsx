@@ -10,8 +10,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addRemoveFavorites } from "@/util/api/Profile/AddRemoveFavorites";
 import { persianToSlug } from "@/util/persianToSlug";
 function FavoriteCards({ data }: { data: ProductCard }) {
-  console.log(data);
-
   const queryClient = useQueryClient();
   const RemoveFavorite = useMutation({
     mutationFn: addRemoveFavorites,
