@@ -24,7 +24,7 @@ function Profile() {
       {Data ? (
         <div ref={containerRef} onClick={() => setProfileModalState(!ProfileModalState)} className="px-3 py-2 rounded-xl border border-gray-50 text-gray-500 items-center gap-2 hover:border-gray-200 duration-150 cursor-pointer hidden lg:flex relative select-none">
           <ProfileCircle size="20" variant="Bold" />
-          <p className="text-sm">{Data.firstName} {Data.lastName}</p>
+          <p className="text-sm truncate max-w-full">{Data.firstName} {Data.lastName}</p>
           <AnimatePresence>
             {ProfileModalState && (
               <motion.div
