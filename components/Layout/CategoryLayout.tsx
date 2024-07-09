@@ -12,7 +12,7 @@ import useGetAllCategory from '@/util/hook/Category/useGetAllCategory';
 import useGetMaxPriceSans from '@/util/hook/useGetMaxPriceSans';
 import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: string, serviceId?: number, Insearch?: boolean }) {
+function CategoryLayout({ serviceName, serviceId, Insearch, sportComplexId, sportComplexName }: { serviceName?: string, serviceId?: number, Insearch?: boolean, sportComplexId?: number, sportComplexName?: string }) {
     const MaxPrice = useGetMaxPriceSans()
     const [Data, setData] = useState<ProductCard[] | null>(null)
     const [PriceRange, setPriceRange] = useState<number[] | null>(null);
@@ -53,6 +53,7 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
 
             searchHandler.mutate({
                 page: 1,
+                sportComplexId: sportComplexId,
                 pageSize: pageSize,
                 serviceId: serviceId,
                 serviceName: serviceName ? decodeURIComponent(serviceName) : "",
@@ -94,6 +95,9 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
                         </div>
                         <h1>{FoundedCategory.name}</h1>
                     </div>}
+                    {sportComplexName &&
+                        <h1>مجموعه {sportComplexName} </h1>
+                    }
                 </div>
                 {/* Body */}
                 <div className='w-full flex gap-6'>
