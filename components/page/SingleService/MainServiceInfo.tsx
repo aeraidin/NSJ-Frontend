@@ -23,6 +23,7 @@ import GalleryModal from '@/components/Layout/Modals/GalleryModal';
 import LoginModal from '@/components/Layout/Modals/auth/LoginModal';
 import { useSestion } from '@/util/session';
 import useGetUser from '@/util/hook/user/useGetUser';
+import { persianToSlug } from '@/util/persianToSlug';
 
 function MainServiceInfo({ id }: { id: string }) {
     const data = useGetSingleService({ id: id })
@@ -138,7 +139,7 @@ function MainServiceInfo({ id }: { id: string }) {
                                         <div className="w-full flex items-center justify-between gap-2 ">
                                             {/* Location */}
                                             <div className='items-center gap-2 flex'>
-                                                <Link href={`/complex/${Data?.sportComplex.id}`} className="flex items-center border-l border-gray-50 pl-2 gap-1 group/item">
+                                                <Link href={`/complex/${persianToSlug(Data!.sportComplex.name)}-${persianToSlug(Data!.sportComplex.id.toString())}`} className="flex items-center border-l border-gray-50 pl-2 gap-1 group/item">
                                                     <Building4 size="14" className="text-gray-200" variant="Bold" />
                                                     <h5 className="group-hover/item:text-third-500 group-hover/item:underline duration-150">{Data?.sportComplex.name}</h5>
                                                 </Link>

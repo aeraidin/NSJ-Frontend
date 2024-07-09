@@ -81,7 +81,8 @@ function CartProductCards({ data }: { data: CartItems }) {
                     )}
                 </button>
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-5 pb-7 border-b border-dashed border-gray-50">
-                    <Link href={`/service/${persianToSlug(data.serviceName)}-${persianToSlug(data.sportComplex.name)}-${data.id}`}>
+                    <Link href={`/service/${persianToSlug(data.serviceName)}-${persianToSlug(data.sportComplex.name)}-${data.service.id}`}>
+
                         <div className="aspect-w-8 aspect-h-5 overflow-hidden relative rounded-2xl">
                             <Image
                                 fill
@@ -94,7 +95,7 @@ function CartProductCards({ data }: { data: CartItems }) {
                     </Link>
                     <div className="flex flex-col items-start justify-between">
                         <div className="flex flex-col gap-4">
-                            <Link href={`service/${persianToSlug(data.serviceName)}-${persianToSlug(data.sportComplex.name)}-${data.id}`}><h2>{data.serviceName} {data.sportComplex.name}</h2></Link>
+                            <Link href={`service/${persianToSlug(data.serviceName)}-${persianToSlug(data.sportComplex.name)}-${data.service.id}`}><h2>{data.serviceName} {data.sportComplex.name}</h2></Link>
                             <div className="flex items-center gap-2">
                                 <Location size="24" className="text-gray-300" variant="Bold" />
                                 <h5>{data.location}</h5>
