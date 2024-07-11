@@ -105,13 +105,12 @@ function Page() {
                             setCardPayment(false)
 
                         }} />
-                        {step === 2 && <div className=" lg:hidden w-full ">
+                        <div className="w-full lg:hidden ">
                             <CartSummery back={() => {
                                 setstep(1)
                                 setCardPayment(false)
                             }} step={step} CardPayment={CardPayment} Data={step === 2 ? Data : null} onClick={CheckOutHandler} disabled={PaymentMutation.isPending || !Data} totalDiscount={Data?.totalDiscount} totalPrice={Data?.totalPrice} />
                         </div>
-                        }
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={step ? step : "empty"}
