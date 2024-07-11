@@ -12,6 +12,8 @@ import instagram from "../../public/FooterIcons/Instagram.png";
 import linkedin from "../../public/FooterIcons/Linkedin.png";
 import telegram from "../../public/FooterIcons/Telegram.png";
 import x from "../../public/FooterIcons/x.svg";
+import samandehi from "@/public/FooterIcons/samandehi.png";
+import enemad from "@/public/FooterIcons/enemad.png";
 function Footer() {
   return (
     <footer className=" w-full Container ">
@@ -72,7 +74,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className=" w-full  lg:mt-12 h-full flex justify-center items-center lg:justify-end lg:items-end flex-col gap-y-10">
+        <div className=" w-full  lg:mt-12 h-full flex justify-center items-start lg:justify-end lg:items-end flex-col gap-y-10">
           <div className="flex gap-x-4">
             {/* <Link
               href="https://trustseal.enamad.ir/?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
@@ -92,12 +94,12 @@ function Footer() {
             <Link
               referrerPolicy="origin"
               target="_blank"
-              className=" border h-[133px] w-[108px] rounded-2xl"
+              className="  h-[133px] w-[108px] "
               href="https://trustseal.enamad.ir/?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
             >
               <Image
                 referrerPolicy="origin"
-                src="https://trustseal.enamad.ir/logo.aspx?id=490873&Code=6VgDDtlzBJChM4jXJekJ2eSMJRhkQGqL"
+                src={enemad}
                 alt="ENAMAD Logo"
                 width={200}
                 height={200}
@@ -120,7 +122,7 @@ function Footer() {
                   className="cursor-pointer"
                   // onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=369961&p=xlaogvkapfvlpfvlgvkarfth", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")'
                   alt="logo-samandehi"
-                  src="https://logo.samandehi.ir/logo.aspx?id=369961&p=qftiwlbqbsiybsiywlbqnbpd"
+                  src={samandehi}
                 />
               </Link>
 
@@ -131,14 +133,6 @@ function Footer() {
                 sizes="(min-width: 640px) 90vw, 100vw"
               /> */}
             </div>{" "}
-            <div className="w-[108px] relative h-[133px]  rounded-lg">
-              {/* <Image
-                fill
-                src={icon3}
-                alt="icon3"
-                sizes="(min-width: 640px) 90vw, 100vw"
-              /> */}
-            </div>
           </div>
 
           <div className=" flex flex-col justify-center items-start lg:justify-end lg:items-start w-full lg:w-fit gap-5">
