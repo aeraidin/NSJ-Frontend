@@ -23,6 +23,7 @@ const FilterPriceRange: React.FC<PriceRangeSliderProps> = ({ values, onChange })
                     minPrice={PriceRange[0]}
                     maxPrice={PriceRange[1]}
                     step={5000}
+
                     values={values}
                     onChange={onChange}
                 />}

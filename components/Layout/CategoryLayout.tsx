@@ -12,7 +12,7 @@ import useGetAllCategory from '@/util/hook/Category/useGetAllCategory';
 import useGetMaxPriceSans from '@/util/hook/useGetMaxPriceSans';
 import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: string, serviceId?: number, Insearch?: boolean }) {
+function CategoryLayout({ serviceName, serviceId, Insearch, sportComplexId, sportComplexName }: { serviceName?: string, serviceId?: number, Insearch?: boolean, sportComplexId?: number, sportComplexName?: string }) {
     const MaxPrice = useGetMaxPriceSans()
     const [Data, setData] = useState<ProductCard[] | null>(null)
     const [PriceRange, setPriceRange] = useState<number[] | null>(null);
@@ -50,17 +50,16 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
     });
     useEffect(() => {
         if (PriceRange) {
-
             searchHandler.mutate({
                 page: 1,
+                sportComplexId: sportComplexId,
                 pageSize: pageSize,
                 serviceId: serviceId,
                 serviceName: serviceName ? decodeURIComponent(serviceName) : "",
                 sortTyp: SortBy ? Number(SortBy) : 0,
                 maxPrice: DebouncedValue[1],
                 minPrice: DebouncedValue[0],
-                minRate: Number(rating),
-
+                minRate: rating ? Number(rating) : null,
             })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -76,7 +75,6 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
             }
         }
     }, [CategoryData, Insearch, serviceId,])
-
     return (
         <MainLayout>
             <div className='flex flex-col gap-6 lg:gap-10 py-4 lg:py-10'>
@@ -94,6 +92,9 @@ function CategoryLayout({ serviceName, serviceId, Insearch }: { serviceName?: st
                         </div>
                         <h1>{FoundedCategory.name}</h1>
                     </div>}
+                    {sportComplexName &&
+                        <h1>مجموعه {sportComplexName} </h1>
+                    }
                 </div>
                 {/* Body */}
                 <div className='w-full flex gap-6'>
