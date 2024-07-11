@@ -50,7 +50,6 @@ function CategoryLayout({ serviceName, serviceId, Insearch, sportComplexId, spor
     });
     useEffect(() => {
         if (PriceRange) {
-
             searchHandler.mutate({
                 page: 1,
                 sportComplexId: sportComplexId,
@@ -60,8 +59,7 @@ function CategoryLayout({ serviceName, serviceId, Insearch, sportComplexId, spor
                 sortTyp: SortBy ? Number(SortBy) : 0,
                 maxPrice: DebouncedValue[1],
                 minPrice: DebouncedValue[0],
-                minRate: Number(rating),
-
+                minRate: rating ? Number(rating) : null,
             })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -77,7 +75,6 @@ function CategoryLayout({ serviceName, serviceId, Insearch, sportComplexId, spor
             }
         }
     }, [CategoryData, Insearch, serviceId,])
-
     return (
         <MainLayout>
             <div className='flex flex-col gap-6 lg:gap-10 py-4 lg:py-10'>

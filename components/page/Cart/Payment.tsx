@@ -19,7 +19,7 @@ function Payment({ state, ChangeState }: { state: boolean, ChangeState: (e: bool
                     <div className='w-14 h-14 lg:w-16 lg:h-16 relative'>
                         <Image src={"/Icons/ZarinPal.png"} fill alt='iconZarinPal' className='object-contain' sizes="90vw" />
                     </div>
-                    <h3>زرین اپال</h3>
+                    <h3>زرین پال</h3>
                 </button>
             </div>
             {/* کیف پول */}
