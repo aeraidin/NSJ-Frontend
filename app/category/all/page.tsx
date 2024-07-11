@@ -16,12 +16,12 @@ function Page() {
                     <Breadcrumb>
                         <Breadcrumb.Item href="/">خانه
                         </Breadcrumb.Item>
-                        <Breadcrumb.Item href={`/service`}>
+                        <Breadcrumb.Item href={`/category/all`}>
                             دسته بندی ها
                         </Breadcrumb.Item>
                     </Breadcrumb>
                 </div>
-                <div className='w-full grid grid-cols-2 md:grid-cols-4  lg:grid-cols-6 gap-4  '>
+                <div className='w-full grid grid-cols-2 md:grid-cols-4  lg:grid-cols-6 gap-4 pb-6  '>
                     {Data && Data.map((item, index) => {
                         return <div key={index} className='p-6 flex flex-col items-center justify-center border border-gray-50 rounded-xl hover:shadow-CMSHADOW duration-150 hover:border-gray-100'>
                             <Link href={`/category/${item.id}`} className='flex items-center justify-center flex-col gap-3'>

@@ -11,7 +11,7 @@ function CartSummery({ Data, totalDiscount, totalPrice, onClick, disabled, CardP
     const balance = useGetBalance();
 
     return (
-        <div className="max-w-[430px] mx-auto w-full flex-1 flex flex-col  border border-gray-50 rounded-2xl justify-between h-fit  py-6 px-5 sticky top-28 ">
+        <div className=" w-full flex-1 flex flex-col  border border-gray-50 rounded-2xl justify-between h-fit  py-6 px-5 lg:sticky lg:top-28 ">
             <h1>خلاصه سفارش </h1>
             {Data && <AnimatePresence mode="wait">
                 <motion.div

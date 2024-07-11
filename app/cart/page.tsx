@@ -105,6 +105,13 @@ function Page() {
                             setCardPayment(false)
 
                         }} />
+                        {step === 2 && <div className=" lg:hidden w-full ">
+                            <CartSummery back={() => {
+                                setstep(1)
+                                setCardPayment(false)
+                            }} step={step} CardPayment={CardPayment} Data={step === 2 ? Data : null} onClick={CheckOutHandler} disabled={PaymentMutation.isPending || !Data} totalDiscount={Data?.totalDiscount} totalPrice={Data?.totalPrice} />
+                        </div>
+                        }
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={step ? step : "empty"}
@@ -116,10 +123,12 @@ function Page() {
 
                     </div>
                     {/* ایتم های سبد خرید */}
-                    <CartSummery back={() => {
-                        setstep(1)
-                        setCardPayment(false)
-                    }} step={step} CardPayment={CardPayment} Data={step === 2 ? Data : null} onClick={CheckOutHandler} disabled={PaymentMutation.isPending || !Data} totalDiscount={Data?.totalDiscount} totalPrice={Data?.totalPrice} />
+                    <div className="hidden lg:block w-full max-w-[430px]">
+                        <CartSummery back={() => {
+                            setstep(1)
+                            setCardPayment(false)
+                        }} step={step} CardPayment={CardPayment} Data={step === 2 ? Data : null} onClick={CheckOutHandler} disabled={PaymentMutation.isPending || !Data} totalDiscount={Data?.totalDiscount} totalPrice={Data?.totalPrice} />
+                    </div>
                 </div>
             ) : <div className="w-full flex-col lg:flex-row flex  gap-6 py-6">
                 <div className="flex flex-1 items-center justify-center flex-col gap-4 border border-gray-50  max-w-[500px] w-full mx-auto py-10 rounded-2xl">

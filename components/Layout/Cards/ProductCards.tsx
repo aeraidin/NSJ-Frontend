@@ -1,5 +1,6 @@
 /** @format */
 
+import { persianToSlug } from "@/util/persianToSlug";
 import { ArrowLeft2, Location } from "iconsax-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +10,7 @@ import { NumericFormat } from "react-number-format";
 function ProductCards({ data }: { data: ProductCard }) {
   return (
     <div className="w-full select-none bg-white max-w-[321px] h-fit border border-gray-50 rounded-2xl overflow-hidden lg:hover:shadow-CMSHADOW duration-200 group">
-      <Link href={`/service/${data.id}`}>
+      <Link href={`/service/${persianToSlug(data.serviceName)}-${persianToSlug(data.sportComplex.name)}-${data.id}`}>
         <div className="aspect-w-8 aspect-h-5 overflow-hidden relative">
           <Image
             fill
@@ -24,10 +25,9 @@ function ProductCards({ data }: { data: ProductCard }) {
         {/* Info Part */}
         <div className="flex flex-col gap-3 pb-3">
           <div
-            className="w-full flex items-center justify-between gap-4
-          "
+            className="w-full flex items-center justify-between gap-4"
           >
-            <Link className="  truncate" href={`/service/${data.id}`}>
+            <Link className="truncate" href={`/service/${persianToSlug(data.serviceName)}-${persianToSlug(data.sportComplex.name)}-${data.id}`}>
               <h4 className="text-gray-600">
                 {data.serviceName}{" "}{data.sportComplex.name}
               </h4>
