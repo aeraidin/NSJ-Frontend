@@ -8,9 +8,8 @@ import { NumericFormat } from "react-number-format";
 import image from "../../../public/Banner/435x210.jpg";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addRemoveFavorites } from "@/util/api/Profile/AddRemoveFavorites";
+import { persianToSlug } from "@/util/persianToSlug";
 function FavoriteCards({ data }: { data: ProductCard }) {
-  console.log(data);
-
   const queryClient = useQueryClient();
   const RemoveFavorite = useMutation({
     mutationFn: addRemoveFavorites,
@@ -90,7 +89,7 @@ function FavoriteCards({ data }: { data: ProductCard }) {
           <div
             className="w-full flex items-center justify-between gap-4"
           >
-            <Link href={`/service/${data.id}`}>
+            <Link href={`/service/${persianToSlug(data.serviceName)}-${persianToSlug(data.sportComplex.name)}-${data.id}`}>
               <h3 className=" truncate w-full max-w-[250px] lg:max-w-none">
                 {data.serviceName} {data.sportComplex.name}
               </h3>
@@ -106,7 +105,7 @@ function FavoriteCards({ data }: { data: ProductCard }) {
               <Location size="20" className="text-gray-300" variant="Bold" />
               <h5>{data.location}</h5>
             </div>
-            <Link href={`category/${data.service.id}`} className="group/item">
+            <Link href={`/category/${data.service.id}`} className="group/item">
               <h5 className="group-hover/item:text-third-500 group-hover/item:underline duration-150">
                 {data.service.name}
               </h5>
@@ -141,7 +140,8 @@ function FavoriteCards({ data }: { data: ProductCard }) {
             تومان
           </p>
           <Link
-            href={`/service/${data.id}`}
+            href={`/service/${persianToSlug(data.serviceName)}-${persianToSlug(data.sportComplex.name)}-${data.id}`}
+
             className="text-third-600 flex items-center   lg:justify-end  gap-1  lg:-translate-x-32  lg:group-hover:opacity-100 lg:group-hover:-translate-x-0 lg:opacity-0  duration-150 "
           >
             <h5 className="text-third-600">مشاهده و خرید</h5>

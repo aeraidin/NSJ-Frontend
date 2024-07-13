@@ -79,7 +79,7 @@ function ProductCards({ data }: { data: ProductCard }) {
             تومان
           </p>
           <Link
-            href={`/service/${data.id}`}
+            href={`/service/${persianToSlug(data.serviceName)}-${persianToSlug(data.sportComplex.name)}-${data.id}`}
             className="text-third-600 flex items-center gap-1 lg:-translate-x-10 lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 duration-150 "
           >
             <h5 className="text-third-600">مشاهده و خرید</h5>
