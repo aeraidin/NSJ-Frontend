@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -72,12 +74,14 @@ const ControlledInput = <T extends FieldValues>({
 
   return (
     <div
-      className={`flex flex-col my-2 w-full group ${disabled ? "cursor-not-allowed" : ""
-        }`}
+      className={`flex flex-col my-2 w-full group ${
+        disabled ? "cursor-not-allowed" : ""
+      }`}
     >
       <label
-        className={`pb-2 text-sm md:text-base text-gray-600  ${error && !disabled ? "text-[#F55F56] " : ""
-          } ${disabled ? "opacity-50" : "opacity-100"}`}
+        className={`pb-2 text-sm md:text-base text-gray-600  ${
+          error && !disabled ? "text-[#F55F56] " : ""
+        } ${disabled ? "opacity-50" : "opacity-100"}`}
         htmlFor={id}
       >
         {label}
@@ -89,14 +93,16 @@ const ControlledInput = <T extends FieldValues>({
         <input
           disabled={disabled && disabled}
           placeholder={PlaceHolder}
-          className={`p-2 w-full h-full text-sm md:text-base bg-white    outline-none flex-1 rounded-lg border text-gray-600  placeholder:text-gray-200 bg-transparent appearance-none disabled:opacity-50 disabled:cursor-not-allowed duration-200 ${type === "password" ? "pl-12" : ""
-            }  ${error && !disabled
+          className={`p-2 w-full h-full text-sm md:text-base bg-white    outline-none flex-1 rounded-lg border text-gray-600  placeholder:text-gray-200 bg-transparent appearance-none disabled:opacity-50 disabled:cursor-not-allowed duration-200 ${
+            type === "password" ? "pl-12" : ""
+          }  ${
+            error && !disabled
               ? "border-error-500 focus:border-error-500"
               : "border-gray-100 focus:border-gray-600 hover:border-gray-300"
-            } ${shebaField ? "relative" : null} `}
+          } ${shebaField ? "relative" : null} `}
           id={id}
           value={value}
-          inputMode={type === "number" ? "decimal" : "text"}
+          inputMode={type === "number" ? "text" : "text"}
           onWheel={handleWheel}
           onKeyDown={handleKeyDown}
           min={0}
@@ -104,8 +110,10 @@ const ControlledInput = <T extends FieldValues>({
             type === "password" && !showPassword
               ? "password"
               : type === "password" && showPassword
-                ? "text"
-                : type
+              ? "text"
+              : type === "number"
+              ? "text"
+              : type
           }
           {...(register ? register(id, { required }) : {})}
           onChange={(e) => {
