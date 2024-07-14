@@ -12,6 +12,8 @@ import { useSearch } from "@/util/api/Search/useSearch";
 import { log } from "console";
 import Link from "next/link";
 import useClickOutside from "@/util/hook/useClickOutside";
+import Image from "next/image";
+import { persianToSlug } from "@/util/persianToSlug";
 
 function SearchBox() {
   const options = [
@@ -151,13 +153,15 @@ function SearchBox() {
                       <div className=" h-[460px] lg:h-fit overflow-y-scroll">
                         {searchHandler.data?.value?.list.map(
                           (item: any, index: number) => {
+                            console.log(item);
+
                             return (
                               <Link
-                                href={`/service/${item.id}`}
+                                href={`/service/${persianToSlug(item.serviceName)}-${persianToSlug(item.sportComplex.name)}-${item.id}`}
                                 key={index}
                                 className=" cursor-pointer hover:bg-gray-50 duration-200 rounded-lg flex items-center px-4 my-2 w-full h-10"
                               >
-                                {item.serviceName}
+                                {item.serviceName}{" "}{item.sportComplex.name}
                               </Link>
                             );
                           }

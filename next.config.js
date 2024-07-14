@@ -3,6 +3,7 @@
  */
 
 const nextConfig = {
+ // reactStrictMode : false,
  experimental: {
   missingSuspenseWithCSRBailout: false,
  },

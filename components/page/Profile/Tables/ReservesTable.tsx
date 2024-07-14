@@ -80,9 +80,9 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
                       <thead className="font-medium overflow-auto  dark:border-neutral-500 ">
                         <tr className="text-gray-400   border-b  border-gray-50  ">
                           <th className="px-3 py-4 text-center ">نام مجموعه</th>
+                          <th className="px-3 py-4 text-center ">نام سرویس</th>
                           <th className="px-3 py-4">مبلغ</th>
                           <th className="px-3 py-4">کد رزرو</th>
-
                           <th className="px-3 py-4">تاریخ</th>
                           <th className="px-3 py-4">ساعت</th>
                           <th className="px-3 py-4">وضعیت</th>
@@ -96,6 +96,14 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
                               key={index}
                               className="text-gray-300 font-semibold border-t border-gray-50 "
                             >
+                              <td className="whitespace-nowrap px-3 py-4 ">
+                                <div className=" w-full flex justify-center items-center">
+                                  {/* <TransactionStatus data={item.type} /> */}
+                                  {/* {item.type === 0 ? "واریز" : null}
+                                {item.type === 1 ? "برداشت" : null} */}
+                                  {item.sportComplexName}
+                                </div>
+                              </td>
                               <td className="whitespace-nowrap px-3 py-4 ">
                                 <div className=" w-full flex justify-center items-center">
                                   {/* <TransactionStatus data={item.type} /> */}
@@ -154,6 +162,14 @@ function ReservesTable({ data = [], selectedRow }: TransactionsProps) {
                   <div className=" w-full justify-between flex">
                     <p className="text-sm text-gray-400 font-semibold">
                       نام مجموعه
+                    </p>
+                    <p className=" text-gray-300 text-sm font-semibold">
+                      {item.sportComplexName}
+                    </p>
+                  </div>
+                  <div className=" w-full justify-between flex">
+                    <p className="text-sm text-gray-400 font-semibold">
+                      نام سرویس
                     </p>
                     <p className=" text-gray-300 text-sm font-semibold">
                       {item.serviceName}
@@ -237,6 +253,7 @@ export function ReservesTableLoading() {
                 <thead className="font-medium  dark:border-neutral-500 ">
                   <tr className="text-gray-400   border-b  border-gray-50 ">
                     <th className="px-3 py-4 text-center ">نام مجموعه</th>
+                    <th className="px-3 py-4 text-center ">نام سرویس</th>
                     <th className="px-3 py-4">مبلغ</th>
                     <th className="px-3 py-4">کد رزرو</th>
 
@@ -255,7 +272,9 @@ export function ReservesTableLoading() {
                         <td className="whitespace-nowrap px-3 py-4 flex justify-center items-center  ">
                           <div className=" w-[75px] rounded-lg bg-gray-100 h-6 "></div>
                         </td>
-
+                        <td className="whitespace-nowrap px-3 py-4 flex justify-center items-center  ">
+                          <div className=" w-[75px] rounded-lg bg-gray-100 h-6 "></div>
+                        </td>
                         <td className="whitespace-nowrap px-3 py-4 ">
                           <div className=" w-[75px] rounded-lg bg-gray-100  h-6"></div>
                         </td>
@@ -289,6 +308,12 @@ export function ReservesTableLoading() {
           <div className=" w-full flex justify-between px-4 ">
             <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
               نام مجموعه
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              نام سرویس
             </div>
             <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
           </div>
@@ -328,6 +353,12 @@ export function ReservesTableLoading() {
           <div className=" w-full flex justify-between px-4 ">
             <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
               نام مجموعه
+            </div>
+            <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
+          </div>
+          <div className=" w-full flex justify-between px-4 ">
+            <div className=" w-24 h-4 text-sm text-gray-400 font-semibold ">
+              نام سرویس
             </div>
             <div className=" w-24 h-4 rounded-2xl bg-gray-200"></div>
           </div>
