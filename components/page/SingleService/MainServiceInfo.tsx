@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { NumericFormat } from 'react-number-format';
-import { Autoplay, FreeMode, Navigation } from 'swiper/modules';
+import { Autoplay, FreeMode, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { Link as ReactScroll } from 'react-scroll'
 import useGetSingleServiceSans from '@/util/hook/SingleService/useGetSingleServiceSans';
@@ -232,13 +232,20 @@ function MainServiceInfo({ id }: { id: string }) {
                             slidesPerView={1}
                             autoplay={{
                                 delay: 5500,
-                                disableOnInteraction: false,
+                                disableOnInteraction: true,
                             }}
                             onClick={() => setGalleryOpen(true)}
-                            modules={[FreeMode, Navigation, Autoplay]}
+                            modules={[FreeMode, Navigation, Autoplay, Pagination]}
                             navigation={{
                                 nextEl: ".SinglePageNextSlide",
                                 prevEl: ".SinglePagePrevSlide",
+                            }}
+                            pagination={{
+                                clickable: true,
+                                dynamicBullets: true,
+                                renderBullet: (index, className) => (
+                                    `<span class="${className}"></span>`
+                                ),
                             }}
                             className='w-full h-full rounded-2xl relative group'
                         >

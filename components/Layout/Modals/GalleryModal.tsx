@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Modal from './Modal'
-import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { Autoplay, FreeMode, Navigation, Pagination, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import Image from 'next/image';
 import { ArrowLeft2, ArrowRight2 } from 'iconsax-react';
@@ -31,6 +31,7 @@ function GalleryModal({ CloseModal, State, Data }: { State: boolean, CloseModal:
                         nextEl: ".SinglePageNextSlide",
                         prevEl: ".SinglePagePrevSlide",
                     }}
+
                     className='w-full h-full rounded-2xl relative group mb-4'
                 >
                     {Data ? Data.map((item, index) => {
