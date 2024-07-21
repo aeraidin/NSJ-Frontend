@@ -10,19 +10,22 @@ import { UpdateCount } from "@/util/api/Cart/UpdateCount";
 import Link from "next/link";
 import { UserTypeData } from "@/util/Data/UserTypeData";
 import { persianToSlug } from "@/util/persianToSlug";
+import { useToast } from "../Alerts/ToastProvider";
 
 function CartProductCards({ data }: { data: CartItems }) {
     const queryClient = useQueryClient();
-    const [Result, setResult] = useState(false);
+
     const [UpdateCountResult, setUpdateCountResult] = useState(false);
+    const { addToast } = useToast()
     const DeleteCartHandler = useMutation({
         mutationFn: RemoveCart,
         onSuccess(data, variables, context) {
             queryClient.invalidateQueries({ queryKey: ["Cart"] });
-            setResult(true);
+            addToast({ messege: "با موفقیت حذف شد", type: "success", duration: 300, })
         },
         onError(error, variables, context) {
-            setResult(true);
+            addToast({ messege: DeleteCartHandler.error as unknown as string, type: "error", duration: 300, })
+
         },
     });
 
@@ -30,36 +33,14 @@ function CartProductCards({ data }: { data: CartItems }) {
         mutationFn: UpdateCount,
         onSuccess(data, variables, context) {
             queryClient.invalidateQueries({ queryKey: ["Cart"] });
-            //   setResult(true);
         },
         onError(error, variables, context) {
             setUpdateCountResult(true);
+            addToast({ messege: UpdateCartCountHandler.error as unknown as string, type: "error", duration: 300, })
         },
     });
     return (
         <>
-            <Toast
-                messege={
-                    DeleteCartHandler.error
-                        ? (DeleteCartHandler.error as unknown as string)
-                        : "با موفقیت حذف شد"
-                }
-                Close={() => setResult(false)}
-                isError={DeleteCartHandler.isError}
-                isSuccess={DeleteCartHandler.isSuccess}
-                Result={Result}
-            />
-            <Toast
-                messege={
-                    UpdateCartCountHandler.error
-                        ? (UpdateCartCountHandler.error as unknown as string)
-                        : ""
-                }
-                Close={() => setUpdateCountResult(false)}
-                isError={UpdateCartCountHandler.isError}
-
-                Result={UpdateCountResult}
-            />
             <div className="w-full border border-gray-50 p-7 rounded-2xl hover:border-gray-100 hover:shadow-CMSHADOW duration-200 relative ">
                 <button
                     onClick={() => DeleteCartHandler.mutate(data.id)}

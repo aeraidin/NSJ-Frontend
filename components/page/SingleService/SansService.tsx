@@ -1,5 +1,6 @@
 "use client"
-import Toast from '@/components/Layout/Alerts/Toast'
+
+import { useToast } from '@/components/Layout/Alerts/ToastProvider'
 import SuccessBtn from '@/components/Layout/Buttons/SuccessBtn'
 import LoginModal from '@/components/Layout/Modals/auth/LoginModal'
 import { AddToCart } from '@/util/api/Cart/AddToCart'
@@ -14,7 +15,6 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { Collapse } from 'react-collapse'
 import { NumericFormat } from 'react-number-format'
-
 function SansService({ id }: { id: string }) {
     const [Result, setResult] = useState(false)
     const [SelectedClient, setSelectedClient] = useState<Sans | null>(null)
@@ -26,6 +26,8 @@ function SansService({ id }: { id: string }) {
     const Data = data?.data?.value.list as Sans[] | undefined
     const userGender = userData?.data?.value?.gender as number | undefined
     const router = useRouter()
+    const { addToast } = useToast()
+
     useEffect(() => {
         if (Data) {
             setSelectedClient({ clientType: Data[0].clientType, days: Data[0].days })
@@ -38,13 +40,14 @@ function SansService({ id }: { id: string }) {
         mutationFn: AddToCart,
         onSuccess(data, variables, context) {
             queryClient.invalidateQueries({ queryKey: ["Cart"] });
-            setResult(true)
+            addToast({ messege: "با موفقیت به سبد خرید اضافه شد", type: "success", duration: 300, })
             setTimeout(() => {
                 router.replace('/cart')
             }, 1000);
         },
         onError(error, variables, context) {
-            setResult(true)
+            addToast({ messege: AddToCartHandler.error as unknown as string, type: "error", duration: 300, })
+
         },
     })
     return (
@@ -55,7 +58,6 @@ function SansService({ id }: { id: string }) {
                 }}
                 State={Login && !userGender && !userData.isPending ? true : false}
             />
-            <Toast messege={AddToCartHandler.error ? (AddToCartHandler.error as unknown as string) : "با موفقیت به سبد خرید اضافه شد"} Close={() => setResult(false)} isError={AddToCartHandler.isError} isSuccess={AddToCartHandler.isSuccess} Result={Result} />
             <div id='sans' className="Container py-6 lg:py-10">
                 <h2 className="text-gray-500 font-semibold ">رزرو</h2>
                 <div className='border-b flex items-center gap-4 border-gray-50'>

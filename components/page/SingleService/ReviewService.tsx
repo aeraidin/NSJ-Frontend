@@ -25,8 +25,7 @@ import Cookies from "js-cookie";
 import LoginModal from "@/components/Layout/Modals/auth/LoginModal";
 import { AddComment } from "@/util/api/Comment/AddComment";
 import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
-import Toast from "@/components/Layout/Alerts/Toast";
-
+import { useToast } from "@/components/Layout/Alerts/ToastProvider";
 interface ReviewServiceProps {
   id: string;
 }
@@ -34,7 +33,6 @@ function ReviewService({ id }: ReviewServiceProps) {
   const [size, setSize] = useState(1);
   const queryclient = useQueryClient();
   const [reset, setReset] = useState({});
-  const [result, setResult] = useState(false);
   const [commentList, setCommentList] = useState<CommentItem[]>([]);
   const [state, setState] = useState(false);
   const paginateHandler = () => {
@@ -43,16 +41,16 @@ function ReviewService({ id }: ReviewServiceProps) {
 
   const singleService = useGetSingleService({ id: id });
   const Data = singleService?.data?.value as SingleProductPage | undefined;
-
+  const { addToast } = useToast()
   const addComment = useMutation({
     mutationFn: AddComment,
     onSuccess: () => {
       console.log(data);
       setState(false);
-      setResult(true);
+      addToast({ messege: "با موفقیت حذف شد", type: "success", duration: 300, })
     },
     onError: (err: Error) => {
-      console.log(err);
+      addToast({ messege: addComment.error as unknown as string, type: "error", duration: 300, })
     },
   });
 
@@ -89,17 +87,6 @@ function ReviewService({ id }: ReviewServiceProps) {
 
   return (
     <>
-      <Toast
-        messege={
-          addComment.error
-            ? (addComment.error as unknown as string)
-            : "دیدگاه شما با موفقیت ثبت شد"
-        }
-        Close={() => setResult(false)}
-        isError={addComment.isError}
-        isSuccess={addComment.isSuccess}
-        Result={result}
-      />
       {/* <div className={`z-50  `}> */}
       <Modal
         CloseModal={() => {
