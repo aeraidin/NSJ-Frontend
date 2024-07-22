@@ -23,7 +23,7 @@ function Toast({ close, messege, buttonText, haveButton, type, onClickButton, wi
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       close();
-    }, 10000);
+    }, 3000);
     return () => clearTimeout(timeoutId);
   });
 
