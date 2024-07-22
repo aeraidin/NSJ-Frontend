@@ -40,7 +40,7 @@ function SansService({ id }: { id: string }) {
         mutationFn: AddToCart,
         onSuccess(data, variables, context) {
             queryClient.invalidateQueries({ queryKey: ["Cart"] });
-            addToast({ messege: "با موفقیت به سبد خرید اضافه شد", type: "success", duration: 300, })
+            addToast({ messege: "با موفقیت به سبد خرید اضافه شد", type: "success", duration: 150, })
             setTimeout(() => {
                 router.replace('/cart')
             }, 1000);
