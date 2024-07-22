@@ -117,23 +117,27 @@ function SansService({ id }: { id: string }) {
                                         <div className='flex items-center flex-wrap gap-3 py-4 px-6'>
                                             {item.details.map((item, index) => {
                                                 return (
-                                                    <button onClick={() => userGender !== undefined ? AddToCartHandler.mutate(item.id) : setLogin(true)} key={index} className={` relative overflow-hidden h-8 text-sm lg:text-base group lg:h-10 border flex items-center gap-3 ${SelectedClient?.clientType !== 1 ? "border-third-400" : " border-pink-500"}   hover:border-transparent rounded-lg   hover:shadow px-4 py-2  duration-200 `}>
-                                                        <p className={`${SelectedClient.clientType !== 1 ? "text-third-400" : "text-pink-400"} group-hover:opacity-0  group-hover:-translate-y-full duration-200`}>{(item.end) + "-" + (item.start)}</p>
-                                                        <div className='group-hover:opacity-100 h-8 w-full bg-success-600 text-center flex items-center justify-center lg:h-10 opacity-0 absolute top-full  group-hover:top-1/2 left-1/2 transform -translate-x-1/2 group-hover:-translate-y-1/2 duration-200 '>
-                                                            {AddToCartHandler.isPending ?
-                                                                <svg className="h-6 w-6 animate-spin" viewBox="3 3 18 18">
-                                                                    <path
-                                                                        className="fill-success-400/20"
-                                                                        d="M12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5ZM3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z"
-                                                                    ></path>
-                                                                    <path
-                                                                        className="fill-success-400"
-                                                                        d="M16.9497 7.05015C14.2161 4.31648 9.78392 4.31648 7.05025 7.05015C6.65973 7.44067 6.02656 7.44067 5.63604 7.05015C5.24551 6.65962 5.24551 6.02646 5.63604 5.63593C9.15076 2.12121 14.8492 2.12121 18.364 5.63593C18.7545 6.02646 18.7545 6.65962 18.364 7.05015C17.9734 7.44067 17.3403 7.44067 16.9497 7.05015Z"
-                                                                    ></path>
-                                                                </svg>
-                                                                :
-                                                                <p className="text-white">خرید</p>
-                                                            }
+                                                    <button disabled={item.isGone} onClick={() => userGender !== undefined ? AddToCartHandler.mutate(item.id) : setLogin(true)} key={index} className=' disabled:opacity-25 disabled:cursor-not-allowed  '>
+
+                                                        <div className={`relative overflow-hidden h-8 text-sm lg:text-base group lg:h-10 border flex items-center gap-3 ${SelectedClient?.clientType !== 1 ? "border-third-400" : " border-pink-500"} hover:border-transparent rounded-lg   hover:shadow px-4 py-2  duration-200`}>
+                                                            <p className={` ${SelectedClient.clientType !== 1 ? "text-third-400" : "text-pink-400"} group-hover:opacity-0  group-hover:-translate-y-full duration-200`}>{(item.end) + "-" + (item.start)}</p>
+                                                            {/* ${AddToCartHandler.isPending ? "top-1/2 -translate-y-1/2 opacity-100" : " group-hover:top-1/2 group-hover:-translate-y-1/2 group-hover:opacity-100"} */}
+                                                            <div className={` h-8 w-full bg-success-600 text-center flex items-center justify-center lg:h-10 opacity-0 absolute top-full  left-1/2 transform -translate-x-1/2 duration-200 group-hover:top-1/2 group-hover:-translate-y-1/2 group-hover:opacity-100 `}>
+                                                                {AddToCartHandler.isPending ?
+                                                                    <svg className="h-6 w-6 animate-spin" viewBox="3 3 18 18">
+                                                                        <path
+                                                                            className="fill-success-400/20"
+                                                                            d="M12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5ZM3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z"
+                                                                        ></path>
+                                                                        <path
+                                                                            className="fill-success-400"
+                                                                            d="M16.9497 7.05015C14.2161 4.31648 9.78392 4.31648 7.05025 7.05015C6.65973 7.44067 6.02656 7.44067 5.63604 7.05015C5.24551 6.65962 5.24551 6.02646 5.63604 5.63593C9.15076 2.12121 14.8492 2.12121 18.364 5.63593C18.7545 6.02646 18.7545 6.65962 18.364 7.05015C17.9734 7.44067 17.3403 7.44067 16.9497 7.05015Z"
+                                                                        ></path>
+                                                                    </svg>
+                                                                    :
+                                                                    <p className="text-white">خرید</p>
+                                                                }
+                                                            </div>
                                                         </div>
 
 
