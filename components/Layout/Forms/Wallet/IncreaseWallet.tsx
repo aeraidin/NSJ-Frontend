@@ -1,5 +1,3 @@
-/** @format */
-
 "use client";
 import React, { useState } from "react";
 import {
@@ -8,7 +6,6 @@ import {
 } from "@/util/config/validations/Profile/IncreaseWalletSchema";
 import { Controller, SubmitHandler } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import Toast from "../../Alerts/Toast";
 import { Form } from "../Form";
 import { removeCommas } from "@persian-tools/persian-tools";
 import Amount from "../../Input/Amount";
@@ -18,11 +15,14 @@ import zarinPal from "@/public/profile/zarinpal.png";
 import pasargad from "@/public/profile/pasargad.png";
 import RadioButton from "../../Buttons/RadioButton";
 import { increase } from "@/util/api/Wallet/increase";
+import { useToast } from "../../Alerts/ToastProvider";
 
 function IncreaseWallet({ }: {}) {
   const [reset, setReset] = useState({});
   const [result, setResult] = useState(false);
   const queryClient = useQueryClient();
+  const { addToast } = useToast()
+
   const [selectedBank, setSelectedBank] = useState<number | null>(1);
   const [selectedValue, setSelectedValue] = useState<number | null>(1);
   const selectionHandler = (value: number) => {
@@ -39,11 +39,14 @@ function IncreaseWallet({ }: {}) {
       setResult(true);
       queryClient.invalidateQueries({ queryKey: ["Balance"] });
       queryClient.invalidateQueries({ queryKey: ["TransactionsList"] });
-
       setReset(values);
+      addToast({ messege: "با موفقیت حذف شد", type: "success", duration: 300, })
+
     },
     onError: (err) => {
       console.log(err);
+      addToast({ messege: increaseWallet.error as unknown as string, type: "error", duration: 300, })
+
     },
   });
   const onSubmit: SubmitHandler<IncreaseWalletSchemaType> = async (data) => {
@@ -55,18 +58,6 @@ function IncreaseWallet({ }: {}) {
 
   return (
     <>
-      <Toast
-        messege={
-          increaseWallet.error
-            ? (increaseWallet.error as unknown as string)
-            : "کیف پول با موفقیت افزایش یافت"
-        }
-        Close={() => setResult(false)}
-        isError={increaseWallet.isError}
-        isSuccess={increaseWallet.isSuccess}
-        Result={result}
-      />
-
       <Form<IncreaseWalletSchemaType>
         validationSchema={IncreaseWalletSchema}
         onSubmit={onSubmit}

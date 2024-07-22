@@ -17,7 +17,7 @@ import ControlledInput from "../../Input/ControlledInput";
 import ControlledSelect from "../../Input/ControlledSelect";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import Toast from "../../Alerts/Toast";
+import { useToast } from "../../Alerts/ToastProvider";
 
 function SignupForm() {
   const [reset, setReset] = useState({});
@@ -25,6 +25,8 @@ function SignupForm() {
   const [Result, setResult] = useState(false);
   const token = Cookies.get("token");
   const router = useRouter()
+  const { addToast } = useToast()
+
   const queryClient = useQueryClient();
   const SignupHandler = useMutation({
     mutationFn: Signup,
@@ -34,7 +36,7 @@ function SignupForm() {
       router.replace("/")
     },
     onError(error, variables, context) {
-      setResult(true)
+      addToast({ messege: SignupHandler.error as unknown as string, type: "error", duration: 300, })
     },
   });
 
@@ -49,7 +51,6 @@ function SignupForm() {
   };
   return (
     <>
-      <Toast messege={SignupHandler.error as unknown as string} Close={() => setResult(false)} isError={SignupHandler.isError} Result={Result} />
       <Form<SignupSchemaType>
         validationSchema={SignupSchema}
         onSubmit={onSubmit}

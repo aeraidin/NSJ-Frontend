@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
-
-import CountdownTimer from '../../CountDown/CountDownTimer';
 import PrimaryBtn from '../../Buttons/PrimaryBtn';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
-
-import Toast from '../../Alerts/Toast';
 import { VerifyManager } from '@/util/api/contribution/Verify';
 import OTPCode from '../../Otpcode/OTPCode';
+import { useToast } from '../../Alerts/ToastProvider';
 function PreRegisterOTP({ CloseModal, phone, nationalCode }: { CloseModal: () => void, phone: string, nationalCode: string }) {
     const [code, setCode] = useState<string>("");
     const router = useRouter();
     const [reset, setReset] = useState(false);
     const [Result, setResult] = useState(false);
+    const { addToast } = useToast()
+
     useEffect(() => {
         if (reset) {
             setReset(false);
@@ -25,7 +24,8 @@ function PreRegisterOTP({ CloseModal, phone, nationalCode }: { CloseModal: () =>
         },
         onError(error, variables, context) {
             CloseModal()
-            setResult(true)
+            addToast({ messege: Verify.error as unknown as string, type: "error", duration: 300, })
+
         },
     });
     useEffect(() => {
@@ -36,7 +36,6 @@ function PreRegisterOTP({ CloseModal, phone, nationalCode }: { CloseModal: () =>
     }, [code]);
     return (
         <>
-            <Toast Result={Result} Close={() => setResult(false)} isError messege={Verify.error?.message} />
             <div className="flex flex-col gap-8">
                 <OTPCode
                     //   error={LoginOtp.isError}

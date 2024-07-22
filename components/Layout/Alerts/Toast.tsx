@@ -1,121 +1,70 @@
-/** @format */
-
 "use client";
+
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  Add,
-  CloseCircle,
-  Danger,
-  InfoCircle,
-  Key,
-  TickCircle,
-} from "iconsax-react";
 import React, { useEffect, useState } from "react";
-
-interface toastProps {
-  isSuccess?: boolean;
-  isError?: boolean;
-  isWarning?: boolean;
-  isNotif?: boolean;
-  Result: boolean;
-  Close: () => void;
+import Image from "next/image";
+import InfoClose from "@/public/icons/close/InfoClose.svg"
+import RedClose from "@/public/icons/close/RedClose.svg"
+import WarningClose from "@/public/icons/close/WarningClose.svg"
+import WhiteClose from "@/public/icons/close/WhiteClose.svg"
+import { ArrowRight, Danger, TickCircle } from "iconsax-react";
+export type ToastType = "success" | "error" | "warning" | "notif";
+export type IToast = {
+  type: ToastType;
+  duration: number
+  close: () => void;
   messege: string | undefined;
+  haveButton?: boolean,
+  buttonText?: string,
+  onClickButton?: () => void
+  withoutIcon?: boolean
 }
-
-function Toast(props: toastProps) {
+function Toast({ close, messege, buttonText, haveButton, type, onClickButton, withoutIcon, duration, }: IToast) {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      props.Close();
-    }, 8000);
+      close();
+    }, 10000);
     return () => clearTimeout(timeoutId);
   });
 
   const variants = {
-    open: { opacity: 1, right: "3%" },
-    closed: { opacity: 0, right: "-10%" },
+    open: { opacity: 1, scale: 1 },
+    closed: { opacity: 0, scale: 0.7 },
   };
-
   return (
     <>
       <AnimatePresence>
-        {props.Result &&
-          <motion.div
-            initial="closed"
-            animate="open" exit={"closed"}
-            variants={variants}
-            transition={{ duration: .4 }}
-
-            className={`fixed top-8 flex w-full max-w-[370px] h-full max-h-[84px] z-50`}
-          >
-            <div
-              className={` w-full flex bg-white  shadow-md h-full  z-50 rounded-[10px]`}
-            >
-              <button
-                onClick={props.Close}
-                className=" cursor-pointer w-fit h-fit hover:text-gray-400 duration-200  p-3 text-gray-200"
-              >
-                <Add size="24" className="rotate-45" />
-              </button>
-
-              <div className=" h-full w-full flex justify-end gap-x-3 ml-3  items-center ">
-                <div className=" text-left w-fit ">
-                  <p
-                    className={`text-base  font-bold
-            ${props.isNotif
-                        ? "text-third-600"
-                        : props.isSuccess
-                          ? "text-success-600"
-                          : props.isError
-                            ? "text-error-600"
-                            : props.isWarning
-                              ? "text-secondary-600"
-                              : null
-                      }
-            `}
-                  >
-                    {props.isError
-                      ? "خطا"
-                      : props.isWarning
-                        ? "اخطار"
-                        : props.isSuccess
-                          ? "موفقیت آمیز "
-                          : props.isNotif
-                            ? "اعلان"
-                            : null}
-                  </p>
-                  <p className={`text-sm font-light `}>
-                    {(typeof props.messege) === "string" ? props.messege : "خطای اینترنت"}
-                  </p>
-                </div>
+        <motion.div
+          key={messege}
+          initial="closed"
+          animate="open"
+          exit={"closed"}
+          variants={variants}
+          transition={{
+            type: "spring",
+            stiffness: 1000,
+            damping: 40,
+          }}
+          className={` flex w-full max-w-[370px] h-fit  z-50`}
+        >
+          <div className={`w-full p-[10px]  rounded-2xl border border-transparent shadow-xl ${type === "success" ? "bg-success-600 shadow-success-600/20 " : type === "warning" ? "bg-secondary-600 shadow-secondary-600/20" : type === "notif" ? "bg-white !border-strokeColor" : "bg-error-600 shadow-error-600/20"}`}>
+            <div className="w-full  flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                {!withoutIcon && <div className={`p-2 rounded-full ${type === "success" ? "bg-success-100 text-success-600" : type === "warning" ? "bg-secondary-100 text-secondary-600" : type === "notif" ? "bg-white !border-strokeColor " : "bg-error-100 text-error-600"}`}>
+                  {type === "success" ? <TickCircle size="18" /> : type === "warning" || type === "error" ? <Danger size="18" /> : type === "notif" ? <Image src={"/icons/Info.svg"} alt="Icon" width={18} height={18} /> : ""}
+                </div>}
                 <div>
-                  {props.isWarning ? (
-                    <Danger variant={"Bold"} size={32} color="#FEB92E" />
-                  ) : null}
-
-                  {props.isError ? (
-                    <CloseCircle variant={"Bold"} size={32} color="#FD504F" />
-                  ) : null}
-
-                  {props.isSuccess ? (
-                    <TickCircle variant={"Bold"} size={32} color="#37C976" />
-                  ) : null}
-
-                  {props.isNotif ? (
-                    <InfoCircle variant={"Bold"} size={32} color="#4F98CA" />
-                  ) : null}
+                  <p className={`truncate text-sm ${type === "success" || type === "error" ? "text-white" : "text-gray-600"}`}>{messege}</p>
                 </div>
               </div>
-
-              <div
-                className={`h-full w-3 rounded-tl-lg rounded-bl-lg 
-        ${props.isNotif ? "bg-third-600" : null}
-        ${props.isSuccess ? "bg-success-600" : null}
-        ${props.isWarning ? "bg-secondary-600" : null}
-         ${props.isError ? "bg-error-600" : null}`}
-              ></div>
+              <button onClick={close}>
+                <Image src={type === "success" ? WhiteClose : type === "error" ? RedClose : type === "notif" ? InfoClose : type === "warning" ? WarningClose : WhiteClose} width={28} height={28} alt="Close" />
+              </button>
             </div>
-          </motion.div>
-        }
+
+          </div>
+        </motion.div>
+
       </AnimatePresence>
     </>
   );

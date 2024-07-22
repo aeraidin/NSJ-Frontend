@@ -17,8 +17,9 @@ import ControlledSelect from "../Input/ControlledSelect";
 import ControlledTextArea from "../Input/ControlledTextArea";
 import { AddContact } from "@/util/api/Contact/AddContact";
 import Captcha from "./auth/Captcha";
+import { useToast } from "../Alerts/ToastProvider";
 
-function ContactUsForm({}: {}) {
+function ContactUsForm({ }: {}) {
   const [reset, setReset] = useState({});
   const [result, setResult] = useState(false);
   const [resetCaptcha, setResetCaptcha] = useState(false);
@@ -30,16 +31,17 @@ function ContactUsForm({}: {}) {
     verify: null,
     subject: { name: "", value: "" },
   };
-
+  const { addToast } = useToast()
   const addContact = useMutation({
     mutationFn: AddContact,
     onSuccess: (data, variables, context) => {
-      setResult(true);
+      addToast({ messege: "با موفقیت ارسال شد", type: "success", duration: 300, })
       setReset(values);
       setResetCaptcha(true);
     },
     onError: (err) => {
-      console.log(err);
+      addToast({ messege: addContact.error as unknown as string, type: "error", duration: 200, })
+
     },
   });
 
@@ -62,17 +64,7 @@ function ContactUsForm({}: {}) {
   ];
   return (
     <>
-      <Toast
-        messege={
-          addContact.error
-            ? (addContact.error as unknown as string)
-            : "با موفقیت ارسال شد"
-        }
-        Close={() => setResult(false)}
-        isError={addContact.isError}
-        isSuccess={addContact.isSuccess}
-        Result={result}
-      />
+
       <Form<ContactSchemaType>
         validationSchema={ContactSchema}
         onSubmit={onSubmit}

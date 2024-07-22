@@ -12,20 +12,21 @@ import PrimaryBtn from "../../Buttons/PrimaryBtn";
 import { useMutation } from "@tanstack/react-query";
 import { useSendCodeOtp } from "@/util/api/Auth/SendCodeOtp";
 import ControlledInput from "../../Input/ControlledInput";
-import Toast from "../../Alerts/Toast";
+import { useToast } from "../../Alerts/ToastProvider";
 
 function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
   const [reset, setReset] = useState({});
-  const [result, setResult] = useState(false);
+
+  const { addToast } = useToast()
 
   const sendotp = useMutation({
     mutationFn: useSendCodeOtp,
     onSuccess: (data, variables, context) => {
-      setResult(true);
+      addToast({ messege: "کد تایید با موفقیت ارسال شد", type: "success", duration: 300, })
       PhoneNumber(variables);
     },
     onError: (err) => {
-      console.log(err);
+      addToast({ messege: sendotp.error as unknown as string, type: "error", duration: 300, })
     },
   });
 
@@ -34,17 +35,7 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
   };
   return (
     <>
-      <Toast
-        messege={
-          sendotp.error
-            ? (sendotp.error as unknown as string)
-            : "کد تایید با موفقیت ارسال شد"
-        }
-        Close={() => setResult(false)}
-        isError={sendotp.isError}
-        isSuccess={sendotp.isSuccess}
-        Result={result}
-      />
+
       <Form<PhoneValidationType>
         validationSchema={PhoneValidation}
         onSubmit={onSubmit}

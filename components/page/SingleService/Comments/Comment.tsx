@@ -1,6 +1,4 @@
-/** @format */
 
-import Toast from "@/components/Layout/Alerts/Toast";
 import { AddDisLike } from "@/util/api/Comment/AddDisLike";
 import { AddLike } from "@/util/api/Comment/AddLike";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -8,11 +6,10 @@ import { motion } from "framer-motion";
 import { Like, Like1, Star1, User, UserOctagon } from "iconsax-react";
 import Image from "next/image";
 import Cookies from "js-cookie";
-const token = Cookies.get("token");
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import LoginModal from "@/components/Layout/Modals/auth/LoginModal";
-import { log } from "console";
+import { useToast } from "@/components/Layout/Alerts/ToastProvider";
 interface commentProps {
   data: any;
 }
@@ -27,6 +24,7 @@ function Comment({ data }: commentProps) {
   const [Result, setResult] = useState(false);
   const [LoginModalState, setLoginModal] = useState(false);
   const ratingChanged = (newRating: any) => { };
+  const { addToast } = useToast()
 
   const addLikeHandler = useMutation({
     mutationFn: AddLike,
@@ -37,7 +35,7 @@ function Comment({ data }: commentProps) {
       }
     },
     onError(error, variables, context) {
-      setResult(true);
+      addToast({ messege: "با موفقیت حذف شد", type: "error", duration: 300, })
     },
   });
 
@@ -50,7 +48,8 @@ function Comment({ data }: commentProps) {
       }
     },
     onError(error, variables, context) {
-      setResult(true);
+      addToast({ messege: "با موفقیت حذف شد", type: "error", duration: 300, })
+
     },
   });
 
@@ -60,17 +59,6 @@ function Comment({ data }: commentProps) {
   }, [Cookies.get("token")]);
   return (
     <>
-      <Toast
-        messege={
-          addLikeHandler.error || addDisLikeHandler.error
-            ? "عملیات با خطا مواجه شد"
-            : "با موفقیت حذف شد"
-        }
-        Close={() => setResult(false)}
-        isError={addLikeHandler.isError || addDisLikeHandler.isError}
-        Result={Result}
-      />
-
       {LoginModalState ? (
         <LoginModal
           CloseModal={() => setLoginModal(false)}
