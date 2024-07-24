@@ -25,8 +25,8 @@ function LoginForm({ PhoneNumber }: { PhoneNumber: (phone: string) => void }) {
       addToast({ messege: "کد تایید با موفقیت ارسال شد", type: "success", duration: 300, })
       PhoneNumber(variables);
     },
-    onError: (err) => {
-      addToast({ messege: sendotp.error as unknown as string, type: "error", duration: 300, })
+    onError: (error) => {
+      addToast({ messege: error as any, type: "error", duration: 300, })
     },
   });
 

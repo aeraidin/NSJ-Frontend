@@ -24,7 +24,7 @@ function PreRegisterOTP({ CloseModal, phone, nationalCode }: { CloseModal: () =>
         },
         onError(error, variables, context) {
             CloseModal()
-            addToast({ messege: Verify.error as unknown as string, type: "error", duration: 300, })
+            addToast({ messege: error as any, type: "error", duration: 300, })
 
         },
     });

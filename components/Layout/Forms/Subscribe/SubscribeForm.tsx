@@ -24,7 +24,7 @@ function SubscribeForm() {
       setInputValue("");
     },
     onError: (err) => {
-      addToast({ messege: addDiscountNotif.error as unknown as string, type: "error", duration: 300, })
+      addToast({ messege: error as any, type: "error", duration: 300, })
     },
   });
 
