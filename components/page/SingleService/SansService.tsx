@@ -46,8 +46,7 @@ function SansService({ id }: { id: string }) {
             }, 1000);
         },
         onError(error, variables, context) {
-            addToast({ messege: AddToCartHandler.error as unknown as string, type: "error", duration: 300, })
-
+            addToast({ messege: error as any, type: "error", duration: 300, })
         },
     })
     return (

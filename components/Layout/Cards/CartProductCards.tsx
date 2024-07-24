@@ -24,7 +24,7 @@ function CartProductCards({ data }: { data: CartItems }) {
             addToast({ messege: "با موفقیت حذف شد", type: "success", duration: 300, })
         },
         onError(error, variables, context) {
-            addToast({ messege: DeleteCartHandler.error as unknown as string, type: "error", duration: 300, })
+            addToast({ messege: error as any, type: "error", duration: 300, })
 
         },
     });
@@ -36,7 +36,7 @@ function CartProductCards({ data }: { data: CartItems }) {
         },
         onError(error, variables, context) {
             setUpdateCountResult(true);
-            addToast({ messege: UpdateCartCountHandler.error as unknown as string, type: "error", duration: 300, })
+            addToast({ messege: error as any, type: "error", duration: 300, })
         },
     });
     return (

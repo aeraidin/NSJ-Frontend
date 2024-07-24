@@ -49,8 +49,8 @@ function ReviewService({ id }: ReviewServiceProps) {
       setState(false);
       addToast({ messege: "با موفقیت حذف شد", type: "success", duration: 300, })
     },
-    onError: (err: Error) => {
-      addToast({ messege: addComment.error as unknown as string, type: "error", duration: 300, })
+    onError: (error) => {
+      addToast({ messege: error as any, type: "error", duration: 300, })
     },
   });
 

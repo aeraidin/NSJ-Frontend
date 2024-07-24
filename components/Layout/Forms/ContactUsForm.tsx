@@ -39,8 +39,8 @@ function ContactUsForm({ }: {}) {
       setReset(values);
       setResetCaptcha(true);
     },
-    onError: (err) => {
-      addToast({ messege: addContact.error as unknown as string, type: "error", duration: 200, })
+    onError: (error) => {
+      addToast({ messege: error as any, type: "error", duration: 200, })
 
     },
   });

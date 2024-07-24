@@ -29,7 +29,6 @@ function PreLogin() {
     year: "",
     day: "",
   };
-  const [Result, setResult] = useState(false);
   const { addToast } = useToast()
   const SendOtp = useMutation({
     mutationFn: PreLoginApi,
@@ -41,8 +40,7 @@ function PreLogin() {
       addToast({ messege: "با موفقیت حذف شد", type: "success", duration: 300, })
     },
     onError(error, variables, context) {
-      setResult(true);
-      addToast({ messege: SendOtp.error as unknown as string, type: "error", duration: 300, })
+      addToast({ messege: error as any, type: "error", duration: 300, })
 
     },
   });
