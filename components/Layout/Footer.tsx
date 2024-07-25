@@ -14,11 +14,12 @@ import telegram from "../../public/FooterIcons/Telegram.png";
 import x from "../../public/FooterIcons/x.svg";
 import samandehi from "@/public/FooterIcons/samandehi.png";
 import enemad from "@/public/FooterIcons/enemad.png";
+import { Copyright } from "iconsax-react";
 function Footer() {
   return (
     <footer className=" w-full Container ">
-      <div className=" border-t border-gray-50 px-2 lg:px-0  py-12 mb-16 lg:mb-0  flex flex-col gap-y-10 lg:gap-y-0 lg:flex-row">
-        <div className=" w-full h-full flex flex-col  gap-y-[68px]">
+      <div className=" border-t border-gray-50 px-2 lg:px-0  py-10 mb-2 lg:mb-0  flex flex-col gap-y-10 lg:gap-y-0 lg:flex-row">
+        <div className=" w-full h-full flex flex-col  gap-y-[38px]">
           <div className=" grid-cols-2 gap-8 lg:gap-0  lg:grid-cols-3 grid">
             <ul className=" space-y-4  ">
               <li className="cursor-pointer ">
@@ -64,7 +65,12 @@ function Footer() {
               </li>
             </ul>
           </div>
-
+          <div>
+            <span className="  text-gray-400  ">
+              آدرس : تهران - خیابان خرمشهر خیابان عربعلی خیابان نسترن شرقی پلاک
+              ۵۴ طبقه دوم
+            </span>
+          </div>
           <div className=" w-full gap-y-4 flex flex-col mb-10 lg:mb-0">
             <h4 className=" text-gray-500">
               جهت اطلاع از آخرین تخفیف های شهرتان آدرس ایمیل خود را وارد نمایید!
@@ -206,6 +212,18 @@ function Footer() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="  border-t mb-20 lg:mb-2 border-gray-50 p-3 gap-3 justify-center h-fit items-start lg:items-center flex ">
+        <Copyright
+          size={12}
+          className=" text-gray-400 mt-1 lg:mt-0 lg:mb-1
+        "
+        />
+        <p className=" text-[8px] text-gray-400 lg:text-sm text-center">
+          استفاده از مطالب این وب سایت فقط برای مقاصد غیر تجاری و با ذکر منبع
+          بلامانع است. <br className=" lg:hidden" />
+          کلیه حقوق این سایت متعلق به شرکت نامدار سهیل جاوید می‌باشد.
+        </p>
       </div>
     </footer>
   );
