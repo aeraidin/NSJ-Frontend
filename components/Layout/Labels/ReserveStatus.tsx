@@ -16,7 +16,7 @@ function ReserveStatus({ usedState }: reserveStatus) {
       ) : null}
       {usedState === 1 ? (
         <div className=" text-third-500 w-fit   px-3 py-1 text-xs   md:text-[8px]  bg-third-100  text-center rounded-lg  lg:text-sm font-semibold">
-          <p className=" text-third-500 text-sm">استفاده نشده</p>
+          <p className=" text-third-500 text-sm">استفاده شده</p>
         </div>
       ) : null}
       {usedState === 2 ? (
