@@ -1,6 +1,6 @@
 /** @format */
 
-import Toast from "@/components/Layout/Alerts/Toast";
+
 import { AddDisLike } from "@/util/api/Comment/AddDisLike";
 import { AddLike } from "@/util/api/Comment/AddLike";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -10,6 +10,7 @@ const token = Cookies.get("token");
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import LoginModal from "@/components/Layout/Modals/auth/LoginModal";
+import { useToast } from "@/components/Layout/Alerts/ToastProvider";
 
 function Comments({ data }: { data: myCommentData }) {
   const queryClient = useQueryClient();
@@ -21,14 +22,17 @@ function Comments({ data }: { data: myCommentData }) {
   const [LoginModalState, setLoginModal] = useState(false);
   const ratingChanged = (newRating: any) => {
   };
-
+  const { addToast } = useToast()
   const addLikeHandler = useMutation({
     mutationFn: AddLike,
     onSuccess(data, variables, context) {
       setLike(1);
     },
     onError(error, variables, context) {
-      setResult(true);
+      addToast({
+        messege: "عملیات با خطا مواجه شد", type: "error", duration: 300,
+      })
+
     },
   });
 
@@ -38,7 +42,9 @@ function Comments({ data }: { data: myCommentData }) {
       setDisLike(1);
     },
     onError(error, variables, context) {
-      setResult(true);
+      addToast({
+        messege: "عملیات با خطا مواجه شد", type: "error", duration: 300,
+      })
     },
   });
 
@@ -48,16 +54,6 @@ function Comments({ data }: { data: myCommentData }) {
   }, [Cookies.get("token")]);
   return (
     <>
-      <Toast
-        messege={
-          addLikeHandler.error || addDisLikeHandler.error
-            ? "عملیات با خطا مواجه شد"
-            : "با موفقیت حذف شد"
-        }
-        Close={() => setResult(false)}
-        isError={addLikeHandler.isError || addDisLikeHandler.isError}
-        Result={Result}
-      />
 
       {LoginModalState ? (
         <LoginModal

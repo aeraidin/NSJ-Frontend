@@ -15,7 +15,6 @@ import useGetSingleServiceSans from '@/util/hook/SingleService/useGetSingleServi
 import { UserTypeData } from '@/util/Data/UserTypeData';
 import MainServiceInfoLoading from '@/components/Layout/Loading/MainServiceInfoLoading';
 import { usePathname } from 'next/navigation';
-import Toast from '@/components/Layout/Alerts/Toast';
 import { motion } from "framer-motion";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ToggleFavorite } from '@/util/api/Favorite/ToggleFavorite';
@@ -68,7 +67,9 @@ function MainServiceInfo({ id }: { id: string }) {
                 }}
                 State={Login && !userGender ? true : false}
             />
-            <GalleryModal Data={Data ? Data.filePathes : null} State={GalleryOpen} CloseModal={() => setGalleryOpen(false)} />
+            {Data &&
+                <GalleryModal Data={Data.filePathes} State={GalleryOpen} CloseModal={() => setGalleryOpen(false)} />
+            }
             <div className='Container flex flex-col  gap-8 pt-8'>
                 <div className='w-full flex items-center justify-between'>
                     <Breadcrumb>

@@ -1,6 +1,5 @@
 "use client";
-
-import Toast from "@/components/Layout/Alerts/Toast";
+import { useToast } from "@/components/Layout/Alerts/ToastProvider";
 import PrimaryBtn from "@/components/Layout/Buttons/PrimaryBtn";
 import { Form } from "@/components/Layout/Forms/Form";
 import ControlledInput from "@/components/Layout/Input/ControlledInput";
@@ -30,8 +29,7 @@ function PreLogin() {
     year: "",
     day: "",
   };
-  const [Result, setResult] = useState(false);
-
+  const { addToast } = useToast()
   const SendOtp = useMutation({
     mutationFn: PreLoginApi,
     onSuccess(data, variables, context) {
@@ -39,11 +37,11 @@ function PreLogin() {
       setModal(true);
       setNationalCode(variables.nationalCode);
       setReset(initialValues);
-      setResult(true);
+      addToast({ messege: "با موفقیت حذف شد", type: "success", duration: 300, })
     },
     onError(error, variables, context) {
-      setResult(true);
-      console.log(error);
+      addToast({ messege: error as any, type: "error", duration: 300, })
+
     },
   });
   const onSubmit: SubmitHandler<PreRegistrationSchemaType> = async (data) => {
@@ -59,17 +57,6 @@ function PreLogin() {
 
   return (
     <>
-      <Toast
-        messege={
-          SendOtp.error
-            ? (SendOtp.error as unknown as string)
-            : "کد با موفقیت ارسال شد"
-        }
-        Close={() => setResult(false)}
-        isError={SendOtp.isError}
-        isSuccess={SendOtp.isSuccess}
-        Result={Result}
-      />
       <OTPModal
         State={Modal}
         CloseModal={() => setModal(false)}

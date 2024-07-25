@@ -8,8 +8,8 @@ import { OtpLogin } from "@/util/api/Auth/OtpLogin";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
-import Toast from "../../Alerts/Toast";
 import OTPCode from "../../Otpcode/OTPCode";
+import { useToast } from "../../Alerts/ToastProvider";
 
 
 function OtpCodeForm({
@@ -26,9 +26,7 @@ function OtpCodeForm({
   const isNew = Cookies.get("isNew");
   const router = useRouter();
   const [reset, setReset] = useState(false);
-  const [result, setResult] = useState(false);
   const queryClient = useQueryClient();
-
   useEffect(() => {
     if (reset) {
       setReset(false);
@@ -42,11 +40,13 @@ function OtpCodeForm({
       setReset(true);
     },
   });
+  const { addToast } = useToast()
 
   const LoginOtp = useMutation({
     mutationFn: OtpLogin,
     onSuccess(data) {
-      setResult(true);
+      addToast({ messege: "ورود با موفقیت انجام شد", type: "success", duration: 300, })
+
       queryClient.invalidateQueries();
       setTimeout(() => {
         if (isNew === "true") {
@@ -61,7 +61,8 @@ function OtpCodeForm({
       }, 3000);
     },
     onError(error, variables, context) {
-      setResult(true);
+      addToast({ messege: error as any, type: "error", duration: 300, })
+
     },
   });
 
@@ -78,17 +79,7 @@ function OtpCodeForm({
 
   return (
     <>
-      <Toast
-        messege={
-          LoginOtp.error
-            ? (LoginOtp.error as unknown as string)
-            : "ورود با موفقیت انجام شد"
-        }
-        Close={() => setResult(false)}
-        isError={LoginOtp.isError}
-        isSuccess={LoginOtp.isSuccess}
-        Result={result}
-      />
+
       <div className="flex flex-col gap-8">
         <OTPCode
           error={LoginOtp.isError}

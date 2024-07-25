@@ -4,7 +4,7 @@ import MainLayout from '@/components/Layout/MainLayout';
 import { UserTypeData } from '@/util/Data/UserTypeData';
 import { VerifyPayment } from '@/util/api/Cart/VerifyPayment';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { BagCross, BagTick2, Calendar, Clock, Ticket } from 'iconsax-react';
+import { BagCross, BagTick2, Calendar, Clock, Status, Ticket } from 'iconsax-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -34,6 +34,8 @@ function Page({
     // if (!searchParams.Authority || !searchParams.Status) {
     //     redirect("/");
     // }
+    console.log(searchParams.Status);
+
     const queryClient = useQueryClient();
     const Verfiy = useMutation({
         mutationFn: VerifyPayment, onSuccess(data, variables, context) {
@@ -60,6 +62,7 @@ function Page({
         Verfiy.mutate(searchParams.Authority)
         setstep(1)
     }
+
     return (
         <StrictMode>
             <MainLayout>
@@ -87,7 +90,7 @@ function Page({
                             </div>
                             <h2 className='text-success-600 '>بلیط شما با موفقیت رزرو شد</h2>
                         </div>
-                        {Reserves?.map((item, index) => {
+                        {searchParams.Status !== "NOK" && Reserves?.map((item, index) => {
                             return <div key={index} className='w-full border border-gray-50 rounded-2xl   px-6 pb-6'>
                                 <div
                                     className='flex items-center flex-col  justify-center gap-6 py-4 '>
@@ -154,7 +157,7 @@ function Page({
                             </div>
                         })}
                     </React.Fragment>
-                        : !isloading && !Reserves ? <div className='w-fit px-10 py-7 rounded-2xl bg-error-400/20 relative '>
+                        : !isloading && !Reserves && searchParams.Status === "NOK" ? <div className='w-fit px-10 py-7 rounded-2xl bg-error-400/20 relative '>
                             <div className='w-8 h-8 bg-white rounded-full absolute -left-[16px] top-1/2 -translate-y-1/2 transform'></div>
                             <div className='w-8 h-8 bg-white rounded-full absolute -right-[16px] top-1/2 -translate-y-1/2 transform'></div>
                             <div className='p-4 rounded-full bg-white text-error-600 w-fit absolute -top-1/2 left-1/2 -translate-x-1/2 '>

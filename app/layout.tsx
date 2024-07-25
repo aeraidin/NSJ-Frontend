@@ -13,6 +13,7 @@ import 'swiper/swiper-bundle.css';
 import 'swiper/css/autoplay';
 
 import img from "@/public/Favicon.ico";
+import { ToastProvider } from "@/components/Layout/Alerts/ToastProvider";
 const yekan = Localfont({
   src: [
     {
@@ -66,7 +67,9 @@ export default function RootLayout({
       <meta name="theme-color" content="#22386B"></meta>
       <body className={yekan.className}>
         <NextNProgressWrapper>
-          <TenstackProvider>{children}</TenstackProvider>
+          <ToastProvider>
+            <TenstackProvider>{children}</TenstackProvider>
+          </ToastProvider>
         </NextNProgressWrapper>
       </body>
     </html>

@@ -1,30 +1,14 @@
-/** @format */
-
 "use client";
-import {
-  SignupSchema,
-  SignupSchemaType,
-} from "@/util/config/validations/Registration/SignupSchema";
 import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { Controller, SubmitHandler } from "react-hook-form";
-import { Form } from "../Form";
-import PrimaryBtn from "../../Buttons/PrimaryBtn";
-import { Signup } from "@/util/api/Auth/Signup";
-import ControlledSelect from "../../Input/ControlledSelect";
-import FormDropDown from "../../Dropdowns/FormDropDown";
-import { Location, SearchNormal } from "iconsax-react";
-
-import ControlledInput from "../../Input/ControlledInput";
 import {
-  SubscribeSchema,
   SubscribeSchemaType,
 } from "@/util/config/validations/Footer/SubscribeSchema";
 import { AddDiscountNotif } from "@/util/api/Contact/AddDiscountNotif";
-import Toast from "../../Alerts/Toast";
+import { useToast } from "../../Alerts/ToastProvider";
 function SubscribeForm() {
-  const [reset, setReset] = useState({});
-
+  const { addToast } = useToast()
   const options = [{ name: "تهران", value: 1 }];
   const [inputValue, setInputValue] = useState("");
   const [disabled, setDisabled] = useState(true);
@@ -35,11 +19,12 @@ function SubscribeForm() {
   const addDiscountNotif = useMutation({
     mutationFn: AddDiscountNotif,
     onSuccess: (data, variables, context) => {
-      setResult(true);
+      addToast({ messege: "ایمیل شما با موفقیت حذف شد", type: "success", duration: 300, })
+
       setInputValue("");
     },
     onError: (err) => {
-      console.log(err);
+      addToast({ messege: error as any, type: "error", duration: 300, })
     },
   });
 
@@ -77,17 +62,6 @@ function SubscribeForm() {
   };
   return (
     <>
-      <Toast
-        messege={
-          addDiscountNotif.error
-            ? (addDiscountNotif.error as unknown as string)
-            : "با موفقیت ثبت شد"
-        }
-        Close={() => setResult(false)}
-        isError={addDiscountNotif.isError}
-        isSuccess={addDiscountNotif.isSuccess}
-        Result={result}
-      />
       <div className="flex flex-col lg:flex-row   lg:justify-start w-full  p-1 lg:bg-[#F9F8F8]  rounded-2xl items-center gap-y-4 lg:gap-1 ">
         <div className=" flex justify-center gap-x-3  items-center  p-2 w-full bg-[#F9F8F8]  rounded-2xl">
           <div className=" max-w-[110px] lg:max-w-[160px] px-6   w-full">
