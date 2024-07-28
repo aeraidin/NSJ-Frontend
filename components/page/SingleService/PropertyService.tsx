@@ -2,10 +2,16 @@
 "use client";
 import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
 import { TickCircle } from "iconsax-react";
-import React from "react";
+import { notFound } from "next/navigation";
+import React, { useEffect } from "react";
 
 function PropertyService({ id }: { id: string }) {
   const data = useGetSingleService({ id: id });
+  useEffect(() => {
+    if (data.isError) {
+      return notFound()
+    }
+  }, [data.isError])
   return (
     <>
       {data.data?.value ? (

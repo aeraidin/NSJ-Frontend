@@ -26,6 +26,7 @@ import LoginModal from "@/components/Layout/Modals/auth/LoginModal";
 import { AddComment } from "@/util/api/Comment/AddComment";
 import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
 import { useToast } from "@/components/Layout/Alerts/ToastProvider";
+import { notFound } from "next/navigation";
 interface ReviewServiceProps {
   id: string;
 }
@@ -41,6 +42,11 @@ function ReviewService({ id }: ReviewServiceProps) {
 
   const singleService = useGetSingleService({ id: id });
   const Data = singleService?.data?.value as SingleProductPage | undefined;
+  useEffect(() => {
+    if (singleService.isError) {
+      return notFound()
+    }
+  }, [singleService.isError])
   const { addToast } = useToast()
   const addComment = useMutation({
     mutationFn: AddComment,
