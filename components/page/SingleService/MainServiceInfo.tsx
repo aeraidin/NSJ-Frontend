@@ -14,7 +14,7 @@ import { Link as ReactScroll } from 'react-scroll'
 import useGetSingleServiceSans from '@/util/hook/SingleService/useGetSingleServiceSans';
 import { UserTypeData } from '@/util/Data/UserTypeData';
 import MainServiceInfoLoading from '@/components/Layout/Loading/MainServiceInfoLoading';
-import { usePathname } from 'next/navigation';
+import { notFound, usePathname } from 'next/navigation';
 import { motion } from "framer-motion";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ToggleFavorite } from '@/util/api/Favorite/ToggleFavorite';
@@ -38,6 +38,11 @@ function MainServiceInfo({ id }: { id: string }) {
     const [url, seturl] = useState("");
     const pathname = usePathname();
     const queryClient = useQueryClient();
+    useEffect(() => {
+        if (Sans.isError || data.isError) {
+            return notFound()
+        }
+    }, [Sans.isError, data.isError])
     const ToggleFavoriteApi = useMutation({
         mutationFn: ToggleFavorite,
         onSuccess(data, variables, context) {

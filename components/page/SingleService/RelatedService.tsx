@@ -5,7 +5,8 @@
 import ProductCards from "@/components/Layout/Cards/ProductCards";
 import useGetSingleServiceRelated from "@/util/hook/SingleService/useGetSingleServiceRelated";
 import { ArrowLeft2, ArrowRight2 } from "iconsax-react";
-import React from "react";
+import { notFound } from "next/navigation";
+import React, { useEffect } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
@@ -13,7 +14,11 @@ function RelatedService({ id }: { id: string }) {
   const swiper = useSwiper();
   const data = useGetSingleServiceRelated({ id: id });
   const Data = data?.data?.value.list as ProductCard[] | undefined;
-
+  useEffect(() => {
+    if (data.isError) {
+      return notFound()
+    }
+  }, [data.isError])
   return (
     <div className="Container w-full flex flex-col gap-6 pt-6 lg:pt-10">
       <div className="flex items-center justify-between ">

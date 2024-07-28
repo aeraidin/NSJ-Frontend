@@ -1,7 +1,8 @@
 /** @format */
 "use client";
 import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
-import React, { useState } from "react";
+import { notFound } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 interface AboutServiceProps {
   id: string;
@@ -10,6 +11,11 @@ interface AboutServiceProps {
 function AboutService({ id }: AboutServiceProps) {
   const [expanded, setExpanded] = useState(false);
   const data = useGetSingleService({ id: id });
+  useEffect(() => {
+    if (data.isError) {
+      return notFound()
+    }
+  }, [data.isError])
   return (
     <>
       {data.data?.value ? (
