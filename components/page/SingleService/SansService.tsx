@@ -11,7 +11,7 @@ import useGetUser from '@/util/hook/user/useGetUser'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Calendar, Clock, Timer1 } from 'iconsax-react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { notFound, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { Collapse } from 'react-collapse'
 import { NumericFormat } from 'react-number-format'
@@ -27,7 +27,11 @@ function SansService({ id }: { id: string }) {
     const userGender = userData?.data?.value?.gender as number | undefined
     const router = useRouter()
     const { addToast } = useToast()
-
+    useEffect(() => {
+        if (data.isError) {
+            return notFound()
+        }
+    }, [data.isError])
     useEffect(() => {
         if (Data) {
             setSelectedClient({ clientType: Data[0].clientType, days: Data[0].days })

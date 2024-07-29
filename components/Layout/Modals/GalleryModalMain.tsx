@@ -37,14 +37,14 @@ function GalleryModalMain({
                     <motion.div
                         ref={containerRef}
                         variants={variants}
-                        className={` w-full h-[50%] lg:h-[85%]   flex items-center justify-center relative rounded-2xl md:rounded-2xl  `}
+                        className={` w-full h-[50%] lg:h-[75%]   flex items-center justify-center relative rounded-2xl md:rounded-2xl  `}
                     >
-                        {/* <button
-                            className=" absolute -top-10 right-0   duration-150"
+                        <button
+                            className=" absolute -top-20 right-10 duration-150"
                             onClick={CloseModal}
                         >
                             <Add size="32" className="rotate-45 text-white" />
-                        </button> */}
+                        </button>
                         <div className="w-full h-full">{children}</div>
 
                     </motion.div>

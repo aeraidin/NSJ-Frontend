@@ -1,6 +1,7 @@
 /** @format */
 
 import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
+import { notFound } from "next/navigation";
 import React, { ReactNode } from "react";
 
 interface LayoutProps {
@@ -35,6 +36,7 @@ https://dev.funicket.ir/api/v1/client/sport-commplex-service/${lastItem}`
     };
   } catch (error) {
     console.error("Error fetching metadata:", error);
+    notFound()
     return {
       title: "Service not found",
     };

@@ -1,9 +1,10 @@
 /** @format */
 "use client";
 import { Call, Location } from "iconsax-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useGetSingleService from "@/util/hook/SingleService/useGetSingleService";
 import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
 
 const DynamicMapComponent = dynamic(
   () => import("@/components/Layout/Map/Map"),
@@ -25,7 +26,11 @@ enum Contact {
 
 function ContactService({ id }: ContactServiceProps) {
   const data = useGetSingleService({ id: id });
-
+  useEffect(() => {
+    if (data.isError) {
+      return notFound()
+    }
+  }, [data.isError])
   const [Latlng, setLatlng] = useState<string | null>(
     "51.506747489229525,-0.1246154308319092"
   );

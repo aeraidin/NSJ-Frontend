@@ -1,53 +1,62 @@
-/** @format */
-
+/* Hide scrollbar for Chrome, Safari, and Opera */
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+      display: none;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
- -webkit-appearance: none;
- margin: 0;
+      -webkit-appearance: none;
+      margin: 0;
 }
 
 /* Firefox */
 input[type="number"] {
- -moz-appearance: textfield;
+      -moz-appearance: textfield;
+}
+/* Hide scrollbar for IE, Edge, and Firefox */
+body,
+html {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
 }
 .custom-scrollbar {
- max-height: 302px;
- overflow-y: auto;
- scrollbar-width: thin;
- border-radius: 16px;
- scrollbar-color: #011f3f; /* Change the colors as needed */
+      max-height: 302px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      border-radius: 16px;
+      scrollbar-color: #011f3f; /* Change the colors as needed */
 }
 
 .custom-scrollbar::-webkit-scrollbar {
- width: 4px; /* Adjust the width as needed */
- border-radius: 16px;
- scrollbar-color: #011f3f; /* Change the colors as needed */
+      width: 4px; /* Adjust the width as needed */
+      border-radius: 16px;
+      scrollbar-color: #011f3f; /* Change the colors as needed */
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
- border-radius: 16px;
- background-color: #011f3f; /* Change the color as needed */
- scrollbar-color: #011f3f; /* Change the colors as needed */
+      border-radius: 16px;
+      background-color: #011f3f; /* Change the color as needed */
+      scrollbar-color: #011f3f; /* Change the colors as needed */
 }
 
 .input-otp {
- border: 1px solid;
- border-color: #d7d7d7;
- width: 64px;
- height: 64px;
- outline: none;
+      border: 1px solid;
+      border-color: #d7d7d7;
+      width: 64px;
+      height: 64px;
+      outline: none;
 }
 
 .error-otp {
- border: 1px solid;
- border-color: #fd6261;
- width: 64px;
- height: 64px;
- outline: none;
+      border: 1px solid;
+      border-color: #fd6261;
+      width: 64px;
+      height: 64px;
+      outline: none;
 }
 
 .input-otp:focus {
- border-color: #525252;
+      border-color: #525252;
 }
 
 @tailwind base;
@@ -55,61 +64,61 @@ input[type="number"] {
 @tailwind utilities;
 
 @layer components {
- .Container {
-  @apply w-full max-w-[1440px] mx-auto px-3 lg:px-6;
- }
- .FullContainer {
-  @apply w-full mx-auto max-w-[1924px];
- }
- .ArrowButtonSlider {
-  @apply p-2 rounded-xl border border-primary-400 text-primary-400 hover:text-white hover:bg-primary-600 hover:border-primary-600 disabled:opacity-25 disabled:cursor-not-allowed duration-150;
- }
- .CartAddButtons {
-  @apply w-[32px] h-[32px] rounded-xl border border-gray-50 text-gray-400 hover:text-gray-600 hover:bg-gray-50/30 hover:border-gray-100 disabled:opacity-25 disabled:cursor-not-allowed duration-150;
- }
- .TabBtn {
-  @apply px-1 pb-2 border-b-2 border-transparent text-gray-300 duration-150 text-xs;
- }
- .TabBtnActice {
-  @apply text-primary-600 border-primary-600;
- }
+      .Container {
+            @apply w-full max-w-[1440px] mx-auto px-3 lg:px-6;
+      }
+      .FullContainer {
+            @apply w-full mx-auto max-w-[1924px];
+      }
+      .ArrowButtonSlider {
+            @apply p-2 rounded-xl border border-primary-400 text-primary-400 hover:text-white hover:bg-primary-600 hover:border-primary-600 disabled:opacity-25 disabled:cursor-not-allowed duration-150;
+      }
+      .CartAddButtons {
+            @apply w-[32px] h-[32px] rounded-xl border border-gray-50 text-gray-400 hover:text-gray-600 hover:bg-gray-50/30 hover:border-gray-100 disabled:opacity-25 disabled:cursor-not-allowed duration-150;
+      }
+      .TabBtn {
+            @apply px-1 pb-2 border-b-2 border-transparent text-gray-300 duration-150 text-xs;
+      }
+      .TabBtnActice {
+            @apply text-primary-600 border-primary-600;
+      }
 }
 @layer base {
- h1 {
-  @apply text-xl lg:text-2xl text-gray-600 font-[600];
- }
- h2 {
-  @apply text-base lg:text-xl text-gray-600;
- }
- h3 {
-  @apply text-lg text-gray-600;
- }
- h4 {
-  @apply text-gray-300;
- }
- h5 {
-  @apply text-sm text-gray-300;
- }
- p {
-  @apply text-sm lg:text-base text-gray-600;
- }
+      h1 {
+            @apply text-xl lg:text-2xl text-gray-600 font-[600];
+      }
+      h2 {
+            @apply text-base lg:text-xl text-gray-600;
+      }
+      h3 {
+            @apply text-lg text-gray-600;
+      }
+      h4 {
+            @apply text-gray-300;
+      }
+      h5 {
+            @apply text-sm text-gray-300;
+      }
+      p {
+            @apply text-sm lg:text-base text-gray-600;
+      }
 }
 .ReactCollapse--collapse {
- transition: height 400ms;
+      transition: height 400ms;
 }
 .swiper-pagination-bullet {
- width: 4px !important;
- height: 4px !important;
- background-color: white !important;
- border-radius: 50%;
- transition: all 0.3s ease;
- display: inline-block;
- margin: 0 2px !important;
- opacity: 100% !important;
+      width: 4px !important;
+      height: 4px !important;
+      background-color: white !important;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin: 0 2px !important;
+      opacity: 100% !important;
 }
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
- width: 22px !important;
- height: 8px;
- background-color: white;
- border-radius: 10px;
+      width: 22px !important;
+      height: 8px;
+      background-color: white;
+      border-radius: 10px;
 }
