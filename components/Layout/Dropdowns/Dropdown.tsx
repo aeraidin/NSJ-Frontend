@@ -76,7 +76,7 @@ const DropDown: React.FC<DropDownType> = ({
             transition={{ duration: 0.2 }}
             className="absolute select-none space-y-1 overflow-y-scroll custom-scrollbar  px-2  py-2 h-fit md:h-fit w-fit bg-white  mt-2 rounded-lg shadow-lg z-10"
           >
-            {options.map((item: any, index) => (
+            {options?.map((item: any, index) => (
               <div
                 key={index}
                 className={`py-3  flex justify-between  items-center px-2 ${
