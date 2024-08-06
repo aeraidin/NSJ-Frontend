@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: MetadataParams) {
   const lastItem = parts[parts.length - 1];
   try {
     const response = await fetch(
-      `
-https://dev.funicket.ir/api/v1/client/sport-commplex-service/${lastItem}`
+      `https://dev.funicket.ir/api/v1/client/sport-commplex-service/${lastItem}`
+      , { cache: "no-store" }
     );
 
     if (!response.ok) {
@@ -44,7 +44,7 @@ https://dev.funicket.ir/api/v1/client/sport-commplex-service/${lastItem}`
 }
 
 function Layout({ children }: LayoutProps) {
-  return <div>{children}</div>;
+  return <>{children}</>;
 }
 
 export default Layout;

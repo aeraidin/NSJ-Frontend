@@ -26,8 +26,8 @@ function HighestRateComplexs({ data }: { data: ProductCard[] | undefined }) {
             </div>
             <div className='w-full'>
                 <Swiper
-                    slidesPerView={1.2}
-                    spaceBetween={20}
+                    slidesPerView={"auto"}
+                    spaceBetween={12}
                     pagination={{
                         clickable: true,
                     }}
@@ -35,36 +35,13 @@ function HighestRateComplexs({ data }: { data: ProductCard[] | undefined }) {
                         nextEl: ".HighestRateComplexsNextSlide",
                         prevEl: ".HighestRateComplexsPrevSlide",
                     }}
-                    breakpoints={{
-                        480: {
-                            width: 480,
-                            slidesPerView: 1.8,
-                        },
-                        768: {
-                            width: 768,
-                            slidesPerView: 2.5,
 
-                        },
-                        976: {
-                            width: 976,
-                            slidesPerView: 3.2,
-                        },
-                        1024: {
-                            width: 1024,
-                            slidesPerView: 3.5,
-                        },
-                        1280: {
-                            width: 1280,
-                            slidesPerView: 4,
-                        },
-
-                    }}
                     modules={[Navigation]}
                     className="cursor-grab w-full "
                 >
                     {/* data.value?.list */}
                     {data && data.map((item: ProductCard, index: number) => {
-                        return <SwiperSlide className='py-6' key={index}>
+                        return <SwiperSlide className='py-6 !w-full !max-w-[321px] !h-full' key={index}>
                             <ProductCards data={item} />
                         </SwiperSlide>
                     })}
