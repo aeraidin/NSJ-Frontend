@@ -13,10 +13,19 @@ import { motion } from "framer-motion";
 import { ArrowRight, SearchNormal, SearchNormal1 } from "iconsax-react";
 import { usePathname } from "next/navigation";
 import useClickOutside from "@/util/hook/useClickOutside";
+import useGetProvinceList from "@/util/hook/ProvinceList/ProvinceList";
 
 function Header() {
   const [scrolled, setscroll] = useState(false);
   const [active, setactive] = useState(false);
+  const provinceList = useGetProvinceList();
+
+  const provinces = provinceList?.data?.value?.list.map(
+    (item: any, index: number) => {
+      return { label: item.name, value: item.value };
+    }
+  );
+
   useEffect(() => {
     const changecolor = () => {
       if (window.scrollY > 40) {
@@ -45,6 +54,7 @@ function Header() {
       document.body.style.overflow = "auto";
     }
   }, [searching]);
+
   return (
     <>
       {searching ? (
@@ -91,15 +101,21 @@ function Header() {
             <div className=" w-full justify-between flex  items-center">
               <Link href={"/"}>
                 <div className="flex items-center gap-2">
-                  <div
-                    className="relative w-[24px] h-[45px] lg:w-[30px] lg:h-[68px]"
-                  >
-                    <Image src={"/Icons/Logo.svg"} fill alt="Logo" sizes="90vw" />
+                  <div className="relative w-[24px] h-[45px] lg:w-[30px] lg:h-[68px]">
+                    <Image
+                      src={"/Icons/Logo.svg"}
+                      fill
+                      alt="Logo"
+                      sizes="90vw"
+                    />
                   </div>
-                  <div
-                    className="relative w-[80px] h-[34px]  lg:w-[120px] lg:h-[35px]"
-                  >
-                    <Image src={"/Icons/LogoFont.svg"} fill alt="Logo" sizes="90vw" />
+                  <div className="relative w-[80px] h-[34px]  lg:w-[120px] lg:h-[35px]">
+                    <Image
+                      src={"/Icons/LogoFont.svg"}
+                      fill
+                      alt="Logo"
+                      sizes="90vw"
+                    />
                   </div>
                 </div>
               </Link>

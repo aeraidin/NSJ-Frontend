@@ -1,30 +1,36 @@
+/** @format */
+
 "use client";
 import { useMutation } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { Controller, SubmitHandler } from "react-hook-form";
-import {
-  SubscribeSchemaType,
-} from "@/util/config/validations/Footer/SubscribeSchema";
+import { SubscribeSchemaType } from "@/util/config/validations/Footer/SubscribeSchema";
 import { AddDiscountNotif } from "@/util/api/Contact/AddDiscountNotif";
 import { useToast } from "../../Alerts/ToastProvider";
+import useGetProvinceList from "@/util/hook/ProvinceList/ProvinceList";
 function SubscribeForm() {
-  const { addToast } = useToast()
+  const { addToast } = useToast();
   const options = [{ name: "تهران", value: 1 }];
   const [inputValue, setInputValue] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState("");
   const [selectedOption, setSelectedOption] = useState("تهران");
   const [result, setResult] = useState(false);
+  const provinceList = useGetProvinceList();
 
   const addDiscountNotif = useMutation({
     mutationFn: AddDiscountNotif,
     onSuccess: (data, variables, context) => {
-      addToast({ messege: "ایمیل شما با موفقیت حذف شد", type: "success", duration: 300, })
+      addToast({
+        messege: "ایمیل شما با موفقیت حذف شد",
+        type: "success",
+        duration: 300,
+      });
 
       setInputValue("");
     },
     onError: (err) => {
-      addToast({ messege: error as any, type: "error", duration: 300, })
+      addToast({ messege: error as any, type: "error", duration: 300 });
     },
   });
 
@@ -70,6 +76,16 @@ function SubscribeForm() {
               onChange={handleSelectChange}
               className=" text-gray-400 text-nowrap text-sm lg:text-base font-semibold max-w-[84px] w-full bg-transparent outline-none "
             >
+              {provinceList?.data?.value?.list.map(
+                (item: any, index: number) => {
+                  return (
+                    <option key={index} value={item.name}>
+                      {item.name}
+                    </option>
+                  );
+                }
+              )}
+
               <option value="">استان</option>
               <option value="تهران">تهران</option>
             </select>
