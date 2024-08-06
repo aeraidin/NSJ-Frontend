@@ -64,6 +64,42 @@ function MainServiceInfo({ id }: { id: string }) {
     useEffect(() => {
         seturl(window.location.origin + pathname.toString());
     }, [pathname, url]);
+    const handleCopy = () => {
+        // Decode the URL if necessary
+        const decodedUrl = decodeURIComponent(url);
+        // Check if the Clipboard API is supported
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(decodedUrl)
+                .then(() => {
+                    SetCopyResult(true);
+                    setTimeout(() => {
+                        SetCopyResult(false);
+                    }, 5000);
+                })
+                .catch((err) => {
+                    console.error('Failed to copy:', err);
+                    // Handle the error appropriately, perhaps by showing a message to the user
+                });
+        } else {
+            // Fallback for unsupported browsers
+            // Create a temporary textarea element to copy the text
+            const textArea = document.createElement('textarea');
+            textArea.value = decodedUrl;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                SetCopyResult(true);
+                setTimeout(() => {
+                    SetCopyResult(false);
+                }, 5000);
+            } catch (err) {
+                console.error('Fallback: Failed to copy', err);
+            } finally {
+                document.body.removeChild(textArea);
+            }
+        }
+    };
     return (
         <>
             <LoginModal
@@ -92,13 +128,7 @@ function MainServiceInfo({ id }: { id: string }) {
                         <motion.button
                             transition={{ type: "spring", stiffness: 400 }}
                             whileTap={{ scale: 0.9 }}
-                            onClick={() => {
-                                navigator.clipboard.writeText(url);
-                                SetCopyResult(true)
-                                setTimeout(() => {
-                                    SetCopyResult(false)
-                                }, 5000);
-                            }} className='px-6 py-3 border  border-gray-100 rounded-2xl cursor-copy text-gray-400 flex items-center gap-2 text-sm font-semibold hover:bg-third-600 hover:text-white  hover:border-transparent'>
+                            onClick={handleCopy} className='px-6 py-3 border  border-gray-100 rounded-2xl cursor-copy text-gray-400 flex items-center gap-2 text-sm font-semibold hover:bg-third-600 hover:text-white  hover:border-transparent'>
                             <Share size="24" />
 
                             <span>{CopyResult ? "لینک کپی شد ! " : "اشتراک گذاری"}</span>
@@ -118,13 +148,7 @@ function MainServiceInfo({ id }: { id: string }) {
                         <motion.button
                             transition={{ type: "spring", stiffness: 400 }}
                             whileTap={{ scale: 0.9 }}
-                            onClick={() => {
-                                navigator.clipboard.writeText(url);
-                                SetCopyResult(true)
-                                setTimeout(() => {
-                                    SetCopyResult(false)
-                                }, 5000);
-                            }} className='w-full  px-2 py-2 border  border-gray-100 rounded-xl text-gray-400 flex items-center justify-center gap-2 text-xs font-semibold hover:bg-third-600 hover:text-white  hover:border-transparent'>
+                            onClick={handleCopy} className='w-full  px-2 py-2 border  border-gray-100 rounded-xl text-gray-400 flex items-center justify-center gap-2 text-xs font-semibold hover:bg-third-600 hover:text-white  hover:border-transparent'>
                             <Share size="20" />
                             <span>{CopyResult ? "لینک کپی شد ! " : "اشتراک گذاری"}</span>
                         </motion.button>
