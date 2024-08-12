@@ -1,25 +1,29 @@
 /**
+ * @format
  * @type {import('next').NextConfig}
  */
 
-const nextConfig = {
- // reactStrictMode : false,
- experimental: {
-  missingSuspenseWithCSRBailout: false,
- },
+const withPWA = require("next-pwa")({
+  dest: "public",
+});
 
- images: {
-  remotePatterns: [
-   {
-    protocol: "http",
-    hostname: "**",
-   },
-   {
-    protocol: "https",
-    hostname: "**",
-   },
-  ],
- },
+const nextConfig = {
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
+  },
+  // Add any other Next.js configuration options here if needed
 };
 
-module.exports = nextConfig;
+module.exports = withPWA(nextConfig);

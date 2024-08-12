@@ -1,3 +1,5 @@
+/** @format */
+
 "use client";
 import {
   SignupSchema,
@@ -24,8 +26,8 @@ function SignupForm() {
   const [Genders, setGender] = useState(1);
   const [Result, setResult] = useState(false);
   const token = Cookies.get("token");
-  const router = useRouter()
-  const { addToast } = useToast()
+  const router = useRouter();
+  const { addToast } = useToast();
 
   const queryClient = useQueryClient();
   const SignupHandler = useMutation({
@@ -33,10 +35,11 @@ function SignupForm() {
     onSuccess(data, variables, context) {
       Cookies.remove("isNew");
       queryClient.invalidateQueries();
-      router.replace("/")
+      window.location.reload();
+      router.replace("/");
     },
     onError(error, variables, context) {
-      addToast({ messege: error as any, type: "error", duration: 300, })
+      addToast({ messege: error as any, type: "error", duration: 300 });
     },
   });
 
@@ -77,12 +80,8 @@ function SignupForm() {
               type="text"
               error={errors.lastName?.message}
             />
-            <label
-              className={`text-sm md:text-base text-gray-600`}
-
-            >
+            <label className={`text-sm md:text-base text-gray-600`}>
               تاریخ تولد
-
             </label>
             {/* Birthday */}
             <div className="flex items-center gap-3 ">
