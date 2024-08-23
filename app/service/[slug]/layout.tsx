@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: MetadataParams) {
     };
   } catch (error) {
     console.error("Error fetching metadata:", error);
-    notFound()
+    // notFound()
     return {
       title: "Service not found",
     };

@@ -22,6 +22,8 @@ function SansService({ id }: { id: string }) {
     const userData = useGetUser()
     const queryClient = useQueryClient();
     const data = useGetSingleServiceSans({ id: id })
+    const Packagedata = useGetSingleServiceSans({ id: id })
+    console.log(Packagedata?.data?.value);
     const [Login, setLogin] = useState(false);
     const Data = data?.data?.value.list as Sans[] | undefined
     const userGender = userData?.data?.value?.gender as number | undefined
