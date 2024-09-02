@@ -1,87 +1,111 @@
 /** @format */
 
 interface ProductCard {
- id: number;
- filePath: string;
- serviceName: string;
- rate: number;
- location: string;
- price: number;
- service: { id: number; name: string };
- sportComplex: { id: number; name: string };
- priceAfterDiscount: number;
- discountPresentage: number;
- hasDiscount: boolean;
+  id: number;
+  filePath: string;
+  serviceName: string;
+  rate: number;
+  location: string;
+  price: number;
+  service: { id: number; name: string };
+  sportComplex: { id: number; name: string };
+  priceAfterDiscount: number;
+  discountPresentage: number;
+  hasDiscount: boolean;
 }
 
 enum Contact {
- Address = 0,
- Phone = 1,
- PostalCode = 2,
- Map = 3,
+  Address = 0,
+  Phone = 1,
+  PostalCode = 2,
+  Map = 3,
 }
 interface contacts {
- id: number;
- type: Contact;
- value: string;
+  id: number;
+  type: Contact;
+  value: string;
 }
 interface SingleProductPage {
- id: number;
- filePathes: string[];
- conditions: [];
- contacts: contacts[];
- description: string;
- name: string;
- rate: number;
- location: string;
- categoryName: string;
- sportComplex: { id: number; name: string };
- service: {
   id: number;
+  filePathes: string[];
+  conditions: [];
+  contacts: contacts[];
+  description: string;
   name: string;
- };
- price: number;
- discount: number;
- priceAfterDiscount: number;
- discountPresentage: number;
- hasDiscount: boolean;
- isUserFavorite?: boolean;
- workHours: {
-  fromDayOfWeak: number;
-  toDayOfWeak: number;
-  start: string;
-  end: string;
- };
+  rate: number;
+  location: string;
+  categoryName: string;
+  sportComplex: { id: number; name: string };
+  service: {
+    id: number;
+    name: string;
+  };
+  price: number;
+  discount: number;
+  priceAfterDiscount: number;
+  discountPresentage: number;
+  hasDiscount: boolean;
+  isUserFavorite?: boolean;
+  workHours: {
+    fromDayOfWeak: number;
+    toDayOfWeak: number;
+    start: string;
+    end: string;
+  };
 }
 interface Sans {
- clientType: number;
- days: SansDay[];
+  clientType: number;
+  days: SansDay[];
 }
 interface SansDay {
- dayOfWeek: number;
- price: number;
- details: SansDayDetail[];
- discountPresentage: number;
- priceAfterDiscount: number;
- priod: number;
- exp: number;
- date: string;
+  dayOfWeek: number;
+  price: number;
+  details: SansDayDetail[];
+  discountPresentage: number;
+  priceAfterDiscount: number;
+  priod: number;
+  exp: number;
+  date: string;
 }
 interface SansDayDetail {
- id: number;
- start: string;
- isGone: boolean;
- end: string;
+  id: number;
+  start: string;
+  isGone: boolean;
+  end: string;
 }
 
+interface Package {
+  clientType: number;
+  days: Packages[];
+}
+interface Packages {
+  id: number;
+  title: string;
+  description: string;
+  amount: number;
+  startDate: string;
+  endDate: string;
+  discountPresentage: number;
+  priceAfterDiscount: number;
+  hasDiscount: boolean;
+  capacity: number;
+  clientType: number;
+}
+// interface SansDayDetail {
+//   id: number;
+//   start: string;
+//   isGone: boolean;
+//   end: string;
+// }
+
 interface CommentItem {
- id: number;
- text: string;
- replay: string;
- rate: number;
- createdDate: string;
- user: {
-  name: string;
-  profileImage: string;
- };
+  id: number;
+  text: string;
+  replay: string;
+  rate: number;
+  createdDate: string;
+  user: {
+    name: string;
+    profileImage: string;
+  };
 }
