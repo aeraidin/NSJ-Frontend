@@ -500,7 +500,7 @@ function SansService({ id }: { id: string }) {
                       return a.clientType - b.clientType;
                     }
                   })
-                  .map((item, index) => {
+                  .map((item: any, index) => {
                     return (
                       <button
                         onClick={() => {
