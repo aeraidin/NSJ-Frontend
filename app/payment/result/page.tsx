@@ -62,7 +62,10 @@ function Page({
       queryClient.invalidateQueries({ queryKey: ["Cart"] });
       queryClient.invalidateQueries({ queryKey: ["Balance"] });
       queryClient.invalidateQueries({ queryKey: ["ReserveList"] });
-      if (data.value.reserves.length > 0) {
+      if (
+        data.value.reserves.length > 0 ||
+        data.value.packageReserves.length > 0
+      ) {
         setReserves(data.value.reserves);
         setPackages(data.value.packageReserves);
         setShowConfetti(true);
@@ -114,7 +117,8 @@ function Page({
           />
         )}
         <div className="w-full max-w-[890px] mx-auto py-12 flex items-center justify-center flex-col gap-6">
-          {Reserves && Reserves?.length > 0 ? (
+          {(Reserves && Reserves?.length > 0) ||
+          (packages && packages?.length > 0) ? (
             <React.Fragment>
               <div className="w-fit px-10 py-7 rounded-2xl bg-success-400/20 relative ">
                 <div className="w-8 h-8 bg-white rounded-full absolute -left-[16px] top-1/2 -translate-y-1/2 transform"></div>
@@ -218,7 +222,7 @@ function Page({
                 })}
 
               {searchParams.Status !== "NOK" &&
-                packages?.map((item, index) => {
+                packages?.map((item: any, index) => {
                   return (
                     <div
                       key={index}
@@ -256,7 +260,7 @@ function Page({
                         <h3 className="font-semibold text-gray-400">
                           جزئیات رزرو بلیط
                         </h3>
-                        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:items-center md:content-center gap-4  pt-8 py-4 ">
+                        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:items-center md:content-center gap-4  pt-8 py-4 ">
                           <div className="flex flex-col items-center gap-4 md:border-l border-b md:border-b-0 pb-2 md:pb-0 border-gray-50">
                             <div className="flex items-center gap-2">
                               <Image
@@ -267,8 +271,9 @@ function Page({
                               />
                               <p className="text-gray-400">نوع رزرو</p>
                             </div>
-                            {/* <p>{UserTypeData[item.type].name}</p> */}
+                            <p>{UserTypeData[item.type]?.name}</p>
                           </div>
+
                           <div className="flex flex-col items-center gap-4 md:border-l border-b md:border-b-0 pb-2 md:pb-0 border-gray-50">
                             <div className="flex items-center gap-2">
                               <Calendar
@@ -278,19 +283,11 @@ function Page({
                               />
                               <p className="text-gray-400">تاریخ</p>
                             </div>
-                            {/* <p>{item.date}</p> */}
+                            <p>
+                              {item.start} - {item.end}
+                            </p>
                           </div>
-                          <div className="flex flex-col items-center gap-4 md:border-l border-b md:border-b-0 pb-2 md:pb-0 border-gray-50">
-                            <div className="flex items-center gap-2">
-                              <Clock
-                                size="24"
-                                className="text-gray-200"
-                                variant="Bold"
-                              />
-                              <p className="text-gray-400">سانس رزرو</p>
-                            </div>
-                            {/* <p>{item.sans}</p> */}
-                          </div>
+
                           <div className="flex flex-col items-center gap-4">
                             <div className="flex items-center gap-2">
                               <Ticket
@@ -308,7 +305,9 @@ function Page({
                   );
                 })}
             </React.Fragment>
-          ) : !isloading && !Reserves && searchParams.Status === "NOK" ? (
+          ) : !isloading &&
+            (!packages || !Reserves) &&
+            searchParams.Status === "NOK" ? (
             <div className="w-fit px-10 py-7 rounded-2xl bg-error-400/20 relative ">
               <div className="w-8 h-8 bg-white rounded-full absolute -left-[16px] top-1/2 -translate-y-1/2 transform"></div>
               <div className="w-8 h-8 bg-white rounded-full absolute -right-[16px] top-1/2 -translate-y-1/2 transform"></div>

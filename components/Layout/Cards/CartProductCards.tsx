@@ -42,6 +42,9 @@ function CartProductCards({ data }: { data: CartProductCardsType }) {
       addToast({ messege: error as any, type: "error", duration: 300 });
     },
   });
+
+  console.log(data.type);
+
   return (
     <>
       <div className="w-full border border-gray-50 p-7 rounded-2xl hover:border-gray-100 hover:shadow-CMSHADOW duration-200 relative ">
@@ -175,10 +178,10 @@ function CartProductCards({ data }: { data: CartProductCardsType }) {
                 />
                 <p className="text-gray-400">نوع رزرو</p>
               </div>
-
               {data?.clientType ? (
                 <p>{UserTypeData[data.clientType].name}</p>
               ) : null}
+              {data.start ? <p>{UserTypeData[data.type]?.name}</p> : null}
             </div>
             <div className="flex flex-col items-center gap-4 md:border-l border-b md:border-b-0 pb-2 md:pb-0 border-gray-50">
               <div className="flex items-center gap-2">
@@ -186,14 +189,21 @@ function CartProductCards({ data }: { data: CartProductCardsType }) {
                 <p className="text-gray-400">تاریخ</p>
               </div>
               <p>{data.date}</p>
+              {data.start ? (
+                <p>
+                  {data.start}-{data.end}
+                </p>
+              ) : null}
             </div>
-            <div className="flex flex-col items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Clock size="24" className="text-gray-200" variant="Bold" />
-                <p className="text-gray-400">سانس رزرو</p>
+            {data.startTime ? (
+              <div className="flex flex-col items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <Clock size="24" className="text-gray-200" variant="Bold" />
+                  <p className="text-gray-400">سانس رزرو</p>
+                </div>
+                <p>{data.endTime + "-" + data.startTime}</p>
               </div>
-              <p>{data.endTime + "-" + data.startTime}</p>
-            </div>
+            ) : null}
           </div>
         </div>
       </div>

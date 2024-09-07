@@ -36,7 +36,9 @@ interface packCartItems {
   priceAfterDiscount: number;
   discountPresentage: number;
   sportComplex: { id: number; name: string };
-
+  start: string;
+  end: string;
+  type: number;
   service: {
     id: number;
     name: string;

@@ -45,7 +45,7 @@ function CartSummery({
             exit={{ y: -10, opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            {Data?.map((item: sansCartItems, index: number) => {
+            {Data?.map((item: sansCartItems & packCartItems, index: number) => {
               return (
                 <div
                   key={index}
@@ -68,6 +68,11 @@ function CartSummery({
                           {UserTypeData[item.clientType].name}
                         </p>
                       ) : null}
+                      {item.start ? (
+                        <p className="text-xs text-gray-400 w-full truncate">
+                          {UserTypeData[item.type]?.name}
+                        </p>
+                      ) : null}
                     </div>
                     <div className="flex items-center gap-1 text-gray-200">
                       <Calendar
@@ -75,21 +80,31 @@ function CartSummery({
                         className="text-gray-200"
                         variant="Bold"
                       />
-                      <p className="text-xs text-gray-400 w-full truncate">
-                        {item.date}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock
-                        size="16"
-                        className="text-gray-200"
-                        variant="Bold"
-                      />
+                      {item.date ? (
+                        <p className="text-xs text-gray-400 w-full truncate">
+                          {item.date}
+                        </p>
+                      ) : null}
 
-                      <p className="text-xs text-gray-400 w-full truncate">
-                        {item.endTime + " الی " + item.startTime}
-                      </p>
+                      {item.start ? (
+                        <p className="text-xs text-gray-400 w-full truncate">
+                          {item.start} - {item.end}
+                        </p>
+                      ) : null}
                     </div>
+                    {item.startTime ? (
+                      <div className="flex items-center gap-1">
+                        <Clock
+                          size="16"
+                          className="text-gray-200"
+                          variant="Bold"
+                        />
+
+                        <p className="text-xs text-gray-400 w-full truncate">
+                          {item.endTime + " الی " + item.startTime}
+                        </p>
+                      </div>
+                    ) : null}
                     <div className="flex items-center gap-1">
                       <Ticket
                         size="16"
