@@ -11,7 +11,6 @@ import CountdownTimer from "@/components/Layout/CountDown/CountDownTimer";
 import OTPCode from "../../Otpcode/OTPCode";
 import { useToast } from "../../Alerts/ToastProvider";
 
-
 function OtpCodeForm({
   phone,
   CloseModal,
@@ -40,12 +39,16 @@ function OtpCodeForm({
       setReset(true);
     },
   });
-  const { addToast } = useToast()
+  const { addToast } = useToast();
 
   const LoginOtp = useMutation({
     mutationFn: OtpLogin,
     onSuccess(data) {
-      addToast({ messege: "ورود با موفقیت انجام شد", type: "success", duration: 300, })
+      addToast({
+        messege: "ورود با موفقیت انجام شد",
+        type: "success",
+        duration: 300,
+      });
 
       queryClient.invalidateQueries();
       setTimeout(() => {
@@ -55,14 +58,14 @@ function OtpCodeForm({
           if (inModal) {
             CloseModal && CloseModal();
           } else {
-            router.replace("/");
+            window.location.reload();
+            router.replace("/profile");
           }
         }
       }, 3000);
     },
     onError(error, variables, context) {
-      addToast({ messege: error as any, type: "error", duration: 300, })
-
+      addToast({ messege: error as any, type: "error", duration: 300 });
     },
   });
 
@@ -79,7 +82,6 @@ function OtpCodeForm({
 
   return (
     <>
-
       <div className="flex flex-col gap-8">
         <OTPCode
           error={LoginOtp.isError}
