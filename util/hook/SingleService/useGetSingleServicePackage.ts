@@ -9,7 +9,7 @@ export default function useGetSingleServicePackage({ id }: { id: string }) {
     queryFn: async () => {
       try {
         const response = await axiosInstance.get(
-          `client/${id}/package/list?PageSize=10&Page=1`
+          `client/${id}/package/grouped-list`
         );
         if (response.data.isSuccess) {
           return response.data;

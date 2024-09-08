@@ -91,6 +91,28 @@ interface Packages {
   capacity: number;
   clientType: number;
 }
+
+interface PackageItems {
+  clientType: number;
+  days: PackageItem[];
+}
+interface PackageItem {
+  list: [
+    {
+      id: number;
+      title: string;
+      description: string;
+      amount: number;
+      startDate: string;
+      endDate: string;
+      discountPresentage: number;
+      priceAfterDiscount: number;
+      hasDiscount: boolean;
+      capacity: number;
+      clientType: number;
+    }
+  ];
+}
 // interface SansDayDetail {
 //   id: number;
 //   start: string;
