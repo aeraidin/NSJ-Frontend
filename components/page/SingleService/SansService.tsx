@@ -202,8 +202,8 @@ function SansService({ id }: { id: string }) {
                           {" "}
                           مدت زمان هر سانس:{" "}
                           <span className="text-gray-600">
-                            {item.priod} دقیقه
-                          </span>{" "}
+                            {item.priod === 0 ? "آزاد" : `${item.priod}دقیقه`}
+                          </span>
                         </p>
                       </div>
                       <div className="flex items-center gap-2">
