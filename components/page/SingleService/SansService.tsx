@@ -202,8 +202,8 @@ function SansService({ id }: { id: string }) {
                           {" "}
                           مدت زمان هر سانس:{" "}
                           <span className="text-gray-600">
-                            {item.priod} دقیقه
-                          </span>{" "}
+                            {item.priod === 0 ? "آزاد" : `${item.priod}دقیقه`}
+                          </span>
                         </p>
                       </div>
                       <div className="flex items-center gap-2">
@@ -475,117 +475,121 @@ function SansService({ id }: { id: string }) {
           </>
         ) : null} */}
       </div>
-
-      <div className="py-6 flex Container flex-col gap-4">
-        {Packagedata?.data?.value?.list?.length > 0 ? (
-          <>
-            <h2 className="text-gray-500 font-semibold ">خرید پکیج</h2>
-            <div className="border-b flex items-center gap-4 border-gray-50">
-              {packData ? (
-                packData
-                  ?.sort((a, b) => {
-                    if (userGender !== undefined) {
-                      if (
-                        a.clientType === userGender &&
-                        b.clientType !== userGender
-                      ) {
-                        return -1;
+      {Packagedata?.data?.value?.list?.length > 0 ? (
+        <div className="py-6 flex Container flex-col gap-4">
+          {Packagedata?.data?.value?.list?.length > 0 ? (
+            <>
+              <h2 className="text-gray-500 font-semibold ">خرید پکیج</h2>
+              <div className="border-b flex items-center gap-4 border-gray-50">
+                {packData ? (
+                  packData
+                    ?.sort((a, b) => {
+                      if (userGender !== undefined) {
+                        if (
+                          a.clientType === userGender &&
+                          b.clientType !== userGender
+                        ) {
+                          return -1;
+                        }
+                        if (
+                          a.clientType !== userGender &&
+                          b.clientType === userGender
+                        ) {
+                          return 1;
+                        }
+                        // If both have the same clientType or both do not match the userGender, maintain the original order
+                        return a.clientType - b.clientType;
+                      } else {
+                        // Default sorting if userGender is not defined
+                        return a.clientType - b.clientType;
                       }
-                      if (
-                        a.clientType !== userGender &&
-                        b.clientType === userGender
-                      ) {
-                        return 1;
-                      }
-                      // If both have the same clientType or both do not match the userGender, maintain the original order
-                      return a.clientType - b.clientType;
-                    } else {
-                      // Default sorting if userGender is not defined
-                      return a.clientType - b.clientType;
-                    }
-                  })
-                  .map((item: any, index) => {
-                    return (
-                      <button
-                        onClick={() => {
-                          setSelectedPackage({
-                            clientType: item.clientType,
-                            days: [item],
-                          });
-                        }}
-                        className={`px-10 py-6 border-b-2 font-semibold ${
-                          selectedPackage?.clientType === item.clientType &&
-                          item.clientType !== 1
-                            ? "text-third-500 border-third-500"
-                            : selectedPackage?.clientType === item.clientType
-                            ? "text-pink-400 border-pink-400"
-                            : "border-transparent text-gray-300"
-                        } duration-200`}
-                        key={index}
-                      >
-                        {UserTypeData[item.clientType].name}
-                      </button>
-                    );
-                  })
-              ) : (
-                <React.Fragment>
-                  <button
-                    className={`px-10 py-6 border-b-2 font-semibold text-pink-400 border-pink-400 duration-200`}
+                    })
+                    .map((item: any, index) => {
+                      return (
+                        <button
+                          onClick={() => {
+                            setSelectedPackage({
+                              clientType: item.clientType,
+                              days: [item],
+                            });
+                          }}
+                          className={`px-10 py-6 border-b-2 font-semibold ${
+                            selectedPackage?.clientType === item.clientType &&
+                            item.clientType !== 1
+                              ? "text-third-500 border-third-500"
+                              : selectedPackage?.clientType === item.clientType
+                              ? "text-pink-400 border-pink-400"
+                              : "border-transparent text-gray-300"
+                          } duration-200`}
+                          key={index}
+                        >
+                          {UserTypeData[item.clientType].name}
+                        </button>
+                      );
+                    })
+                ) : (
+                  <React.Fragment>
+                    <button
+                      className={`px-10 py-6 border-b-2 font-semibold text-pink-400 border-pink-400 duration-200`}
+                    >
+                      بانوان
+                    </button>
+                    <button
+                      className={`px-10 py-6 border-b-2 font-semibold border-transparent text-gray-300 duration-200`}
+                    >
+                      اقایان
+                    </button>
+                  </React.Fragment>
+                )}
+              </div>
+            </>
+          ) : null}
+          {selectedPackage ? (
+            selectedPackage?.days?.map((item: PackageItem, index) => {
+              return item.list.map((item: any, index: number) => {
+                return (
+                  <div
+                    key={index}
+                    className="w-full border flex flex-col border-gray-50 hover:border-gray-100 hover:shadow-CMSHADOW duration-150 rounded-2xl p-4 lg:py-6 lg:px-8"
                   >
-                    بانوان
-                  </button>
-                  <button
-                    className={`px-10 py-6 border-b-2 font-semibold border-transparent text-gray-300 duration-200`}
-                  >
-                    اقایان
-                  </button>
-                </React.Fragment>
-              )}
-            </div>
-          </>
-        ) : null}
-        {selectedPackage ? (
-          selectedPackage?.days?.map((item: PackageItem, index) => {
-            return item.list.map((item: any, index: number) => {
-              return (
-                <div
-                  key={index}
-                  className="w-full border flex flex-col border-gray-50 hover:border-gray-100 hover:shadow-CMSHADOW duration-150 rounded-2xl p-4 lg:py-6 lg:px-8"
-                >
-                  <div className="flex flex-col gap-6 lg:flex-row items-start lg:items-center justify-between  ">
-                    <div className="flex flex-col gap-4">
-                      {item.title}
-                      <div className="flex items-center gap-2">
-                        <p className="text-gray-400">توضیحات:</p>
-                        <p>
-                          {/* {DaysOfWeekArray[item.dayOfWeek].name} {item.date} */}
-                          {item.description}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar size="24" className="text-gray-300" />
-                        <p className="text-gray-400">
-                          شروع:{" "}
-                          <span className="text-gray-600">
-                            {item.startDate}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar size="24" className="text-gray-300" />
-                        <p className="text-gray-400">
-                          پایان:{" "}
-                          <span className="text-gray-600">{item.endDate}</span>
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <User size="24" className="text-gray-300" />
-                        <p className="text-gray-400">
-                          ظرفیت:{" "}
-                          <span className="text-gray-600">{item.capacity}</span>
-                        </p>
-                      </div>
-                      {/* <div className="flex items-center gap-2">
+                    <div className="flex flex-col gap-6 lg:flex-row items-start lg:items-center justify-between  ">
+                      <div className="flex flex-col gap-4">
+                        {item.title}
+                        <div className="flex items-center gap-2">
+                          <p className="text-gray-400">توضیحات:</p>
+                          <p>
+                            {/* {DaysOfWeekArray[item.dayOfWeek].name} {item.date} */}
+                            {item.description}
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar size="24" className="text-gray-300" />
+                          <p className="text-gray-400">
+                            شروع:{" "}
+                            <span className="text-gray-600">
+                              {item.startDate}
+                            </span>
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar size="24" className="text-gray-300" />
+                          <p className="text-gray-400">
+                            پایان:{" "}
+                            <span className="text-gray-600">
+                              {item.endDate}
+                            </span>
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <User size="24" className="text-gray-300" />
+                          <p className="text-gray-400">
+                            ظرفیت:{" "}
+                            <span className="text-gray-600">
+                              {item.capacity}
+                            </span>
+                          </p>
+                        </div>
+                        {/* <div className="flex items-center gap-2">
                          <Image
                            src={"/Icons/durationSans.svg"}
                            width={24}
@@ -600,10 +604,62 @@ function SansService({ id }: { id: string }) {
                            </span>
                          </p>
                        </div> */}
+                      </div>
+                      <div className="lg:hidden">
+                        <Collapse isOpened={index === expandedRow} className="">
+                          <div className="text-gray-500 flex items-center gap-4 px-6">
+                            <Image
+                              src={"/Icons/durationClock.svg"}
+                              width={24}
+                              height={24}
+                              alt="durationClock"
+                            />
+                            <p className="text-gray-400">
+                              سانس مورد نظر را انتخاب کنید
+                            </p>
+                          </div>
+                        </Collapse>
+                      </div>
+                      <div className="flex flex-1 w-full flex-col lg:flex-row items-start lg:items-center gap-4 ">
+                        <div className="w-full flex items-center justify-between lg:justify-end">
+                          <p className="lg:hidden">قیمت:</p>
+                          <p className="flex items-center gap-1">
+                            <NumericFormat
+                              value={
+                                item.discountPresentage > 0
+                                  ? item.priceAfterDiscount
+                                  : item.priceAfterDiscount
+                              }
+                              displayType={"text"}
+                              thousandSeparator={","}
+                            />
+                            {" تومان "}
+                            {item.discountPresentage > 0 ? (
+                              <div className="px-4 py-1 mx-3  bg-error-500 rounded-xl">
+                                <h5 className="text-white leading-4">
+                                  {" "}
+                                  {Math.floor(item.discountPresentage)}٪
+                                </h5>
+                              </div>
+                            ) : null}
+                          </p>
+                        </div>
+                        <div className="w-full lg:max-w-[166px]">
+                          <SuccessBtn
+                            onClick={() =>
+                              userGender !== undefined
+                                ? AddToCartPackageHandler.mutate(item.id)
+                                : setLogin(true)
+                            }
+                          >
+                            خرید پکیج
+                          </SuccessBtn>
+                        </div>
+                      </div>
                     </div>
-                    <div className="lg:hidden">
+                    <div className="hidden lg:block">
                       <Collapse isOpened={index === expandedRow} className="">
-                        <div className="text-gray-500 flex items-center gap-4 px-6">
+                        <div className="text-gray-500 flex items-center gap-4 px-6 pt-6">
                           <Image
                             src={"/Icons/durationClock.svg"}
                             width={24}
@@ -616,70 +672,19 @@ function SansService({ id }: { id: string }) {
                         </div>
                       </Collapse>
                     </div>
-                    <div className="flex flex-1 w-full flex-col lg:flex-row items-start lg:items-center gap-4 ">
-                      <div className="w-full flex items-center justify-between lg:justify-end">
-                        <p className="lg:hidden">قیمت:</p>
-                        <p className="flex items-center gap-1">
-                          <NumericFormat
-                            value={
-                              item.discountPresentage > 0
-                                ? item.priceAfterDiscount
-                                : item.priceAfterDiscount
-                            }
-                            displayType={"text"}
-                            thousandSeparator={","}
-                          />
-                          {" تومان "}
-                          {item.discountPresentage > 0 ? (
-                            <div className="px-4 py-1 mx-3  bg-error-500 rounded-xl">
-                              <h5 className="text-white leading-4">
-                                {" "}
-                                {Math.floor(item.discountPresentage)}٪
-                              </h5>
-                            </div>
-                          ) : null}
-                        </p>
-                      </div>
-                      <div className="w-full lg:max-w-[166px]">
-                        <SuccessBtn
-                          onClick={() =>
-                            userGender !== undefined
-                              ? AddToCartPackageHandler.mutate(item.id)
-                              : setLogin(true)
-                          }
-                        >
-                          خرید پکیج
-                        </SuccessBtn>
-                      </div>
-                    </div>
                   </div>
-                  <div className="hidden lg:block">
-                    <Collapse isOpened={index === expandedRow} className="">
-                      <div className="text-gray-500 flex items-center gap-4 px-6 pt-6">
-                        <Image
-                          src={"/Icons/durationClock.svg"}
-                          width={24}
-                          height={24}
-                          alt="durationClock"
-                        />
-                        <p className="text-gray-400">
-                          سانس مورد نظر را انتخاب کنید
-                        </p>
-                      </div>
-                    </Collapse>
-                  </div>
-                </div>
-              );
-            });
-          })
-        ) : (
-          <div className="flex flex-col gap-2 animate-pulse">
-            <div className="w-full border flex flex-col border-gray-50 hover:border-gray-100 hover:shadow-CMSHADOW duration-150 rounded-2xl p-4 lg:py-6 lg:px-8 h-[100px] bg-gray-50"></div>
-            <div className="w-full border flex flex-col border-gray-50 hover:border-gray-100 hover:shadow-CMSHADOW duration-150 rounded-2xl p-4 lg:py-6 lg:px-8 h-[100px] bg-gray-50"></div>
-            <div className="w-full border flex flex-col border-gray-50 hover:border-gray-100 hover:shadow-CMSHADOW duration-150 rounded-2xl p-4 lg:py-6 lg:px-8 h-[100px] bg-gray-50"></div>
-          </div>
-        )}
-      </div>
+                );
+              });
+            })
+          ) : (
+            <div className="flex flex-col gap-2 animate-pulse">
+              <div className="w-full border flex flex-col border-gray-50 hover:border-gray-100 hover:shadow-CMSHADOW duration-150 rounded-2xl p-4 lg:py-6 lg:px-8 h-[100px] bg-gray-50"></div>
+              <div className="w-full border flex flex-col border-gray-50 hover:border-gray-100 hover:shadow-CMSHADOW duration-150 rounded-2xl p-4 lg:py-6 lg:px-8 h-[100px] bg-gray-50"></div>
+              <div className="w-full border flex flex-col border-gray-50 hover:border-gray-100 hover:shadow-CMSHADOW duration-150 rounded-2xl p-4 lg:py-6 lg:px-8 h-[100px] bg-gray-50"></div>
+            </div>
+          )}
+        </div>
+      ) : null}
     </>
   );
 }
